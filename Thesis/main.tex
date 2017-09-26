@@ -1,0 +1,35 @@
+%% Template Definitions
+\documentclass[a4paper,12pt,oneside]{book}
+\include{def/packages}
+\include{def/commands}
+\include{def/design}
+
+\begin{document}
+
+%% Contens
+\frontmatter
+\include{chapters/abstract}
+\include{contents}
+\include{chapters/abbreviations}
+
+%% Main Part
+\mainmatter
+\include{chapters/introduction}
+\include{chapters/pcvm}
+\include{chapters/transferlearning}
+\include{chapters/integration}
+\include{chapters/empiricalstudy}
+\include{chapters/evalFuture}
+\include{chapter/conclusion}
+
+%% Appendix
+\appendix
+\include{appendix/appa}
+\include{appendix/appab}
+\include{appendix/appac}
+
+%% Bibliography
+\include{biblio}
+
+\end{document}
+

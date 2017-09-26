@@ -1,0 +1,51 @@
+\chapter{Mathematical Notation}\label{appaA}
+In the following appendix, the mathematical notations are explained.
+This notation is used through out the whole thesis.
+In particular the matrix notations are not consistent defined, which is observable for example in the following literature: \cite{Chen.2009}, \cite{Bishop.2009} and \cite{Long.2015}.
+First are some basic definitions of linear algebra:\\
+A scalar or real number is represented with a normal upper letter, e.\,g. $N$.
+A vector is denoted as lower bold letter such as \textbf{v} and is assumed as a column vector.
+The superscript T denotes the transpose of a matrix or vector. So a row vector is indicated as $\mathbf{v}^{T}$.
+Furthermore $(v_1 \dots v_N)$ is a row vector with N elements.
+The corresponding column vector is simple $\mathbf{w}$ and $(w_1 \dots w_N)^T$ is a column vector two.
+A bold upper letter such as $\mathbf{M}$ represents a Matrix.
+The rows (N) and columns (M) of a matrix are denoted as upper letters $N \times M$. 
+In the context of pattern recognition, the rows and columns are the numbers of observations or data points and dimensions. 
+The M $\times$ M identity matrix is denoted as \textbf{I}\textsubscript{M}.
+If the number of dimensionalities is obvious the matrix is simply referred as \textbf{I}.
+The elements of the identity matrix \textbf{I}\textsubscript{i,j} are:
+\[
+I_{i,j}= \begin{dcases*}
+1, i = j\\
+0, i \neq j
+\end{dcases*}
+\]
+The expectation of a function $f(x,y)$ with respect to a random variable X is denoted as $E_x[f(x,y)]$.
+If it is obvious which variable has been used, the subscript is for simplicity omitted, e.g. $E[x]$.
+If the distribution of X is conditional on another variable Y, then conditional expectation will be written as $E_x(f(x)\mid Y)$. In other words, the conditional expectations of X given Y.\newline
+The variance of is denoted as $var[f(x)]$.
+The covariance of two observations \textbf{x} and \textbf{y} is written as $cov[\textbf{x},\textbf{y}]$.
+The covariance of a vector with itself is denoted as $cov(\textbf{x},\textbf{x})$. The shorthand is $cov(\textbf{x})$.\newline
+This part of notation is inspired by Bishop, which is found in \cite[p. xi - xii]{Bishop.2009}\\
+The marginal probability distribution of a random variable X is denoted as $P(x)$.
+The conditional probability variable Y given X is denoted as $P(y \mid x)$.
+If g is a distribution of a random variable X, then $p_i=g(x_i)$ is the proability that $X=x_i$.
+If a probability distribution f follows the normal distribution $N$, then this is denoted as $f\sim N$.\newline
+A dataset is represented as matrix shown above.
+The number of dimensions indicates the number of features and the number of elements indicate the number of observations.
+The composition of the features represents the feature space of the dataset.
+Matrix indices are denoted as \textbf{M}(i,j) with i,j $\ge$ 0.
+With this, the value of the i-th row and j-th column is addressed.\newline
+\subsection{Terminology}
+In this thesis may various definitions of the Gaussian distribution appearing.
+This happens because we tried to be consistent with the cited sources.
+The Normal distribution is equal to the Gaussian.
+The Standard Normal or Gaussian distribution is defined as $N(0,1)$, which is centred at the origin.
+Furthermore, the zero-mean Gaussian distribution has his mean also in origin with $N(0,\sigma^2)$, with $\sigma^2$ as variance.
+If $\sigma^2=1$, then it is the Standard Gaussian Distribution.\\
+The terms source and training or target and testing, referring to feature spaces, distribution or labels are synonyms.
+A similar case is when it comes to labels. A class refers to a portion of labels, which represents them. 
+When it comes to multi class problems, if it is obvious, then we may also refer it as a multi-label problem.
+Source and target classes are sometimes represented or called by source labels and target labels, respectively.
+\clearpage
+\newpage

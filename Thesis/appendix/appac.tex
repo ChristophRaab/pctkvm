@@ -1,0 +1,40 @@
+\chapter{Details to Algorithms}\label{appac}
+In this appendix, the detailed steps for the \acs{PCTKVM} algorithm are presented.
+We omit it the steps, which are already described in \acs{PCVM} and \acs{TKL} for clarity.
+The complete algorithm procedure is shown in algorithm \ref{PCTKVMComplete}.\\
+We also have extended the algorithm with the faster approach, where the dissimilar matrix is reused over tasks.
+Furthermore, we have extended the pseudo code with the option, which allows the user to decide, whether he wants to specify the $\theta$ or proceed with the estimation.
+If one decides to choose a $\theta$ on his own, then the model has two parameters: The width of the Gaussian kernel and the $\zeta$ eigenspectrum dumping factor.
+Moreover, \acs{PCTKVM} algorithm has following algorithm parameter:
+The \acs{PCTKVM} supports the standard Gaussian kernel, the new Gaussian kernel from \eqref{EqRBFAKernel} and the Laplacian kernel. But we strongly recommend the use of the new Gaussian kernel.\\
+Furthermore the number of iterations \textit{niter} for the \acs{PCVM} can be specified and the convergence criteria as \textit{threshold}.
+
+\begin{algorithm}[!]
+	\caption{Probabilistic Classification Transfer Kernel Vector Machine }\label{PCTKVMComplete}
+	\begin{algorithmic}[1]
+		\Require Input Data $\mathbf{K} = [\mathbf{Z};\mathbf{X}]$ as $M$ sized training and $N$ sized text set; $\mathbf{Y}$ as $N$ sized training label vector; kernel(-type) \textit{ker}; eigenspectrum dumping factor $\zeta$; $\theta$ as kernel paramater; \textit{niter} as maximal number of iterations; \textit{threshold} as convergence criteria; \textbf{InitVector} as $M$-sized initialization vector.
+		\Ensure Weight vector $\mathbf{w}$; bias $b$, kernel parameter $\theta$; transfer kernel $\expP{\mathbf{K}}_\mathcal{A}$.
+		\State $\mathbf{D}$ = calculate\_Dissimilarity\_Matrix($\mathbf{K}$);
+		\If{$\theta == -1$}
+		\State $\theta$ = theta\_Estimation($\mathbf{D}$);  \Comment{According to section \eqref{InSubSecTheta}}
+		\EndIf
+		\State [$\mathbf{K}_\mathcal{Z}$, $\mathbf{K}_\mathcal{X}$,$\mathbf{K}_\mathcal{ZX}$]=compute\_Gaussian\_Kernel($\mathbf{D}$,\textit{ker},$\theta$),
+		\State [$\{\mathbf{\Lambda}_\mathcal{X}, \mathbf{U}_\mathcal{X}\}$]= eigenDecompose($\mathbf{K}_\mathcal{X}$)  \Comment{Eq. \eqref{EqEigsProb}}
+		\State [$\expP{\mathbf{U}}_\mathcal{Z}$] =extrapolate\_Eigensystem($\mathbf{K}_\mathcal{ZX},\mathbf{U}_\mathcal{X},\boldsymbol{\Lambda}_\mathcal{X}^{-1}$) \Comment{Eq. \eqref{EqExtraEigs}}
+		\State [$\boldsymbol{\Lambda}$]=quadratic\_Programming($\mathbf{Q},\mathbf{C},r$)  \Comment{Eq. \eqref{EqTklQP} and constrains \eqref{EqTklQPCons}}
+		\State		[$\expP{\mathbf{K}}_\mathcal{A}$]=compute\_Extrapolated\_Kernel($\expP{\mathbf{U}}_\mathcal{Z},\boldsymbol{\Lambda},\mathbf{U}_\mathcal{X}$) \Comment{Eq. \eqref{EqTKLKernel}}
+		\State	[$\mathbf{w},b$] = initialize(\textbf{initVector});
+		\State \textbf{nonZero} = determine\_nonZero\_Vector($\mathbf{w}$); 
+		\For{$i=1$ to \textit{niter}}
+		\State $\mathbf{w}^{new}$ = weight\_Update($\expP{\mathbf{K}}_{\mathcal{Z}},\mathbf{w,Y,nonZero}$);   \Comment{Eq. \eqref{EqPcvmUpdateW}}
+		\State $b^{new}$ = bias\_update($\expP{\mathbf{K}}_{\mathcal{Z}},b\mathbf{,Y,nonZero}$); \Comment{Eq. \eqref{EqPcvmUpdateb}}
+		\State $\theta^{new}$ = parameter\_update($\expP{\mathbf{K}}_{\mathcal{Z}},\mathbf{Y},\mathit{ker},\theta,\mathbf{w}^{new},b^{new},\mathbf{nonZero}$); \Comment{Eq. \eqref{EqPcvmDevTheta}}
+		\State $\mathbf{nonZero}^{new}$ = determine\_nonZero\_Vector($\mathbf{w}^{new}$);
+		\If{max(abs($\mathbf{w}^{new}-\mathbf{w}$)) $<$ \textit{threshold}}
+		\State break;
+		\Else
+		\State continue;
+		\EndIf
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
