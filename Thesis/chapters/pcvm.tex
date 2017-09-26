@@ -1,12 +1,51 @@
-\chapter{Probabilistic Vector Machines}\label{Pc}
-In this chapter, the \ac{PCVM} and previous work is described.
-It is developed by Huanhuan Chen et al. in the corresponding article \cite{Chen.2009}. 
-However, first, we look at some disadvantages of the \ac{SVM}.
+\chapter{Vector Machines}\label{Pc}
+In this chapter, we will introduce vector machines.
+This includes the \ac{SVM}, \ac{RVM} and \ac{PCVM}.
+Although that the \acs{SVM} is a popular solutions for supervised learning, it comes with several disadvantages, discussed in section \ref{PcSecIdea}. 
+To tackle these problems, Tipping et al. proposed the \acs{RVM} in \cite{Tipping.2001} in order to aligning these disadvantages.
 The idea of the \acs{RVM} are mainly motivated to improve and solve the \acs{SVM}.\cite[p. 1-2]{Tipping.2001}
 Moreover, finally, the \acs{PCVM} is developed to cure some conception assumptions, which are leading in the opinion of Chen et al. to unstable results.
 Regarding to Chen et al. sees the \acs{PCVM} as improved version of the \acs{RVM}.\cite{Chen.2009}\newline
+\section{Support Vector Machine}\label{PcSecSVM}
+The \ac{SVM} is a popular solution for the classification or regression task.\cite[p. 325-337]{Bishop.2009}
+A key property of the \acs{SVM} is that the model parameters are determined with a convex optimisation problem.
+With this, any local solution is also global.
+In the optimisation problem, the Lagrange multipliers are used.
+The \acs{SVM} is a maximum margin classifier with the goal to determine a margin to separate two classes of samples which should be maximal. 
+Therefore the margin is the smallest distance between the decision boundary and any sample.
+The classifier in his simplest form and besides the choice of the kernel has two model parameters $\mathbf{w}$ and $b$. 
+The first one is modelling the hyperplane which separates the two classes.
+This is just introduced by the decision boundary. 
+The second parameter $b$ is called the bias and models the location of the hyperplane.
+If a sample has a minimal distance to the hyperplane, then it is considered as support vector.
+The support vectors are on both sides of the hyperplane for the two classes.
+The prediction is made by determining the side of a data point corresponding to the decision boundary.
+If a new sample point is one side of the hyperplane, the point belongs to the corresponding class and vice versa. To be more formal: 
+\begin{equation}\label{EqSVMPred}
+y(\textbf{x}) = \sum_{i=1}^{N} w_i \phi_i(\mathbf{x}) + b= \textbf{w}^T \mathbf{\Phi}(\textbf{x}) + b
+\end{equation}
+Where $\mathbf{\Phi(x)}= (\phi(\mathbf{x})_1,\dots,\phi(\mathbf{x}_N))$ a vector and $\phi(\cdot)$ denotes a features space transformation.
+Furthermore, the hyperplane parameter \textbf{w} and the bias b.
+The class of a new data point is now obtained with the sign of $y(\textbf{x})$. If $y(\textbf{x}) > 0$ it belongs to class 1.
+Furthermore, when it comes to $y(\textbf{x}) < 0)$ it belongs to class -1.
+Note that if a point in the trainings state has the function value of $y(\textbf{x}) = 1 \vee y(\textbf{x}) = -1$, then it is considered as support vector.
+The \ac{SVM} has a complexity of $\mathcal{O}(M^3)$, with M basis functions, which is smaller than the actual N data points.
+To get a visual idea of how the \ac{SVM} works the process is summarised in figure \ref{FigSVMProd}. \\
+Note that this is a very brief explanation of the \acs{SVM}, which takes some assumptions. Beside some concepts, for example, errors, are not defined.
+This is just to get an idea of how it works.
+The \acs{SVM} is the classifier of every transfer learning method which can be treated as wrapper algorithms, except \acs{PCVM}, \acs{PCTKVM}, \acs{PCTKVM}\textsubscript{$\theta$Est} and \acs{GFK}.
+The latter is using an own implementation of $k$ nearest neighbour.
+In this thesis, the LibSVM is used as implementation.
+It is created and maintained from Chih-Jen Lin and Chih-Chung Chang and can be downloaded from there university page\footnote{https://www.csie.ntu.edu.tw/~cjlin/libsvm/}.
+\begin{figure}
+	\centering
+	\floatbox[{\capbeside\thisfloatsetup{capbesideposition={right,top},capbesidewidth=6cm}}]{figure}[\FBwidth]
+	{\caption[Example of SVM Clasification]{Example of the SVM trained with the synthetic dataset with two classes in two dimensions. The green surrounded data points are the support vectors. \cite[p. 331]{Bishop.2009}}}
+	{\includegraphics[width=\linewidth]{figures/SVMProd.png}\label{FigSVMProd}}
+\end{figure}
+
 \section{Disadvantages of Support Vector Machines}\label{PcSecIdea}
-At first the \acs{SVM}, which is described as baseline classifier in section \ref{EmSubSecSVM}, provides a optimal solution through the convex optimization problem \cite[p. 325]{Bishop.2009}, but suffers from a few disadvantages.\newline
+At first the \acs{SVM}, which is described as baseline classifier in section \ref{PcSecSVM}, provides a optimal solution through the convex optimization problem \cite[p. 325]{Bishop.2009}, but suffers from a few disadvantages.\newline
 The \acs{SVM} is non probabilistic.
 The problem is that the hard binary decisions which are made of the \acs{SVM} are not made to catch the uncertainty for predictions.
 Furthermore, the probabilistic predictions are considered as crucial when posterior probabilities of a class assignment are adapted to varying class priors and asymmetric misclassification costs.\cite[p. 239-240]{Tipping.2001}\\
@@ -22,7 +61,7 @@ The goal is then to find the smallest $N_\mathcal{Z}$ with $N_\mathcal{Z} \ll N_
 However, this approach is computational very expensive.\cite{Burges.1997}\\
 Therefore the wanted reduction of computational complexity is maybe not yet achieved.\newline
 Furthermore, the \ac{SVM} has several parameters, that needs to be tuned by cross-validation.
-For example the $C$ parameter, explained in section \ref{EmSubSecSVM}, or the parameters for the kernel function for example the width of the Gaussian kernel, section \ref{EmSubSecKernel}.
+For example the $C$ parameter, explained in section \ref{PcSecSVM}, or the parameters for the kernel function for example the width of the Gaussian kernel, section \ref{EmSubSecKernel}.
 Cross-validation is done by a grid search in a certain range.
 For example evaluate the performance of the \ac{SVM} for $C={1,2,5,10,...,100,200}$ and select the parameter according to the best performance.\cite{Chen.2009}\newline
 Finally, when it comes to the interpretation of the results, the \ac{SVM} provides a good interpretation of how the margin and the decision boundary is created.
@@ -104,7 +143,7 @@ The \ac{PCVM} uses a latent variable model because of the assumption that the da
 Because of this and because the integral of the Bayesian Inference is in this case intractable, it uses an \ac{EM} algorithm, as it is a general solution to get a \ac{MAP} estimation of parameters based on latent variables.
 Furthermore, the \acs{EM} algorithm optimises the parameters within, and therefore the \ac{PCVM} does not need cross-validation because the free model parameter is optimised within the algorithm.\cite{Chen.2009}\newline
 An Attribute of the \acs{EM} algorithm is that it is likely to be trapped in local maxima and therefore finds no global solution.\cite{YiWang.2006}
-Unlike to the \acs{SVM} which always can determine the global maxima, see section \ref{EmSubSecSVM}.\newline
+Unlike to the \acs{SVM} which always can determine the global maxima, see section \ref{PcSecSVM}.\newline
 
 \subsection{Model Specification}\label{PcSecCM}
 The \acs{PCVM} is made for binary classification\cite{Chen.2009}, unlike the \acs{RVM}, which has a specification for multi class.\cite[p. 220]{Tipping.2001} But the ideas behind the two concepts are similar as we will see in the following.\\
