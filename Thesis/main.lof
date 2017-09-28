@@ -6,18 +6,21 @@
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Probabilitc Estimate of the RVM}}{6}{figure.caption.6}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Truncated Gaussian Priors over Weights}}{10}{figure.caption.7}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Settings of Transfer Learning}}{23}{figure.caption.9}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Summary of Geodesic Flow Kernel Approach}}{32}{figure.caption.13}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Summary of Transfer by Relational Adaptive bootstrapping}}{39}{figure.caption.16}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Settings of Transfer Learning}}{20}{figure.caption.8}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Summary of Geodesic Flow Kernel Approach}}{29}{figure.caption.12}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Tranfer Kernel Learning Process}}{49}{figure.caption.18}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Perfomance in Dependence of Theta}}{53}{figure.caption.20}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Effect of width in Gaussian Kernel}}{55}{figure.caption.21}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Tranfer Kernel Learning Process}}{44}{figure.caption.16}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Perfomance in Dependence of Theta}}{48}{figure.caption.18}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Effect of width in Gaussian Kernel}}{50}{figure.caption.19}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Plot of Orgs vs People Dataset}}{62}{figure.caption.24}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Example from Image Dataset}}{64}{figure.caption.26}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Plot of Orgs vs People Dataset}}{56}{figure.caption.22}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Example from Image Dataset}}{58}{figure.caption.24}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Plot of mean Error and standard Deviation}}{64}{figure.caption.26}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Plot of mean Error and standard Deviation on Image Dataset}}{82}{figure.caption.34}
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Plot of mean Error and standard Deviation on Reuters Dataset}}{84}{figure.caption.35}
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Plot of mean Error and standard Deviation on the whole Datasets}}{87}{figure.caption.40}
 \addvspace {10\p@ }

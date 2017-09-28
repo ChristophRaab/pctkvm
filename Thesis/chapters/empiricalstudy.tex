@@ -11,7 +11,7 @@ Note that in this chapter for clarity only the summarised tables are shown. The 
 
 \section{Dataset Description}\label{EmSecDaDes}
 The study consists of 18 benchmark datasets.
-Three of them are text-based from Reuters-21578\footnote{http://www.daviddlewis.com/resources/testcollections/reuters21578} and the remaining twelve are images from Caltech-256\footnote{http://www.vision.caltech.edu/Image\_Datasets/Caltech256/ } and Office.
+Three of them are text-based from Reuters-21578\footnote{\url{http://www.daviddlewis.com/resources/testcollections/reuters21578}} and the remaining twelve are images from Caltech-256\footnote{\url{http://www.vision.caltech.edu/Image\_Datasets/Caltech256/}} and Office.
 Note that the datasets are not extracted from the raw data, but rather used from others with a pre-processing state.
 The corresponding articles, which are using this version of datasets are \cite{Gong.} and \cite{Long.2015}.
 \\
@@ -179,7 +179,7 @@ In its simplest form, the linear kernel, the function becomes $\phi(\mathbf{x}) 
 In this study almost all kernel machines are using a modified version of the \ac{RBF}- or Gaussian-Kernel.
 The 'well known' kernel can be obtained from \cite[p. 17]{Vert.2004} and has the form:
 \begin{equation}\label{EqRBFOriginalKernel}
-	k(\mathbf{x},\mathbf{x}') = \frac{d(\mathbf{x},\mathbf{x}')^2}{2\sigma^2}
+	k(\mathbf{x},\mathbf{x}') = \exp\frac{d(\mathbf{x},\mathbf{x}')^2}{2\sigma^2}
 \end{equation}
 Where $d$ is the Euclidean distance and sigma is the width of the Gaussian kernel.\\
 The used one is suggested from \cite{Duan.2012} and 'replaces' the $\sigma$ parameter with $\frac{1}{A}$ and $A$ as median over the samples: 
@@ -202,7 +202,7 @@ This is done to compare the pure transfer performance, as independent as possibl
 The cost Parameter $C$ of the \acs{SVM}, which controls the trade-off between margin and the ability to adapt the decision boundary to points near to it, is set to 10. \cite[p. 421-422]{TrevorHastie.2009}
 Finally, the LibSVM implementation which can work with pre-calculated kernels is used. The kernel is described above in section\ref{EmSubSecKernel}.\\
 The PCVM as baseline Classifiers has only one parameter $\theta$, which is set to 1 for both sets.
-Furthermore, \textit{niter} is set to 600 because we observed that the \acs{pcvm} often terminates somewhere between 500-600 iterations. The threshold is set to 0.001.\\
+Furthermore, \textit{niter} is set to 600 because we observed that the \acs{PCVM} often terminates somewhere between 500-600 iterations. The threshold is set to 0.001.\\
 The parameters for the transfer learning methods are partly obtained from the corresponding papers or with cross-validation. 
 The \acs{PCTKVM} and \acs{TKL} algorithms are mainly using the eigenvalue dumping factor $\xi$ which is set to two for the text datasets and 1.1 for the image datasets.\cite{Long.2015}
 Furthermore, the \acs{PCTKVM} uses the new kernel with $\gamma=\frac{\sigma}{A}$ in \eqref{EqRBFAKernel}.
@@ -223,7 +223,7 @@ The goal of the parameter determination procedure was to identify the best perfo
 			Org vs Place    & 2.224 & A vs W  & 2.152\\ \hline
 			People vs Place & 2.187 & A vs D  & 2.166\\ \hline
 			C vs A          & 2.224 & D vs W  & 2.163 \\ \hline
-			C vs W          & 2.187 
+			C vs W          & 2.187\\ \cline{1-2}
 	\end{tabular}
 	\caption{List of the Estimated Thetas of the Text and Image Datasets\label{TableThetaEst}}
 \end{table}
@@ -300,7 +300,22 @@ With that, the different key figures over the datasets are summarised.
 The performance, in general, is divided into datasets. The full result can be considered in appendix \ref{appaB}.
 
 \subsection{Metric Results}\label{EmSubSecMetricResult}
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/PerformanceReuters.png}
+		\caption{\label{FigErrorReu}}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/PerformanceImage.png}
+		\caption{\label{FigErrorImg}}
+	\end{subfigure}
+	\caption[Plot of mean Error and standard Deviation]{The plot of mean errors with standard deviation of the cross-validation. The left shows the result on reuters and the right shows the result on images. A graph shows the error and a vertical bar shows the standard deviation. \label{FigErrorDatasets}}
+\end{figure}
 In this subsection, the performance over the metrics, which are descried earlier, is shown.
+In general, according to the \acs{MMD}'s and \acs{KLD}'s for the 18 datasets, classification of a image datasets is a more challenging problem in comparison with the Reuters dataset.
 The results are summarized in table \ref{TableDescriptiveStatistics}. 
 Note that this is data is produced on the fly in the 5x2 cv F test. Therefore the shown results are the mean over ten repetitions of cross-validation.
 The standard deviation is shown in brackets. 
@@ -310,18 +325,17 @@ The \ac{ACC} can simply be determined with the error.
 The classifier, which is created in the course of this work are italics.
 The performance of the best classifier is bold.
 The \acs{GFK} implementation supports no probabilistic output and therefore has no \acs{AUC} value in general.
-Not that through the cross-validation of the 18 datasets, the means metrics are combined from 180 performance results.\\
+Note that through a cross-validation on the 18 datasets, the means metrics are combined from 180 performance results.
+Furthermore, the mean error over reuters and image datasets for the \acs{SVM}, \acs{TKL} and the \acs{PCVM}'s are shown in figure \ref{FigErrorDatasets}. The error graph over the whole datasets can be seen in \ref{appaB}\\
 It can be observed that the \acs{TKL} with the \acs{SVM} has the overall best performance. 
 In general and according to section \ref{TlSecNeg}, it can be seen that negative transfer happens between the baseline \acs{SVM} and the transfer solutions.
-But we can note that the \acs{PCTKVM}  \textit{overall outperforms} the \acs{PCVM} in this test.\\
-The \acs{SVM} is still better in the image category than the transfer \acs{PCVM}'s. 
-This might comes from the fact that the latter has some datasets, where the performance drops dramatically.
-Referring to table \ref{BTableFTErr} in appendix \ref{appaB}, we can observe that if the dataset \textit{dslr} and \textit{webcam} are involved, then the performance drop happens. 
-We assume that this happens because the datasets are very small, with 295 and 157 samples respectively, because we can rather obtain a good performance on the larger text datasets and usually the larger image datasets in comparison with the \acs{SVM}.
+But we can note that the \acs{PCTKVM}  achieves a \textit{overall} better performance result than the \acs{PCVM} in this test.\\
+The \acs{SVM} is still comparable in the image category than the transfer \acs{PCVM}'s, which is also observable in \ref{FigErrorImg}.\\
+We assume that this happens because the datasets are very small and the classes are not balanced, because we can rather obtain a good performance on the larger more balanced text datasets in comparison with the \acs{SVM}.
 This assumption may be more valid when one takes a look at the comparison, which involves the whole dataset, which is shown in table \ref{BTableCompleteErr}.
 Therefore it seems that the \acs{SVM} can handle very small datasets better than the \acs{PCVM} in general. However, again referring to the detailed test results, it states that the \acs{PCTKVM} is often the second best classifier.\\
 Additional, we can see that the \acs{SVM} baseliner has an overall better performance than the \acs{PCVM} baseliner.
-Apart from the size of datasets, it might be that because of the differences in the distribution caused by the dataset; it might be a better idea for transfer learning to find a hyperplane, which separates the classes best, rather than modelling it via probabilistic.
+Apart from the size of datasets, it might be that because of the differences in the distribution caused by the dataset; it might be a better idea for transfer learning to find a hyperplane, which separates the classes best, rather than modeling it via probabilistic.
 In fact, the performance is of the \acs{TKL} is always better than the performance of \acs{PCTKVM}.\\
 Furthermore we can observe that the \acs{PCTKVM}\textsubscript{$\theta$Est} is in general worse than the \acs{PCTKVM}. 
 Because these two approaches only differ in the $\theta$ value, we can say that the $\theta$ estimation approach described in section \ref{InSubSecTheta}, works out not very well.
@@ -334,6 +348,7 @@ As pointed out in the results of Chen et al. in \cite{Chen.2009} and with our re
 However, when it comes to the \acs{PCTKVM}\textsubscript{$\theta$Est}, we see that the range of standard deviation, especially for the text datasets, is higher in comparison with the deviation of the remaining classifiers.
 Since \acs{PCTKVM} and \acs{PCTKVM}\textsubscript{$\theta$Est} only differ in the theta value, we can say that the fluctuation of performance in this test also depends on the theta.
 The fact that all \acs{PCVM}'s are random initialised is not critical because we can observe that the standard deviation are not greatly higher in comparison with the other classifiers form table \ref{BTableFTErr}. 
+
 \begin{table}[]
 	\centering
 	\resizebox{\textwidth}{!}{%
@@ -447,7 +462,7 @@ With the descriptive statistic table from \ref{TableDescriptiveStatistics}, we c
 We can only observe trends and assume significance.\\
 The results are showing, that the \acs{PCTKVM} does a decent job in the Reuters dataset.
 In fact, it wins every time against the baseliners and the transfer learning solutions, except against the \acs{TKL}, partly even significant.\\
-The \acs{PCTKVM} can outperform the baseline \acs{PCVM} four times significant out of 6 wins with the text dataset.
+The \acs{PCTKVM} can achieve a great performance in comparison to the baseline \acs{PCVM}, with four significant wins out of 6 wins with the text dataset.
 The performance gap is not that large at images, but sill our approach wins every time out of twelve datasets with one significant win.\\
 Compared to the \acs{PCTKVM}\textsubscript{$\theta$Est}, it wins five out of 6 times with one significant and one tie. 
 When it comes to image dataset the performance, between the two, is more balanced.
@@ -511,17 +526,17 @@ The critical difference is shown in equation \eqref{EqCriticalDifference}.\cite[
 \begin{equation}\label{EqCriticalDifference}
 	CD = q_\alpha\sqrt{\frac{k(k+1)}{6N}}
 \end{equation}
-Note that the Friedman test and the post-hoc test is implemented on our own, because it seems that Matlab\footnote{https://de.mathworks.com/help/stats/friedman.html} provides only the first part of the test (Original Friedman), which is the Friedman test without the described improvements from Iman and Davenport.
+Note that the Friedman test and the post-hoc test is implemented on our own, because it seems that Matlab\footnote{\url{https://de.mathworks.com/help/stats/friedman.html}} provides only the first part of the test (Original Friedman), which is the Friedman test without the described improvements from Iman and Davenport.
 
 \subsection{Result and Discussion}\label{EmSubSecResMulDa}
-The in the following discussed results are covering the 18 datasets.
-The result of the Friedman test is separated into two tables.
+The Friedman test results are covering the 18 datasets and are discussed in the following.
+The result is separated into two tables.
 The first \ref{TableMeanRank} is showing the mean ranks under the performance metrics.
 This is done by ranking the mean of the performance according to one dataset and results in 18 ranks per classifier. A tie is assigned if the mean of two classifiers are equal.\\
 The second \ref{TableFriedman} shows the Friedman test result and the corresponding post hoc test. 
 It shows the results of Friedman test with the corresponding post hoc test. The critical difference is computed according to equation \eqref{EqCriticalDifference}.
-The key values are showing the difference of mean ranks against the mean rank of the \acs{PCTKVM}.
-To see if a classifier has a significant difference in performance the key value in the table has to be at least the critical difference.
+These key values are showing the difference of mean ranks against the mean rank of the \acs{PCTKVM}.
+To see if a classifier has a significant difference in performance a key value in the table has to be at least the critical difference.
 For clarity, it shows not the absolute rank difference, but rather with the corresponding sign.
 That means for error, \acs{RMSE} a classifier is better if the rank difference is negative and worse if it is positive.
 For \acs{AUC} and \acs{ACC} it is vice versa.
@@ -529,15 +544,15 @@ The bold cells are indicating any significance.
 Note that one may draw further results out of the results by just taking the mean ranks of two classifiers from table \ref{TableMeanRank}, subtract them and compare the difference against the critical difference. \\
 Although we have omitted some metrics in the previous discussion, it seems reasonable to show all four metrics, because they differ more in this test in comparison with the previous statistics.
 Finally we can provide a $7\times 119$ degrees of freeman for error, \acs{RMSE} and accuracy and $6\times102$ degrees of freedom for \acs{AUC}.\\
-With the results of table \ref{TableFriedman}, we can say that the \acs{PCTKVM} can outperform the \acs{PCVM} significant in three out of four metric categories. The same is valid when it comes to \acs{GFK}.\\
+With the results of table \ref{TableFriedman}, we can say that the performance of \acs{PCTKVM} is significant better in three out of four metric categories than the\acs{PCVM} significant. The same statement is valid when it comes to \acs{GFK}.\\
 In comparison with the \acs{PCTKVM}\textsubscript{$\theta$Est}, we can say that the \acs{PCTKVM} is in general better but not significant.
 In fact the \acs{SVM} is a little bit better than the \acs{PCTKVM}\textsubscript{$\theta$Est} and always better as the \acs{PCVM} in the overall comparison.\\
 By comparing \acs{TKL} with the \acs{PCTKVM} we can observe that the first is indeed better, almost but not significant.
 The performance of the \acs{PCTKVM} against \acs{JDA} and \acs{GFK} are comparable.
 Furthermore, it appears that aligning the conditional probabilistic distributions are no guarantee for a good transfer learning performance concerning \acs{JDA}. However, this is the main extra effort or difference, which is done by \acs{JDA} in comparison with the \acs{TCA} and the \acs{PCTKVM}: Aligning the conditional and marginal probability distribution instead of just aligning the latter.\cite{Long.}\cite{Pan.2011}\cite{Long.2015}\\
-Another important fact which arises from the result is that the \acs{SVM} by incorporating the kernel from section \ref{EmSubSecKernel}, very competitive to the transfer learning solutions.
-Note that we do not say, that the kernel causes the good performance, but we want to point out the difference to the suggested setting of the LibSVM\footnote{http://www.csie.ntu.edu.tw/\~cjlin/libsvm/faq.htm\#f506}.
-Only the \acs{TKL} can significantly outperform the \acs{SVM}.
+Another important fact which arises from the result is that the \acs{SVM} by incorporating the kernel from section \ref{EmSubSecKernel}, is very competitive to the transfer learning solutions.
+Note that we do not say, that the kernel causes the good performance, but we want to point out the difference to the suggested setting of the LibSVM\footnote{\url{http://www.csie.ntu.edu.tw/~cjlin/libsvm/faq.htm\#f506}}.
+Only the \acs{TKL} can achieve a significant better performance in comparison with the \acs{SVM}.
 Furthermore, the differences of \acs{PCTKVM}\textsubscript{$\theta$Est} and the \acs{TKL} are actual significant. 
 
 \begin{table}[]
@@ -570,7 +585,15 @@ Furthermore, the differences of \acs{PCTKVM}\textsubscript{$\theta$Est} and the 
 \end{table}
 \FloatBarrier
 \section{Conclusion}\label{EmSecConc}
-Summarising, the study is made of the three main parts of the statistic. On first sight, it may be strange to compare first the difference between single datasets and proceed with an overall test. This is made because of two analytical reasons. First, the study has two different kinds of datasets (image and text) and many subcategories and subsets. With the single test, it can be determined if there is a significant difference between the performance of classifiers and datasets. When it comes to a real-world scenario, the choice of a classifier may depend on his strengths and weaknesses to solve a task on a corresponding kind of dataset. With this listing of the performance may one can choose more precisely which classifier he chooses for the job. At least for text documents and images.\\
+Summarizing, the study is made of the three main parts of the statistic. On first sight, it may be strange to compare first the difference between single datasets and proceed with an overall test. This is made because of two analytical reasons. First, the study has two different kinds of datasets (image and text) and many subcategories and subsets. With the single test, it can be determined if there is a significant difference between the performance of classifiers and datasets. When it comes to a real-world scenario, the choice of a classifier may depend on his strengths and weaknesses to solve a task on a corresponding kind of dataset. With this listing of the performance may one can choose more precisely which classifier he chooses for the job. At least for text documents and images.\\
 On the other hand from the scientific viewpoint, the comparison over all used datasets and the results in performance giving the most useful insights.\\
-Summarizing, we proofed the success of the integration of transfer learning into the \acs{PCVM} by showing significant differences in the performance between these two. Furthermore, our approach can compete with current transfer learning solutions and is just significantly outperformed by one method.\\
-We proofed it with an extensive study over 18 dataset compositions of two data categories, which are common in testing of transfer learning, and by finally incorporating two statistical procedures to determine significance.
+Summarizing, we showed that by integration of transfer learning the performance improves significantly. Furthermore, our approach can compete with current transfer learning solutions and is only worse in comparison with the \acs{TKL}.\\
+We tested it with an extensive study over 18 dataset compositions of two data categories, which are common in testing of transfer learning, and by finally incorporating two statistical procedures to determine significance.\\
+Based on the test result we can summarize the advantages of the \acs{PCTKVM} with:
+An important fact about a \acs{PCTKVM} is that a is probabilistic. We can estimate the uncertainty of predictions through the algorithm.
+This is very rare for transfer learning solutions, according to \cite{Weiss.2016}, because of none out of 18 reviewed methods producing a reliable probabilistic output.
+Because, the probabilistic output of a underlying \acs{SVM} is considered as unreliable\cite{Tipping.2001}, the output of a \acs{PCTKVM} is.\cite{Chen.2009}
+Furthermore, a \acs{PCTKVM} needs no labeled test data, no huge amount of training data and only one source dataset for the transfer, which makes it well applicable to new datasets.
+On the other hand, a \acs{PCTKVM} can handle the probabilistic estimation in a reasonable time and can create a sparse model by maintaining a good performance.
+Furthermore, by the use of the theta estimation, we can lower the effort of cross-validation, because a \acs{PCTKVM}\textsubscript{$\theta$Est} has only the eigenspectrum dumping factor as a free parameter.
+

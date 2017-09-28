@@ -3,10 +3,10 @@ In this chapter, two versions of the \ac{PCTKVM} are proposed.
 The \acs{PCTKVM} which handles the $\theta$ as fixed parameter and the \acs{PCTKVM}\textsubscript{$\theta$Est}, which does a theta estimation.
 The extensions 'TK' to original term \acs{PCVM} should indicate the new Kernel approach to solve the transfer learning problem.
 As already mentioned in \ref{Tl} there are various solutions to solve the transfer learning problem.
-Revisiting section \ref{TlSecHomo}, the homogeneous transfer learning problem can be summarised in four approaches.\newline
-However, Long et al. in \cite{Long.2015} proposed a different approach, which differs from the approaches and therefore called it transfer kernel learning.
-However, because the relational knowledge approach transfers information through defined relationships between the source and target data, from section \ref{TlSubSecRelation}, the \acs{TKL} suits well in this category.
-Furthermore, because it needs target data for the learning process and according to the definition of transductive transfer learning from section \ref{TlSubSecTrans}, it can be categorised as transductive transfer setting.\\
+Revisiting section \ref{TlSecHomo}, the homogeneous transfer learning problem can be summarised in four approaches: Instance-Transfer, Symmetric-Feature-Transfer, Asymmetric-Feature-Transfer and Relational-Knowledge-Transfer.\newline
+However, Long et al. in \cite{Long.2015} proposed the transfer kernel learning as another approach-category.
+Nevertheless, the relational knowledge approach, transfers information through relationships between the source and target data, the \acs{TKL} approach suits well in this category.
+Furthermore, because it needs target data for the learning process and according to the definition of transductive transfer learning, it can be categorised as transductive transfer setting.\\
 The main idea of it is to approximate the kernel of the training set with the kernel of the test set via the Nyström kernel approximation.\cite{Long.2015}
 On the other side \cite{Schleif.2015}, proposed a \acs{PCVM} with linear costs which is also achieved via the Nyström approximation.
 Therefore it seems reasonable to go one step further an combine these two ideas to form a transfer learning \acs{PCVM}.\\
@@ -16,7 +16,7 @@ As we will see in the following the \acs{TKL} using only the training and test d
 However, before going into the approach itself, the underlying technique should be discussed.
 See section \ref{EmSubSecKernel} for details to kernels and the Gram matrix.
 \section{Nyström Approximation}\label{InSecNysMeth}
-The main Problem by computing eigenvalues and eigenvectors is that optimal eigenvalue decomposition has a time complexity of $\mathcal{O}(N)^3$ and alternative approaches must be found.
+The main Problem by computing eigenvalues and eigenvectors is that optimal eigenvalue decomposition has a time complexity of $\mathcal{O}(N^3)$ and alternative approaches must be found.
 The Nyström Method was originally made for solving the eigenvalue equation, which can be seen in equation \eqref{EqEigsEq}.\cite{Zhang.2008}\\
 It is done by selecting $N$ randomly observations (rows/columns) without replacement of $\mathbf{K}$ for calculating the approximation.\cite{Williams.2000}
 Considering a symmetric positive semi definite kernel $k(\mathbf{z},\mathbf{x})$ which satisfies Mercers Theorem, then $K$ has the following properties and can be represented as:\cite{Williams.2000}
@@ -107,7 +107,7 @@ Second Calculate the approximation directly from the kernel as shown in \ref{EqN
 Note that the second one needs a matrix inversion, which should be reflected when it comes to for large datasets.
 
 \section{Domain Invariant Kernel Learning}\label{InSecTrans}
-The \ac{TKL} approach is made by Long et al. in  \cite{Long.2015}\footnote{http://ise.thss.tsinghua.edu.cn/~mlong/doc/transfer-kernel-learning-tkde15.zip}.
+The \ac{TKL} approach is made by Long et al. in  \cite{Long.2015}\footnote{\url{http://ise.thss.tsinghua.edu.cn/~mlong/doc/transfer-kernel-learning-tkde15.zip}}.
 They are interpreting the kernel approximation from a different viewpoint.
 The main idea is to see the train dataset-matrix, which has to be approximated, regarding Nyström, which will be approximated by the test dataset. Proceed by finding eigenvalues in a way that the difference between the approximation and ground truth train kernel will be minimal. This forms a domain invariant kernel for transfer learning.\cite{Long.2015}
 The main Process is shown in figure \ref{FigTKLApp}.\newline 
@@ -156,7 +156,6 @@ This approach should preserve the original structure of the test domain while re
 Another viewpoint is that the kernel is extrapolated from the target data but evaluated by the training data.\cite{Long.2015}\\
 To construct the new kernel, Long et al. using the key knowledge from spectral kernel design:
 It states that a kernel which is generated from the eigensystem of another positive definite kernel, then the produced kernel will positive semi-definite itself.\cite{KaiZhang.2013}.
-In general kernel matrices which are positive semi-definite have only non-negative eigenvalues.\cite[p. 30]{Scholkopf.2001}\\
 Therefore it seems reasonable to set $\lambda \ge 0$ to guarantee a \acs{PSD} kernel.
 The error of the approximation $\expP{\mathbf{K}}_\mathcal{Z}$ to the original ground truth kernel $\mathbf{K}_\mathcal{Z}$ is determined using the squared loss, which is presented in the following:\cite{Long.2015}
 \begin{equation}\label{EqTKLSquareErrorLoss}
@@ -323,7 +322,7 @@ To calculate the distance in practice, we are using a dissimilarity matrix D.
 This matrix employs the euclidean distance with $d_{i,j}=||x_i-x_j||^2, \forall i,j \in N$ as dissimilarity measure.
 This matrix is symmetric and is zero on the diagonal.\cite[p. 22,299]{Gentle.2007}\newline
 Because the Gaussian kernel is used in this approach, the dissimilarity matrix is already involved in the computational complexity.
-Furthermore, this matrix has just to be calculated once and can be reused in the theta estimation and the Gaussian kernel.
+Therefore, this matrix has just to be calculated once and can be reused in the theta estimation and the Gaussian kernel.
 Another important thing to notice is that the data is already z-scored in the preparation and therefore there is no need to do it twice.
 With this we just search the maximum distance with the built-in Matlab function \textit{min()} and can proceed with \eqref{EqMaxDist} in Step 3.
 In the tests, we are using the whole dataset including training and testing.\\
@@ -341,23 +340,25 @@ With the results from the previous section, \acs{PCTKVM} is presented in algorit
 \begin{algorithm}
 	\caption{Probabilistic Classification Transfer Kernel Vector Machine }\label{PseudoCodePCTKVM}	
 	\begin{algorithmic}[1]
-		\Require Input Data $\mathbf{K} = [\mathbf{Z};\mathbf{X}]$ as $M$ sized training and $N$ sized text set; $\mathbf{Y}$ as $N$ sized training label vector; kernel(-type) \textit{ker}; eigenspectrum dumping factor $\zeta$; $\theta$ as kernel paramater; \textit{niter} as maximal number of iterations; \textit{threshold} as convergence criteria; \textbf{InitVector} as $M$-sized initialization vector.
+		\Require Input Data $\mathbf{K} = [\mathbf{Z};\mathbf{X}]$ as $N_\mathcal{Z}$ sized training and $N_\mathcal{X}$ sized text set; $\mathbf{Y}$ as $N$ sized training label vector; kernel(-type) \textit{ker}; eigenspectrum dumping factor $\zeta$; $\theta$ as kernel paramater; \textit{niter} as maximal number of iterations; \textit{threshold} $\tau$ as convergence criteria; \textbf{InitVector} as $N_\mathcal{Z}$-sized initialization vector.
 		\Ensure Weight Vector $\mathbf{w}$; bias $b$, kernel parameter $\theta$; transfer kernel $\expP{\mathbf{K}}_\mathcal{A}$.
 		\State $\mathbf{D}$ = calculate\_Dissimilarity\_Matrix($\mathbf{K}$);
 		\State $\theta$ = theta\_Estimation($\mathbf{D}$);  \Comment{According to section \eqref{InSubSecTheta} (optional)}
 		\State $\expP{\mathbf{K}}_\mathcal{A}$ = transfer\_Kernel\_Learning($\mathbf{D}$,\textit{ker},$\theta$,$\zeta$); \Comment{According to \eqref{InSecTrans}}
-		\State [$\mathbf{w}$,$b$] = pcvm\_Training($\expP{\mathbf{K}}_\mathcal{Z}$,\textbf{InitVector},\textit{niter},\textit{threshold}); \Comment{Algorithm \eqref{PseudoCodePcvm}}
+		\State [$\mathbf{w}$,$b$] = pcvm\_Training($\expP{\mathbf{K}}_\mathcal{Z}$,\textbf{InitVector},\textit{niter},$\tau$); \Comment{Algorithm \eqref{PseudoCodePcvm}}
 	\end{algorithmic}
 \end{algorithm}
-Note that the complete algorithm which involves every detail is found in appendix \ref{appac}. We observed in practice that the kernel is for some $\theta$ not \acs{PSD} anymore, although he is in theory.
-We assume that there is some issue in the floating point multiplication for small numbers and therefore added the regularisation term $eps\mathbf{I}_{N\times N}$ to the kernel. 
-This solved the problem.\\
+Note that the complete algorithm which involves every detail is found in appendix \ref{appac}. As already discussed, we are reusing the dissimilarity matrix. Therefore, the function parameters of \textit{transfer\_kernel\_Learning($\mathbf{D},\cdot$)} from algorithm \ref{PseudoCodeTKL} changing from using the raw data to using the dissimilarity matrix.  
+We observed in practice that the kernel is for some $\theta$ not \acs{PSD} anymore, although he is in theory.\cite{Long.2015}
+We assume that there is some issue in the floating point multiplication for small numbers in MatLab and therefore added the regularisation term $eps\mathbf{I}_{N\times N}$ to the kernel, which solved the problem.\\
 As it can be seen the \acs{PCTKVM} the number of free parameters remains the same because the $\theta$ is estimated, only the eigenspectrum dumping factor $\zeta$ is left.
-Furthermore, we obtain by combining the complexity of the theta estimation with \acs{PCVM} and \acs{TKL} the same complexity as already discussed, which is $\mathcal{O}(N_\mathcal{Z}^3+N_\mathcal{X}^2)$. The reason for this is that the dissimilarity matrix is already involved and can be validated in table \ref{TableMeanTimeRank}.
+Furthermore, we obtain by, combining the complexity of the theta estimation with the complexities of \acs{PCVM} and \acs{TKL}, the same complexity as already discussed, which is $\mathcal{O}(N_\mathcal{Z}^3+N_\mathcal{X}^2)$.
+This is achieved by reusing the dissimilarity matrix for the parameter estimations and the kernel function.
+This statement can be validated in practice with table \ref{TableMeanTimeRank}, which shows that the \acs{PCTKVM} version with fixed theta and the algorithm with estimation are needing a similar time.
 \subsection{Prediction}\label{InSubSecPrediction}
 Additionally, we can make predictions based on the provided prediction function of the \acs{PCVM} with the use of $\expP{\mathbf{K}}_\mathcal{XZ} = \mathbf{U}_\mathcal{X}\mathbf{\Lambda}\expP{\mathbf{U}}_\mathcal{Z}^T$ as kernel.
 When it comes to the \acs{SVM} the kernel has size $N_\mathcal{Z}\times N_\mathcal{X}$ is used for the prediction according to the support vectors.
-The suggested prediction function for the \acs{SVM} has the form $\mathbf{y} = \expP{\mathbf{K}}_\mathcal{XZ}(\mathbf{\alpha}\odot\mathbf{y}_\mathbf{Z})+b$, where $\mathbf{\alpha}$ are the Lagrange multipliers.\cite{Long.2015}\newline
+The prediction function for the \acs{SVM} from section \ref{PcSecSVM} has the form $\mathbf{y} = \expP{\mathbf{K}}_\mathcal{XZ}(\mathbf{\alpha}\odot\mathbf{y}_\mathbf{Z})+b$, where $\mathbf{\alpha}$ are the Lagrange multipliers.\cite{Long.2015}\newline
 But because of the sparsity of the \acs{PCVM} the kernel size is greatly reduced as discussed in section \ref{Pc}.
 If we consider that our model has $K$ non zero weight vectors with $K\ll N$ and because the \acs{PCVM} uses only kernel rows/columns corresponding to the non zero weight vector index, then our final kernel $\expP{\mathbf{K}}_\mathcal{KX}$ for prediction has size $(K\times N_\mathcal{X})$.
 Therefore the prediction function of the \acs{PCTKVM} has the form:
@@ -369,7 +370,9 @@ The probabilistic output is calculated with the probit link function as the \acs
 
 \subsection{Extensions}\label{InSubSecExt}
 In the course of this work, because the Image dataset has more than two classes, there was the need to implement a multi-class option for the \acs{PCVM}, \acs{PCTKVM} and \acs{PCTKVM}\textsubscript{$\theta$Est}.\\
-To solve the multi-class problem algorithmically, there are two main approaches.
+In general, there are many approaches to solve a multi-class problem for vector machines.\cite[p. 113]{Abe.2010}
+According to the LibSVM documentation\footnote{\url{http://www.csie.ntu.edu.tw/~cjlin/libsvm/faq.html\#f419}}, for the LibSVM Library, are two approaches considered: The one vs. all and the one vs. one approach.
+In the following, we will discuss the advantages and disadvantages for these two ideas and explain how it is integrated into the \acs{PCVM}.\\
 The first is the one vs rest approach.
 Note that in the literature, the term one vs all appears instead of one vs rest.
 If we consider $C$ classes, then the classifier would be trained with one class against the $C-1$ remaining classes.
@@ -385,47 +388,17 @@ In the implementation consider a test set with size $N_\mathcal{X}$.
 Then our label matrix $\mathbf{Y}$ and the probabilistic output matrix $\mathbf{P}$ has size $M\times K$.\\
 We choose then the final label for the returning label vector $\mathbf{y}$ by counting the number of occurrences of a label for a data point.
 The data point is then assigned to the label which the classifier has assigned the most.
-In case of a tie the lower, the smaller class label is assigned regarding whole numbers, according to the Matlab \textit{mode}\footnote{https://de.mathworks.com/help/matlab/ref/mode.html} function.
+In case of a tie the lower, the smaller class label is assigned regarding whole numbers, according to the Matlab \textit{mode}\footnote{\url{https://de.mathworks.com/help/matlab/ref/mode.html}} function.
 This is rather unconventional because it is likely to be a random selection, but in our tests, the results are the best.
 Another approach would be to assign the class label according to the biggest probability given from $\mathbf{P}$.\\
 To determine a final probability output $\mathbf{p}$ for a final label decision with respect to the data point, the algorithm calculates the mean of the probabilistic output for the runs where the label is equal to the final label is assigned.\\
 The number of relevance vectors is determined by using all unique vectors, which are used during the $K$ iterations.
 
-\subsection{Further Extensions}\label{InSubSecFExt}
-As suggested from \cite{Long.2015}, the current algorithm can be extended to multiple source learning.
-With that, we can match the distribution difference of multiple source domains with the target domain.
-This can be implemented by learning a $\mathbf{\Lambda}$ for every source/target combination and then using an existing multiple source learning, approach to predict the target based on multiple source domains.
-For example, one could use the \ac{CP-MDA} algorithm from \cite{Chattopadhyay.2012} for it.\\
-Another suggested extension is to adopt the algorithm to 'big data'.
-Because kernel machine can have at least $\mathcal{O}(N^2)$ or even worse, they may not be applied well to very large datasets.
-Here we can make use of the original Nyström method from \ref{InSecNysMeth} in combination with the Nyström Kernel approximation from \ref{InSubSecNyKerneLearning}.\cite{Long.2015}\\
-Consider a large test kernel matrix $\mathbf{K}_\mathcal{X} \in \mathbb{R}^{N_\mathcal{X}\times N_\mathcal{X}}$.
-Then sample from this kernel in a \acs{IID} manner to form a subset kernel $\mathbf{K}_\mathcal{X\hat{X}} \in \mathbb{R}^{N_\mathcal{X}\times \hat{N}_\mathcal{X}}$ with $\hat{N}_\mathcal{X} \ll N_\mathcal{X}$, which forms the subset $\mathcal{\hat{X}}$.
-In the next step the eigensystem can be calculated through \eqref{EqEigsProb} and then the eigensystem of the target kernel can be extrapolated with:
-\begin{equation}\label{EqLargeNsystromApprox}\cite{Long.2014}
-	\mathbf{U}_\mathcal{X}=\mathbf{K}_\mathcal{X\hat{X}}\mathbf{U}_\mathcal{\hat{X}}\mathbf{\Lambda}_\mathcal{X}^{-1}
-\end{equation}
-Furthermore, we can approximate the source kernel $\mathbf{K}_{Z}$ with the  cross domain kernel $\mathbf{K}_{\mathcal{Z\hat{Z}}} \in \mathbb{R}^{N_\mathcal{Z}\times \hat{N_\mathcal{X}}}$ and the subset kernel $\mathbf{K}_\mathcal{\hat{Z}}$.
-The procedure is similar to \eqref{EqLargeNsystromApprox} or with the use of the kernels only, shown in \eqref{EqTrainTestApprox} or \eqref{EqNystKernelApprox}, by replacing the target kernel with $\mathbf{K}_{\hat{Z}}$.
-\begin{equation}
-		\mathbf{K}_\mathcal{Z} \simeq	\mathbf{K}_{\mathcal{Z\hat{Z}}}\mathbf{K}_\mathcal{\hat{Z}}^{-1}\mathbf{K}_{\mathcal{\hat{Z}Z}}
-\end{equation}
-For being able to solve the quadratic programming problem from \eqref{EqTklQP}, we need to approximate the extrapolated eigensystem.
-This means. First, we extrapolate the eigensystem of the target kernel to the source subset via \eqref{EqExtraEigs}:
-\begin{equation}
-\expP{\mathbf{U}}_\mathcal{\hat{Z}}\simeq\mathbf{K}_{\mathcal{\hat{Z}X}}\mathbf{U}_{\mathcal{X}}\boldsymbol{\Lambda}_\mathcal{\hat{X}}^{-1}
-\end{equation}
-Second, the approximated eigensystem has to be extrapolated to the full source data:
-\begin{equation}
-	\expP{\mathbf{U}}_\mathcal{Z} \simeq \mathbf{K}_{\mathcal{Z\hat{Z}}}\expP{\mathbf{U}}_\mathcal{\hat{Z}}\boldsymbol{\Lambda}_\mathcal{\hat{X}}^{-1}
-\end{equation}
-With this, we have the required information to solve the \acl{QP} and are making the \acs{TKL} algorithm large scale and applicable for big data.\cite{Long.2015}\\
-Because it is a Nyström approximation, the quality of the approximation depends hardly on the quality of the taken sample, as mentioned in \ref{InSubSecNyKerneLearning}.
 \section{Conclusion}\label{InSecCon}
 In this chapter, we successfully integrated transfer learning in the \acs{PCVM}.
 We successfully integrated a proposed transfer learning method in the \acs{PCVM}, which forms the \acs{PCTKVM}.
 Furthermore, we solved the problem that the algorithm will be slow through the theta optimisation by adopting a simple theta estimation and adjust it to the needs of the \acs{PCVM}.
 Because it uses unlabelled target data, the algorithm is transductive and solves the transfer problem with an relational-knowledge approach regarding homogeneous transfer learning.\\
 Additionally, we extend the \acs{PCVM} and \acs{PCTKVM} to being able to solve multi-class problems via the one vs one approach.
-The Matlab source code of the \acs{PCTKVM} and \acs{PCTKVM}\textsubscript{$\theta$Est} can be obtained from Github\footnote{https://github.com/ChristophRaab/pctkvm.git}.
+The Matlab source code of the \acs{PCTKVM} and \acs{PCTKVM}\textsubscript{$\theta$Est} can be obtained from Github\footnote{\url{https://github.com/ChristophRaab/pctkvm.git}}.
 Furthermore, the reader can find the complete code written for this thesis, including all tests, in the repository.

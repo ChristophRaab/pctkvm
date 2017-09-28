@@ -79,7 +79,7 @@ The second could be caused by the fact that the documents focusing on different 
 The second case is that the tasks are different, which implies $\mathcal{T_Z} \neq \mathcal{T_X}$ and furthermore can divided into that they rather differ in the label space $\mathcal{Y_Z} \neq \mathcal{Y_X}$ or the conditional probability of the two tasks are different with $P(\mathbf{y}_\mathcal{Z}\vert \mathbf{Z}) \neq P(\mathbf{y}_\mathcal{X}\vert \mathbf{X})$.
 In practice, the first would imply that the source task has only two categories, which results in a binary classification problem, although the second task has more than two labels and is, therefore, a multi-class problem.
 The second case could be based on the fact that source and target documents are divided into very unbalanced user-defined classes.
-Finally, if there exists a relationship somehow between the feature spaces of the two domains, then they are \textit{related}.\cite{Pan.2010}\\
+Finally, if there exists a any relationship between the feature spaces of the two domains, then they are \textit{related}.\cite{Pan.2010}\\
 Note that in the context of transfer learning the term \ac{DA} may appear.
 Based on the discussion in \cite{Pan.2011}, the following definition can be extracted.
 \begin{mDef}[Domain Adaptation]\label{DefDa}
@@ -91,21 +91,24 @@ Furthermore,  the marginal distribution $P(\mathbf{X})$ changes through the doma
 In practice, we can observe that the key challenge of \acl{DA} methods is to focus on aligning the differences in the marginal distribution, which can be observed in \cite{Pan.2011}, \cite{Long.}, \cite{Fernando.} and \cite{Arnold.2007}, which describe by \cite{Pan.2011} too.
 
 \section{Measurement of Difference}\label{TlSecMeasure}
-From the previous examples \ref{TlSecChal} and definitions \ref{TlSecDef}, it seems that the domains are somehow different.
+From the previous examples \ref{TlSecChal} and definitions \ref{TlSecDef}, it seems that the domains are different.
 This difference needs to be determined to classify the amount of transfer which is done.
 In this thesis, it is measured with the \ac{MMD} and \ac{KLD}.
-Note that they only consider the differences in the domain distributions.
+Note that they only consider the differences in the marginal domain distributions.
+Another, point worth to mention is that the methods, which we will introduce later on, are based on these measures.
+For example the \acl{TCA} and the \acl{JDA} solutions are using the \acs{MMD} in the optimization problem.
+On the other hand, the authors of TrAdaBoost using the \acs{KLD} to determine the difference in domains, to measure the quality of the transfer-algorithm.
+
 \subsection{Maximum Mean Discrepancy}\label{TlSubSecMMD}
-%TODO: Definition von RKHS
 First, the \acl{MMD} is a non-parametric function to measure the difference of two \ac{IID} samples $\mathbf{X}$ and $\mathbf{Y}$ drawn from p and q respectively introduced by \cite[p. 724-728]{Gretton.2012}.
-Two samples of a random variable are independent if a current sample is not influenced by any previous samples and will not influence following samples.
+Two samples of a random variable are independent, if a current sample is not influenced by any previous samples and will not influence following samples.
 Identically  distributed, as the name says, requires that the random variables having the same distribution.\cite[p. 7-8]{Czado.2011}\\
-The \acs{MMD} is calculated by samples drawn from each of the distributions.
-It measures the distance between the expectations of two samples, $\textbf{X}=\{x_1,...x_m\}$ and $\textbf{Y}=\{y_1,...y_n\}$
+The \acs{MMD} is based on samples drawn from two distributions.
+It measures the distance between the expectations of two samples, $\textbf{X}=\{x_1,...x_M\}$ and $\textbf{Y}=\{y_1,...y_M\}$
 in a \ac{RKHS} $\mathcal{H}$.
 Assuming that $\mathbf{X} \sim p$ and $\mathbf{Y} \sim q$.
-Furthermore, if $\mathcal{H}$ is a Hilbert space, then $f(x) = \langle f,\phi(x) \rangle_\mathcal{H}$ with $\phi(x) = k(x,\cdot)$ as positive definite kernel which does the feature mapping.
-Another important characteristics of a \acs{RKHS} is, that it is continues and has the reproducing property.\cite[p. 36]{Scholkopf.2001}
+Furthermore, if $\mathcal{H}$ is a Hilbert space, then the mapping function is defined as $f(x) = \langle f,\phi(x) \rangle_\mathcal{H}$ with $\phi(x) = k(x,\cdot)$ as positive semi-definite kernel.
+Note that a \ac{PSD} kernel, has only non negative eigenvalues.\cite[p. 30]{Scholkopf.2001}
 Finally, the \acs{MMD} and his empirical estimation is defined as \eqref{EqMMdExp} and \eqref{EqMMdExpEm}:\cite[p. 726-727]{Gretton.2012}
 \begin{equation}\label{EqMMdExp}
 MMD[\mathcal{F},p,q]^2:=\big[sup_{\|f\|_\mathcal{H} \le 1 }(E_{x\sim p}[f(x)] - E_{y\sim q}[f(y)])\big]^2
@@ -118,13 +121,13 @@ Note that the empirical \acs{MMD} is biased.
 If p and q both are equal probability distributions, respectively $p = q$, then the \ac{MMD}\textsubscript{e} = 0.\cite[p. 726-727]{Gretton.2012}\\
 The \acs{MMD} is symmetric after it takes the absolute value, as shown in \eqref{EqMMdExpEm}.\\
 Another advantage of \eqref{EqMMdExpEm} is that it can be calculated based on samples.
-Unlike the following Kullback-Leibler Divergence where the density has to be estimated before, it can be divergence can be computed.\cite{Long.2015}\\
-The code used in this thesis can be obtained from the website of Gatsby Computational Neuroscience Unit\footnote{http://www.gatsby.ucl.ac.uk/~gretton/mmd/mmd.htm}, which uses the standard Gaussian kernel as feature mapping.
+Unlike the following Kullback-Leibler Divergence where the density has to be estimated before, the \acs{KLD} can be calculated.\cite{Long.2015}\\
+The code for the \acs{MMD} estimation can be obtained from the website of Gatsby Computational Neuroscience Unit\footnote{\url{http://www.gatsby.ucl.ac.uk/~gretton/mmd/mmd.htm}}, which uses the standard Gaussian kernel for feature mapping.
 
 \subsection{Kullback-Leibler Divergence}\label{TlSubSecKLD}
-The \acl{KLD} is also named Kullback-Leibler-Risk or -Distance.
+The \acl{KLD} is also named Kullback-Leibler-Risk.
 It needs two probability distributions f and g of a random Variable X.
-For discrete variables $x_i, i=1,..,m$ with $p_i=f(x_i)$ and $q_i=g(x_i)$ the \acs{KLD} is calculated as:
+For discrete variables $x_i, i=1,..,m$ with $p_i=f(x_i)$ and $q_i=g(x_i)$ as probabilities, respectively the \acs{KLD} is calculated as:
 \begin{equation}
 KL(g\mid f) = \sum_{i=1}^{m}p_i\log\frac{p_i}{q_i}
 \end{equation} 
@@ -133,19 +136,19 @@ For continues variables the \ac{KLD} is computed:
 KL(g\mid f) = \int f(x)log\frac{f(x)}{g(x)} dx
 \end{equation}
 For all f and g it is $KL(g\mid f) \ge 0$. Next $KL(f\mid f) = 0$ and finally, if $KL(g\mid f) = 0$, then $f = g$, which implies that the two distribution are nearly the same.
-Note although it is sometimes named as distance it is not a distance because it is not symmetric and does not satisfy the triangular inequality.\cite[p.5-7]{Commenges.}\\
+Note that the \acs{KLD} is not symmetric and as a consequence the  \cite[p.5-7]{Commenges.}\\
 Because the density has to be estimated, the \acs{KLD} in this thesis will be determined by a Bayesian method approach, which is described in the supplementary material of \cite{Berkes.2011}.
-The source code can be found at github\footnote{https://github.com/pberkes/neuro-kl}.
+The source code for the \acs{KLD} estimation can be found at GitHub\footnote{\url{https://github.com/pberkes/neuro-kl}}.
 
 \section{Settings of Transfer Learning}\label{DefTlSecSett} %
 In this section, the different settings of transfer learning are proposed.
 There are various settings of the transfer learning definition, which specifies the composition of domains and tasks and how they are related to each other.
-Therefore each setting has his requirements on how labelled data in the source and target domain is available.
+Therefore, each setting has his requirements on how labelled data in the source and target domain is available.
 In general, the settings could be summarized with 'What to transfer?' and 'How to transfer?'.
-The various settings combined with the attributes are related to some traditional machine learning task.\cite{Pan.2010}\\
-As we will see there are some intersections with the homogeneous and heterogeneous transfer learning approach in \ref{TlSecHomo} and \ref{TlSecHetero}.\cite[p. 5-6]{Weiss.2016}\\
-In general, we will stick to these definitions, but these are more general than the settings.
-Therefore the settings are used to formulate the categories of the transfer learning methods more precisely.
+The various settings are related to some traditional machine learning task.\cite{Pan.2010}\\
+As we will see in the following, the definitions of homogeneous (\ref{TlSecHomo}) and heterogeneous (\ref{TlSecHetero}) transfer learning and the definitions of the settings will overlap.\cite[p. 5-6]{Weiss.2016}\\
+In general, we will stick to the definitions of homogeneous and heterogeneous, because these are more general in comparison with the settings.
+Therefore, the settings are used to formulate the categories of the transfer learning methods more precisely.
 Additionally, but more importantly, we want to focus on the fact, whether labelled or unlabeled target data are required for the knowledge transfer.
 The methods will be explained within the section of homogeneous and heterogeneous transfer learning.
 The relationship is shown in figure \ref{FigSettingsTransferLearning}.
@@ -193,8 +196,8 @@ In this, they cluster the unlabeled target data for pseudo label generation and 
 Summarizing, because the two domains are different, transductive transfer learning aims to improve the learning by using the source data and task in combination with a few unlabeled target data.
 
 \subsection{Unsupervised Transfer Learning}\label{TlSubSecUnsuper}
-The last one, the unsupervised transfer learning section, which is naturally not part of the category of supervised learning, but will be described for completeness.
-It assumes that in both domains no labelled data is available.
+The last one, the unsupervised transfer learning section, which is obvious not part of the category supervised learning, but will be described for completeness.
+It assumes that in both domains no labeled data is available.
 Furthermore, the task of the source and target data are different.
 In comparison with the supervised learning transfer learning methods, the goal is not to find labels for the target data but solving clustering, dimensionally reduction and density estimation.\cite{Pan.2010}
 Finally, we can give the following definition.
@@ -231,7 +234,7 @@ It seems that these type of algorithm works best when the conditional probabilit
 In the following, we will present such an Instance transfer algorithm.
 The so-called \textit{TrAdaBoost} which is proposed by Dai et al.\cite{Pan.2010}\\
 \subsubsection{TrAdaBoost}
-The TrAdaBoost\footnote{https://github.com/LinZhineng/transfer-learning/tree/master/tradaboost} algorithm extends the boosting-based learning algorithm.
+The TrAdaBoost\footnote{\url{https://github.com/LinZhineng/transfer-learning/tree/master/tradaboost}} algorithm extends the boosting-based learning algorithm.
 The Algorithm follows the instance transfer definition and assumes that the marginal probability distribution are different, but the conditional probability distribution are the same.\cite{Dai.}
 It is originally proposed as two class solution, but there are extension like MsTrAdaBoost for multi-class problems.\cite{Huang.2012}\\
 The main goal is to reuse some source data in the target domain.
@@ -294,9 +297,9 @@ The solutions, which implementing the symmetric feature transfer are trying to f
 In the subspace, they should preserve the underlying structure of the data, which can be any relation in between the data.
 An example of a symmetric feature space transfer method is \ac{TCA}, which will be discussed in the following.\cite[p. 6]{Weiss.2016}
 \subsubsection{Transfer Component Analysis}
-The \acs{TCA} method is presented by Pan et al. in \cite{Pan.2011}\footnote{https://github.com/LinZhineng/transfer-learning/tree/master/tca}.
-The approach originally supports unsupervised, and semi-supervised learning.
-However, the resulting kernel and the transformation matrix can be used to train a baseline learner like the \acs{SVM}.
+The \acs{TCA} method is presented by Pan et al. in \cite{Pan.2011}\footnote{\url{https://github.com/LinZhineng/transfer-learning/tree/master/tca}}.
+The authors proposed \acs{TCA} to support classifier for unsupervised and semi-supervised learning.\cite{Pan.2011}
+However, the resulting kernel and the transformation matrix can be used to train a kernel based learner like the \acs{SVM}, which is in fact supervised.
 It has the assumption, which makes it a homogeneous transfer method that the conditional distribution is the same, i.\,e. $ P(\mathbf{y}_\mathcal{Z}\vert \mathbf{Z}) = P(\mathbf{y}_\mathcal{X}\vert \mathbf{X})$, but the marginal probability distribution are different.
 Furthermore they assume that there exists a feature transformation $\phi$, which can align the differences, i.\,e. $P(\phi(\mathbf{Z})) \approx(\phi(\mathbf{X}))$ and preserve $P(\mathbf{y}_\mathcal{Z}\vert \phi(\mathbf{Z}))\approx P(\mathbf{y}_\mathcal{X}\vert \phi(\mathbf{X}))$.\cite{Pan.2011}\\
 Additionally, we will see that \acs{TCA} requires target data in the training process and is therefore transductive.\\
@@ -316,7 +319,7 @@ Consider $\mathbf{K}$ as a cross-domain kernel, as a composition of the source a
 \end{equation}
 Where $\mathbf{K} \in \mathbb{R}$ with size $N\times N = (N_\mathcal{Z} + N_\mathcal{X}) \times (N_\mathcal{Z}+ N_\mathcal{X})$.
 This is the kernel over all data points and should be learned in a way that the marginal distribution in the subspace is aligned and the data variance (preserve data structure) is maximized.
-For that the \acs{MMD} is rewritten as $tr(\mathbf{KM})$.
+For that the \acs{MMD} from section \ref{TlSubSecMMD} is rewritten as $tr(\mathbf{KM})$.
 Where $\mathbf{M}$ is the \acs{MMD} matrix as:\cite{Pan.2011}
 \begin{equation}\label{EqTCAMMD}
 (M)_{ij}= \begin{dcases}
@@ -326,15 +329,16 @@ Where $\mathbf{M}$ is the \acs{MMD} matrix as:\cite{Pan.2011}
 \end{dcases}
 \end{equation}
 This is, in fact, the same transformation matrix for integrating \acs{MMD} as it is done by an asymmetric approach described in section \ref{TlSubSecHomoAsymFeature}.
-Furthermore, the \acs{MMDE} and the resulting \acs{TCA} objective function can be formulated as:\cite{Pan.2011}
+The objective function of the \acs{TCA}, uses the \acl{MMDE}, which results in the following equation:\cite{Pan.2011}
 \begin{equation}\label{EqTCAMMDEObjt}
 	\max_{\mathbf{K}\succeq 0} tr(\mathbf{KM}) - \lambda tr(\mathbf{K})
 \end{equation}
+With this, the \acs{MMDE} is simply the extensions of the \ac{MMD} with a regularization term, which can be seen on the right side of equation \eqref{EqTCAMMDEObjt}.\cite{Pan.2011}\\
 In this objective, if the first term is minimized, then the aligning happens.
 Furthermore, if the second term, which is the constrain of the optimization problem, is maximized, then the subspace variance is maximized.
-The parameter $\lambda \ge 0$ is a trade off parameter and 
-However, this seems that the kernel from equation \eqref{EqTCAKernel} is expensive to calculate via a \ac{SDP}.
-A \acs{SDP} is an extension of a linear optimisation problem, where the non-negative constrained is replaced with $\mathbf{K}\succeq 0$, which is the \acs{PSD} attribute of the Matrix. Additionally, the vector space for linear problems $\mathbb{R}^N$ is replaced with the vector space of symmetric $N\times N$ matrices.\cite{Gartner.2012}
+The parameter $\lambda \ge 0$ is a trade off parameter.
+However, this seems that the kernel from equation \eqref{EqTCAKernel} is expensive to calculate via a \ac{SDP}.\cite{Pan.2011}\\
+A \acs{SDP} is an extension of a linear optimisation problem, where the non-negative constrained is replaced with $\mathbf{K}\succeq 0$, which is the \acs{PSD} attribute of the Matrix. Additionally, the vector space for linear problems $\mathbb{R}^N$ is replaced with the vector space of symmetric $N\times N$ matrices based on the linear transformation of matrices.\cite{Gartner.2012}\\
 Furthermore, with this objective function, they can not achieve both in a good manner:
 Aligning and maximizing the variance.
 Finally, there is no dimensional reduction done.\cite{Pan.2011}\\
@@ -373,7 +377,7 @@ Second create $\mathbf{W}$ by searching the $L$ eigenvectors with $(\mathbf{KMK}
 With this, the subspace kernel can be computed, or the source and target data can be reduced with $\mathbf{W}$.
 The computational complexity is given by $\mathcal{O}(L(N_\mathcal{Z}+N_\mathcal{X})^2)$, where again $L$ is the number of eigenvectors.\cite{Pan.2011}
 \subsubsection{Geodesic Flow Kernel}
-The next symmetric feature transfer method is the \ac{GFK} and is proposed by Gong et al. in \cite{Gong.}\footnote{http://www-scf.usc.edu/~boqinggo/domain\_adaptation/GFK\_v1.zip}.
+The next symmetric feature transfer method is the \ac{GFK} and is proposed by Gong et al. in \cite{Gong.}\footnote{\url{http://www-scf.usc.edu/~boqinggo/domain\_adaptation/GFK\_v1.zip}}.
 Following definition of homogeneous methods and similar to \acs{TCA}, the \acl{GFK} is trying to lower the marginal distribution differences.\cite[p. 13]{Weiss.2016}\\
 Furthermore, it can be seen as unsupervised transfer learning method, but because the results of this method is, in fact, a kernel, it can be trained with a kernel machine.\cite{Gong.}
 Again because it needs target data in the learning process, it will be considered as inductive transfer learning method.\\
@@ -451,7 +455,7 @@ In comparison to the symmetric feature transfer approaches, there will be no sha
 In the following, the \ac{JDA} algorithm is described to give an idea of an asymmetric approach.\cite[p. 6; 10]{Weiss.2016}
 \subsubsection{Joint Distribution Adaptation}
 The \acl{JDA} algorithm tries to not only solve the marginal probability distribution but the conditional probability distribution, too.
-This solution is proposed by Long et al. in \cite{Long.}.\footnote{http://ise.thss.tsinghua.edu.cn/~mlong/doc/joint-distribution-adaptation-iccv13.zip}\\
+This solution is proposed by Long et al. in \cite{Long.}.\footnote{\url{http://ise.thss.tsinghua.edu.cn/~mlong/doc/joint-distribution-adaptation-iccv13.zip}}\\
 Because it solves the differences between the domains, it can be considered as transductive setting, with the need for target data.\\
 The primary goal is to alter the joint distribution by a feature transformation in a way that the joint expectations of the source and target features are matched between the domains.
 However, this problem is assumed as non-trivial, and therefore they created an approximation to solve it.
@@ -572,7 +576,7 @@ The solution is found by inverting the left matrix of the left-hand side, which 
 Now suppose that we have prior knowledge from $K$ classes (not models, but in following we will call it models), which are already trained.
 This knowledge is represented with the hyperplane parameter, i.\,e. $\mathbf{w}'_j, j = \{1,\dots,K\}$, for each class.\cite{Tommasi.}\\
 With that Tommasi et al. assuming that the transfer happens when the constraints of the hyperplane of the new class $K+1$ are set in a manner that it is close to the already trained classes of $K$.
-Keeping this in mind, the optimisation problem can be rewritten as model for multi knowledge transfer:\cite{Tommasi.}
+Keeping this in mind, the optimization problem can be rewritten as model for multi knowledge transfer:\cite{Tommasi.}
 \begin{equation}\label{EqMMKTOpt}
 		\min_{\mathbf{w},b} \frac{1}{2}\Vert\mathbf{w}-\sum_{j=1}^{K}\beta_j\mathbf{w}_j'\Vert^2 + \frac{C}{2}\sum_{i=1}^{N}\zeta_i[y_i-\mathbf{w}\phi(\mathbf{x}_i)-b]^2
 \end{equation}
@@ -638,47 +642,6 @@ The computational complexity of the algorithm is $\mathcal{O}(N^3+KN^2)$, with $
 The relational knowledge transfer aim to find some relationship between the source and target data.\cite[p. 7]{Weiss.2016}
 Because the Transfer Kernel learning algorithm from section \ref{InSecTrans} finds this relationship in the eigenvalues of source and training data, we could assign this category to the method.
 The details of the algorithm are discussed in this chapter because, the \acl{PCTKVM} is based on it.
-\subsection{Domain Dependent Transfer Learning}\label{TlSubSecDomain}
-The previous methods of transfer learning are all generic solutions.
-They are not domain depended, for example are not working with only with text.
-However, there are solutions, which are not domain independent.
-For example, the \ac{RAP} algorithm, which will be very briefly discussed to point out the key features of domain-dependent transfer learning method, in this case, text-dependent.
-Note that the \ac{RAP} algorithm originally is part of the relational-knowledge transfer category and homogeneous.\cite[p. 6-8]{Weiss.2016}\\
-The \acs{RAP} algorithm is proposed by Li et al. in \cite{Li.2012}.
-Because they are using labelled target data in the learning process, the method is inductive.
-The primary goal is to create a transfer method in the field of opinion mining.
-In this field sentiment, lexicon construction and topic lexicon extraction are two subtasks.
-The sentiment lexicon is a list of expressions, which are used to indicate the polarity of a sentiment, which is decided in positive or negative.
-This lexicon is domain depended, e.\,g. for films, because people are using different terms to describe their opinions in different domains.\cite{Li.2012}\\
-On the other hand, there is a topic lexicon, which has a list of topic-based terms to express their opinion.
-They are topic depended too.
-Both aspects are important because users not only care about the sentiment in general but which aspects are mentioned.\cite{Li.2012}\\
-In comparison with the other transfer learning methods, they have a very 'low' level understanding of the data.
-In other words, they care about texts not vectors in feature space in the first place.
-In general, they distinguish terms in three categories.
-The first one is the sentiment word, which includes sentiment terms in general.
-The second category is devoted for topic terms, and the last category is assigned when a word is neither sentiment nor a topic term.
-Furthermore, consider many ratings in a domain, i\,e. Film review.
-The goal of the algorithm is to create a graph, where the sentiment and topic words over the domain are connected to identify sentiment in another domain better.
-The process is summarized in figure \ref{FigRapRelationGraph}.
-In sub-figure \ref{FigWordGraph} the topic words are bold, and the sentiment words are italics.
-In the other sub-figure \ref{FigRelationGraph}, the cross-domain graph connects the sentiment with topics over the domains.
-Note that the 'weights' on the graph are shortest paths of word types (Point of Speech-Tags) to get from a topic term to the sentiment term.
-\begin{figure}
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{figures/CaseTopicSentiment.png}
-		\caption{Small Value \label{FigWordGraph}}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{figures/RelationGraph.png}
-		\caption{Large Value \label{FigRelationGraph}}
-	\end{subfigure}
-	\caption[Summary of Transfer by Relational Adaptive bootstrapping]{The selection of topic and sentiment words and the graph to transfer sentiment words over topics.\cite{Li.2015}}
-	\label{FigRapRelationGraph}
-\end{figure}
 
 \section{Heterogeneous Transfer Learning}\label{TlSecHetero}
 In this section, we discuss the heterogeneous transfer learning category.
@@ -701,86 +664,62 @@ Solutions from the second category, are trying to find a common latent feature s
 However, because this work focuses on supervised homogeneous transfer, we will not go into more detail about the heterogeneous transfer categories, but present an example in the following to get an idea of how it works.\\
 \subsubsection{Text to Image Transfer}
 The \acs{TTI} method is presented by Qi et al. in \cite{Qi.2011}.
-It is considered as symmetric transfer, and it can be regarded as domain depended to image classification with a text extension and is, therefore, no general solution.\cite[p. 22]{Weiss.2016}
-This is caused by the fact that \ac{TTI} transforms both the text data (source domain) and image data (target domain) to a latent feature space called \textit{topic space}, as we will see in the following.\\
-However, first, the general motivation of the authors are explained.
+It is considered as symmetric transfer, and it can be regarded as domain depended image classification with a text extension and is, therefore, no general solution.\cite[p. 22]{Weiss.2016}
+This is caused by the fact that \ac{TTI} transforms both the text data (source domain) and image data (target domain) into a latent feature space called \textit{topic space}, as we will see in the following.\\
+However, first, the general motivation of the authors is explained.
 Note that in the previous transfer learning methods the source and target domains, where separated by learning the source domain and evaluating at the target domain.
-This is not the case by \acs{TTI} because source and target are just symbolic for two domains, which should be merged (transformed).
-However, the method, in general, requires target domain data.\cite{Qi.2011}\\
+This is not the case with \acs{TTI} because source and target are just symbolic for two domains, which should be merged (transformed), to improve the accuracy in the arget domain.
+However, the method requires target domain data.\cite{Qi.2011}\\
 In general, image classification suffers from a few problems.
-The semantic gap between image datasets and labels are often higher than by text sets.
-This is caused by the fact that text features to labels are often better to interpret in comparison with image features to labels.
-For example, a text is described with a sparse vector of words, but an image is represented with vectors based on colour histograms or texture features.
-With that, it is no surprise that text classification works 'naturally' better because they have the ability of semantic interpretation and the labels are often designed according to the semantic criteria, which is more difficult with images.\cite{Qi.2011}\\
-Another point is that in comparison with text classification there an abundant amount of labelled text, but not that amount of labelled data in the image domain.
-The authors claim that through Wikipedia, which uses a category index to 'label' documents, or other web text collection websites, the amount of labeled text documents are very large.
-However, at this point the improvement takes place.
+For example, the semantic gap between image datasets and labels are often higher than by text sets.
+This is caused by the fact that text features to labels are often better to interpret in comparison with image features to labels.\cite{Qi.2011}\\
 There are various websites and social networks, which have images linked to the text.
 This text can be used to increase the amount of target data (images) when this text can be transformed and used for image classification.
-They are using these co-occurrences (Image linked to a text, which is linked to a category) to build a semantic bridge from text to images.
-This bridge can further be used to transfer semantic of text into images.
-With that unlabeled images but linked with text can be used in the classification process as labelled data.
-\cite{Qi.2011}\\
-In general, the text is not transformed into the image feature space.
-Both the text and image features are transformed to the topic space.
-The goal is now to find a transformation matrix.
-Revisiting the previous notation from, we can formulate the source (text) domain as $\mathcal{Z}$, where the samples are $\mathbf{Z} \in \mathbb{R}^{N_S\times A}$ or a single document as $\mathbf{z_i}\in \mathbb{R}^A$, with $A$ as a number of feature space dimensions.
-Furthermore the target (image) domain as $\mathcal{X}$, with sample matrix $\mathbf{X} \in \mathbb{R}^{N_T\times B}$ or a single image with $\mathbf{x_i}\in\mathbb{R}^B$.
-However, we have the assumption, that the size of images is much smaller than the size of the text.\cite{Qi.2011}\\
+They are using these co-occurrences (Image linked to a text; text is linked to a category) to build a semantic bridge from text to images.
+This bridge can further be used to transfer semantic of text into images.\cite{Qi.2011}\\
+Revisiting the previous notation from \ref{TlSecDef}, we can formulate the source (text) domain as $\mathcal{Z}$, where the samples are $\mathbf{Z} \in \mathbb{R}^{N_S\times A}$ or a single document as $\mathbf{z_i}\in \mathbb{R}^A$, with $A$ as a number of feature space dimensions.
+Furthermore the target (image) domain as $\mathcal{X}$, with sample matrix $\mathbf{X} \in \mathbb{R}^{N_X\times B}$ or a single image with $\mathbf{x_i}\in\mathbb{R}^B$.
+However, with the have the assumption, that the size of images set is much smaller than the size of the text set.\cite{Qi.2011}\\
 The linkage through the co-occurrence of text and image is then formalized with $\mathcal{C} = \big\{\big( \mathbf{\expP{z}}_k,\mathbf{\expP{x}}_l,c( \mathbf{\expP{z}}_k,\mathbf{\expP{x}}_l) \big)\big\}$.
 This means that $\mathbf{\expP{z}}_k$ is the corresponding text feature vector to an image feature vector $\mathbf{\expP{x}}_l$.
-The $c(\cdot)$ function is abbreviated with $c_{k,l}$.\cite{Qi.2011}\\
+Note that in the following $c(\cdot)$ is abbreviated with $c_{k,l}$.
+Through the linkage function, they build a semantic bridge from text to image.\cite{Qi.2011}\\
 The so called \textit{translator} function with $T : \mathbb{R}^A \times \mathbb{R}^B \to \mathbb{R}$ weights the linkage strength between a document and image.
 Now the label for an image is found with:\cite{Qi.2011}
 \begin{equation}
 	f_T (\mathbf{x}) = \sum_{i=1}^{N_S} y_i T(\mathbf{z}_i,\mathbf{x})
 \end{equation}
 Where $y_i$ is the text document label and     $f_T (\mathbf{x})$ provides the label depending on the sign.\\
-The objective proposed by Qi et al. is to learn the function $T$, which maximises the classification accuracy or rather minimises a loss function, which is in general formulated with:\cite{Qi.2011}
+The objective proposed by Qi et al. is to learn the function $T$, which maximizes the classification accuracy or rather minimizes a loss function. However, they determine $T$ by finding a transformation matrix to transfer text and images in the $P$ dimensional topic space. This means that they aggregate the data into the least $P$ topics, where the linkage strength of image and text co-occurrence is weighted. The extended $T$ function has the form of:\cite{Qi.2011}
+\begin{equation}
+T(\mathbf{z}_i\mathbf{x}_j) = \langle \mathbf{W}_\mathcal{Z}\mathbf{z}_i,\mathbf{W}_\mathcal{X}\mathbf{x}_i\rangle = \mathbf{z}_i \mathbf{W}_\mathcal{Z}\mathbf{W}_\mathcal{X}^T\mathbf{x}_i^T = \mathbf{z}_i\mathbf{S}\mathbf{x}_i^T 
+\end{equation}
+With $\mathbf{S} = \mathbf{W}_\mathcal{Z}\mathbf{W}_\mathcal{X}^T$ and size $A \times B$ and $\mathbf{W}_\mathcal{Z}$ and $\mathbf{W}_\mathcal{X}$ are the transformation matrices respectively.
+In the following it is sufficient to just learn $\mathbf{S}$ rather than the transformation matrices and has to be determined in order to minimize the loss function for the prediction accuracy. This is done by the following minimization problem:
 \begin{equation}\label{EqTTIGeneralOpt}
-	\min_{T} = \gamma \sum_{j=1}^{N_T}\mathit{l}\big( y_j \cdot f_T(\mathbf{x}_j) \big) + \lambda \sum_{C}  \chi \big( c_{k,l} \cdot T(\mathbf{\expP{z}}_k,\mathbf{\expP{x}}_l)\big) + \Omega(T)
+\min_{S} \gamma \sum_{j=1}^{N_T}\mathit{l}\big( y_j \cdot f_T(\mathbf{x}_j) \big) + \lambda \sum_{C}  \chi \big( c_{k,l} \cdot T(\mathbf{\expP{z}}_k,\mathbf{\expP{x}}_l)\big) + \Vert \mathbf{S}\Vert_\Sigma
 \end{equation}
 Note that $y_j$, in this case, is the image label.
 The parameter $\gamma$ and $\lambda$ controlling the relative importance of the auxiliary data and the co-occurrence data respectively.
 Furthermore, $C$ is the number of weighted co-occurrences.\\
 With equation \eqref{EqTTIGeneralOpt} the general performance of the translation process is measured and can be divided into three parts.\\
 The first is the empirical loss of the prediction, based on the function $f_T$.\cite{Qi.2011}
-For the loss, they use the logistic loss function with $l = \log\{1+\exp(-z) \}$.
-The second is summation over the $C$ weighted co-occurrences $c_{k,l}$ with a monotonic exponential decreasing function $\chi = \exp(-z)$.
-They pretend with this choice, the optimisation problem is in a closed algebraic format and is easy to optimise.
-The last term $\omega(T)$ is for regulating the learning of the translator.
-It should be useful when the auxiliary examples of image are fewer.\cite{Qi.2011}\\
-Another aspect is to transfer the images and documents into the underlying latent topic space.
-They extend the translation function to do a transformation into the $P$ dimensional space, with $P$ topics, where the inner product of a document and a image representing the weight of a certain topic. In other words how good does the document with the image matching.
-This is done via:\cite{Qi.2011}
-\begin{equation}
-	T(\mathbf{z}_i\mathbf{x}_j) = \langle \mathbf{W}_\mathcal{Z}\mathbf{z}_i,\mathbf{W}_\mathcal{X}\mathbf{x}_i\rangle = \mathbf{z}_i \mathbf{W}_\mathcal{Z}\mathbf{W}_\mathcal{X}^T\mathbf{x}_i^T = \mathbf{z}_i\mathbf{S}\mathbf{x}_i^T 
-\end{equation}
-With $\mathbf{S} = \mathbf{W}_\mathcal{Z}\mathbf{W}_\mathcal{X}^T$ with size $A \times B$ and $\mathbf{W}_\mathcal{Z}$ and $\mathbf{W}_\mathcal{X}$ are the transformation matrix respectively.\\
-In the following it is sufficient to just learn $\mathbf{S}$ rather than the transformation matrices.
-Note with that the integration of $\mathbf{S}$ the regularisation term changes.
-They incorporating the Frobenius norm, which can be found here \cite{Ma.1994}, and the trace norm, for example defined in \cite{Rennie.2005}, to reformulate $\Omega(\cdot)$ to:
+For the loss, they use the logistic loss function with $l = \log\{1+\exp(-z) \}$.\\
+The second is sum over the $C$ weighted co-occurrences $c_{k,l}$ with a monotonic exponential decreasing function $\chi = \exp(-z)$.
+They pretend with this choice, the optimization problem is closed-form and is easy to optimize.\\
+The last term is for regulating the learning of the translator for an improved generalization ability.
+They incorporating the Frobenius norm, which can be found here \cite{Ma.1994}, and the trace norm, for example defined in \cite{Rennie.2005}, to formulate a regularization term:\cite{Qi.2011}
 \begin{equation}\label{EqTTITrace}
-	\Vert \mathbf{S}\Vert_\Sigma = \inf_{\mathbf{S} = \mathbf{W}_\mathcal{Z} \mathbf{W}_\mathcal{X}^T} \frac{1}{2}\bigg(\Vert\mathbf{W}_\mathcal{Z}\Vert_F^2 + \Vert\mathbf{W}_\mathcal{X}\Vert_F^2 \bigg) = \Omega(T)
+\Vert \mathbf{S}\Vert_\Sigma = \inf_{\mathbf{S} = \mathbf{W}_\mathcal{Z} \mathbf{W}_\mathcal{X}^T} \frac{1}{2}\bigg(\Vert\mathbf{W}_\mathcal{Z}\Vert_F^2 + \Vert\mathbf{W}_\mathcal{X}\Vert_F^2 \bigg) = \Omega(T)
 \end{equation}
 Where $\Vert \cdot \Vert_F^2$ is the Frobenius norm and $\Vert \mathbf{S}\Vert_\Sigma$ the trace norm.\\
-With that, they found that the trace norm of $\mathbf{S}$ is a convex function and can be computed by \ac{SVD}.
-They argue that by minimising this function, will result in the minimum topics used to explain the correspondence between text and image.
-Furthermore by incorporating equation \eqref{EqTTITrace} in equation \eqref{EqTTIGeneralOpt}, the final problem can be obtained:\cite{Qi.2011}
-\begin{equation}\label{EqTTITraceOpt}
-		\min_{S} = \gamma \sum_{j=1}^{N_T}\mathit{l}\big( y_j \cdot f_T(\mathbf{x}_j) \big) + \lambda \sum_{C}  \chi \big( c_{k,l} \cdot T(\mathbf{\expP{z}}_k,\mathbf{\expP{x}}_l)\big) + \Vert \mathbf{S}\Vert_\Sigma
-\end{equation}
+With that, they found that the trace norm of $\mathbf{S}$ is a convex function and can be computed by a \acl{SDP}.
+They argue that by minimizing equation \eqref{EqTTIGeneralOpt}, the found $\mathbf{S}$ will give a minimum of topics, used to explain the correspondence between text and image.
 For finding the optimum, they used a proximal gradient method to find an approximation of the optimal solution.
-Note that equation \eqref{EqTTITraceOpt} can be expressed as $F(S)+\Vert \mathbf{S}\Vert_\Sigma$.\cite{Qi.2011}\\
-In order to find a good approximation with the proximal gradient method, they are using the Taylor expansion, also used in \cite[p. 214]{Bishop.2009}, and the coefficient $\alpha$ to quadratically approximate it at the point $\mathbf{S} = \mathcal{S}\tau$, which has the form:\cite{Qi.2011}
-\begin{equation}
-	\mathcal{Q}(\mathbf{S},\mathbf{S}_\tau) = F(\mathbf{S}_\tau) + \langle \nabla F(\mathbf{S}_\tau),\mathbf{S}-\mathbf{S}_\tau\rangle + \frac{\alpha}{2}\Vert \mathbf{S} - \mathbf{S}_\tau \Vert_F^2 + \Vert \mathbf{S} \Vert_\Sigma
-\end{equation}
-The approximation is adequate if $F(\mathbf{S}_{\tau+1}) + \Vert\mathbf{S+1} \le \mathcal{Q}(\mathbf{S},\mathbf{S}_\tau)$.
 For further information about the algorithm, the reader may consider \cite{Qi.2011}.
 
 \section{Negative Transfer}\label{TlSecNeg}
-A major key assumption of transfer learning is that the source and target domains are somehow related to each other.
+A major key assumption of transfer learning is that the source and target domains are related to each other.
 This is pointed out in the examples from section \ref{TlSecChal}.\\
 If this assumption, however, does not hold and the domains may not relate, then the transfer learning solution can impact the performance of the underlying classifier for the target data in a negative way.\cite[p. 29]{Weiss.2016}\\
 The problem is that all methods take the assumption that a relation exists, but there is no current way to determine whether a relationship exists or not.\cite[p. 1672]{Taylor.2009}
@@ -789,20 +728,20 @@ However, as pointed out in the chapter, this selection of datasets is common in 
 However, the negative transfer is a phenomenon that exits, which is seen in the results of sections \ref{EmSecOneData} and \ref{EmSecMulDa}, where the transfer learning methods are worse than the baseline classifier.
 
 \section{Conclusion}
-In this chapter are various transfer learning definitions and methods discussed.
-It is again worth to mention that there are not only many relationships among the definitions but in the solutions too, refer to section \ref{TlSecHomo}.
+It is again worth to mention that there are not only many relationships among the definitions, but in the solutions too, refer to section \ref{TlSecHomo}.
 Weiss et al. pointed out that there are many inconsistencies in the definition of transfer learning.\cite[p. 5-6]{Weiss.2016}
 However, fair enough, many of the definitions are useful to distinguish how the transfer is done.
-For example, is labelled target data or any target data at all needed, or how much source data has to be available, for the transfer.
-In our opinion, this is crucial information to know, because it changes on how datasets have to be prepared, to make a comparison among different solutions and furthermore one have to additional manual label target data before a solution can be used.
+For example, is labeled target data or any target data at all needed, or how much source data has to be available, for the transfer.
+In our opinion, this is crucial information to know, because it changes on how datasets have to be prepared, to make a comparison among different solutions.
+Furthermore, one has to additional manual label target data before an inductive solution can be used.
 Therefore the mentioned definition of inductive transfer \ref{DefITL} and transductive transfer \ref{DefTTL} are solid extension to the homogeneous \ref{TlSecHomo} and heterogeneous \ref{TlSecHetero} transfer learning definitions.\\
-In contrast to the mentioned survey papers of \cite{Weiss.2016} and \cite{Pan.2010}, we choose to derive into the transfer learning methods into detail, to get an idea of how the general problem is formulated.
-Furthermore, the process of how the get a solution for the problem is described in detail, instead of giving a high-level description.
-This seems reasonable, because of the already pointed out relations among the solutions, which does not omit the need for further research, but has a more detailed understanding of how the transfer problem can be solved.\\
-Another point worth to mention is that the definitions and solutions may vary between supervised, semi-supervised and unsupervised.
-However, as seen in this chapter, the output of the solutions are often kernels, transformation or embedding matrices, which can be used with any kernel-based algorithm.
-However, to be careful, for example from \cite{Long.}, \cite{Long.2015} \cite{Gong.} appears that their solutions can be applied to any standard classifier.
-In practice, from the documentation of the standard Matlab implementation of the \acl{SVM}\footnote{https://de.mathworks.com/help/stats/fitcsvm.html} appears that they do not support pre-calculated kernels.
-This is the same with the standard $k$-nearest neighbour implementation\footnote{https://de.mathworks.com/help/stats/classificationknn-class.html}.
-Additionally, in the implementation of \cite{Gong.} they are using their implementation of $k$-nearest neighbour.
-The point is that the many current standard implementations do not support external information in general, e.\,g. Kernels, or may have dependencies in the algorithm itself, see section \ref{InSecAlgo}, and therefore the integration may need further investigation.\\
+In contrast to the mentioned survey papers of \cite{Weiss.2016} and \cite{Pan.2010}, we choose to dive into the transfer learning methods in detail, to get an idea of how the general problem is formulated.
+Furthermore, the process of how they get a solution for the problem is described, instead of giving a high-level description.
+This seems reasonable, because of the already pointed out relations among the solutions, which does not omit the need for further research, give a generalized understanding of how the transfer problem can be solved.\\
+Another point worth mention is that the provided solutions are proposed to support only certain learning approaches and varying between supervised, semi-supervised and unsupervised.
+However, as seen in this chapter, the output of the solutions is often a kernel, transformation or embedding matrices, which can be used with any kernel-based algorithm.
+Nevertheless, to be careful, for example from \cite{Long.}, \cite{Long.2015} \cite{Gong.} appears that their solutions can be easily applied to any standard classifier.\\
+In practice, a classifier may have dependencies in their algorithm, and the integration is a more challenging problem.
+This is might the reason that in \cite{Gong.}, they are using their implementation of $k$-nearest neighbor or that only the LibSVM, which supports pre-calculated kernels, is utilized in the corresponding articles of a transfer learning solution. 
+Therefore the integration into a kernel machine may need further investigation.
+In this chapter are various transfer learning definitions and methods discussed.

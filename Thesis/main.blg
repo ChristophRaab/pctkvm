@@ -1,4 +1,6 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: main.aux
+A level-1 auxiliary file: titelpage.aux
+A level-1 auxiliary file: chapters/statutory.aux
 A level-1 auxiliary file: chapters/abstract.aux
 A level-1 auxiliary file: contents.aux
 A level-1 auxiliary file: chapters/abbreviations.aux
@@ -15,3 +17,5 @@ A level-1 auxiliary file: appendix/appac.aux
 A level-1 auxiliary file: biblio.aux
 The style file: plaindin.bst
 Database file #1: main.bib
+Warning--I didn't find a database entry for "Weiss"
+(There was 1 warning)

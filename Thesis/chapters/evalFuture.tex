@@ -1,5 +1,4 @@
 \chapter{Evaluation and Future Work}\label{EvalF}	
-%TODO: Future Work and Eval: Generalisierte implementierung der PCVM
 This chapter is devoted to critical review the characteristics of the study and future work.\\
 The study classifier used in this thesis are primarily based on the kernel from \eqref{EqRBFAKernel}.
 According to the corresponding articles, they using the standard Gaussian kernel from \eqref{EqRBFOriginalKernel}.\cite{Long.}\cite{Gong.}\cite{Pan.2011}
@@ -9,23 +8,55 @@ Furthermore, it should be compared to this study to determine the differences.
 Additional, the ability to transfer knowledge of the \acs{SVM} is comparable to the transfer learning solutions with the use of the new kernel, according to Friedman test from table \ref{TableFriedman}.
 In a new study, we can verify, whether the \acs{SVM} works comparable good with the standard Gaussian kernel or not.
 With that, it can be seen if the \acs{SVM} is, in fact, better for the transfer learning settings as the \acs{PCVM}.\\
-Another topic which is not included in this work is the use of more datasets, to give a more general evidence, whether a transfer learning solution is better or not.
-For example the 20-Newsgroup\footnote{http://qwone.com/~jason/20Newsgroups/} dataset, as a text based dataset, as suggested in \cite{Pan.2010}.
+Another topic which is not included in this work is the use of other datasets, to give a more general evidence, whether a transfer learning solution is better or not.
+For example the 20-Newsgroup\footnote{\url{http://qwone.com/~jason/20Newsgroups/}} dataset, as a text based dataset, as suggested in \cite{Pan.2010}.
 The reason why we did not include this dataset is that the \acs{GFK} algorithm needs to calculate the null space of the dataset.
 This task is a main-memory consuming and can not be done by the for the study available computers, which results finally in an 'out of memory' error from Matlab.
 We decided for the comparison with the \acs{PCTKVM}, and it would be better to include more transfer learning solutions than datasets.\\
-Other examples for image transfer learning datasets \textit{USPS}\footnote{http://www-i6.informatik.rwth-aachen.de/~keysers/usps.html}, \textit{MNIST}\footnote{http://yann.lecun.com/exdb/mnist/}, \textit{COIL20}\footnote{http://www.cs.columbia.edu/CAVE/software/softlib/coil-20.php}.\cite{Long.}\cite{Long.2014}
+Other examples for image transfer learning datasets \textit{USPS}\footnote{\url{http://www-i6.informatik.rwth-aachen.de/~keysers/usps.html}}, \textit{MNIST}\footnote{\url{http://yann.lecun.com/exdb/mnist/}}, \textit{COIL20}\footnote{\url{http://www.cs.columbia.edu/CAVE/software/softlib/coil-20.php}}.\cite{Long.}\cite{Long.2014}
 These are not included in the study. Again for a more general assumption on the performance, it would be useful.
-As well as real-world scenarios like WiFi-localisation or human activity classification.\cite[p. 32]{Weiss.2016}
-At least we tested our transfer learning solution with the myoelectric prosthesis as real-world scenario.\\
+As well as real-world scenarios like WiFi-localisation or human activity classification.\cite[p. 32]{Weiss.2016}\\
 Furthermore, as described in \ref{EmSubSecMetricResult}, a more analytical way to determine the width of the Gaussian kernel should be found. Moreover, the current estimation should be modified in a future work to improve the performance and reduce the 'smoothness' of it.
 A possible approach would be to incorporate another estimation for finding the theta between the separated classes in the training set and combining them with the overall theta. In this case, we could decide whether the theta over all sample is too large.\\
-In the course of this study, we observed an overall good performance. However, the biggest problem is, that the performance drops dramatically for certain datasets. For the image datasets, we assume that the reason for this is only a few training examples per domain. However, we can also observe a drop of performance by the \textit{people vs places} dataset, which has more than 1000 samples.
-In future work, the reason for the dips could be determined.\\
+In the course of this study, we observed an overall good performance. However, we can observe that the a mixed performance for the small multi-class image problem. Furthermore, we can also observe a drop of performance by the \textit{people vs places} dataset, which is larger than the image sets.
+In future work, the reason for the mixed performance and the performance dips could be determined.\\
 Another point worth mentioning is that the \acs{PCTKVM} is based on a non-probabilistic transfer learning method. 
-However, the \acs{PCVM} are based on probabilistic assumptions.
+However, the \acs{PCVM} are based on probabilistic assumptions, which is one of the achievements of Chen et al.
 In future work, the issue could be addressed to find a probabilistic transfer learning method.
 For example, as mentioned in section \ref{TlSubSecInduc}, the \acl{ITL} is related to self-thought learning.
 With this, an idea would be to extend the current \acs{EM} algorithm of the \acs{PCVM} to learn the source and target domain simultaneously and transferring or modify the parameters from one into the other.
 With that, we could extend the \acs{PCVM} with a transfer learning in a probabilistic manner.
 A recent approach for 'self-paced' learning which uses a latent variable model and the \acs{EM} algorithm is a step in this direction and proposed in \cite{Kumar.2010}.
+
+\section{Extensions}\label{InSubSecFExt}
+Although, that in the course of this chapter are already future works mentioned, we want to point out some further extensions, which can help to make the \acs{PCTKVM} for applicable.
+These extensions are coming mainly from \cite{Long.2015}.\\
+The current algorithm can be extended to multiple source learning.
+With that, we can match the distribution difference of multiple source domains with the target domain.
+This can be implemented by learning a $\mathbf{\Lambda}$ for every source/target combination and then using an existing multiple source learning, approach to predict the target based on multiple source domains.
+For example, one could use the \ac{CP-MDA} algorithm from \cite{Chattopadhyay.2012} for it.\\
+Another suggested extension is to adopt the algorithm to 'big data'.
+Because kernel machine can have at least $\mathcal{O}(N^2)$ or even worse, they may not be applied well to very large datasets.
+Here we can make use of the original Nyström method from \ref{InSecNysMeth} in combination with the Nyström Kernel approximation from \ref{InSubSecNyKerneLearning}.\cite{Long.2015}\\
+Consider a large test kernel matrix $\mathbf{K}_\mathcal{X} \in \mathbb{R}^{N_\mathcal{X}\times N_\mathcal{X}}$.
+Then sample from this kernel in a \acs{IID} manner to form a subset kernel $\mathbf{K}_\mathcal{X\hat{X}} \in \mathbb{R}^{N_\mathcal{X}\times \hat{N}_\mathcal{X}}$ with $\hat{N}_\mathcal{X} \ll N_\mathcal{X}$, which forms the subset $\mathcal{\hat{X}}$.
+In the next step the eigensystem can be calculated through \eqref{EqEigsProb} and then the eigensystem of the target kernel can be extrapolated with:
+\begin{equation}\label{EqLargeNsystromApprox}\cite{Long.2014}
+\mathbf{U}_\mathcal{X}=\mathbf{K}_\mathcal{X\hat{X}}\mathbf{U}_\mathcal{\hat{X}}\mathbf{\Lambda}_\mathcal{X}^{-1}
+\end{equation}
+Furthermore, we can approximate the source kernel $\mathbf{K}_{Z}$ with the  cross domain kernel $\mathbf{K}_{\mathcal{Z\hat{Z}}} \in \mathbb{R}^{N_\mathcal{Z}\times \hat{N_\mathcal{X}}}$ and the subset kernel $\mathbf{K}_\mathcal{\hat{Z}}$.
+The procedure is similar to \eqref{EqLargeNsystromApprox} or with the use of the kernels only, shown in \eqref{EqTrainTestApprox} or \eqref{EqNystKernelApprox}, by replacing the target kernel with $\mathbf{K}_{\hat{Z}}$.
+\begin{equation}
+\mathbf{K}_\mathcal{Z} \simeq	\mathbf{K}_{\mathcal{Z\hat{Z}}}\mathbf{K}_\mathcal{\hat{Z}}^{-1}\mathbf{K}_{\mathcal{\hat{Z}Z}}
+\end{equation}
+For being able to solve the quadratic programming problem from \eqref{EqTklQP}, we need to approximate the extrapolated eigensystem.
+This means. First, we extrapolate the eigensystem of the target kernel to the source subset via \eqref{EqExtraEigs}:
+\begin{equation}
+\expP{\mathbf{U}}_\mathcal{\hat{Z}}\simeq\mathbf{K}_{\mathcal{\hat{Z}X}}\mathbf{U}_{\mathcal{X}}\boldsymbol{\Lambda}_\mathcal{\hat{X}}^{-1}
+\end{equation}
+Second, the approximated eigensystem has to be extrapolated to the full source data:
+\begin{equation}
+\expP{\mathbf{U}}_\mathcal{Z} \simeq \mathbf{K}_{\mathcal{Z\hat{Z}}}\expP{\mathbf{U}}_\mathcal{\hat{Z}}\boldsymbol{\Lambda}_\mathcal{\hat{X}}^{-1}
+\end{equation}
+With this, we have the required information to solve the \acl{QP} and are making the \acs{TKL} algorithm large scale and applicable for big data.\cite{Long.2015}\\
+Because it is a Nyström approximation, the quality of the approximation depends hardly on the quality of the taken sample, as mentioned in \ref{InSubSecNyKerneLearning}.

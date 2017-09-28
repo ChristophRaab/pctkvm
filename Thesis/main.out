@@ -10,71 +10,68 @@
 \BOOKMARK [2][-]{subsection.2.4.1}{Model Specification}{section.2.4}% 10
 \BOOKMARK [2][-]{subsection.2.4.2}{Prior over Weights}{section.2.4}% 11
 \BOOKMARK [2][-]{subsection.2.4.3}{Expectation Maximization Algorithm}{section.2.4}% 12
-\BOOKMARK [2][-]{subsection.2.4.4}{Algorithm}{section.2.4}% 13
-\BOOKMARK [2][-]{subsection.2.4.5}{Hierachical Hyperpriors}{section.2.4}% 14
-\BOOKMARK [2][-]{subsection.2.4.6}{Implementation Details}{section.2.4}% 15
-\BOOKMARK [1][-]{section.2.5}{Conclusion}{chapter.2}% 16
-\BOOKMARK [0][-]{chapter.3}{Transfer Learning}{}% 17
-\BOOKMARK [1][-]{section.3.1}{Challenges of Machine Learning Algorithms}{chapter.3}% 18
-\BOOKMARK [1][-]{section.3.2}{Definition of Transfer Learning}{chapter.3}% 19
-\BOOKMARK [1][-]{section.3.3}{Measurement of Difference}{chapter.3}% 20
-\BOOKMARK [2][-]{subsection.3.3.1}{Maximum Mean Discrepancy}{section.3.3}% 21
-\BOOKMARK [2][-]{subsection.3.3.2}{Kullback-Leibler Divergence}{section.3.3}% 22
-\BOOKMARK [1][-]{section.3.4}{Settings of Transfer Learning}{chapter.3}% 23
-\BOOKMARK [2][-]{subsection.3.4.1}{Inductive Transfer Learning}{section.3.4}% 24
-\BOOKMARK [2][-]{subsection.3.4.2}{Transductive Transfer Learning}{section.3.4}% 25
-\BOOKMARK [2][-]{subsection.3.4.3}{Unsupervised Transfer Learning}{section.3.4}% 26
-\BOOKMARK [1][-]{section.3.5}{Homogeneous Transfer Learning}{chapter.3}% 27
-\BOOKMARK [2][-]{subsection.3.5.1}{Instance-transfer}{section.3.5}% 28
-\BOOKMARK [2][-]{subsection.3.5.2}{Symmetric-Feature-Transfer}{section.3.5}% 29
-\BOOKMARK [2][-]{subsection.3.5.3}{Asymmetric-Feature-Transfer}{section.3.5}% 30
-\BOOKMARK [2][-]{subsection.3.5.4}{Parameter-Transfer}{section.3.5}% 31
-\BOOKMARK [2][-]{subsection.3.5.5}{Relational-Knowledge-Transfer}{section.3.5}% 32
-\BOOKMARK [2][-]{subsection.3.5.6}{Domain Dependent Transfer Learning}{section.3.5}% 33
-\BOOKMARK [1][-]{section.3.6}{Heterogeneous Transfer Learning}{chapter.3}% 34
-\BOOKMARK [1][-]{section.3.7}{Negative Transfer}{chapter.3}% 35
-\BOOKMARK [1][-]{section.3.8}{Conclusion}{chapter.3}% 36
-\BOOKMARK [0][-]{chapter.4}{Integration of Transfer Learning}{}% 37
-\BOOKMARK [1][-]{section.4.1}{Nystr\366m Approximation}{chapter.4}% 38
-\BOOKMARK [2][-]{subsection.4.1.1}{Nystr\366m Kernel Learning}{section.4.1}% 39
-\BOOKMARK [1][-]{section.4.2}{Domain Invariant Kernel Learning}{chapter.4}% 40
-\BOOKMARK [2][-]{subsection.4.2.1}{Learning Approach}{section.4.2}% 41
-\BOOKMARK [2][-]{subsection.4.2.2}{Learning Algorithm}{section.4.2}% 42
-\BOOKMARK [1][-]{section.4.3}{PCTKVM Algorithm}{chapter.4}% 43
-\BOOKMARK [2][-]{subsection.4.3.1}{Theta Estimation}{section.4.3}% 44
-\BOOKMARK [2][-]{subsection.4.3.2}{Training Algorithm}{section.4.3}% 45
-\BOOKMARK [2][-]{subsection.4.3.3}{Prediction}{section.4.3}% 46
-\BOOKMARK [2][-]{subsection.4.3.4}{Extensions}{section.4.3}% 47
-\BOOKMARK [2][-]{subsection.4.3.5}{Further Extensions}{section.4.3}% 48
-\BOOKMARK [1][-]{section.4.4}{Conclusion}{chapter.4}% 49
-\BOOKMARK [0][-]{chapter.5}{Benchmark Study}{}% 50
-\BOOKMARK [1][-]{section.5.1}{Dataset Description}{chapter.5}% 51
-\BOOKMARK [2][-]{subsection.5.1.1}{Text Dataset}{section.5.1}% 52
-\BOOKMARK [2][-]{subsection.5.1.2}{Image Dataset}{section.5.1}% 53
-\BOOKMARK [1][-]{section.5.2}{Study Procedure and Settings}{chapter.5}% 54
-\BOOKMARK [2][-]{subsection.5.2.1}{Data Sampling}{section.5.2}% 55
-\BOOKMARK [2][-]{subsection.5.2.2}{Kernel}{section.5.2}% 56
-\BOOKMARK [2][-]{subsection.5.2.3}{Parameters}{section.5.2}% 57
-\BOOKMARK [1][-]{section.5.3}{Performance Metrics}{chapter.5}% 58
-\BOOKMARK [2][-]{subsection.5.3.1}{Area under a ROC Curve}{section.5.3}% 59
-\BOOKMARK [2][-]{subsection.5.3.2}{Accuracy and Error}{section.5.3}% 60
-\BOOKMARK [2][-]{subsection.5.3.3}{Root Mean Squared Error}{section.5.3}% 61
-\BOOKMARK [1][-]{section.5.4}{Descriptive Statistics}{chapter.5}% 62
-\BOOKMARK [2][-]{subsection.5.4.1}{Metric Results}{section.5.4}% 63
-\BOOKMARK [2][-]{subsection.5.4.2}{Time Results}{section.5.4}% 64
-\BOOKMARK [2][-]{subsection.5.4.3}{Number of Support Vectors}{section.5.4}% 65
-\BOOKMARK [1][-]{section.5.5}{Comparison over one Dataset}{chapter.5}% 66
-\BOOKMARK [2][-]{subsection.5.5.1}{Result and discussion}{section.5.5}% 67
-\BOOKMARK [1][-]{section.5.6}{Comparison over multiple Datasets}{chapter.5}% 68
-\BOOKMARK [2][-]{subsection.5.6.1}{Analysis of Variance}{section.5.6}% 69
-\BOOKMARK [2][-]{subsection.5.6.2}{Friedman Test}{section.5.6}% 70
-\BOOKMARK [2][-]{subsection.5.6.3}{Result and Discussion}{section.5.6}% 71
-\BOOKMARK [1][-]{section.5.7}{Conclusion}{chapter.5}% 72
-\BOOKMARK [0][-]{chapter.6}{Evaluation and Future Work}{}% 73
-\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 74
-\BOOKMARK [0][-]{appendix.A}{Mathematical Notation}{}% 75
-\BOOKMARK [1][-]{subsection.A.0.1}{Terminology}{appendix.A}% 76
-\BOOKMARK [0][-]{appendix.B}{Complete Test Results}{}% 77
-\BOOKMARK [1][-]{section.B.1}{Five Two Comparison}{appendix.B}% 78
-\BOOKMARK [1][-]{section.B.2}{Complete Dataset Comparison}{appendix.B}% 79
-\BOOKMARK [0][-]{appendix.C}{Details to Algorithms}{}% 80
+\BOOKMARK [2][-]{subsection.2.4.4}{Properties of Algorithm}{section.2.4}% 13
+\BOOKMARK [1][-]{section.2.5}{Conclusion}{chapter.2}% 14
+\BOOKMARK [0][-]{chapter.3}{Transfer Learning}{}% 15
+\BOOKMARK [1][-]{section.3.1}{Challenges of Machine Learning Algorithms}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.2}{Definition of Transfer Learning}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.3}{Measurement of Difference}{chapter.3}% 18
+\BOOKMARK [2][-]{subsection.3.3.1}{Maximum Mean Discrepancy}{section.3.3}% 19
+\BOOKMARK [2][-]{subsection.3.3.2}{Kullback-Leibler Divergence}{section.3.3}% 20
+\BOOKMARK [1][-]{section.3.4}{Settings of Transfer Learning}{chapter.3}% 21
+\BOOKMARK [2][-]{subsection.3.4.1}{Inductive Transfer Learning}{section.3.4}% 22
+\BOOKMARK [2][-]{subsection.3.4.2}{Transductive Transfer Learning}{section.3.4}% 23
+\BOOKMARK [2][-]{subsection.3.4.3}{Unsupervised Transfer Learning}{section.3.4}% 24
+\BOOKMARK [1][-]{section.3.5}{Homogeneous Transfer Learning}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.5.1}{Instance-transfer}{section.3.5}% 26
+\BOOKMARK [2][-]{subsection.3.5.2}{Symmetric-Feature-Transfer}{section.3.5}% 27
+\BOOKMARK [2][-]{subsection.3.5.3}{Asymmetric-Feature-Transfer}{section.3.5}% 28
+\BOOKMARK [2][-]{subsection.3.5.4}{Parameter-Transfer}{section.3.5}% 29
+\BOOKMARK [2][-]{subsection.3.5.5}{Relational-Knowledge-Transfer}{section.3.5}% 30
+\BOOKMARK [1][-]{section.3.6}{Heterogeneous Transfer Learning}{chapter.3}% 31
+\BOOKMARK [1][-]{section.3.7}{Negative Transfer}{chapter.3}% 32
+\BOOKMARK [1][-]{section.3.8}{Conclusion}{chapter.3}% 33
+\BOOKMARK [0][-]{chapter.4}{Integration of Transfer Learning}{}% 34
+\BOOKMARK [1][-]{section.4.1}{Nystr\366m Approximation}{chapter.4}% 35
+\BOOKMARK [2][-]{subsection.4.1.1}{Nystr\366m Kernel Learning}{section.4.1}% 36
+\BOOKMARK [1][-]{section.4.2}{Domain Invariant Kernel Learning}{chapter.4}% 37
+\BOOKMARK [2][-]{subsection.4.2.1}{Learning Approach}{section.4.2}% 38
+\BOOKMARK [2][-]{subsection.4.2.2}{Learning Algorithm}{section.4.2}% 39
+\BOOKMARK [1][-]{section.4.3}{PCTKVM Algorithm}{chapter.4}% 40
+\BOOKMARK [2][-]{subsection.4.3.1}{Theta Estimation}{section.4.3}% 41
+\BOOKMARK [2][-]{subsection.4.3.2}{Training Algorithm}{section.4.3}% 42
+\BOOKMARK [2][-]{subsection.4.3.3}{Prediction}{section.4.3}% 43
+\BOOKMARK [2][-]{subsection.4.3.4}{Extensions}{section.4.3}% 44
+\BOOKMARK [1][-]{section.4.4}{Conclusion}{chapter.4}% 45
+\BOOKMARK [0][-]{chapter.5}{Benchmark Study}{}% 46
+\BOOKMARK [1][-]{section.5.1}{Dataset Description}{chapter.5}% 47
+\BOOKMARK [2][-]{subsection.5.1.1}{Text Dataset}{section.5.1}% 48
+\BOOKMARK [2][-]{subsection.5.1.2}{Image Dataset}{section.5.1}% 49
+\BOOKMARK [1][-]{section.5.2}{Study Procedure and Settings}{chapter.5}% 50
+\BOOKMARK [2][-]{subsection.5.2.1}{Data Sampling}{section.5.2}% 51
+\BOOKMARK [2][-]{subsection.5.2.2}{Kernel}{section.5.2}% 52
+\BOOKMARK [2][-]{subsection.5.2.3}{Parameters}{section.5.2}% 53
+\BOOKMARK [1][-]{section.5.3}{Performance Metrics}{chapter.5}% 54
+\BOOKMARK [2][-]{subsection.5.3.1}{Area under a ROC Curve}{section.5.3}% 55
+\BOOKMARK [2][-]{subsection.5.3.2}{Accuracy and Error}{section.5.3}% 56
+\BOOKMARK [2][-]{subsection.5.3.3}{Root Mean Squared Error}{section.5.3}% 57
+\BOOKMARK [1][-]{section.5.4}{Descriptive Statistics}{chapter.5}% 58
+\BOOKMARK [2][-]{subsection.5.4.1}{Metric Results}{section.5.4}% 59
+\BOOKMARK [2][-]{subsection.5.4.2}{Time Results}{section.5.4}% 60
+\BOOKMARK [2][-]{subsection.5.4.3}{Number of Support Vectors}{section.5.4}% 61
+\BOOKMARK [1][-]{section.5.5}{Comparison over one Dataset}{chapter.5}% 62
+\BOOKMARK [2][-]{subsection.5.5.1}{Result and discussion}{section.5.5}% 63
+\BOOKMARK [1][-]{section.5.6}{Comparison over multiple Datasets}{chapter.5}% 64
+\BOOKMARK [2][-]{subsection.5.6.1}{Analysis of Variance}{section.5.6}% 65
+\BOOKMARK [2][-]{subsection.5.6.2}{Friedman Test}{section.5.6}% 66
+\BOOKMARK [2][-]{subsection.5.6.3}{Result and Discussion}{section.5.6}% 67
+\BOOKMARK [1][-]{section.5.7}{Conclusion}{chapter.5}% 68
+\BOOKMARK [0][-]{chapter.6}{Evaluation and Future Work}{}% 69
+\BOOKMARK [1][-]{section.6.1}{Extensions}{chapter.6}% 70
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 71
+\BOOKMARK [0][-]{appendix.A}{Mathematical Notation}{}% 72
+\BOOKMARK [1][-]{subsection.A.0.1}{Terminology}{appendix.A}% 73
+\BOOKMARK [0][-]{appendix.B}{Complete Test Results}{}% 74
+\BOOKMARK [1][-]{section.B.1}{Five Two Comparison}{appendix.B}% 75
+\BOOKMARK [1][-]{section.B.2}{Complete Dataset Comparison}{appendix.B}% 76
+\BOOKMARK [0][-]{appendix.C}{Details to Algorithms}{}% 77

@@ -12,9 +12,11 @@ This section shows the detailed metrics of the cross-validation test.
 The table is showing the mean over the 5x2 cv F test, which is a total of ten repetitions.
 Every repetition has his unique sampling from the dataset. 
 Note that in table \ref{BTableFTErr} shows not only the mean but the standard deviation in brackets.
+This results is also plotted in figure \ref{FigErrorImgDatasetsB} for images and plotted in figure \ref{FigErrorReutersDatasetsB} for Reuters.
+The numbers of a dataset is the order of the sets, shown for example in \ref{BTableFTErr}.
 Furthermore in table \ref{BTableFTAUC} the \acs{AUC} values are shown. 
 The mean number of support vectors used can be viewed in table \ref{BTableFTNev}.
-The last table \ref{BTableFTTime} shows the needed time in seconds. 
+The last table \ref{BTableFTTime} shows the needed time in seconds.  
 \begin{table}[]
 	\centering
 	\resizebox{\textwidth}{!}{%
@@ -45,6 +47,35 @@ The last table \ref{BTableFTTime} shows the needed time in seconds.
 	\end{tabular}}
 	\caption[Complete Cross-Validtion Result of Error]{Cross-validation comparison of the tested algorithms on 18 domain adaptation datasets by the error and \acs{RMSE} metrics. It shows the mean of the ten runs of cross-validation per dataset with the standard deviation.\label{BTableFTErr}}
 \end{table}
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/FiveTwoImageTL.png}
+		\caption{\label{FigErrorImgTL}}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/PerformanceImage.png}
+		\caption{\label{FigErrorImgO}}
+	\end{subfigure}
+	\caption[Plot of mean Error and standard Deviation on Image Dataset]{The plot of mean errors with standard deviation of the cross-validation. The left shows the transfer \acs{PCVM} in comparison with the other transfer learning solutions. The right side shows all \acs{PCVM}'s in comparison with \acs{SVM} and \acs{TKL}. A graph shows the error and a vertical bar shows the standard deviation. \label{FigErrorImgDatasetsB}}
+\end{figure}
+
+\begin{figure}[!]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/FiveTwoReutersTL.png}
+		\caption{\label{FigErrorReuTL}}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/PerformanceReuters.png}
+		\caption{\label{FigErrorReuO}}
+	\end{subfigure}
+	\caption[Plot of mean Error and standard Deviation on Reuters Dataset]{The plot of mean errors with standard deviation of the cross-validation. The left shows the transfer \acs{PCVM} in comparison with the other transfer learning solutions. The right side shows all \acs{PCVM}'s in comparison with \acs{SVM} and \acs{TKL}. A graph shows the error and a vertical bar shows the standard deviation. \label{FigErrorReutersDatasetsB}}
+\end{figure}
 
 \begin{table}[]
 	\centering
@@ -136,6 +167,8 @@ The last table \ref{BTableFTTime} shows the needed time in seconds.
 This section shows the results of the classifiers trained on the whole dataset. 
 In general, the tables are showing the mean over five runs and are separated in the Reuters and image dataset.
 In table \ref{BTableCompleteErr} are the error and \acs{RMSE} values shown.
+This results is also plotted in figure \ref{FigErrorImgDatasetsB} for images and plotted in figure \ref{FigErrorReutersDatasetsB} for Reuters.
+The numbers of a dataset is the order of the sets, shown for example in \ref{BTableFTErr}.
 The \acs{AUC} values are shown in table \ref{BTableCompletAUC}.
 For a complete overview over the used support vectors, see table \ref{BTableCompleteNvec}.
 And finally the computation time in second as mean over the 5 runs is shown in \ref{BTableCompleteTime}. 
@@ -169,6 +202,32 @@ And finally the computation time in second as mean over the 5 runs is shown in \
 	\end{tabular}}
 	\caption[Complete Dataset Result of Error]{The test result of the classifiers by using the whole 18 datasets. It shows the mean error over five runs.\label{BTableCompleteErr}}
 \end{table}
+
+\begin{figure}[!]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/AverageReuters.png}
+		\caption{\label{FigErrorAvReuTL}}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/AverageReutersTL.png}
+		\caption{\label{FigErrorAvReuO}}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/AverageImage.png}
+		\caption{\label{FigErrorAvImTL}}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/AverageImageTL.png}
+		\caption{\label{FigErrorAvImO}}
+	\end{subfigure}
+	\caption[Plot of mean Error and standard Deviation on the whole Datasets]{The plot of mean errors with standard deviation on the whole datasets. The left side shows all \acs{PCVM}'s in comparison with \acs{SVM} and \acs{TKL}. The right side shows all \acs{PCVM}'s in comparison to the other transfer learning solutions. The first row shows the result on Reuters and the second row shows the result on image dataset. A graph shows the error and a vertical bar shows the standard deviation. \label{FigErrorAv}}
+\end{figure}
+
 
 \begin{table}[]
 	\centering
