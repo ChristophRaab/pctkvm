@@ -30,7 +30,7 @@ Furthermore, the hyperplane parameter \textbf{w} and the bias b.
 The class of a new data point is now obtained with the sign of $y(\textbf{x})$. If $y(\textbf{x}) > 0$ it belongs to class 1.
 Furthermore, when it comes to $y(\textbf{x}) < 0)$ it belongs to class -1.
 Note that if a point in the trainings state has the function value of $y(\textbf{x}) = 1 \vee y(\textbf{x}) = -1$, then it is considered as support vector.\cite[p. 237]{Bishop.2009}\\
-The \ac{SVM} has a complexity of $\mathcal{O}(M^3)$, with M basis functions, which is smaller than the actual N data points.\cite[p. 329]{Bishop.2009}
+The \ac{SVM} has a complexity of $\mathcal{O}(B^3)$ in the worst case, with $B$ basis functions.\cite[p. 329]{Bishop.2009}
 To get a visual idea of how the \ac{SVM} works, the process is shown in figure \ref{FigSVMProd}.\\
 Note that this is a very brief explanation of the \acs{SVM}, which takes some assumptions. Beside some concepts, for example, errors and the Lagrange variables, are not defined.
 This is just to get an idea of how it works.\\
@@ -56,9 +56,9 @@ This uncertainty can be interpreted as Bayesian probability.\cite[p. 21]{Bishop.
 Second, the number of support vectors needed to create the margin of the decision boundary grows linearly with the size of the training set.
 With that, the computational complexity and model complexity grows and does not lead to sparse models or fast computing.
 As a consequence, some post-processing is suggested to reduce the complexity of the model.\cite{Chen.2009}\\
-An example would be to find a set of 'reduced' vectors with $N_\mathcal{Z}$ entries, which are approximate the original set of support vectors $N_S$.
+An example would be to find a set of 'reduced' vectors with $N$ entries, which are approximate the original set of support vectors $N_R$.
 Note that these reduced vectors are no training samples and are not necessarily lying on the margin.
-The goal is then to find the smallest $N_\mathcal{Z}$ with $N_\mathcal{Z} \ll N_S$ for that the loss in the generalisation performance is acceptable.
+The goal is then to find the smallest $N$ with $N \ll N_R$ for that the loss in the generalisation performance is acceptable.
 However, this approach is computational very expensive.\cite{Burges.1997}\\
 Therefore the wanted reduction of computational complexity is maybe not yet achieved.\newline
 Furthermore, the \ac{SVM} has several parameters, that needs to be tuned by cross-validation.
@@ -91,12 +91,12 @@ The \acs{SVM} defines with this parameter the hyperplane and the probabilistic v
 Another advantage of the \acs{RVM} against the \acs{SVM} is , that the kernel function for a \acs{SVM} has to satisfy Mercer's conditions.
 The \ac{RVM} kernel does not have this constraint.\cite[p. 213]{Tipping.2001}\newline
 Without going deeper in this, a kernel which satisfies the Mercer's conditions is positive semi-definite.\cite{Graepel.2002}
-The complexity of the algorithm is $\mathcal{O}(M^3)$ with $M$ as number of basis functions and is also similar to the \ac{SVM}.\cite[p. 236-237]{Tipping.2001}\newline
+The complexity of the algorithm is $\mathcal{O}(B^3)$ with $B$ as number of basis functions and is also similar to the \ac{SVM}.\cite[p. 236-237]{Tipping.2001}\newline
 The \ac{RVM} makes predictions for a new point $\mathbf{x}$ with equation \ref{EqRVMPred}.\cite[p. 211]{Tipping.2001}
 \begin{equation}\label{EqRVMPred}
 \mathbf{t} = y(\mathbf{x};\mathbf{w}) = \sum_{i=1}^{N}\phi_i(\mathbf{x})w_i + w_0 = \boldsymbol{\Phi}(\mathbf{x})\mathbf{w} + w_0
 \end{equation}
-With the bias $w_0$ and basis function $\boldsymbol{\Phi}(\mathbf{x}) = (\phi(\mathbf{x_1}),\dots,\phi(\mathbf{x_n}))$.
+With the bias $w_0$ and basis function $\boldsymbol{\Phi}(\mathbf{x}) = (\phi(\mathbf{x_1}),\dots,\phi(\mathbf{x_N}))$.
 The weight parameter has the form $\mathbf{w} = (w_1,\dots,w_N)^T$ and $\mathbf{T}={t_1,\dots,t_N}$ as function value.\\
 In \eqref{EqRVMPred}, the bias is used to move the model out of the origin.
 The corresponding label of a data point is the sign of the function value $\mathbf{t}$.
@@ -296,11 +296,11 @@ Following by the an iterations, which terminates if a convergence criteria is re
 In every iterations the kernel with the new $\theta$ is calculated, followed by the the estimation of the weight $\mathbf{w}$, bias $b$ and solving the optimization for a new $\theta$. After these steps, update the indicator vector.\cite{Chen.2009}
 The complete pseudo code can be found in appendix \ref{appac}.\\
 Chen et al. designed the \acs{PCVM} in a way that the convergence of the algorithm is only measured with the convergence behaviour of $\mathbf{w}$ and is set to $||{\mathbf{w}-\mathbf{w}^{old}}|| = 1.0e^{-3}$ in practice. 
-The time complexity of the \acs{PCVM} is $\mathcal{O}(N^3)$, with N as the number of training points.\\
+The time complexity of the \acs{PCVM} is $\mathcal{O}(B^3)$, with $B$ as the number of involved data points.\\
 In practice the Cholesky decomposition is used for the matrix inversion. 
-This has the computational complexity of $\mathcal{O}(M^3)$ and a memory complexity of $\mathcal{O}(M^2)$, where M is the number of non zero basis functions and is the overall complexity of the \acs{PCVM}.\cite{Chen.2009}\\
-However, because of the sparsity of the prior, the \acs{PCVM} reduces the basis function from the initial start with $M = N$ to $M < N$.
-In the best case it be even $M \ll N$.
+This has the computational complexity of $\mathcal{O}(B^3)$ and a memory complexity of $\mathcal{O}(B^2)$, where $B$ is the number of non zero basis functions and is the overall complexity of the \acs{PCVM}.\cite{Chen.2009}\\
+However, because of the sparsity of the prior, the \acs{PCVM} reduces the basis function from the initial start with $B = N$ to $B < N$.
+In the best case it be even $B \ll N$.
 An practical example of this reduction can be found in table \ref{BTableFTNev} in appendix \ref{appaB}. 
 This table shows the number of vectors which are needed for the model. 
 It can be seen that the \acs{PCVM} has a sparser model in comparison to the \acs{SVM} and has therefore less basis function.

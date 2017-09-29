@@ -48,30 +48,34 @@ This can be a very expensive process, and therefore the learner should be adapta
 
 \section{Definition of Transfer Learning}\label{TlSecDef}
 After more practical examples are given, the term transfer learning and associated keywords are defined in this section.\newline
-In this thesis, a domain $\mathcal{D}$ is composed of a $D$-dimensional feature space $\mathcal{F}$ and a marginal probability distribution $P(\mathbf{X})$.
+In this thesis, a domain $\mathcal{D}$ is composed of a $D$-dimensional feature space $\mathcal{F}$, which can be feature extraction of text documents. Moreover, a marginal probability distribution from the data matrix $\mathbf{X}$ with $P(\mathbf{X})$.
 Formally, this means $\mathcal{D} = \{\mathcal{F},P(\mathbf{X})\}$ with $\mathbf{X} \in \mathcal{F}$.
 In general, if two domains $\mathcal{X}$ and $\mathcal{Z}$ are different, then they have either different feature spaces or marginal distributions.
 This can be expressed as $\mathcal{F_{Z}} \neq \mathcal{F_{X}} \vee P(x) \neq \textit{P}(z)$.\cite[. 542]{Aggarwal.2015}\\
-A task $\mathcal{T}$ with a given domain D is put together with a label set $\mathcal{Y}$ and a classifier $f(\cdot)$, which is  $\mathcal{T} = \{\mathcal{Y},\textit{f}(\cdot)\}$ with $\mathbf{y} \in \mathcal{Y}$.
+A task $\mathcal{T}$ with a given domain $\mathcal{D}$ is put together with a label set $\mathcal{Y}$, for example $\{-1,1\}$, and a classifier $f(\cdot)$ which is  $\mathcal{T} = \{\mathcal{Y},\textit{f}(\cdot)\}$ with $\mathbf{y} \in \mathcal{Y}$.
+The vector $\mathbf{y}$ represents the (predicted) labels for \textit{all} data points regarding the label set $\mathcal{Y}$.
 The function $f(\cdot)$ is a predictive function to make prediction for unseen, i.\,g. new data points $\mathbf{x}$.
-From a probabilistic viewpoint we can interpret $f(x)$ as $P(y\mid x)$.
-In other words given x how probable is it that label y is correctly assigned.\\
+From a probabilistic viewpoint we can interpret $f(\mathbf{x})$ as $P(y\mid \mathbf{x})$.
+In other words given $\mathbf{x}$ how probable is it that label y is correctly assigned.\\
 In classification, the number of varying labels will distinguish the classification problem.
-The Binary classification problem for two labels, e.\,g. $\mathcal{Y} ={-1,+1}$ or discrete values, i.\,e. multiple classes, for example $\mathcal{Y}= \{1,2,..,N\}$ with $N$ classes.
-In general two tasks $\mathcal{T_X}$ and $\mathcal{T_{Z}}$ are different if they have varying conditional probability distributions or label spaces, which means $\mathcal{Y_{X}} \neq \mathcal{Y_{Z}} \vee P(y\mid x) \neq P(y\mid z)$.\cite[p. 542]{Aggarwal.2015}\\ 
+The Binary classification problem for two labels, e.\,g. $\mathcal{Y} ={-1,+1}$ or discrete values, i.\,e. multiple classes, for example $\mathcal{Y}= \{1,2,..,C\}$ with $C$ classes.
+In general two tasks $\mathcal{T_X}$ and $\mathcal{T_{Z}}$ are different if they have varying conditional probability distributions or label spaces, which means $\mathcal{Y_{X}} \neq \mathcal{Y_{Z}} \vee P(y\mid \mathbf{x}) \neq P(y\mid \mathbf{z})$.\cite[p. 542]{Aggarwal.2015}\\ 
 Note that in this thesis if we talk about transfer learning, then the training domain is denoted as $\mathcal{Z}$ and $\mathcal{X}$ represents the test domain.
 For the binary case within transfer learning the following definitions are made:
-Consider $\mathbf{Z} = \{(\mathbf{z}_i,y_{\mathcal{Z}_i})\}_{i=1}^{M}$ as source domain data where $\mathbf{z}_i \in \mathcal{X}_\mathcal{Z}$ as single observation and $y_{\mathcal{Z}_i} \in \mathcal{Y}_\mathcal{Z}$ is the corresponding class label, which forms the whole label vector $\mathbf{y}_\mathcal{Z}$.
-Additional, the target domain data $\mathbf{X} = \{(\mathbf{x}_i,y_{\mathcal{X}_i})\}_{i=1}^{N}$.
-Analogue, $\mathbf{x}_i$ is a single observation with $\mathbf{x}_i \in \mathcal{X}_\mathcal{X}$ and the corresponding class label $y_{\mathcal{X}_i} \in \mathcal{Y}_\mathcal{X}$, which is again summarized in $\mathbf{y}_\mathcal{X}$.\cite[p. 2]{Aggarwal.2015}\\
+Consider $\mathcal{D_Z} = \{(\mathbf{z}_i,y_{\mathcal{Z}i})\}_{i=1}^{N}$ as source domain data where $\mathbf{z}_i \in \mathcal{X}_\mathcal{Z}$ as single observation, for example, one document in the feature space which is part of the training data matrix and therefore is part of $P(\mathbf{Z})$.
+Moreover, $y_{\mathcal{Z}i} \in \mathcal{Y}_\mathcal{Z}$ is the corresponding class label, which forms the whole N sized label vector $\mathbf{y}_\mathcal{Z}$.
+Additional, the target domain data $\mathcal{D_X} = \{(\mathbf{x}_i,y_{\mathcal{X}i})\}_{i=1}^{M}$.
+Analogue, $\mathbf{x}_i$ is a single observation with $\mathbf{x}_i \in \mathcal{F}_\mathcal{X}$ and the corresponding class label $y_{\mathcal{X}i} \in \mathcal{Y}_\mathcal{X}$, which is again summarized in $\mathbf{y}_\mathcal{X}$.\cite[p. 2]{Aggarwal.2015}\\
 Note that we are doing the assumption here that our problem has by default more than one dimension and therefore we write a single observation as a vector of features.
 The whole data is therefore represented as a matrix.
 \begin{mDef}[Transfer Learning]\label{DefTl}
 	Given a source domain $\mathcal{Z}$ and learning task $\mathcal{T}_\mathcal{Z}$, a target domain $\mathcal{X}$ and learning task $\mathcal{T}_\mathcal{X}$, transfer learning aims to help improve the learning of the target predictive function $f_\mathcal{X}(\cdot)$ in $\mathcal{X}$ using the knowledge in $\mathcal{Z}$ and $\mathcal{T}_\mathcal{Z}$, where $\mathcal{Z} \neq \mathcal{X}$, or $\mathcal{T}_\mathcal{Z} \neq \mathcal{T}_\mathcal{X}$.\cite[p. 542]{Aggarwal.2015}
 \end{mDef}
-Summarizing, our problem consist of $\mathcal{Z}=\{\mathcal{X}_\mathcal{Z},P(\mathbf{Z})\}$ and $\mathcal{T_Z}=\{\mathcal{Y_Z},f_\mathcal{Z}(\mathbf{Z})\}$ with $f_\mathcal{Z}(\mathbf{Z}) = P(\mathbf{y}_\mathcal{Z}|\mathbf{Z})$ and $f_\mathcal{X}(\mathbf{X}) = P(\mathbf{y}_\mathcal{X}|\mathbf{X})$, respectively. 
-If we consider that the training and testing domain are equal and their learning tasks are the same, we step back to the traditional machine learning problem.\\
-According to our challenges from section \ref{TlSecChal}, the definition can be explained with the help of the web document classification example.
+Summarizing, our source domain consist of $\mathcal{Z}=\{\mathcal{F}_\mathcal{Z},P(\mathbf{Z})\}$ and $\mathcal{T_Z}=\{\mathcal{Y_Z},f_\mathcal{Z}(\mathbf{Z})\}$ with $f_\mathcal{Z}(\mathbf{Z}) = P(\mathbf{y}_\mathcal{Z}|\mathbf{Z})$. Moreover, the target domain is  $\mathcal{X}=\{\mathcal{F}_\mathcal{X},P(\mathbf{X})\}$ and $f_\mathcal{X}(\mathbf{X}) = P(\mathbf{y}_\mathcal{X}|\mathbf{X})$ with $\mathcal{T_X}=\{\mathcal{Y_X},f_\mathcal{X}(\mathbf{X})\}$. 
+If we consider that the training and testing domain are equal and their learning tasks are the same, we step back to the traditional machine learning problem.
+Note that in this thesis the size of the whole dataset (source and target data points) is denoted as $K=N+M$.
+Furthermore if any of the methods are transforming the orginal features into a subspace. The dimension of the subspace is denoted with $L$.\\
+According to our challenges from section \ref{TlSecChal}, the definition can be explained with the help of the web document classification example.\cite[p. 4]{Weiss.2016}
 The example can be divided into two cases:
 In case one, if two domains are different, which means that $\mathcal{Z} \neq \mathcal{X}$ as above, then they differ in either the feature space $\mathcal{X_Z}, \neq \mathcal{X_X}$ or in their marginal probability distribution $P(\mathbf{Z}) \neq P(\mathbf{X})$.
 Going back to the web document example, the first would imply that the language of the two documents is different.
@@ -83,7 +87,7 @@ Finally, if there exists a any relationship between the feature spaces of the tw
 Note that in the context of transfer learning the term \ac{DA} may appear.
 Based on the discussion in \cite{Pan.2011}, the following definition can be extracted.
 \begin{mDef}[Domain Adaptation]\label{DefDa}
-	Given a source domain $\mathcal{Z}=\{\mathcal{X}_\mathcal{Z},P(\mathbf{Z})\}$ and learning task $\mathcal{T_Z}=\{\mathcal{Y_Z},f_\mathcal{Z}(\mathbf{Z})\}$ with $f_\mathcal{Z}(\mathbf{Z}) = P(\mathbf{y}_\mathcal{Z}|\mathbf{Z})$ and a target domain $\mathcal{X}=\{\mathcal{X}_\mathcal{X},P(\mathbf{X})\}$ and learning task $\mathcal{T_X}=\{\mathcal{Y_X},f_\mathcal{X}(\mathbf{X})\}$ with $f_\mathcal{X}(\mathbf{X}) = P(\mathbf{y}_\mathcal{X}|\mathbf{X})$. Let $\mathcal{T_Z} = \mathcal{T_X}$ and the domains $\mathcal{Z} \neq \mathcal{Z}$ in a way that $\mathcal{X}_\mathcal{Z} = \mathcal{X}_\mathcal{X}$ and $P(\mathbf{Z}) \neq P(\mathbf{X})$, domain adaptation aims to help improve the learning of the target predictive function $f_\mathcal{X}(\cdot)$ in $\mathcal{X}$ using the knowledge in $\mathcal{Z}$.
+	Given a source domain $\mathcal{Z}=\{\mathcal{X}_\mathcal{Z},P(\mathbf{Z})\}$ and learning task $\mathcal{T_Z}=\{\mathcal{Y_Z},f_\mathcal{Z}(\mathbf{Z})\}$ with $f_\mathcal{Z}(\mathbf{Z}) = P(\mathbf{y}_\mathcal{Z}|\mathbf{Z})$ and a target domain $\mathcal{X}=\{\mathcal{X}_\mathcal{X},P(\mathbf{X})\}$ and learning task $\mathcal{T_X}=\{\mathcal{Y_X},f_\mathcal{X}(\mathbf{X})\}$ with $f_\mathcal{X}(\mathbf{X}) = P(\mathbf{y}_\mathcal{X}|\mathbf{X})$. Let $\mathcal{T_Z} = \mathcal{T_X}$ and the domains $\mathcal{Z} \neq \mathcal{Z}$ in a way that $\mathcal{F}_\mathcal{Z} = \mathcal{F}_\mathcal{X}$ and $P(\mathbf{Z}) \neq P(\mathbf{X})$, domain adaptation aims to help improve the learning of the target predictive function $f_\mathcal{X}(\cdot)$ in $\mathcal{X}$ using the knowledge in $\mathcal{Z}$.
 \end{mDef}
 This is related to covariance shift problem.\cite{Pan.2011}
 It assumes that the domain data generation is made in a way that the sampling, which the data is based on, is $P(\mathbf{y}\vert \mathbf{X})P(\mathbf{X})$.
@@ -103,11 +107,11 @@ On the other hand, the authors of TrAdaBoost using the \acs{KLD} to determine th
 First, the \acl{MMD} is a non-parametric function to measure the difference of two \ac{IID} samples $\mathbf{X}$ and $\mathbf{Y}$ drawn from p and q respectively introduced by \cite[p. 724-728]{Gretton.2012}.
 Two samples of a random variable are independent, if a current sample is not influenced by any previous samples and will not influence following samples.
 Identically  distributed, as the name says, requires that the random variables having the same distribution.\cite[p. 7-8]{Czado.2011}\\
-The \acs{MMD} is based on samples drawn from two distributions.
-It measures the distance between the expectations of two samples, $\textbf{X}=\{x_1,...x_M\}$ and $\textbf{Y}=\{y_1,...y_M\}$
+The \acs{MMD} is calculated with samples drawn from two distributions.
+It measures the distance between the expectations of two samples, $\textbf{X}=\{x_1,...x_N\}$ and $\textbf{Y}=\{y_1,...y_M\}$
 in a \ac{RKHS} $\mathcal{H}$.
 Assuming that $\mathbf{X} \sim p$ and $\mathbf{Y} \sim q$.
-Furthermore, if $\mathcal{H}$ is a Hilbert space, then the mapping function is defined as $f(x) = \langle f,\phi(x) \rangle_\mathcal{H}$ with $\phi(x) = k(x,\cdot)$ as positive semi-definite kernel.
+Because, $\mathcal{H}$ is a Hilbert space the mapping function is defined as $f(x) = \langle f,\phi(x) \rangle_\mathcal{H}$ with $\phi(x) = k(x,\cdot)$ as positive semi-definite kernel.
 Note that a \ac{PSD} kernel, has only non negative eigenvalues.\cite[p. 30]{Scholkopf.2001}
 Finally, the \acs{MMD} and his empirical estimation is defined as \eqref{EqMMdExp} and \eqref{EqMMdExpEm}:\cite[p. 726-727]{Gretton.2012}
 \begin{equation}\label{EqMMdExp}
@@ -116,9 +120,8 @@ MMD[\mathcal{F},p,q]^2:=\big[sup_{\|f\|_\mathcal{H} \le 1 }(E_{x\sim p}[f(x)] - 
 \begin{equation}\label{EqMMdExpEm}
 MMD_e[X,Y]:= \abs{\frac{1}{M}\sum_{i=1}^{M}f(x_i) - \frac{1}{N}\sum_{i=1}^{M}f(y_i)}_{\mathcal{H}}
 \end{equation}
-Where $f:\mathcal{X} \to \mathbb{R}$ is a member of the function class $\mathcal{F}$.\\ This means that considering the \acs{RKHS} $f(x)$ and $f(y)$ are based on the same $\phi(\cdot)$, i.\,e. kernel function for any $\mathbf{x,y} \in \mathbb{R}$.\cite[p. 36]{Scholkopf.2001}\\
 Note that the empirical \acs{MMD} is biased.
-If p and q both are equal probability distributions, respectively $p = q$, then the \ac{MMD}\textsubscript{e} = 0.\cite[p. 726-727]{Gretton.2012}\\
+If $p$ and $q$ both are equal probability distributions, respectively $p = q$, then the \ac{MMD}\textsubscript{e} = 0.\cite[p. 726-727]{Gretton.2012}\\
 The \acs{MMD} is symmetric after it takes the absolute value, as shown in \eqref{EqMMdExpEm}.\\
 Another advantage of \eqref{EqMMdExpEm} is that it can be calculated based on samples.
 Unlike the following Kullback-Leibler Divergence where the density has to be estimated before, the \acs{KLD} can be calculated.\cite{Long.2015}\\
@@ -218,7 +221,7 @@ The first is one is to align the marginal distribution difference.
 The second is to correct the difference in the conditional probability distributions, and the last one tries to align both, the marginal and conditional distribution difference.\cite[p. 6]{Weiss.2016}
 This is formalised in the same way as the previous definition, which is influenced by the formulation of Pan et al. from \cite{Pan.2010}.
 \begin{mDef}[Homogeneous Transfer Learning]\label{DefHomogeneous}
-	Given a source domain $\mathcal{Z}$ and learning task $\mathcal{T_Z}$, a target domain $\mathcal{X}$ and learning task $\mathcal{T_T}$, homogeneous transfer learning aims to help improve the learning of the target predictive function $f_\mathcal{T}(\cdot)$ in $\mathcal{X}$ using the knowledge in $\mathcal{Z}$ and $\mathcal{T_Z}$, where $\mathcal{X_Z} = \mathcal{X_X}$ and $\mathcal{Y_Z} =\mathcal{Y_X} $, but $P(\mathbf{Z}) \neq P(\mathbf{X})$ and/or $P(\mathbf{y_\mathcal{Z}}\vert \mathbf{Z}) \neq P(\mathbf{y_\mathcal{X}}\vert \mathbf{X})$.\cite[p. 4]{Weiss.2016}
+	Given a source domain $\mathcal{Z}$ and learning task $\mathcal{T_Z}$, a target domain $\mathcal{X}$ and learning task $\mathcal{T_T}$, homogeneous transfer learning aims to help improve the learning of the target predictive function $f_\mathcal{T}(\cdot)$ in $\mathcal{X}$ using the knowledge in $\mathcal{Z}$ and $\mathcal{T_Z}$, where $\mathcal{F_Z} = \mathcal{F_X}$ and $\mathcal{Y_Z} =\mathcal{Y_X} $, but $P(\mathbf{Z}) \neq P(\mathbf{X})$ and/or $P(\mathbf{y_\mathcal{Z}}\vert \mathbf{Z}) \neq P(\mathbf{y_\mathcal{X}}\vert \mathbf{X})$.\cite[p. 4]{Weiss.2016}
 \end{mDef}
 If the differences only exit in the marginal distribution, then we can build another relation to \acl{DA} from definition \ref{DefDa}.
 Refer to section \ref{TlSecChal}, for examples on why the distribution can be different.\cite[p. 6-7]{Weiss.2016}\\ 
@@ -250,12 +253,12 @@ In the corresponding article, the weighted-\acs{SVM} is used as the underlying l
 It is rather crucial that the learner has some weighting function because the filtering is done with weighting.\cite{Dai.}\\
 The TrAdaBoost algorithm has two free parameters, which is the number of iterations and the initial value of the weight vector.
 Suppose the number of fixed iterations is $T$ and the unlabeled target dataset $\mathbf{X}$.
-Consider $\mathbf{Z}_D$ as diff-distribution training dataset with labels of size $N$ and the same-distribution data (from the target data) with labels $\mathbf{Z}_S$ has $M$ points.
+Consider $\mathbf{Z}_D$ as diff-distribution training dataset with labels of size $N$ and the same-distribution data (from the target data) with labels $\mathbf{Z}_S$ has $M_S$ points.
 This forms the complete training set $\mathbf{Z}=\mathbf{Z}_D\cup \mathbf{Z}_S$, with $N+M$ entries and $\mathbf{\mathbf{Z}}=\{(\mathbf{z}_i,y_i))\}$, where $y_i$ is the label for the ith-data point with $y\in {0,1}$ and $x_i$ with \cite{Dai.}:
 \begin{equation*}
 	\mathbf{z}_i = \begin{dcases}
 						\mathbf{z}_i^D, \>\>\>\> i = 1,\dots,N\\
-						\mathbf{z}_i^S, \>\>\>\> i = N +1,\dots,N+M
+						\mathbf{z}_i^S, \>\>\>\> i = N +1,\dots,N+M_S
 			  	   \end{dcases}
 \end{equation*}
 In every iteration, the learner is trained with this training set and predicts for the training $\mathbf{Z}$, and the unlabeled target dataset $\mathbf{X}$.
@@ -267,7 +270,7 @@ This is done via updating the weight vector $\mathbf{w}^t=\{w_1^t,\dots,w_{N+M}^
 \begin{equation}\label{EqTrAdaWeighting}
 	w_i^t+1=\begin{dcases}
 				w_i^t\beta^{\vert h_t(\mathbf{z}_i )-y_i\vert}, \>\>\>\>\>\> 1\le i \le N \\
-				w_i^t\beta_t^{-\vert h_t(\mathbf{z}_i )-y_i\vert}, \>\>\> N+1\le i \le N+M
+				w_i^t\beta_t^{-\vert h_t(\mathbf{z}_i )-y_i\vert}, \>\>\> N+1\le i \le N+M_S
 			 \end{dcases}
 \end{equation}
 Where $ h_t(\mathbf{x}_i )$ is the predicted label for the $i$-th data point.
@@ -306,15 +309,15 @@ Consider $\mathbf{K}$ as a cross-domain kernel, as a composition of the source a
 	K_{\mathcal{XZ}}\>\>\>\> K_{\mathcal{XX}}
 	\end{bmatrix}
 \end{equation}
-Where $\mathbf{K} \in \mathbb{R}$ with size $N\times N = (N_\mathcal{Z} + N_\mathcal{X}) \times (N_\mathcal{Z}+ N_\mathcal{X})$.
+Where $\mathbf{K} \in \mathbb{R}$ with size $K\times K = (N + M) \times (N+ M)$.
 This is the kernel over all data points and should be learned in a way that the marginal distribution in the subspace is aligned and the data variance (preserve data structure) is maximized.
 For that the \acs{MMD} from section \ref{TlSubSecMMD} is rewritten as $tr(\mathbf{KM})$.
 Where $\mathbf{M}$ is the \acs{MMD} matrix as:\cite{Pan.2011}
 \begin{equation}\label{EqTCAMMD}
 (M)_{ij}= \begin{dcases}
-\frac{1}{N_\mathcal{Z}^2},\>\>\> \mathbf{x_i},\mathbf{x_j} \in \mathcal{Z}\\
-\frac{1}{N_\mathcal{X}^2},\>\>\> \mathbf{x_i},\mathbf{x_j} \in \mathcal{X}\\
-\frac{-1}{N_\mathcal{Z}N_\mathcal{X}},\>\>\> otherwise
+\frac{1}{N^2},\>\>\> \mathbf{x_i},\mathbf{x_j} \in \mathbf{Z}\\
+\frac{1}{M^2},\>\>\> \mathbf{x_i},\mathbf{x_j} \in \mathbf{X}\\
+\frac{-1}{NM},\>\>\> otherwise
 \end{dcases}
 \end{equation}
 This is, in fact, the same transformation matrix for integrating \acs{MMD} as it is done by an asymmetric approach described in section \ref{TlSubSecHomoAsymFeature}.
@@ -322,17 +325,17 @@ The objective function of the \acs{TCA}, uses the \ac{MMDE} from Pans previous w
 \begin{equation}\label{EqTCAReducedOpt}
 \begin{gathered}
 \min_{\mathbf{W}}  tr(\mathbf{W}^T\mathbf{KMKW}) + \lambda tr(\mathbf{W}^T\mathbf{W})\\
-s.t. \mathbf{W}^T\mathbf{KHKW} = \mathbf{I}_{N \times N}
+s.t. \mathbf{W}^T\mathbf{KHKW} = \mathbf{I}_{K \times K}
 \end{gathered}
 \end{equation}
 With this, the \acs{MMDE} is simply the extensions of the \acl{MMD} with a regularization term, which can be seen on the right side of equation \eqref{EqTCAReducedOpt}.\cite{Pan.2011}\\
 The parameter $\lambda \ge 0$ is a trade off parameter and the matrix $\mathbf{W} \in \mathbb{R}^{N\times L}$ does the subspace transformation.\cite{Pan.2011},\\
-Note the the centering matrix $\mathbf{H} = \mathbf{I}_{N\times N} - (1/N)\mathbf{1}_{(N\times N)})$ in the constrains. Because of the centering transformation the maximized variance matrix $\mathbf{W}^T\mathbf{KHKW}$ should be persevered as identity matrix.\\
+Note the the centering matrix $\mathbf{H} = \mathbf{I}_{K\times K} - (1/K)\mathbf{1}_{(K\times K)})$ in the constrains. Because of the centering transformation the maximized variance matrix $\mathbf{W}^T\mathbf{KHKW}$ should be persevered as identity matrix.\\
 However, this seems that the kernel from equation \eqref{EqTCAKernel} is expensive to calculate via a \ac{SDP}.\cite{Pan.2011}\\
-A \acs{SDP} is an extension of a linear optimisation problem, where the non-negative constrained is replaced with $\mathbf{K}\succeq 0$, which is the \acs{PSD} attribute of the Matrix. Additionally, the vector space for linear problems $\mathbb{R}^N$ is replaced with the vector space of symmetric $N\times N$ matrices based on the linear transformation of matrices.\cite{Gartner.2012}\\
+A \acs{SDP} is an extension of a linear optimisation problem, where the non-negative constrained is replaced with $\mathbf{K}\succeq 0$, which is the \acs{PSD} attribute of the Matrix. Additionally, the vector space for linear problems $\mathbb{R}^D$ is replaced with the vector space of symmetric $K\times K$ matrices based on the linear transformation of matrices.\cite{Gartner.2012}\\
 For determining $\mathbf{W}$, they are ended up by formulating the optimization problem as eigenvalue problem.
-By finding the largest $L$ eigenvectors with $(\mathbf{KMK}+\lambda \mathbf{I})^{-1} \mathbf{KHK}$, the subspace kernel $\mathbf{K}$ can be calculated, or the source and target data can be reduced with $\mathbf{W} \in \mathbb{R}^{N\times L}$.
-The computational complexity is given by $\mathcal{O}(L(N_\mathcal{Z}+N_\mathcal{X})^2)$, where again $L$ is the number of eigenvectors.\cite{Pan.2011}
+By finding the largest $L$ eigenvectors with $(\mathbf{KMK}+\lambda \mathbf{I})^{-1} \mathbf{KHK}$, the subspace kernel $\mathbf{K}$ can be calculated, or the source and target data can be reduced with $\mathbf{W} \in \mathbb{R}^{K\times L}$.
+The computational complexity is given by $\mathcal{O}(L(N+M)^2)$, where again $L$ is the number of eigenvectors.\cite{Pan.2011}
 \subsubsection{Geodesic Flow Kernel}
 \begin{figure}[t]
 	\centering
@@ -346,8 +349,8 @@ Furthermore, it is calimed as unsupervised transfer learning method, but because
 Again because it needs target data in the learning process, it will be considered as inductive transfer learning method.\\
 The idea of \acs{GFK} can be summarized in the following steps:
 The source and the target data has to be embedded in a Grassmann manifold.
-Consider a subspace $\mathcal{P} \in \mathbb{R}^{N \times d}$ with $N$ observations (dimensionality of the data) and $d$ is the feature space dimension.
-Then the collection of the $d$ dimensional subspaces are forming the Grassmannian $\mathbb{G}(d, N)$ in the original $N$ dimensional feature space.\cite{Gong.}\\
+Consider a subspace $\mathcal{P} \in \mathbb{R}^{K \times L}$ with $K$ observations (dimensionality of the data) and $L$ is the feature space dimension.
+Then the collection of the $L$ dimensional subspaces are forming the Grassmannian $\mathbb{G}(L, D)$ in the original $N$ dimensional feature space.\cite{Gong.}\\
 Next, construct a geodesic flow and merge source (start) and target (end) data as points on the flow.
 Proceed by integrating an infinite number of subspaces from start to end along the flow $\boldsymbol{\Phi}(t)$.\cite{Gong.}\\
 After that, the raw features $\mathbf{x}$ are projected into the subspaces, which makes them infinite dimensional feature vectors $\mathbf{z}^\infty \in \mathcal{H}^\infty$.
@@ -365,10 +368,10 @@ This solution is proposed by Long et al. in \cite{Long.}.\footnote{\url{http://i
 Because it solves the probabilistic differences between the domains, it can be considered as transductive setting, with the need for unlabeled target data.\\
 The primary goal is to alter the joint distribution by a feature transformation in a way that the joint expectations of the source and target features are matched between the domains.
 However, this solution for this problem is assumed as non-trivial.\cite{Long.}\\
-They approximate it by searching an adaptation matrix $\mathbf{A} \in \mathbb{R}^{K \times N_\mathcal{X} }$, which can transform any new data in the subspace and is, in fact, an orthogonal transformation matrix.
-Furthermore, the embedded data matrix $\mathbf{Z} \in \mathbb{R}^{N\mathcal{Z}\times K}$ is searched to transform the already existing data in the subspace.\cite{Long.}\\
+They approximate it by searching an adaptation matrix $\mathbf{A} \in \mathbb{R}^{L \times N }$, which can transform any new data in the subspace and is, in fact, an orthogonal transformation matrix.
+Furthermore, the embedded data matrix $\mathbf{Z} \in \mathbb{R}^{M\times L}$ is searched to transform the already existing data in the subspace.\cite{Long.}\\
 This approach consists of the four steps, which are feature transformation, marginal distribution adaptation, conditional distribution adaptation and solving the resulting optimization problem.\cite{Long.}\\
-Revisiting our transfer learning definition, source and target data can be represented as data matrix $T = [\mathbf{Z};\mathbf{X}] \in \mathbf{R}^{N\times M}$ where $N = N_\mathcal{Z}+N_\mathcal{X}$, with the number of source and target data respectively.
+Revisiting our transfer learning definition, source and target data can be represented as data matrix $T = [\mathbf{Z};\mathbf{X}] \in \mathbf{R}^{N\times M}$ where $K = N+M$, with the number of source and target data respectively.
 In fact, the optimization problem to solve the marginal differences are very similar to the \acs{TCA} solution from equation \eqref{EqTCAReducedOpt}.\cite{Pan.2011}\\
 It seems that adopting the conditional probability distribution is a kind of bigger problem.
 Since the goal is to be able to solve the transfer problem without labelled target data the $P(\mathbf{y}_\mathcal{X}\vert \mathbf{X})$ cannot be directly modeled or estimated with some statistics like it is done by the marginal adaptation.\cite{Long.}\\
@@ -378,18 +381,18 @@ Since $P(\mathbf{y}_\mathcal{X}\vert \mathbf{X})$ is unknown, the class conditio
 Here $c$ represents the classes of the label space $\mathcal{Y}$, i.\,e. $c\in{1,\dots,C}$ for $C$ labels.\cite{Long.}\\
 By incorporating the class conditional distribution in the \acl{MMD}, not the sample means, but the distance between the class conditional distributions are measured:\cite{Long.}
 \begin{equation}\label{EqJDAConditionalOpt}
-\bigg|\bigg| \frac{1}{N_\mathcal{Z}^{(c)}} \sum_{\mathbf{x}_i \in \mathcal{Z}^{(c)}}^{N_\mathcal{Z}^{(c)}}\mathbf{A}\mathbf{x}_i^T- \frac{1}{N_\mathcal{X}^{(c)}} \sum_{\mathbf{x}_j \in \mathcal{X}^{(c)}}^{N_\mathcal{X}^{(c)}}\mathbf{A}\mathbf{x}_j^T \bigg|\bigg|^2 = \min_{\mathbf{A}^T\mathbf{A}} tr(\mathbf{A}\mathbf{X}^T\mathbf{M}_c\mathbf{X}\mathbf{A}^T)
+\bigg|\bigg| \frac{1}{N^{(c)}} \sum_{\mathbf{x}_i \in \mathbf{Z}^{(c)}}^{N^{(c)}}\mathbf{A}\mathbf{x}_i^T- \frac{1}{M^{(c)}} \sum_{\mathbf{x}_j \in \mathbf{X}^{(c)}}^{M^{(c)}}\mathbf{A}\mathbf{x}_j^T \bigg|\bigg|^2 = \min_{\mathbf{A}^T\mathbf{A}} tr(\mathbf{A}\mathbf{X}^T\mathbf{M}_c\mathbf{X}\mathbf{A}^T)
 \end{equation}
-With  $\mathcal{Z}^{(c)}$ as the set of examples belonging to class $c$ in the source data, where the points are having the true class labels and $N_\mathcal{Z}^{(c)} = \vert\mathcal{Z}^{(c)}\vert$ is the size of the set.
-The same applies to the target domain but with pseudo labels in $\mathcal{X}^{(c)}$ and size $N_\mathcal{X}^{(c)} = \vert\mathcal{X}^{(c)}\vert$.
+With  $\mathbf{Z}^{(c)}$ as the set of examples belonging to class $c$ in the source data, where the points are having the true class labels and $N^{(c)} = \vert\mathbf{Z}^{(c)}\vert$ is the size of the set.
+The same applies to the target domain but with a pseudo label set $\mathbf{X}^{(c)}$ and size $M^{(c)} = \vert\mathbf{X}^{(c)}\vert$.
 The elements of the $\mathbf{M}_c$ with the use of the class labels are computed by: \cite{Long.}
 \begin{equation}\label{EqJDAMMDPseudoMatrix}
 (M_c)_{ij}= \begin{dcases}
-\frac{1}{N_\mathcal{Z}^{(c)} N_\mathcal{Z}^{(c)} },\>\>\> \mathbf{x_i},\mathbf{x_i} \in \mathcal{Z}^{(c)} \\
-\frac{1}{N_\mathcal{X}^{(c)}  N_\mathcal{X}^{(c)}  },\>\>\> \mathbf{x_i},\mathbf{x_i} \in \mathcal{X}^{(c)} \\
-\frac{-1}{N_\mathcal{Z} ^{(c)} N_\mathcal{X} ^{(c)} }, \begin{cases}
-\mathbf{x_i} \in \mathcal{Z}^{(c)}, \mathbf{x_j} \in \mathcal{X}^{(c)}\\
-\mathbf{x_j} \in \mathcal{Z}^{(c)}, \mathbf{x_i} \in \mathcal{X}^{(c)}\\
+\frac{1}{N^{(c)} N^{(c)} },\>\>\> \mathbf{x_i},\mathbf{x_i} \in \mathbf{Z}^{(c)} \\
+\frac{1}{M^{(c)}  M^{(c)}  },\>\>\> \mathbf{x_i},\mathbf{x_i} \in \mathbf{X}^{(c)} \\
+\frac{-1}{N ^{(c)} M ^{(c)} }, \begin{cases}
+\mathbf{x_i} \in \mathbf{Z}^{(c)}, \mathbf{x_j} \in \mathbf{X}^{(c)}\\
+\mathbf{x_j} \in \mathbf{Z}^{(c)}, \mathbf{x_i} \in \mathbf{X}^{(c)}\\
 \end{cases}\\
 0,\>\>\>\>\>\>\>\> otherwise
 \end{dcases}
@@ -400,9 +403,9 @@ Incorporating, they class conditional \acs{MMD} the final \acs{JDA} optimization
 \min_{\mathbf{A}\mathbf{X}^T\mathbf{M}_c\mathbf{X}\mathbf{A}^T=\mathbf{I}} \sum_{c=0}^{C} tr(\mathbf{A}\mathbf{X}^T\mathbf{M}_c\mathbf{X}\mathbf{A}^T) + \lambda \Vert\mathbf{A}\Vert^2_F
 \end{equation}
 Where $\lambda$ is again the regulation parameter to guarantee a distinct function for the optimization problem.\\
-By analyzing this problem, they showed that solving equation \eqref{EqJDAMergeOpt} is equal by solving the eigenvalue problem of $\mathbf{X}^T\mathbf{HX}\mathbf{A}^T\boldsymbol{\Phi}$ where $\boldsymbol{\Phi} = diag(\phi_1,\dots,\phi_n)$ are the Lagrange multiplier. By finding the $K$ smallest eigenvectors for the eigenproblem of equation the transformation matrix $\mathbf{A}$ can be obtained. The embedded matrix $\mathbf{Z}$ can be obtained with $\mathbf{Z} = \mathbf{A}\mathbf{X}^T$.\cite{Long.}\\
+By analyzing this problem, they showed that solving equation \eqref{EqJDAMergeOpt} is equal by solving the eigenvalue problem of $\mathbf{X}^T\mathbf{HX}\mathbf{A}^T\boldsymbol{\Phi}$ where $\boldsymbol{\Phi} = diag(\phi_1,\dots,\phi_N)$ are the Lagrange multiplier. By finding the $L$ smallest eigenvectors for the eigenproblem of equation the transformation matrix $\mathbf{A}$ can be obtained. The embedded matrix $\mathbf{Z}$ can be obtained with $\mathbf{Z} = \mathbf{A}\mathbf{X}^T$.\cite{Long.}\\
 For details to the algorithm, please refer to \cite{Long.}.
-The \acs{JDA} complexity for $T\le 50$ as the number of iterations until convergence and the subspace bases with $K\le 500$ the computational complexity is given by $\mathcal{O}(TKM^2+TCN^2+TMN)$.\cite{Long.}
+The \acs{JDA} complexity for $T\le 50$ as the number of iterations until convergence and the subspace bases with $L\le 500$ the computational complexity is given by $\mathcal{O}(TLM^2+TCN^2+TMN)$.\cite{Long.}
 \subsection{Parameter-Transfer}\label{TlSubSecPara}
 The third approach, the parameter transfer aims to transfer knowledge through shared parameters from source and target domains.
 This is achieved by creating multiple source models, combining them and reweight them to create an improved target learner.
@@ -414,16 +417,16 @@ Note that the term models may confusing, which we will se in the following.
 Furthermore, they want a classifier, which can be trained only on few training examples and being able to learn more only from few data than the standard \acs{LS-SVM} does.
 The transfer knowledge method is adopted from his previous work in \cite{Tommasi.2009}.\\
 Note that this method does not try to explicit minimise the distribution differences, as per definition of the homogeneous transfer learning from \ref{DefHomogeneous}.
-Again, consider a labeled source dataset with $\{\mathbf{z},{y_i}\}_{i=1}^{N}$, where $y_i \in \mathcal{Y_Z} =\{1,-1\}$.
+Again, consider a labeled source dataset with $\{\mathbf{z},{y_\mathcal{Z}i}\}_{i=1}^{N}$, where $y_i \in \mathcal{Y_Z} =\{1,-1\}$.
 Furthermore, the feature mapping function $\phi(\cdot)$, which maps the features in the infinite space and the inducing kernel function $\mathbf{K}(\mathbf{x},\mathbf{x}')=\phi(\mathbf{x})^T\phi(\mathbf{x}')$.
-Suppose that we have prior knowledge from $K$ classes (not models, but in following we will call it models), which are already trained.
-This knowledge is represented with the hyperplane parameter, i.\,e. $\mathbf{w}'_j, j = \{1,\dots,K\}$, for each class.\cite{Tommasi.}\\
-With that Tommasi et al. assuming that the transfer happens when the constraints of the hyperplane of the new class $K+1$ are set in a manner that it is close to the already trained classes of $K$.
+Suppose that we have prior knowledge from $E$ classes (not models, but in following we will call it models), which are already trained.
+This knowledge is represented with the hyperplane parameter, i.\,e. $\mathbf{w}'_j, j = \{1,\dots,E\}$, for each class.\cite{Tommasi.}\\
+With that Tommasi et al. assuming that the transfer happens when the constraints of the hyperplane of the new class $E+1$ are set in a manner that it is close to the already trained classes of $E$.
 Keeping this in mind, the optimization problem for the \acs{LS-SVM} can be extended to a model for multi knowledge transfer:\cite{Tommasi.}
 \begin{equation}\label{EqMMKTOpt}
-		\min_{\mathbf{w},b} \frac{1}{2}\Vert\mathbf{w}-\sum_{j=1}^{K}\beta_j\mathbf{w}_j'\Vert^2 + \frac{C}{2}\sum_{i=1}^{N}\zeta_i[y_i-\mathbf{w}\phi(\mathbf{x}_i)-b]^2
+		\min_{\mathbf{w},b} \frac{1}{2}\Vert\mathbf{w}-\sum_{j=1}^{E}\beta_j\mathbf{w}_j'\Vert^2 + \frac{C}{2}\sum_{i=1}^{N}\zeta_i[y_i-\mathbf{w}\phi(\mathbf{x}_i)-b]^2
 \end{equation}
-Where $\mathbf{w}$ is searched model parameter and $C$ as free cost parameter. With $\mathbf{w}'_j$ as a parameter for the already trained model of $K$ models and $\zeta_i$ as a parameter for weighting, which helps to balance the contribution of positive and negative examples in the training data in equation \eqref{EqMMKTOpt}.
+Where $\mathbf{w}$ is searched model parameter and $C$ as free cost parameter. With $\mathbf{w}'_j$ as a parameter for the already trained model of $E$ models and $\zeta_i$ as a parameter for weighting, which helps to balance the contribution of positive and negative examples in the training data in equation \eqref{EqMMKTOpt}.
 It is determined with the following chase:\cite{Tommasi.}
 \begin{equation}\label{EqMMKTZeta}
 	\zeta_i = \begin{cases}
@@ -434,7 +437,7 @@ It is determined with the following chase:\cite{Tommasi.}
 Where $N^+$ and $N^-$ representing the number of positive and negative examples of the source data, respectively.
 Furthermore, the optimal solutions for $\mathbf{w}$ is now found with:\cite{Tommasi.}
 \begin{equation}
-	\mathbf{w} = \sum_{j=1}^{K}\beta_j\mathbf{w}_j'+\sum_{i=1}^{N}\alpha_i\phi(\mathbf{x}_i)
+	\mathbf{w} = \sum_{j=1}^{E}\beta_j\mathbf{w}_j'+\sum_{i=1}^{N}\alpha_i\phi(\mathbf{x}_i)
 \end{equation}
 In this the $\mathbf{w_j}'$ is weighted through $\beta_j$.
 Because of the reformulated optimization problem the optimal determination of $\boldsymbol{\alpha}$ and $b$ can be expressed as:\cite{Tommasi.}
@@ -454,7 +457,7 @@ b
 \end{bmatrix}
 \end{equation}
 Where $\mathbf{W} = diag\{\zeta_1^{-1},\dots\zeta_N^{-1}\}$ with $\zeta_i$ as defined as \eqref{EqMMKTZeta}.\\
-The $\beta_j \in (0,1)$ parameter forms $\boldsymbol{\beta} = \{\beta_1,\dots,\beta_K \}$ for controlling the degree of closeness of the new model to the $j$-th model.
+The $\beta_j \in (0,1)$ parameter forms $\boldsymbol{\beta} = \{\beta_1,\dots,\beta_E \}$ for controlling the degree of closeness of the new model to the $j$-th model.
 Note that $\boldsymbol{\beta}$ has to be choose in the unitary ball and therefore has to be $\Vert\boldsymbol{\beta}\Vert_2\le 1$ (in the $L_2$-space).
 This term is necessary to avoid overfitting problems, which happens when the number of models in comparison with the training data is large.
 Furthermore, it is possible with the new model to find the optimal classes for knowledge transfer automatically.
@@ -472,7 +475,7 @@ Furthermore, $\tilde{y}_i$ are the \acs{LOO} predictions and $\alpha_i =\mathbf{
 With that, the convex 'global' loss function over all models can be formulated with respect to the constrain $\Vert\boldsymbol{\beta}\Vert_2\le 1$.
 This will find the optimal $\beta$'s.
 In practice, the in the optimisation process is implemented with a project sub-gradient descent algorithm.\cite{Tommasi.}
-The computational complexity of the algorithm is $\mathcal{O}(N^3+KN^2)$, with $N$ data points and $K$ classes, i.\,e. prior models.
+The computational complexity of the algorithm is $\mathcal{O}(N^3+EN^2)$, with $N$ training data points and $E$ classes, i.\,e. prior models.
 \subsection{Relational-Knowledge-Transfer}\label{TlSubSecRelation}
 The relational knowledge transfer aim to find some relationship between the source and target data.\cite[p. 7]{Weiss.2016}
 Because the Transfer Kernel learning algorithm from section \ref{InSecTrans} finds this relationship in the eigenvalues of source and training data, we could assign this category to the method.
@@ -486,13 +489,13 @@ If the marginal distribution of the domains is not the same, then further aligni
 \cite[p. 6]{Weiss.2016}\\
 We can again give the formal definition with:
 \begin{mDef}[Heterogeneous Transfer Learning]
-	Given a source domain $\mathcal{Z}$ and learning task $\mathcal{T_Z}$, a target domain $\mathcal{X}$ and learning task $\mathcal{T_T}$, heterogeneous transfer learning aims to help improve the learning of the target predictive function $f_\mathcal{T}(\cdot)$ in $\mathcal{X}$ using the knowledge in $\mathcal{Z}$ and $\mathcal{T_Z}$, where $P(\mathbf{Z}) = P(\mathbf{X})$, but $\mathcal{X_Z} \neq \mathcal{X_X}$ and $\mathcal{Y_Z} \neq \mathcal{Y_X} $.\cite[p. 4]{Weiss.2016}
+	Given a source domain $\mathcal{Z}$ and learning task $\mathcal{T_Z}$, a target domain $\mathcal{X}$ and learning task $\mathcal{T_T}$, heterogeneous transfer learning aims to help improve the learning of the target predictive function $f_\mathcal{T}(\cdot)$ in $\mathcal{X}$ using the knowledge in $\mathcal{Z}$ and $\mathcal{T_Z}$, where $P(\mathbf{Z}) = P(\mathbf{X})$, but $\mathcal{F_Z} \neq \mathcal{F_X}$ and $\mathcal{Y_Z} \neq \mathcal{Y_X} $.\cite[p. 4]{Weiss.2016}
 \end{mDef}
 Because the examples in challenges, section \ref{TlSecChal}, may not covering the heterogeneous definition, we will give an example in the following.
 Imagine a machine learning application of software module defect classification, where a learner is trained to predict whether a software module works well or is defect prone.
 Furthermore, there exists a metric for every software module, which measures, e.\,g. some performance criteria.
 This forms the feature space.
-If the model is trained on one software with the metric $\mathcal{X_Z}$ which has $M$ metrics and the prediction should be done for a different software which is reviewed on metric $\mathcal{X_X}$ and $N$ metrics, then it is a heterogeneous transfer problem.\cite[p 3-4]{Weiss.2016}\\
+If the model is trained on one software with the metric $\mathcal{F_Z}$, which has e.\,g. ten metrics, and the prediction should be done for a different software which is reviewed on metric $\mathcal{F_X}$ and has for example six metrics, then it is a heterogeneous transfer problem.\cite[p 3-4]{Weiss.2016}\\
 Again, there is a distinction between asymmetric and symmetric feature space transformations.
 The first approach category aims to transfer the source domain in the target domain to align the differences.
 Solutions from the second category, are trying to find a common latent feature space where the differences of the feature spaces are aligned.\cite[p. 19]{Weiss.2016}\\
@@ -512,8 +515,8 @@ There are various websites and social networks, which have images linked to the 
 This text can be used to increase the amount of target data (images) when this text can be transformed and used for image classification.
 They are using these co-occurrences (Image linked to a text; text is linked to a category) to build a semantic bridge from text to images.
 This bridge can further be used to transfer semantic of text into images.\cite{Qi.2011}\\
-Revisiting the previous notation from \ref{TlSecDef}, we can formulate the source (text) domain as $\mathcal{Z}$, where the samples are $\mathbf{Z} \in \mathbb{R}^{N_S\times A}$ or a single document as $\mathbf{z_i}\in \mathbb{R}^A$, with $A$ as a number of feature space dimensions.
-Furthermore the target (image) domain as $\mathcal{X}$, with sample matrix $\mathbf{X} \in \mathbb{R}^{N_X\times B}$ or a single image with $\mathbf{x_i}\in\mathbb{R}^B$.
+Revisiting the previous notation from \ref{TlSecDef}, we can formulate the source (text) domain as $\mathcal{Z}$, where the samples are $\mathbf{Z} \in \mathbb{R}^{N\times A}$ or a single document as $\mathbf{z_i}\in \mathbb{R}^A$, with $A$ as a number of feature space dimensions.
+Furthermore the target (image) domain as $\mathcal{X}$, with sample matrix $\mathbf{X} \in \mathbb{R}^{M\times B}$ or a single image with $\mathbf{x_i}\in\mathbb{R}^B$.
 However, with the have the assumption, that the size of images set is much smaller than the size of the text set.\cite{Qi.2011}\\
 The linkage through the co-occurrence of text and image is then formalized with $\mathcal{C} = \big\{\big( \mathbf{\expP{z}}_k,\mathbf{\expP{x}}_l,c( \mathbf{\expP{z}}_k,\mathbf{\expP{x}}_l) \big)\big\}$.
 This means that $\mathbf{\expP{z}}_k$ is the corresponding text feature vector to an image feature vector $\mathbf{\expP{x}}_l$.
@@ -522,17 +525,17 @@ Through the linkage function, they build a semantic bridge from text to image.\c
 The so called \textit{translator} function with $T : \mathbb{R}^A \times \mathbb{R}^B \to \mathbb{R}$ weights the linkage strength between a document and image.
 Now the label for an image is found with:\cite{Qi.2011}
 \begin{equation}
-	f_T (\mathbf{x}) = \sum_{i=1}^{N_S} y_i T(\mathbf{z}_i,\mathbf{x})
+	f_T (\mathbf{x}) = \sum_{i=1}^{N} y_i T(\mathbf{z}_i,\mathbf{x})
 \end{equation}
 Where $y_i$ is the text document label and     $f_T (\mathbf{x})$ provides the label depending on the sign.\\
-The objective proposed by Qi et al. is to learn the function $T$, which maximizes the classification accuracy or rather minimizes a loss function. However, they determine $T$ by finding a transformation matrix to transfer text and images in the $P$ dimensional topic space. This means that they aggregate the data into the least $P$ topics, where the linkage strength of image and text co-occurrence is weighted. The extended $T$ function has the form of:\cite{Qi.2011}
+The objective proposed by Qi et al. is to learn the function $T(\cdot)$, which maximizes the classification accuracy or rather minimizes a loss function. However, they determine $T(\cdot)$ by finding a transformation matrix to transfer text and images in the $L$ dimensional topic space. This means that they aggregate the data into the least $L$ topics, where the linkage strength of image and text co-occurrence is weighted. The extended $T(\cdot)$ function has the form of:\cite{Qi.2011}
 \begin{equation}
 T(\mathbf{z}_i\mathbf{x}_j) = \langle \mathbf{W}_\mathcal{Z}\mathbf{z}_i,\mathbf{W}_\mathcal{X}\mathbf{x}_i\rangle = \mathbf{z}_i \mathbf{W}_\mathcal{Z}\mathbf{W}_\mathcal{X}^T\mathbf{x}_i^T = \mathbf{z}_i\mathbf{S}\mathbf{x}_i^T 
 \end{equation}
 With $\mathbf{S} = \mathbf{W}_\mathcal{Z}\mathbf{W}_\mathcal{X}^T$ and size $A \times B$ and $\mathbf{W}_\mathcal{Z}$ and $\mathbf{W}_\mathcal{X}$ are the transformation matrices respectively.
 In the following it is sufficient to just learn $\mathbf{S}$ rather than the transformation matrices and has to be determined in order to minimize the loss function for the prediction accuracy. This is done by the following minimization problem:
 \begin{equation}\label{EqTTIGeneralOpt}
-\min_{S} \gamma \sum_{j=1}^{N_T}\mathit{l}\big( y_j \cdot f_T(\mathbf{x}_j) \big) + \lambda \sum_{C}  \chi \big( c_{k,l} \cdot T(\mathbf{\expP{z}}_k,\mathbf{\expP{x}}_l)\big) + \Vert \mathbf{S}\Vert_\Sigma
+\min_{S} \gamma \sum_{j=1}^{N_T}\mathit{l}\big( y_j \cdot f_T(\mathbf{x}_j) \big) + \lambda \sum_{\mathcal{C}}  \chi \big( c_{k,l} \cdot T(\mathbf{\expP{z}}_k,\mathbf{\expP{x}}_l)\big) + \Vert \mathbf{S}\Vert_\Sigma
 \end{equation}
 Note that $y_j$, in this case, is the image label.
 The parameter $\gamma$ and $\lambda$ controlling the relative importance of the auxiliary data and the co-occurrence data respectively.
@@ -540,7 +543,7 @@ Furthermore, $C$ is the number of weighted co-occurrences.\\
 With equation \eqref{EqTTIGeneralOpt} the general performance of the translation process is measured and can be divided into three parts.\\
 The first is the empirical loss of the prediction, based on the function $f_T$.\cite{Qi.2011}
 For the loss, they use the logistic loss function with $l = \log\{1+\exp(-z) \}$.\\
-The second is sum over the $C$ weighted co-occurrences $c_{k,l}$ with a monotonic exponential decreasing function $\chi = \exp(-z)$.
+The second is sum over the $\mathcal{C}$ weighted co-occurrences $c_{k,l}$ with a monotonic exponential decreasing function $\chi = \exp(-z)$.
 They pretend with this choice, the optimization problem is closed-form and is easy to optimize.\\
 The last term is for regulating the learning of the translator for an improved generalization ability.
 They incorporating the Frobenius norm, which can be found here \cite{Ma.1994}, and the trace norm, for example defined in \cite{Rennie.2005}, to formulate a regularization term:\cite{Qi.2011}

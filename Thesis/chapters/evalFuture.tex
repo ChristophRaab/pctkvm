@@ -38,13 +38,13 @@ For example, one could use the \ac{CP-MDA} algorithm from \cite{Chattopadhyay.20
 Another suggested extension is to adopt the algorithm to 'big data'.
 Because kernel machine can have at least $\mathcal{O}(N^2)$ or even worse, they may not be applied well to very large datasets.
 Here we can make use of the original Nyström method from \ref{InSecNysMeth} in combination with the Nyström Kernel approximation from \ref{InSubSecNyKerneLearning}.\cite{Long.2015}\\
-Consider a large test kernel matrix $\mathbf{K}_\mathcal{X} \in \mathbb{R}^{N_\mathcal{X}\times N_\mathcal{X}}$.
-Then sample from this kernel in a \acs{IID} manner to form a subset kernel $\mathbf{K}_\mathcal{X\hat{X}} \in \mathbb{R}^{N_\mathcal{X}\times \hat{N}_\mathcal{X}}$ with $\hat{N}_\mathcal{X} \ll N_\mathcal{X}$, which forms the subset $\mathcal{\hat{X}}$.
+Consider a large test kernel matrix $\mathbf{K}_\mathcal{X} \in \mathbb{R}^{M\times M}$.
+Then sample from this kernel in a \acs{IID} manner to form a subset kernel $\mathbf{K}_\mathcal{X\hat{X}} \in \mathbb{R}^{M\times \hat{M}}$ with $\hat{M} \ll M$, which forms the subset $\mathcal{\hat{X}}$.
 In the next step the eigensystem can be calculated through \eqref{EqEigsProb} and then the eigensystem of the target kernel can be extrapolated with:
 \begin{equation}\label{EqLargeNsystromApprox}\cite{Long.2014}
 \mathbf{U}_\mathcal{X}=\mathbf{K}_\mathcal{X\hat{X}}\mathbf{U}_\mathcal{\hat{X}}\mathbf{\Lambda}_\mathcal{X}^{-1}
 \end{equation}
-Furthermore, we can approximate the source kernel $\mathbf{K}_{Z}$ with the  cross domain kernel $\mathbf{K}_{\mathcal{Z\hat{Z}}} \in \mathbb{R}^{N_\mathcal{Z}\times \hat{N_\mathcal{X}}}$ and the subset kernel $\mathbf{K}_\mathcal{\hat{Z}}$.
+Furthermore, we can approximate the source kernel $\mathbf{K}_{Z}$ with the  cross domain kernel $\mathbf{K}_{\mathcal{Z\hat{Z}}} \in \mathbb{R}^{N\times \hat{M}}$ and the subset kernel $\mathbf{K}_\mathcal{\hat{Z}}$.
 The procedure is similar to \eqref{EqLargeNsystromApprox} or with the use of the kernels only, shown in \eqref{EqTrainTestApprox} or \eqref{EqNystKernelApprox}, by replacing the target kernel with $\mathbf{K}_{\hat{Z}}$.
 \begin{equation}
 \mathbf{K}_\mathcal{Z} \simeq	\mathbf{K}_{\mathcal{Z\hat{Z}}}\mathbf{K}_\mathcal{\hat{Z}}^{-1}\mathbf{K}_{\mathcal{\hat{Z}Z}}

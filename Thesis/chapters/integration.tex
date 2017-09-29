@@ -19,27 +19,27 @@ See section \ref{EmSubSecKernel} for details to kernels and the Gram matrix.
 The main Problem by computing eigenvalues and eigenvectors is that optimal eigenvalue decomposition has a time complexity of $\mathcal{O}(N^3)$ and alternative approaches must be found.
 The Nyström Method was originally made for solving the eigenvalue equation, which can be seen in equation \eqref{EqEigsEq}.\cite{Zhang.2008}\\
 It is done by selecting $N$ randomly observations (rows/columns) without replacement of $\mathbf{K}$ for calculating the approximation.\cite{Williams.2000}
-Considering a symmetric positive semi definite kernel $k(\mathbf{z},\mathbf{x})$ which satisfies Mercers Theorem, then $K$ has the following properties and can be represented as:\cite{Williams.2000}
+Considering a symmetric positive semi definite kernel $k(\mathbf{z},\mathbf{x})$ which satisfies Mercers Theorem, then $\mathbf{K}$ has the following properties and can be represented as:\cite{Williams.2000}
 \begin{equation}\label{EqKernelRep}
-	k(\mathbf{z},\mathbf{x}) = \sum_{i=1}^{N}\lambda_i\phi_i(\mathbf{z})\phi_i(\mathbf{x}) 
+	k(\mathbf{z},\mathbf{x}) = \sum_{i=1}^{D}\lambda_i\phi_i(\mathbf{z})\phi_i(\mathbf{x}) 
 \end{equation}
-With $N < \infty$ as the number of feature space dimensions and $\lambda_1 \ge \lambda_2\ge\dots\ge0$ as the sorted eigenvalues and $\phi_i$ as eigenfunctions.
+With $D < \infty$ as the number of feature space dimensions and $\lambda_1 \ge \lambda_2\ge\dots\ge0$ as the sorted eigenvalues and $\phi_i$ as eigenfunctions.
 As consequence of Mercer follows that  $\lambda_i$ and $\phi_i$ have to satisfy the eigenvalue equations:
  \begin{equation}\label{EqEigsEq}
-	\int_{i=1}^{N} k(\mathbf{x},\mathbf{z})\phi_i(\mathbf{z})p(\mathbf{z})d\mathbf{x} = \lambda_i\phi_i(\mathbf{x})
+	\int_{i=1}^{D} k(\mathbf{x},\mathbf{z})\phi_i(\mathbf{z})p(\mathbf{z})d\mathbf{x} = \lambda_i\phi_i(\mathbf{x})
 \end{equation}
-With $p(z)$ as the probability density of the input vector $\mathbf{z}$.
+With $p(\mathbf{z})$ as the probability density of the input vector $\mathbf{z}$.
 Furthermore, the orthogonality conditions are satisfied with:\cite[p. 59]{Scholkopf.2001}
 \begin{equation}\label{EqEigsOrt}
 	\int \phi_i(\mathbf{z})\phi_j(\mathbf{z})p(\mathbf{z})d\mathbf{z} = \delta
 \end{equation}
-If a kernel defined above is given, then an empirical estimate can be done by, drawing an identical and independently sample ${\mathbf{z}_1,\dots,z_q}$ from $p(\mathbf{z})$.
+If a kernel defined above is given, then an empirical estimate can be done by, drawing an identical and independently sample ${\mathbf{z}_1,\dots,z_N}$ from $p(\mathbf{z})$.
 The integral can be rewritten as an empirical estimate:\cite{Williams.2000}
 \begin{equation}\label{EqEigsEmp}
 	\sum_{k=1}^{N}\frac{k(\mathbf{x},\mathbf{z}_k)\phi_i(\mathbf{z}_k)}{N} \approx \lambda_i\phi_i(\mathbf{x})
 \end{equation}
 Where $N$ are the number of used observation from the kernel and the $N$ eigenfunctions are still orthogonal.
-If we consider the N columns from $\mathbf{K}$ as separate kernel matrix $\mathbf{K}^{(N)}$ with size $N\times N$ and elements $K_{ij}^{(N)}=K(\mathbf{z_i,z_j})$ for $i,j=1,\dots,N$, then we can use this for the eigenvalue problem of this kernel:\cite{Williams.2000}
+If we consider the N columns from $\mathbf{K} \in \mathbb{R}^{K\times K}$ as separate kernel matrix $\mathbf{K}^{(N)}$ with size $N\times N$ and elements $K_{ij}^{(N)}=K(\mathbf{z_i,z_j})$ for $i,j=1,\dots,N$, then we can use this for the eigenvalue problem of this (smaller) kernel:\cite{Williams.2000}
 \begin{equation}\label{EqEigsProb}
 	\mathbf{K}^{(N)}\mathbf{U}^{(N)} = \mathbf{U}^{(N)}\mathbf{\Lambda}^{(N)}
 \end{equation} 
@@ -47,18 +47,18 @@ With $\mathbf{U}^{(N)} \in \mathbb{R}^{N\times N}$ as eigenvectors and $\boldsym
 If we consider points within the kernel $K^{(N)}$, then $\mathbf{x}$ can be replaced with $\mathbf{z}_j$.
 Furthermore, matching \eqref{EqEigsProb} against \eqref{EqEigsEmp} then the following approximation can be obtained:\cite{Williams.2000}
 \begin{equation}\label{EqEigsFuncAprox}
-	\phi_i(\mathbf{z}_j) \approx \sqrt{q}U_{ij}^{(N)}
+	\phi_i(\mathbf{z}_j) \approx \sqrt{N}U_{ij}^{(N)}
 \end{equation}
 Finally, by using $\phi_i(x_k)$ in \eqref{EqEigsEmp} the approximation for the any eigenvector or eigenvalues can be given by:
 \begin{equation}\label{EqEigsValAprox}
-	\phi_i(\mathbf{x})\approx\frac{\sqrt{q}}{\lambda_i^{(N)}}\sum_{k=1}^{N}k(\mathbf{x},\mathbf{z_k})U_{k,i}^{(N)}, \>\>\>\>\> \lambda_i \approx \frac{\lambda_i^{(N)}}{q}
+	\phi_i(\mathbf{x})\approx\frac{\sqrt{N}}{\lambda_i^{(N)}}\sum_{k=1}^{N}k(\mathbf{x},\mathbf{z_k})U_{k,i}^{(N)}, \>\>\>\>\> \lambda_i \approx \frac{\lambda_i^{(N)}}{N}
 \end{equation}
 With this the $i$-th eigenfunctions and eigenvalues can be approximated by calculating the sample kernel.\cite{Williams.2000}
 As a consequence the eigenfunctions and eigenvalues of the whole kernel can be approximated.
 \subsection{Nyström Kernel Learning}\label{InSubSecNyKerneLearning}
 Willams and Seeger extended the work of Nyström to speed up kernel machines.
 The problem with kernel-based predictors, e.\,g. \acs{SVM}, is similar to the eigenvalue decomposition problem from section \ref{InSecNysMeth}
-It requires the computational complexity of $\mathcal{O}(N^3$), with $N$ as the number of training examples, to find a solution.\cite{Williams.2000}\\
+It requires the computational complexity of $\mathcal{O}(N^3$) in the worst case, with $N$ as the number of training examples, to find a solution.\cite{Williams.2000}\\
 With the Nyström approximation the complexity for predictors can be bound by $\mathcal{O}(M^3N)$ with using a smaller system with size $M$, where $M<N$.\cite{Williams.2000}\\	
 Now the goal is to create a low-rank approximation Matrix $\tilde{\mathbf{K}}$ of the original $N\times N$ kernel matrix $\mathbf{K}$.
 Revisiting section \ref{InSecNysMeth}, using the technique of Nyström, a kernel $\mathbf{K}$ which satisfies Mercers theorem is needed.\cite{Williams.2000}
@@ -73,17 +73,17 @@ Furthermore, we draw $M$ \acs{IID} samples of $\mathbf{K}$ and therefore we can 
 Where $\mathbf{K}_{M,M}$ is the sample matrix and $\mathbf{K}_{N-M,M}$ is the submatrix of $\mathbf{K}$, which is the kernel of the sample, and the rest of the data $\mathbf{K}_{N-M,N-M}$.
 Because $\mathbf{K}$ is symmetric $\mathbf{K}_{N-M,M} = (\mathbf{K}_{M,N-M})^T$.
 Furthermore, $\mathbf{K}_{N-M,N-M}$ is the part of the kernel which is not sampled or 'used' for the approximation, as we will see.\\
-Motivated from the general eigenvalue problem, which can obtained from \cite[p. 221]{Hartmann.2015} and shown in \eqref{EqEigsProb}, a kernel can be calculated with $\tilde{\mathbf{K}} = \tilde{\mathbf{U}}\tilde{\mathbf{\Lambda}}\tilde{\mathbf{U}}^T=\sum_{i=1}^{p}\tilde{\lambda}_i^{(N)}\tilde{\mathbf{u}}_i^{(N)}(\tilde{\mathbf{u}}_i^{(N)})^T$ and is in this case the approximation matrix.\cite{Williams.2000}
+Motivated from the general eigenvalue problem, which can obtained from \cite[p. 221]{Hartmann.2015} and shown in \eqref{EqEigsProb}, a kernel can be approximated through another kernel $\tilde{\mathbf{K}} = \tilde{\mathbf{U}}\tilde{\mathbf{\Lambda}}\tilde{\mathbf{U}}^T=\sum_{i=1}^{p}\tilde{\lambda}_i^{(N)}\tilde{\mathbf{u}}_i^{(N)}(\tilde{\mathbf{u}}_i^{(N)})^T$.\cite{Williams.2000}
 With the approximated eigenvalues and eigenvectors as $\tilde{\lambda}_i^{(N)}$ and $\tilde{\mathbf{u}}_i^{(N)}$ respectively.\\
 Therefore, we proceed with the equations to approximate the eigenvalues and eigenvectors.
-By choosing $P\le M<N$  as the size of the subset and applying the equations of \eqref{EqEigsFuncAprox} and \eqref{EqEigsValAprox}, the approximation bases on the approximation sample matrix can be made with:\cite{Zhang.2008}
+By applying the equations of \eqref{EqEigsFuncAprox} and \eqref{EqEigsValAprox}, the approximation is based on the eigenvalues and eigenvectors of the sample matrix can be made with:\cite{Zhang.2008}
 \begin{equation}\label{EqNystEigsApprox}
 	\begin{gathered}
 			\tilde{\lambda}_i^{(N)} = \frac{N}{M}\lambda_i^{(M)} \>\>\>\>\> \sim \>\>\>\>\> \boldsymbol{\Lambda}^{(N)} =\frac{N}{M}\boldsymbol{\Lambda}^{(M)}\\
 			\tilde{\mathbf{u}}_i^{(N)} = \sqrt{\frac{M}{N}}\frac{1}{\lambda_i^{(M)}}\mathbf{K}_{N,M}\mathbf{u}_i^{(M)}\>\>\>\>\> \sim \>\>\>\>\> \mathbf{U}^{(N)} = \sqrt{\frac{M}{N}}\mathbf{K}_{N,M}\mathbf{U}^{(M)}(\boldsymbol{\Lambda}^{(N)})^T
 	\end{gathered}
 \end{equation}
-With $i=1,\dots,P$ and $u_i^{(M)}$ and $\lambda_i^{(M)}$ from the eigenproblem and from the $M\times M$ sample kernel $K_{M,M}$.\\
+With $i=1,\dots,N$ and $u_i^{(M)}$ and $\lambda_i^{(M)}$ from the eigenproblem (Eq. \eqref{EqEigsProb}).
 After obtaining the approximated eigenvalues and vectors the full approximated kernel can be restored:\cite{Williams.2000}\cite{Zhang.2008}
 \begin{equation}\label{EqNystKernelEigsApprox}
 	\tilde{\mathbf{K}} = \bigg(\sqrt{\frac{M}{N}}\mathbf{K}_{N,M}\mathbf{U}^{(M)}(\boldsymbol{\Lambda}^{(N)})\bigg)\bigg(\frac{N}{M}\boldsymbol{\Lambda}^{(M)}\bigg)\bigg(\sqrt{\frac{M}{N}}\mathbf{K}_{N,M}\mathbf{U}^{(M)}(\boldsymbol{\Lambda}^{(N)})\bigg)^T 
@@ -96,22 +96,20 @@ From \eqref{EqNystKernelApprox} can be seen that the kernel approximation can fu
 The Nyström Kernel approximation is bounded by the error  $E_{Nys}=||\mathbf{K}-\tilde{\mathbf{K}}||$.\cite{He.2017}
 This error can be minimised by choosing the samples carefully and a reasonable amount of it.
 If the original Kernel $\mathbf{K}$ has to rank $M$ and the samples are linearly independent columns from the kernel, then the approximation is exact.
-As a consequence from above choosing $P< M$ the error rises the fewer columns are chosen.\cite{Williams.2000}\\
+As a consequence from above choosing only $P$ samples with $P< M$ the error rises the fewer columns are chosen.\cite{Williams.2000}\\
 The problem with choosing (sampling) columns/rows is that we usually do not know which columns are linearly independent.
 May, therefore, some sampling methods or approximations are made in the past to make this sampling more deterministic.
 For example, \cite{Kumar.2012}, which tries to find good samples through various sampling techniques, or \cite{Li.2015}, where the authors are drawing a large sample but approximate the submatrices with \ac{SVD}.\\
-To summarise the Nyström Kernel approximation, first, we select $P$ of $N$ 'good' samples from the data reorganising the kernel according to \eqref{EqNystKernelParts}
-At this point, we have two options.
-First calculating the kernel just for the $\mathbf{K}_{P, P}$ and the submatrix $\mathbf{K_{N-P, P}}$, continuing with approximate the eigenvectors and eigenvalues and finally calculating the approximated kernel $\tilde{\mathbf{K}}$ \eqref{EqNystKernelEigsApprox}.
-Second Calculate the approximation directly from the kernel as shown in \ref{EqNystKernelApprox}.
-Note that the second one needs a matrix inversion, which should be reflected when it comes to for large datasets.
-
+To summarise the Nyström Kernel approximation, first, we select $P$ of $N$ 'good' samples from the data reorganising the kernel according to \eqref{EqNystKernelParts}.
+At this point, we have two options:
+First calculating the kernel just for the $\mathbf{K}_{M, M}$ and the submatrix ${K}_{N-M, M}$, continuing with approximate the eigenvectors and eigenvalues and finally calculating the approximated kernel $\tilde{\mathbf{K}}$ \eqref{EqNystKernelEigsApprox}.
+Second calculate the approximation directly from the kernel as shown in equation \eqref{EqNystKernelApprox}. Note that the second approach needs a matrix inversion, which should be considered for the the use with large datasets.
 \section{Domain Invariant Kernel Learning}\label{InSecTrans}
 The \ac{TKL} approach is made by Long et al. in  \cite{Long.2015}\footnote{\url{http://ise.thss.tsinghua.edu.cn/~mlong/doc/transfer-kernel-learning-tkde15.zip}}.
 They are interpreting the kernel approximation from a different viewpoint.
 The main idea is to see the train dataset-matrix, which has to be approximated, regarding Nyström, which will be approximated by the test dataset. Proceed by finding eigenvalues in a way that the difference between the approximation and ground truth train kernel will be minimal. This forms a domain invariant kernel for transfer learning.\cite{Long.2015}
 The main Process is shown in figure \ref{FigTKLApp}.\newline 
-From the above consider $\mathbf{z}$ as $\mathbf{Z}=\{\mathbf{z}_1,\dots,\mathbf{z}_{N_\mathcal{Z}}\}$ as training dataset which is sampled from $p(\mathbf{Z})$ within training domain $\mathcal{Z}$ and $\mathbf{x}$ as $\mathbf{X}=\{\mathbf{x}_1,\dots,\mathbf{x}_{N_\mathcal{X}}\}$ as test dataset sampled from $p(\mathbf{X})$ within the test domain $\mathcal{X}$.
+From the above consider $\mathbf{z}$ as $\mathbf{Z}=\{\mathbf{z}_1,\dots,\mathbf{z}_{N}\}$ as training dataset which is sampled from $p(\mathbf{Z})$ within training domain $\mathcal{Z}$ and $\mathbf{x}$ as $\mathbf{X}=\{\mathbf{x}_1,\dots,\mathbf{x}_{M}\}$ as test dataset sampled from $p(\mathbf{X})$ within the test domain $\mathcal{X}$.
 The definitions are based on \ref{TlSecDef}.
 The associated kernels are $\mathbf{K}_\mathcal{Z}$ for training and $\mathbf{K}_\mathcal{X}$ for testing.\\
 As fundamental insight of the \acs{RKHS} is that any \ac{PSD} kernel can be reconstructed based on the eigensystem of it. Furthermore any new datasets can be incorporated within a kernel.\cite{Long.2015}\\
@@ -124,7 +122,7 @@ Where $\mathbf{U}_\mathcal{Z}$ as eigenvectors of the training kernel, $\boldsym
 This is, in fact, a rewritten version of \eqref{EqNystKernelApprox}.\\
 However, there might be a major problem.
 Regarding two feature spaces, especially when it comes to transfer learning, where we have taken in section \ref{TlSecDef} the assumption that test and training feature spaces following different probability distributions.
-This means that $P(\mathbf{z})\neq P(\mathbf{z})$, the error of the approximation from \eqref{EqTrainTestApprox} can be arbitrary large.\cite{Long.2015}\\
+This means that $P(\mathbf{Z})\neq P(\mathbf{X})$ and as a consequence the error of the approximation from \eqref{EqTrainTestApprox} can be arbitrary large.\cite{Long.2015}\\
 However, to align the distribution difference is one goal of transfer learning.
 The main improvement done by Long et al. is to tackle this problem and to learn the domain invariant approximated kernel $\mathbf{\expP{K}}_{\mathcal{A}}$.\cite{Long.2015}
 \begin{figure}
@@ -135,18 +133,18 @@ The main improvement done by Long et al. is to tackle this problem and to learn 
 \end{figure}
 \subsection{Learning Approach}\label{InSubSecLearnApp}
 From a 'kernel' viewpoint the aligning distribution of data, where the kernel is base on, can be formulated as $P(\phi(\mathbf{z})) \simeq P(\phi(\mathbf{x}))$.\cite{Long.2015}
-However, handling the data distribution in Hilbert space is difficult, because the kernel-induced feature map cannot be explicitly represented.\cite{KaiZhang.2013}\\
+However, the kernel induced kernel-induced feature map cannot be explicitly represented and therefore the handling of distributions in the corresponding Hilbert space is difficult.\cite{KaiZhang.2013}\\
 Therefore Long et al. take the assumption that it is sufficient that $\mathbf{K}_\mathcal{Z} \simeq \mathbf{K}_\mathcal{X}$.
-However, there is another problem coming up with it, because it can not be assumed that the training and test sets are equal, which means that the size of the kernels is not equal, i.\,g. $\mathbf{K}_\mathcal{Z} \in \mathbb{R}^{N_\mathcal{Z}\times N_\mathcal{Z}}$ and $\mathbf{K}_\mathcal{X} \in \mathbb{R}^{N_\mathcal{X}\times N_\mathcal{X}}$ with $N_\mathcal{Z} \neq N_\mathcal{X}$.
-Therefore the extrapolated source kernel $\expP{\mathbf{K}}_\mathcal{Z} \in \mathbb{R}^{N_\mathcal{Z}\times N_\mathcal{Z}}$, by using the eigensystem of the target kernel $\mathbf{K}_\mathcal{X}$. The kernel  $\expP{\mathbf{K}}_\mathcal{Z} $ will be compared to the actual training kernel $\mathbf{K}_\mathcal{Z}$.\cite{Long.2015}\\
-For clarity the terms, Long et al. proposed the term extrapolated instead of approximation.\cite{Long.2015}
+However, there is another problem coming up with it, because it can not be assumed that the training and test sets are equal, which means that the size of the kernels is not equal, i.\,g. $\mathbf{K}_\mathcal{Z} \in \mathbb{R}^{N\times N}$ and $\mathbf{K}_\mathcal{X} \in \mathbb{R}^{M\times M}$ with $N \neq M$.
+Therefore the extrapolated source kernel $\expP{\mathbf{K}}_\mathcal{Z} \in \mathbb{R}^{N\times N}$, by using the eigensystem of the target kernel $\mathbf{K}_\mathcal{X}$. The kernel  $\expP{\mathbf{K}}_\mathcal{Z} $ will be compared to the actual training kernel $\mathbf{K}_\mathcal{Z}$.\cite{Long.2015}\\
+For clarity the terms, Long et al. proposed the term extrapolated instead of approximation in terms of the Nyström approximation.\cite{Long.2015}
 In this thesis, we will stick to the proposed notation to coincide.\\
 The task is now to learn this extrapolated kernel, which is done step by step by first \textit{extrapolate} the eigenvectors with:\cite{Long.2015}
 \begin{equation}\label{EqExtraEigs}
 	\expP{\mathbf{U}}_\mathcal{Z} \simeq \mathbf{K}_\mathcal{ZX}\mathbf{U}_\mathcal{X} \boldsymbol{\Lambda}_\mathcal{X}^{-1}
 \end{equation}
 According to Nyström, the eigenvalues $\boldsymbol{\Lambda}_\mathcal{X}$ of the test kernel are indispensable.
-However, in this approach a \textit{relaxation} of the eigenvalues is done by considering the eigenvalues as learnable parameters $\boldsymbol{\Lambda} = diag[\lambda_1,\dots,\lambda_{N_\mathcal{X}}]$.
+However, in this approach a \textit{relaxation} of the eigenvalues is done by considering the eigenvalues as learnable parameters $\boldsymbol{\Lambda} = diag[\lambda_1,\dots,\lambda_{M}]$.
 Therefore the kernel extrapolation can be expressed as:\cite{Long.2015}
 \begin{equation}
 	\expP{\mathbf{K}}_\mathcal{Z} = \expP{\mathbf{U}}_\mathcal{Z} \boldsymbol{\Lambda} \expP{\mathbf{U}}_\mathcal{Z}^T
@@ -161,8 +159,8 @@ The error of the approximation $\expP{\mathbf{K}}_\mathcal{Z}$ to the original g
 \begin{equation}\label{EqTKLSquareErrorLoss}
 	\begin{gathered}
 		\min_{\boldsymbol{\Lambda}} || \expP{\mathbf{K}}_\mathcal{Z} - \mathbf{K}_\mathcal{Z}||^2_F = || \expP{\mathbf{U}}_\mathcal{Z} \boldsymbol{\Lambda}  \expP{\mathbf{U}}_\mathcal{Z}^T - \mathbf{K}_\mathcal{Z} ||^2_F \\
-		\lambda_i \ge \zeta \lambda_{i+1}, i = 1,\dots,N_\mathcal{X}-1 \\
-		\lambda_i \ge 0,  i = 0,\dots,N_\mathcal{X}
+		\lambda_i \ge \zeta \lambda_{i+1}, i = 1,\dots,M-1 \\
+		\lambda_i \ge 0,  i = 0,\dots,M
 	\end{gathered}
 \end{equation}
 With $\zeta \ge 1$ is the eigenspectrum dumping factor since the eigenspectrum is power law distributed and therefore $\zeta$ should produce larger eigenvectors.
@@ -189,7 +187,7 @@ The coefficient matrix $\mathbf{Q}$, $r$ and the constraint matrix C are defined
 			\mathbf{C} = \mathbf{I} - \zeta \mathbf{I}
 		\end{gathered}
 \end{equation}
-Where $\mathbf{I} \in \mathbb{R}^{N_\mathcal{X}\times N_\mathcal{X}}$ as the identity matrix and $\odot$ as hardamatrix multiplication.
+Where $\mathbf{I} \in \mathbb{R}^{M\times M}$ as the identity matrix and $\odot$ as hardamatrix multiplication.
 Note that the eigenspectrum dumping factor $\zeta$ is the only free parameter which needs to be tuned because the $\boldsymbol{\Lambda}$ is learned within the optimisation problem.\\
 Finally, similar to equation \ref{EqNystKernelParts}, we can reconstruct the 'joint' Kernel:\cite{Long.}
 \begin{equation}\label{EqTKLKernel}
@@ -200,7 +198,8 @@ Finally, similar to equation \ref{EqNystKernelParts}, we can reconstruct the 'jo
 	\end{bmatrix}
 	= 	 \expP{\mathbf{U}}_\mathcal{A} \boldsymbol{\Lambda} \expP{\mathbf{U}}_\mathcal{A}^T 
 \end{equation}
-Where $\mathcal{A}= \mathcal{Z} \cup \mathcal{X}$ as one dataset and therefore it forms the matrix $ \expP{\mathbf{U}}_\mathcal{A} =[ \expP{\mathbf{U}}_\mathcal{A};\>  \mathbf{U}_\mathcal{X}]$, which are the extrapolated eigenvectors of the whole dataset.\newline
+Where $\mathcal{A}= \mathbf{Z} \cup \mathbf{X}$ as one dataset for two domains.
+Therefore it forms the eigenvector matrix $ \expP{\mathbf{U}}_\mathcal{A} =[ \expP{\mathbf{U}}_\mathcal{A};\>  \mathbf{U}_\mathcal{X}]$, which are the extrapolated eigenvectors of the whole dataset.\newline
 The complete \acs{TKL} algorithm is summarized in algorithm \ref{PseudoCodeTKL}.\cite{Long.2015}
 \begin{algorithm}
 	\caption{Transfer Kernel Learning Algorithm}\label{PseudoCodeTKL}	
@@ -223,8 +222,8 @@ In many real-world problems, the eigenvalues are following the power law distrib
 This means that there a few large eigenvalues and many small, in comparison with the large, eigenvalues.\cite{Mihail.2002}
 Therefore it is considered as unnecessary to use the whole eigenspectrum and just compute the $R$ largest eigenvalues.
 This is used to speed up the computation because the problem is greatly reduced.
-The amount of eigenvectors is therefore fixed to $R=min(500,N_\mathcal{X})$ and therefore the eigenvectors can be reduced to $\expP{\mathbf{U}}_\mathcal{Z} \in \mathbb{R}^{R\times R}$ or $\mathbf{\lambda} \in \mathbb{R}^{R\times N_\mathcal{X}}$.\cite{Long.}\\
-The complexity of the \acs{TKL} algorithm can be given with $\mathcal{O}((D+R)(N_\mathcal{Z}+N_\mathcal{X})^2)$, where $R$ denotes the number of used eigenvectors, $D$ refers to the kernel.\cite{Long.}
+The amount of eigenvectors is therefore fixed to $R=min(500,M)$ and therefore the eigenvectors can be reduced to $\expP{\mathbf{U}}_\mathcal{Z} \in \mathbb{R}^{R\times R}$ or $\mathbf{\lambda} \in \mathbb{R}^{R\times M}$.\cite{Long.}\\
+The complexity of the \acs{TKL} algorithm can be given with $\mathcal{O}((D+R)(N+M)^2)$, where $R$ denotes the number of used eigenvectors, $D$ refers to the kernel.\cite{Long.}
 \section{PCTKVM Algorithm}\label{InSecAlgo}
 In this section the \acl{PCTKVM} algorithm will be discussed in detail.
 As shown above we have obtained our transfer learning kernel with algorithm \ref{PseudoCodeTKL}.
@@ -237,9 +236,9 @@ To train it we are using the extrapolated training kernel which is.
 However, simply using it in algorithm \ref{PseudoCodePcvm} has some disadvantages.
 Revisiting the \acs{PCVM} algorithm the kernel is recalculated in every iteration based on the optimised theta from the previous iteration.
 As a consequence, we have to recalculate the entire transfer kernel too.
-With the complexity of the \acs{PCVM} which is $\mathcal{O}(K^3)$ with $K$ as number of basis functions.
-We consider the worst case and substitute the number of basis function with the number of training samples $N_\mathcal{Z}$, which results in $\mathcal{O}(N_\mathcal{Z}^3)$.
-The complexity of the \acs{TKL} is $\mathcal{O}((D+R)(N_\mathcal{Z}+N_\mathcal{X})^2)$, combining the two, we would end up with a computational complexity of $\mathcal{O}(N_\mathcal{Z}^3(D+R)(N_\mathcal{Z}+N_\mathcal{X})^2)$.
+With the complexity of the \acs{PCVM} which is $\mathcal{O}(B^3)$ with $B$ as number of basis functions.
+We consider the worst case and substitute the number of basis function with the number of training samples $N$, which results in $\mathcal{O}(N^3)$.
+The complexity of the \acs{TKL} is $\mathcal{O}((D+R)(N+M)^2)$, combining the two, we would end up with a computational complexity of $\mathcal{O}(N^3(D+R)(N+M)^2)$.
 This may be resulting in a long computational time.
 In fact, the question is, whether we explicit need the theta optimisation in every iteration or not.
 However, one advantage of the \acs{PCVM} was, to optimise the parameters within and therefore omit the need for cross-validation.
@@ -249,8 +248,8 @@ One approach could be to optimise the theta in not every iteration.
 However, this seems to be no good solution, because we have observed that the theta is just dangling around the initial value, where we optimised the theta in every 5 or 10 iterations and nevertheless was leading in our tests to a worse performance, rather than just use a fixed value for theta.
 The latter option would be to set the theta to a fixed value and omit the theta optimisation completely.
 Fair enough we can observe a good performance, which can be seen in section \ref{EmChap}.
-Furthermore, we could obtain the complexity of $\mathcal{O}(N_\mathcal{Z}^3+(D+R)(N_\mathcal{Z}+N_\mathcal{X})^2)$.
-If we consider $D$ and $R$ as constant and by multiplying out we obtain $\mathcal{O}(N_\mathcal{Z}^3+N_\mathcal{X}^2)$ for the \acs{PCTKVM} with a fixed theta.
+Furthermore, we could obtain the complexity of $\mathcal{O}(N^3+(D+R)(N+M)^2)$.
+If we consider $D$ and $R$ as constant and by multiplying out we obtain $\mathcal{O}(N^3+M^2)$ for the \acs{PCTKVM} with a fixed theta.
 \begin{figure}
 	\centering
 	\floatbox[{\capbeside\thisfloatsetup{capbesideposition={right,top},capbesidewidth=6.5cm}}]{figure}[\FBwidth]
@@ -268,19 +267,19 @@ In  \ref{FigSmallWidth} the width is set to 0.5 and in \ref{FigLargeWidth} it is
 They are claiming in general that solving the theta via an optimisation problem is very time-consuming.
 The reason for this is because the optimisation problem is depending on the data function, which can give a very large amount of variables and purposed a simpler algorithm to find a good $\theta$.\cite{Kitayama.2011}\\
 First, they use a scaling technique to scale every dimension to an equal range.
-Consider $N = N_\mathcal{Z} + N_\mathcal{X}$ as the number of all samples with $M$ dimensions.
+Consider $K = N + M$ as the number of all samples with $D$ dimensions.
 In the approach, they using a \textit{Min-Max} Normalization to do it.\cite{Kitayama.2011}
 \begin{equation}
-	x_j = \frac{x_j - x_j^L}{x_j^U-x_j^L} \times s, \>\>\> i=1,\dots,M 
+	x_j = \frac{x_j - x_j^L}{x_j^U-x_j^L} \times s, \>\>\> i=1,\dots,D 
 \end{equation}
 Where $x_j^L$ is the lower bound and $x_j^U$ is the upper bound of value and $s=\alpha\times s \alpha \ge 0$.
 The $s$ is the abort criterium, but not needed in our approach.
 The author's recommendation is to set alpha to 1.1.
-Moreover, therefore in every iteration of the algorithm, the dimension are rescaled.\\
+Moreover, in every iteration of the algorithm, the dimension are rescaled.\\
 However, in general, the training and test data for the \acs{PCVM} must be z-scored, as discussed in section \ref{Pc}.
 Therefore it seems reasonable to replace the scaling technique from \textit{Min-Max} to the z-score:\cite{Mohamad.2013}.
 \begin{equation}\label{EqZTrans}
-x_{ij} = Z(x_{ij}) = \frac{x_{ij}-\mean{x}_j}{\sigma_j},\>\>\> i=1,\dots,N \>\>\> j=1,\dots,M
+x_{ij} = Z(x_{ij}) = \frac{x_{ij}-\mean{x}_j}{\sigma_j},\>\>\> i=1,\dots,K \>\>\> j=1,\dots,D
 \end{equation}
 Where $\mean{x}_j$ is the mean and $\sigma_j$ is the standard deviation in every dimension.\\
 Furthermore, because after one run of z-score the mean is 0 and the standard deviation is 1.\cite{Mohamad.2013}
@@ -288,19 +287,19 @@ Revisiting \eqref{EqZTrans} with this, we obtain $x_{ij} = Z(x_{ij}) = \frac{x_{
 With this change, we omitted the need for further iteration and can calculate the width in one iteration.\\
 After the z-score is applied, and the dimensions are equally scaled they originally continue with determining the distance.\cite{Kitayama.2011}
 \begin{equation}\label{EqMaxDist}
-	\theta_i = \frac{d_{i,max}}{\sqrt{N}\sqrt[N]{M-1}}, i=1,\dots,N
+	\theta_i = \frac{d_{i,max}}{\sqrt{K}\sqrt[K]{K-1}}, i=1,\dots,K
 \end{equation}
 Where $d_{j,max}$ is the maximum distance between the $i$-th data point and another data point.
 And furthermore, $\theta_i$ is the width for the $i$-th Gaussian kernel in every row.\\
-This is the main improvement in comparison with other approaches to determine the width because for example $\theta =\frac{d_{max}}{\sqrt[N]{NM}}$ can only be applied to uniform distributed data.
+This is the main improvement in comparison with other approaches to determine the width because for example $\theta =\frac{d_{max}}{\sqrt[K]{KD}}$ can only be applied to uniform distributed data.
 However with \eqref{EqMaxDist} the distance can be applied to non-uniform distributed data too, which is mostly the case in real-world problems.\cite{Kitayama.2011}\newline
 Finally, we set our width to the smallest maximal distance found in \eqref{EqMaxDist}.
 The estimate can be summarized in the following steps based on \cite{Kitayama.2011}:
 \begin{enumerate}[label=\bfseries Step \arabic*:,leftmargin=*,labelindent=1em]
 	\item Rescale data using z-score from \eqref{EqZTrans}
 	\item Calculate the distance matrix
-	\item Find maximum distance for $N$ data points using \eqref{EqMaxDist}
-	\item Find the minimum distance for every training data with $\displaystyle\theta_{min}=\min_{1 \le i \le N}\theta_i$ and return $\theta_{min}$
+	\item Find maximum distance for $K$ data points using \eqref{EqMaxDist}
+	\item Find the minimum distance for every training data with $\displaystyle\theta_{min}=\min_{1 \le i \le K}\theta_i$ and return $\theta_{min}$
 \end{enumerate}
 \begin{figure}
 	\centering
@@ -318,8 +317,8 @@ The estimate can be summarized in the following steps based on \cite{Kitayama.20
 	\label{FigGaussianWidthRegression}
 \end{figure}
 \FloatBarrier
-To calculate the distance in practice, we are using a dissimilarity matrix D.
-This matrix employs the euclidean distance with $d_{i,j}=||x_i-x_j||^2, \forall i,j \in N$ as dissimilarity measure.
+To calculate the distance in practice, we are using a dissimilarity matrix $\mathbf{D}_{K,K}$.
+This matrix employs the euclidean distance with $d_{i,j}=||x_i-x_j||^2, \forall i,j \in \mathbf{D}$ as dissimilarity measure.
 This matrix is symmetric and is zero on the diagonal.\cite[p. 22,299]{Gentle.2007}\newline
 Because the Gaussian kernel is used in this approach, the dissimilarity matrix is already involved in the computational complexity.
 Therefore, this matrix has just to be calculated once and can be reused in the theta estimation and the Gaussian kernel.
@@ -327,11 +326,11 @@ Another important thing to notice is that the data is already z-scored in the pr
 With this we just search the maximum distance with the built-in Matlab function \textit{min()} and can proceed with \eqref{EqMaxDist} in Step 3.
 In the tests, we are using the whole dataset including training and testing.\\
 Although we can reduce the complexity with a clever implementation, the complexity discussion is based on the worst case involving all steps to compute.
-The computational complexity of calculating the dissimilarly matrix is $\mathcal{O}(N^2)$.\cite{Kobti.2007}
-Furthermore, finding a maximum in $N$ rows with $M$ values can be solved in $\mathcal{O}(NM)$.
-Because the dissimilarity matrix is symmetric the complexity changes to $\mathcal{O}(N^2)$ and multiplying a scalar to $N$ elements costs $\mathcal{O}(N)$, which can be summarised in $\mathcal{O}(N^2+N)=\mathcal{O}(N^2)$.
-Again finding a minimum within the theta array from step 4 takes $\mathcal{O}(N)$.
-Putting it together we can obtain the complexity of the theta estimation with $\mathcal{O}(N^2)$.
+The computational complexity of calculating the dissimilarly matrix is $\mathcal{O}(K^2)$.\cite{Kobti.2007}
+Furthermore, finding a maximum in $K$ rows with $D$ values can be solved in $\mathcal{O}(KD)$.
+Because the dissimilarity matrix is symmetric the complexity changes to $\mathcal{O}(N^2)$ and multiplying a scalar to $K$ elements costs $\mathcal{O}(K)$, which can be summarized in $\mathcal{O}(K^2+K)=\mathcal{O}K^2)$.
+Again finding a minimum within the theta array from step four takes $\mathcal{O}(K)$.
+Putting it together we can obtain the complexity of the theta estimation with $\mathcal{O}(K^2)$.
 Note that in practice, we have no insight into the built-in Matlab function, which algorithm or implementation is used.
 Because of this, the performance may be better for finding a minimum.
 Furthermore, we observed for small datasets, that the theta would be large, which will eventually lead to a worse performance, see section \ref{EmSecDaDes} and table \ref{TableThetaEst}.
@@ -340,7 +339,7 @@ With the results from the previous section, \acs{PCTKVM} is presented in algorit
 \begin{algorithm}
 	\caption{Probabilistic Classification Transfer Kernel Vector Machine }\label{PseudoCodePCTKVM}	
 	\begin{algorithmic}[1]
-		\Require Input Data $\mathbf{K} = [\mathbf{Z};\mathbf{X}]$ as $N_\mathcal{Z}$ sized training and $N_\mathcal{X}$ sized text set; $\mathbf{Y}$ as $N$ sized training label vector; kernel(-type) \textit{ker}; eigenspectrum dumping factor $\zeta$; $\theta$ as kernel paramater; \textit{niter} as maximal number of iterations; \textit{threshold} $\tau$ as convergence criteria; \textbf{InitVector} as $N_\mathcal{Z}$-sized initialization vector.
+		\Require Input Data $\mathbf{K} = [\mathbf{Z};\mathbf{X}]$ as $N$ sized training and $M$ sized text set; $\mathbf{Y}$ as $N$ sized training label vector; kernel(-type) \textit{ker}; eigenspectrum dumping factor $\zeta$; $\theta$ as kernel paramater; \textit{niter} as maximal number of iterations; \textit{threshold} $\tau$ as convergence criteria; \textbf{InitVector} as $N$-sized initialization vector.
 		\Ensure Weight Vector $\mathbf{w}$; bias $b$, kernel parameter $\theta$; transfer kernel $\expP{\mathbf{K}}_\mathcal{A}$.
 		\State $\mathbf{D}$ = calculate\_Dissimilarity\_Matrix($\mathbf{K}$);
 		\State $\theta$ = theta\_Estimation($\mathbf{D}$);  \Comment{According to section \eqref{InSubSecTheta} (optional)}
@@ -350,22 +349,22 @@ With the results from the previous section, \acs{PCTKVM} is presented in algorit
 \end{algorithm}
 Note that the complete algorithm which involves every detail is found in appendix \ref{appac}. As already discussed, we are reusing the dissimilarity matrix. Therefore, the function parameters of \textit{transfer\_kernel\_Learning($\mathbf{D},\cdot$)} from algorithm \ref{PseudoCodeTKL} changing from using the raw data to using the dissimilarity matrix.  
 We observed in practice that the kernel is for some $\theta$ not \acs{PSD} anymore, although he is in theory.\cite{Long.2015}
-We assume that there is some issue in the floating point multiplication for small numbers in MatLab and therefore added the regularisation term $eps\mathbf{I}_{N\times N}$ to the kernel, which solved the problem.\\
+We assume that there is some issue in the floating point multiplication for small numbers in MatLab and therefore added the regularisation term $eps\mathbf{I}_{K\times K}$ to the kernel, which solved the problem.\\
 As it can be seen the \acs{PCTKVM} the number of free parameters remains the same because the $\theta$ is estimated, only the eigenspectrum dumping factor $\zeta$ is left.
-Furthermore, we obtain by, combining the complexity of the theta estimation with the complexities of \acs{PCVM} and \acs{TKL}, the same complexity as already discussed, which is $\mathcal{O}(N_\mathcal{Z}^3+N_\mathcal{X}^2)$.
+Furthermore, we obtain by, combining the complexity of the theta estimation with the complexities of \acs{PCVM} and \acs{TKL}, the same complexity as already discussed, which is $\mathcal{O}(N^3+M^2)$.
 This is achieved by reusing the dissimilarity matrix for the parameter estimations and the kernel function.
 This statement can be validated in practice with table \ref{TableMeanTimeRank}, which shows that the \acs{PCTKVM} version with fixed theta and the algorithm with estimation are needing a similar time.
 \subsection{Prediction}\label{InSubSecPrediction}
 Additionally, we can make predictions based on the provided prediction function of the \acs{PCVM} with the use of $\expP{\mathbf{K}}_\mathcal{XZ} = \mathbf{U}_\mathcal{X}\mathbf{\Lambda}\expP{\mathbf{U}}_\mathcal{Z}^T$ as kernel.
-When it comes to the \acs{SVM} the kernel has size $N_\mathcal{Z}\times N_\mathcal{X}$ is used for the prediction according to the support vectors.
+When it comes to the \acs{SVM} the kernel has size $N\times M$ is used for the prediction according to the support vectors.
 The prediction function for the \acs{SVM} from section \ref{PcSecSVM} has the form $\mathbf{y} = \expP{\mathbf{K}}_\mathcal{XZ}(\mathbf{\alpha}\odot\mathbf{y}_\mathbf{Z})+b$, where $\mathbf{\alpha}$ are the Lagrange multipliers.\cite{Long.2015}\newline
 But because of the sparsity of the \acs{PCVM} the kernel size is greatly reduced as discussed in section \ref{Pc}.
-If we consider that our model has $K$ non zero weight vectors with $K\ll N$ and because the \acs{PCVM} uses only kernel rows/columns corresponding to the non zero weight vector index, then our final kernel $\expP{\mathbf{K}}_\mathcal{KX}$ for prediction has size $(K\times N_\mathcal{X})$.
+If we consider that our model has $B$ non zero weight vectors with $B\ll N$ and because the \acs{PCVM} uses only kernel rows/columns corresponding to the non zero weight vector index, then our final kernel $\expP{\mathbf{K}}_\mathcal{KX}$ for prediction has size $(B\times M)$.
 Therefore the prediction function of the \acs{PCTKVM} has the form:
 \begin{equation}
 \mathbf{y} = \expP{\mathbf{K}}_\mathcal{KX}\mathbf{w}+b
 \end{equation}
-Finally, the class label is obtained from the sign of the elements $y_i$ of the test label vector $\mathbf{y}_\mathcal{X}$ which has size $N_\mathcal{X}$.
+Finally, the class label is obtained from the sign of the elements $y_i$ of the test label vector $\mathbf{y}_\mathcal{X}$ which has size $M$.
 The probabilistic output is calculated with the probit link function as the \acs{PCVM} does it in equation \ref{EqPcGausLike}.
 
 \subsection{Extensions}\label{InSubSecExt}
@@ -381,17 +380,16 @@ The label assignment for one class is done in iteration only.
 However, because this leads to large unclassifiable regions in the feature space.\cite[p. 114-116]{Abe.2010}\newline
 Therefore the second approach, one vs one is implemented.
 With this, we split up the labels in the different classes and train the classifier with every class against the others.
-Again, if we take $C$, different classes, then our number of iteration is $K=C(C-1)/2$.
+Again, if we take $C$, different classes, then our number of iteration is $I=C(C-1)/2$.
 Furthermore, the unclassifiable region in comparison with the one vs rest approach is smaller.
-At the predication we do again $K$ iteration and predict the whole dataset with two classes.\cite[p. 127-128]{Abe.2010}\newline
-In the implementation consider a test set with size $N_\mathcal{X}$.
+At the predication we do again $I$ iteration and predict the whole dataset with two classes.\cite[p. 127-128]{Abe.2010}\newline
+In the implementation consider a test set with size $M$.
 Then our label matrix $\mathbf{Y}$ and the probabilistic output matrix $\mathbf{P}$ has size $M\times K$.\\
 We choose then the final label for the returning label vector $\mathbf{y}$ by counting the number of occurrences of a label for a data point.
 The data point is then assigned to the label which the classifier has assigned the most.
 In case of a tie the lower, the smaller class label is assigned regarding whole numbers, according to the Matlab \textit{mode}\footnote{\url{https://de.mathworks.com/help/matlab/ref/mode.html}} function.
-This is rather unconventional because it is likely to be a random selection, but in our tests, the results are the best.
-Another approach would be to assign the class label according to the biggest probability given from $\mathbf{P}$.\\
-To determine a final probability output $\mathbf{p}$ for a final label decision with respect to the data point, the algorithm calculates the mean of the probabilistic output for the runs where the label is equal to the final label is assigned.\\
+This is rather unconventional because it is likely to be a random selection, but in our tests, the results are the better as to assign the class label according to the biggest probability given from $\mathbf{P}$.\\
+To determine a final probability output for a final label decision with respect to the data point, the algorithm calculates the mean of the probabilistic output for the runs where the label is equal to the final label is assigned.\\
 The number of relevance vectors is determined by using all unique vectors, which are used during the $K$ iterations.
 
 \section{Conclusion}\label{InSecCon}

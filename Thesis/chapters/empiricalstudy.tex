@@ -6,8 +6,14 @@ This study is split up in three main statistics.
 The first part is a basic descriptive statistic to give an overview of the general performance of the classifiers.
 This is followed by the comparison of classifiers over one dataset and finally over multiple datasets, with this all datasets described in this thesis are tested.\\
 The procedure and selection of statistics are mainly adopted from \cite{Chen.2009} and \cite{Long.2015}.
-The main reason for this is to guarantee a fair comparison of the \acs{PCVM}, \acs{PCTKVM} and the \acs{TKL} method as wrapper algorithm for the \acs{SVM}.
-Note that in this chapter for clarity only the summarised tables are shown. The complete results are shown in appendix\ref{appaB}.
+The main reason for this is to guarantee a fair comparison of the \acs{PCVM}, \acs{PCTKVM} and the \acs{TKL} method as wrapper algorithm for the \acs{SVM}.\\
+On first sight, it may be strange to compare first the difference between single datasets and proceed with an overall test.
+This is made because of two analytical reasons. First, the study has two different kinds of datasets (image and text) and many subcategories and subsets.
+With the single test, it can be determined if there is a significant difference between the performance of classifiers and datasets.
+When it comes to a real-world scenario, the choice of a classifier may depend on his strengths and weaknesses to solve a task on a corresponding kind of dataset.
+With this listing of the performance may one can choose more precisely which classifier he chooses for the job. At least for text documents and images.\\
+On the other hand from the scientific viewpoint, the comparison over all used datasets and the results in performance giving the most useful insights.\\
+Note that in this chapter for clarity only the aggregated results are shown. The complete results are shown in appendix\ref{appaB}.\\
 
 \section{Dataset Description}\label{EmSecDaDes}
 The study consists of 18 benchmark datasets.
@@ -47,7 +53,7 @@ For the domain adaptation purpose, six datasets were generated from Reuters-2157
 The labels are created by assigning orgs for example as positive class and people as the negative class.
 Furthermore, the two labels are split by its subcategories to create the training and test sets.\cite{WenyuanDai.2007}\\
 In table \ref{TableSumReuters} the dataset with its features, observations, labels and the corresponding divergences, \acs{KLD} and \ac{MMD}, are shown.
-The divergences are defined int Section \ref{TlSubSecKLD}. \\
+The divergences are defined in Section \ref{TlSubSecKLD}. \\
 To get an overview of the distribution and its transfer learning purpose the \textit{orgs vs people} dataset is shown in Figure \ref{FigOrgVsPeoplePlot}.
 \begin{table}[]
 	\centering
@@ -78,6 +84,17 @@ To get an overview of the distribution and its transfer learning purpose the \te
 \end{figure}
 
 \subsection{Image Dataset}\label{EmSubSecIm}
+\begin{table}[]
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{c|cccc|c|c} 		Name    			& \#Examples 1			& \#Examples 2 	 	   & \#Features       	   & \# Labels      		& \ac{KLD} & \ac{MMD}\\ \hline
+			Caltech vs Amazon  	& \multirow{3}{*}{1123} & 958                  & \multirow{3}{*}{800} &	\multirow{3}{*}{10} & 1.2062   & 0.0449  \\
+			Caltech	vs DSLR 	&                	 	& 295                  &                      &	 					& 1.1418   & 0.0654 \\
+			Caltech vs Webcam 	&                  		& 157                  &                      &						& 1.1567   & 0.0852 	
+	\end{tabular}}
+	\caption[Overview of key values of Image dataset]{Overview of the key figures of the Image dataset}
+	\label{TableSumImage}
+\end{table}
 The image dataset has two main Parts. 
 The first one which is named \textit{office} in this thesis and is collected and created from \cite{Saenko.2010}.
 This contains various images from three different sources which are the different datasets respectively.
@@ -131,19 +148,6 @@ Images are taken from this, with a low resolution with a high noise. The purpose
 It has the same 31 categories with five objects per category and a total of 795 images. \\
 The second main part of this dataset is from \cite{GregGriffin.}. In comparison with the other image collections, the \textit{Caltech-256} dataset is much larger.
 It has an average of 119 images per category in 257 categories with a total of 30607 images.
-\begin{table}[]
-	\centering
-	\resizebox{\textwidth}{!}{%
-		\begin{tabular}{c|cccc|c|c} 		Name    			& \#Examples 1			& \#Examples 2 	 	   & \#Features       	   & \# Labels      		& \ac{KLD} & \ac{MMD}\\ \hline
-		Caltech vs Amazon  	& \multirow{3}{*}{1123} & 958                  & \multirow{3}{*}{800} &	\multirow{3}{*}{10} & 1.2062   & 0.0449  \\
-		Caltech	vs DSLR 	&                	 	& 295                  &                      &	 					& 1.1418   & 0.0654 \\
-		Caltech vs Webcam 	&                  		& 157                  &                      &						& 1.1567   & 0.0852 	
-	\end{tabular}}
-	\caption[Overview of key values of Image dataset]{Overview of the key figures of the Image dataset}
-	\label{TableSumImage}
-\end{table}
-
-
 \begin{figure}[]
 	\centering
 	\includegraphics[width=.8\linewidth]{figures/ExampleImages.png}
@@ -184,7 +188,7 @@ The 'well known' kernel can be obtained from \cite[p. 17]{Vert.2004} and has the
 Where $d$ is the Euclidean distance and sigma is the width of the Gaussian kernel.\\
 The used one is suggested from \cite{Duan.2012} and 'replaces' the $\sigma$ parameter with $\frac{1}{A}$ and $A$ as median over the samples: 
 \begin{equation}\label{EqRBFAKernel}
-	k(x,x') = \exp(-\frac{1}{A}\abs{x-x'}^2)
+	k(\mathbf{x},\mathbf{x'}) = \exp(-\frac{1}{A}\abs{\mathbf{x}-\mathbf{x'}}^2)
 \end{equation} 
 Note $\gamma = \frac{1}{A}$ is a used abbreviation in \cite{Long.2015}.
 There are two classifiers with different kernels.
@@ -192,7 +196,7 @@ First, the \acs{GFK} uses the implementation of an own supervised $k$ nearest ne
 Second, the \acs{PCVM}, because in the cross-validation state for the parameter determination the performance drops dramatically with the use of \eqref{EqRBFAKernel}.
 Therefore the \acs{PCVM} uses the proposed \acs{RBF}-Kernel from \cite{Chen.2009}. 
 \begin{equation}\label{RBFKernelPCVM}
-k(x,x') = \exp(-\frac{\abs{x-x'}^2}{\sigma^2})
+k(\mathbf{x},\mathbf{x'}) = \exp(-\frac{\abs{\mathbf{x}-\mathbf{x'}}^2}{\sigma^2})
 \end{equation}
 The rest is trained with the suggested one from \eqref{EqRBFAKernel}, although they are used to train with \eqref{EqRBFAKernel}, which is obtained by the source code from the methods.
 However, the \acs{TKL} approaches are using it initially.
@@ -439,7 +443,7 @@ The average of a replication is $\mean{p_i} = (p_i^{(1)}+p_i^{(2)})/2$.
 And the estimated variance is $s_i^2=(p_i^{(1)}-\mean{p_i})^2+(p_i^{(2)}-\mean{p_i})^2$.
 Then the value to determine statistical significance in the differences of the errors is calculated as:
 \begin{equation}
-	f = \frac{\sum_{i=1}^{5}\sum_{j=1}^{2}(p_i^{(i)})^2}{2\sum_{i=1}^{5}s_i^2}
+	F = \frac{\sum_{i=1}^{5}\sum_{j=1}^{2}(p_i^{(i)})^2}{2\sum_{i=1}^{5}s_i^2}
 \end{equation}
 This value is approximately F distributed. It has ten and five degrees of freedom.
 The null hypothesis that the classifiers have the same error rate is rejected with a confidence of 0.95 if the f is greater than 4.74. \\
@@ -499,7 +503,7 @@ Sphericity is the condition that the difference between samples is homogenate. I
 
 \subsection{Friedman Test}
 The Friedman test ranks the classifiers for each data separately. The best one has rank 1, the second has rank 2 and so on.
-The average rank is assigned in case of a tie. For $r_i^j$ as the $j$-th rank of $k$ algorithm on the $i$-th of $N$ datasets.
+The average rank is assigned in case of a tie. For $r_i^j$ as the $j$-th rank for one algorithm out of $k$ on the $i$-th of $N$ datasets.
 And with $R_j = \frac{1}{N}\sum_{i=1}^{N}r_i^j$ as the average rank of an algorithm, the Friedman tests compares the average ranks.
 The null hypothesis has the assumption that all classifiers are equal and hence the average ranks $Rj$ should be equal.
 In equation \eqref{EqFriemanXF} the formula for the F value is shown.
@@ -585,8 +589,6 @@ Furthermore, the differences of \acs{PCTKVM}\textsubscript{$\theta$Est} and the 
 \end{table}
 \FloatBarrier
 \section{Conclusion}\label{EmSecConc}
-Summarizing, the study is made of the three main parts of the statistic. On first sight, it may be strange to compare first the difference between single datasets and proceed with an overall test. This is made because of two analytical reasons. First, the study has two different kinds of datasets (image and text) and many subcategories and subsets. With the single test, it can be determined if there is a significant difference between the performance of classifiers and datasets. When it comes to a real-world scenario, the choice of a classifier may depend on his strengths and weaknesses to solve a task on a corresponding kind of dataset. With this listing of the performance may one can choose more precisely which classifier he chooses for the job. At least for text documents and images.\\
-On the other hand from the scientific viewpoint, the comparison over all used datasets and the results in performance giving the most useful insights.\\
 Summarizing, we showed that by integration of transfer learning the performance improves significantly. Furthermore, our approach can compete with current transfer learning solutions and is only worse in comparison with the \acs{TKL}.\\
 We tested it with an extensive study over 18 dataset compositions of two data categories, which are common in testing of transfer learning, and by finally incorporating two statistical procedures to determine significance.\\
 Based on the test result we can summarize the advantages of the \acs{PCTKVM} with:
