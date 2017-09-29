@@ -62,7 +62,7 @@ The goal is then to find the smallest $N_\mathcal{Z}$ with $N_\mathcal{Z} \ll N_
 However, this approach is computational very expensive.\cite{Burges.1997}\\
 Therefore the wanted reduction of computational complexity is maybe not yet achieved.\newline
 Furthermore, the \ac{SVM} has several parameters, that needs to be tuned by cross-validation.
-For example the $C$ parameter, explained in section \ref{PcSecSVM}, or the parameters for the kernel function for example the width of the Gaussian kernel, section \ref{EmSubSecKernel}.
+For example the $C$ parameter, as cost parameter of the hyperplane\cite[p. 420]{TrevorHastie.2009}, or the parameters for the kernel function for example the width of the Gaussian kernel, section \ref{EmSubSecKernel}.
 Cross-validation is done by a grid search in a certain range.
 For example evaluate the performance of the \ac{SVM} for $C={1,2,5,10,...,100,200}$ and select the parameter according to the best performance.\cite{Chen.2009}\newline
 Finally, when it comes to the interpretation of the results, the \ac{SVM} provides a good interpretation of how the margin and the decision boundary is created.

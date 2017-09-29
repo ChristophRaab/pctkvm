@@ -86,8 +86,8 @@ Based on the discussion in \cite{Pan.2011}, the following definition can be extr
 	Given a source domain $\mathcal{Z}=\{\mathcal{X}_\mathcal{Z},P(\mathbf{Z})\}$ and learning task $\mathcal{T_Z}=\{\mathcal{Y_Z},f_\mathcal{Z}(\mathbf{Z})\}$ with $f_\mathcal{Z}(\mathbf{Z}) = P(\mathbf{y}_\mathcal{Z}|\mathbf{Z})$ and a target domain $\mathcal{X}=\{\mathcal{X}_\mathcal{X},P(\mathbf{X})\}$ and learning task $\mathcal{T_X}=\{\mathcal{Y_X},f_\mathcal{X}(\mathbf{X})\}$ with $f_\mathcal{X}(\mathbf{X}) = P(\mathbf{y}_\mathcal{X}|\mathbf{X})$. Let $\mathcal{T_Z} = \mathcal{T_X}$ and the domains $\mathcal{Z} \neq \mathcal{Z}$ in a way that $\mathcal{X}_\mathcal{Z} = \mathcal{X}_\mathcal{X}$ and $P(\mathbf{Z}) \neq P(\mathbf{X})$, domain adaptation aims to help improve the learning of the target predictive function $f_\mathcal{X}(\cdot)$ in $\mathcal{X}$ using the knowledge in $\mathcal{Z}$.
 \end{mDef}
 This is related to covariance shift problem.\cite{Pan.2011}
-It assumes that the domain data generation is made in a way that the sampling, which the data is base on, is $P(\mathbf{y}\vert \mathbf{X})P(\mathbf{X})$.
-Furthermore,  the marginal distribution $P(\mathbf{X})$ changes through the domain shift so that $P(\mathbf{X}) \neq P(\mathbf{X})$ for source domain and target domain data sampling, respectively.\cite[p. 8-9]{QuinoneroCandela.2009}\\
+It assumes that the domain data generation is made in a way that the sampling, which the data is based on, is $P(\mathbf{y}\vert \mathbf{X})P(\mathbf{X})$.
+Furthermore, the marginal distribution $P(\mathbf{X})$ changes through the domain shift that the marginal distribution for data sampling of the source and target data are different. As a consequence, the distributions may be different.\cite[p. 8-9]{QuinoneroCandela.2009}\\
 In practice, we can observe that the key challenge of \acl{DA} methods is to focus on aligning the differences in the marginal distribution, which can be observed in \cite{Pan.2011}, \cite{Long.}, \cite{Fernando.} and \cite{Arnold.2007}, which describe by \cite{Pan.2011} too.
 
 \section{Measurement of Difference}\label{TlSecMeasure}
@@ -242,9 +242,8 @@ The source data is in general considered as out-dated.
 It uses a small amount of labelled target data, considered as new data, which is called same-distribution training data.
 Therefore, and because of definition \ref{DefITL}, the method has an inductive setting.
 This new data is then used to help to vote on the usefulness of the old training data.\cite{Dai.}\\
-The voting filters via the boosting approach.
-It boosts the part of the data which is not too far away from the same-distribution training data.
-The part of the source data, which is outvoted and therefore has a different distribution is together with the near data is called diff-distribution training data.
+The filtering boosts the part of the data which is not too far away from the same-distribution training data.
+The training data in general is called diff distribution-training data.
 The voted part of the data is used to make the knowledge transfer.
 Furthermore, the same-distribution training data and the diff-distribution training data are forming the new source data for the training.
 In the corresponding article, the weighted-\acs{SVM} is used as the underlying learner.
@@ -252,7 +251,7 @@ It is rather crucial that the learner has some weighting function because the fi
 The TrAdaBoost algorithm has two free parameters, which is the number of iterations and the initial value of the weight vector.
 Suppose the number of fixed iterations is $T$ and the unlabeled target dataset $\mathbf{X}$.
 Consider $\mathbf{Z}_D$ as diff-distribution training dataset with labels of size $N$ and the same-distribution data (from the target data) with labels $\mathbf{Z}_S$ has $M$ points.
-This forms the complete training set $\mathbf{Z}=\mathbf{Z}_D\cup \mathbf{Z}_S$, with $N+M$ entries, with $\mathbf{\mathbf{Z}}=\{(\mathbf{z}_i,y_i))\}$, where $y_i$ is the label for the ith-data point with $y\in {0,1}$ and $x_i$ with \cite{Dai.}:
+This forms the complete training set $\mathbf{Z}=\mathbf{Z}_D\cup \mathbf{Z}_S$, with $N+M$ entries and $\mathbf{\mathbf{Z}}=\{(\mathbf{z}_i,y_i))\}$, where $y_i$ is the label for the ith-data point with $y\in {0,1}$ and $x_i$ with \cite{Dai.}:
 \begin{equation*}
 	\mathbf{z}_i = \begin{dcases}
 						\mathbf{z}_i^D, \>\>\>\> i = 1,\dots,N\\
@@ -260,11 +259,8 @@ This forms the complete training set $\mathbf{Z}=\mathbf{Z}_D\cup \mathbf{Z}_S$,
 			  	   \end{dcases}
 \end{equation*}
 In every iteration, the learner is trained with this training set and predicts for the training $\mathbf{Z}$, and the unlabeled target dataset $\mathbf{X}$.
-The prediction in this context is called a hypothesis.
-In this article, the training loss is defined as the difference between the training data prediction and the ground truth label.
-Furthermore, the prediction error is the difference between the ground truth target labels and the prediction.
 Note that the label for $\mathbf{Z}_S$ is predicted, too.\cite{Dai.}\\
-At this point the filtering takes place.
+At this point the filtering takes place:
 If a diff-distribution data point is mistakenly predicted, then it may be caused by the difference of this instance to the same-distribution training data.
 When this is the case, the \textit{TrAdaBoost} algorithm reduces the weight for this data point, and therefore this point will affect the learning process less than in the current iteration.
 This is done via updating the weight vector $\mathbf{w}^t=\{w_1^t,\dots,w_{N+M}^t\}$ in the $t$-th iteration with \cite{Dai.}:
@@ -277,20 +273,16 @@ This is done via updating the weight vector $\mathbf{w}^t=\{w_1^t,\dots,w_{N+M}^
 Where $ h_t(\mathbf{x}_i )$ is the predicted label for the $i$-th data point.
 Furthermore, the different betas are set to $\beta_t = \epsilon_t / (1-\epsilon_t)$, where $\epsilon_t$ is a weighted error function and $\beta= 1 / 1 + \sqrt{2\ln n/T}$.
 Note that $\epsilon_t$ function value is required to be less than 0.5.\\
-In equation \eqref{EqTrAdaWeighting} can be seen that the same distribution training data uses another weighting function instead of the weighting function for the diff-distribution training data.
-This causes that the weight gain for the target data can be much higher as for the source data.\\
 The $\beta$, which is multiplied with the weight for the training data, is bound by $\beta^{\vert h_t(\mathbf{x}_i )-y_i\vert} \in (0,1]$.
 After the $T$ iteration, the algorithm creates the final hypothesis of the labels based on the previous iterations.
 Note that only steps which are in the range of $\{\lceil T /2 \rceil,\dots,T\}$ are considered.\cite{Dai.}\\
-We proceed by describing some theoretical ideas of the \textit{TrAdaBoost}, which is claimed to be theoretical similar to the underlying \textit{AdaBoost}.
-The convergence rate of the algorithm over the diff-distribution training data $\mathbf{Z}_D$ can be bound by $\mathcal{O}\big(\sqrt{\ln N /T }\big)$
-With an increasing number of iterations, the error rate can be minimized.
+The error bound of the \textit{TrAdaBoost} are similar to the underlying \textit{AdaBoost}.
 Furthermore, the error rate of the same-distribution data for the final hypothesis (final label assignment based on the T iterations) can be upper bounded with.
 \begin{equation}
 	\epsilon \le 2^{\lceil T / 2\rceil} \prod_{t=\lceil T / 2\rceil}^{T} \sqrt{\epsilon_t(1-\epsilon_t)}
 \end{equation}
 At this point, the required $\epsilon_t < 0.5$ becomes important.
-If so, then the final hypothesis will be increasingly smaller after each iteration.\cite{Dai.}
+If so, then the final error will be increasingly smaller after each iteration.\cite{Dai.}
 
 \subsection{Symmetric-Feature-Transfer}\label{TlSubSecHomoSymFeature}
 The solutions, which implementing the symmetric feature transfer are trying to find a common latent subspace for source and target domain, with the goal to reduce the marginal distribution differences.
@@ -300,15 +292,12 @@ An example of a symmetric feature space transfer method is \ac{TCA}, which will 
 The \acs{TCA} method is presented by Pan et al. in \cite{Pan.2011}\footnote{\url{https://github.com/LinZhineng/transfer-learning/tree/master/tca}}.
 The authors proposed \acs{TCA} to support classifier for unsupervised and semi-supervised learning.\cite{Pan.2011}
 However, the resulting kernel and the transformation matrix can be used to train a kernel based learner like the \acs{SVM}, which is in fact supervised.
-It has the assumption, which makes it a homogeneous transfer method that the conditional distribution is the same, i.\,e. $ P(\mathbf{y}_\mathcal{Z}\vert \mathbf{Z}) = P(\mathbf{y}_\mathcal{X}\vert \mathbf{X})$, but the marginal probability distribution are different.
+It has the assumption, which makes it a homogeneous transfer method that the feature space is the same, the conditional probabilities are similar, but the marginal probability distribution are different.
 Furthermore they assume that there exists a feature transformation $\phi$, which can align the differences, i.\,e. $P(\phi(\mathbf{Z})) \approx(\phi(\mathbf{X}))$ and preserve $P(\mathbf{y}_\mathcal{Z}\vert \phi(\mathbf{Z}))\approx P(\mathbf{y}_\mathcal{X}\vert \phi(\mathbf{X}))$.\cite{Pan.2011}\\
-Additionally, we will see that \acs{TCA} requires target data in the training process and is therefore transductive.\\
+In the following we will see that \acs{TCA} requires target data in the training process and is therefore transductive.\\
 In general there may exits underlying data structures and relationships in between them.
 Some of them do cause the distribution difference, and some of them are the reason for relations between the source and target domain.
 The part of the data which causes the relation is called \textit{transfer component} and should be found to preserve structure but at the same time aligning the differences.\cite{Pan.2011}\\
-Pan et al. are using their previous work from \cite{Pan.2008}.
-In this they have presented the \ac{MMDE}, which is an extension of the \acs{MMD} metric defined in section \ref{TlSubSecMMD}.
-It states that finding a transformation which minimizes the \acs{MMDE}, then transformation will draw the marginal distribution closer together.\\
 Consider $\mathbf{K}$ as a cross-domain kernel, as a composition of the source and target domain, in the embedded subspace which has the form:\cite{Pan.2011}
 \begin{equation}\label{EqTCAKernel}
 \mathbf{K} = 
@@ -329,125 +318,42 @@ Where $\mathbf{M}$ is the \acs{MMD} matrix as:\cite{Pan.2011}
 \end{dcases}
 \end{equation}
 This is, in fact, the same transformation matrix for integrating \acs{MMD} as it is done by an asymmetric approach described in section \ref{TlSubSecHomoAsymFeature}.
-The objective function of the \acs{TCA}, uses the \acl{MMDE}, which results in the following equation:\cite{Pan.2011}
-\begin{equation}\label{EqTCAMMDEObjt}
-	\max_{\mathbf{K}\succeq 0} tr(\mathbf{KM}) - \lambda tr(\mathbf{K})
+The objective function of the \acs{TCA}, uses the \ac{MMDE} from Pans previous work from\cite{Pan.2008}. The following optimization problem is designed to align the differences of the distributions but maximizes the subspace variance:\cite{Pan.2011}
+\begin{equation}\label{EqTCAReducedOpt}
+\begin{gathered}
+\min_{\mathbf{W}}  tr(\mathbf{W}^T\mathbf{KMKW}) + \lambda tr(\mathbf{W}^T\mathbf{W})\\
+s.t. \mathbf{W}^T\mathbf{KHKW} = \mathbf{I}_{N \times N}
+\end{gathered}
 \end{equation}
-With this, the \acs{MMDE} is simply the extensions of the \ac{MMD} with a regularization term, which can be seen on the right side of equation \eqref{EqTCAMMDEObjt}.\cite{Pan.2011}\\
-In this objective, if the first term is minimized, then the aligning happens.
-Furthermore, if the second term, which is the constrain of the optimization problem, is maximized, then the subspace variance is maximized.
-The parameter $\lambda \ge 0$ is a trade off parameter.
+With this, the \acs{MMDE} is simply the extensions of the \acl{MMD} with a regularization term, which can be seen on the right side of equation \eqref{EqTCAReducedOpt}.\cite{Pan.2011}\\
+The parameter $\lambda \ge 0$ is a trade off parameter and the matrix $\mathbf{W} \in \mathbb{R}^{N\times L}$ does the subspace transformation.\cite{Pan.2011},\\
+Note the the centering matrix $\mathbf{H} = \mathbf{I}_{N\times N} - (1/N)\mathbf{1}_{(N\times N)})$ in the constrains. Because of the centering transformation the maximized variance matrix $\mathbf{W}^T\mathbf{KHKW}$ should be persevered as identity matrix.\\
 However, this seems that the kernel from equation \eqref{EqTCAKernel} is expensive to calculate via a \ac{SDP}.\cite{Pan.2011}\\
 A \acs{SDP} is an extension of a linear optimisation problem, where the non-negative constrained is replaced with $\mathbf{K}\succeq 0$, which is the \acs{PSD} attribute of the Matrix. Additionally, the vector space for linear problems $\mathbb{R}^N$ is replaced with the vector space of symmetric $N\times N$ matrices based on the linear transformation of matrices.\cite{Gartner.2012}\\
-Furthermore, with this objective function, they can not achieve both in a good manner:
-Aligning and maximizing the variance.
-Finally, there is no dimensional reduction done.\cite{Pan.2011}\\
-To get rid of this problems, they approximate the kernel in the following way.
-First, they are using the empirical kernel map.
-With this, the kernel can be rewritten as $K = KK^{-1}K = (KK^{-1/2})(K^{-1/2}K)$.\cite{Pan.2011}
-The empirical kernel map is designed to approximate kernels for new patterns by incorporating a finite set of training patterns.\cite{Scholkopf.2001}\\
-Moreover to create the subspace they integrating a transformation matrix to the empirical kernel map.
-Consider $\tilde{\mathbf{W}} \in \mathbb{R}^{N\times M}$, where $M$ is the number of reduced dimensions.
-Then the subspace kernel can be decomposed as:\cite{Pan.2011}
-\begin{equation}\label{EqEmpKernelReduction}
-	\tilde{\mathbf{K}} = (\mathbf{KK}^{-1/2}\tilde{\mathbf{W}})(\tilde{\mathbf{W}}^T\mathbf{K}^{-1/2} \mathbf{K}) = \mathbf{KWW}^T\mathbf{K}
-\end{equation}
-With $\mathbf{W} = \mathbf{K}^{-1/2}\tilde{\mathbf{W}}$.
-Revisiting \acs{MMD}, it can also be reformulated using equation \eqref{EqEmpKernelReduction} to write an \acs{MMD} measure in the subspace, which is $MMD'= tr(\mathbf{W}^T\mathbf{KMKW})$.\\
-Note that the variance matrix of the subspace is defined as $\mathbf{W}^T\mathbf{KHKW}$ with size $N \times N$, where $\mathbf{H} = \mathbf{I}_{N\times N} - (1/N)\mathbf{1}_{(N\times N)})$ is the centering matrix with $\mathbf{1}$ as all ones matrix.
-The goal is now to determine $\mathbf{W}$.
-Considering the new subspace kernel and the variance in the subspace, the optimisation problem from \eqref{EqTCAMMDEObjt} can be rewritten as follows:\cite{Pan.2011}
-\begin{equation}\label{EqTCAReducedOpt}
-	\begin{gathered}
-		\min_{\mathbf{W}} = tr(\mathbf{W}^T\mathbf{KMKW}) + \lambda tr(\mathbf{W}^T\mathbf{W})\\
-		s.t. \mathbf{W}^T\mathbf{KHKW} = \mathbf{I}_{N \times N}
-	\end{gathered}
-\end{equation}
-Where $\lambda$ is again the trade-off parameter.
-Pan et al. proposed that with this the latent spaced spanned by the learned components, the variance is obtained, and the marginal distribution is aligned.\\
-Although they showed that the constraint from problem \eqref{EqTCAReducedOpt} is non-convex, it can still be efficiently solved by reorganising:\cite{Pan.2011}
-\begin{equation}\label{EqTCAReorgOpt}
-	\max_{\mathbf{W}} = tr((\mathbf{W}^T(\mathbf{KMK}+\lambda \mathbf{I})\mathbf{W})^{-1} \mathbf{W}^T\mathbf{KHKW})
-\end{equation}
-Furthermore, they mentioned solving \eqref{EqTCAReorgOpt} is equivalent to finding the $L$ leading eigenvectors of $(\mathbf{KMK}+\lambda \mathbf{I})^{-1} \mathbf{KHK}$.
-The details of the proof are discussed in \cite{Pan.2011}
-Finally, the (simple) algorithm for \acs{TCA} can be given:
-First compute the kernel according to \eqref{EqTCAKernel}, $\mathbf{M}$ from \eqref{EqTCAMMD} and create the centring matrix.
-Second create $\mathbf{W}$ by searching the $L$ eigenvectors with $(\mathbf{KMK}+\lambda \mathbf{I})^{-1} \mathbf{KHK}$.
-With this, the subspace kernel can be computed, or the source and target data can be reduced with $\mathbf{W}$.
+For determining $\mathbf{W}$, they are ended up by formulating the optimization problem as eigenvalue problem.
+By finding the largest $L$ eigenvectors with $(\mathbf{KMK}+\lambda \mathbf{I})^{-1} \mathbf{KHK}$, the subspace kernel $\mathbf{K}$ can be calculated, or the source and target data can be reduced with $\mathbf{W} \in \mathbb{R}^{N\times L}$.
 The computational complexity is given by $\mathcal{O}(L(N_\mathcal{Z}+N_\mathcal{X})^2)$, where again $L$ is the number of eigenvectors.\cite{Pan.2011}
 \subsubsection{Geodesic Flow Kernel}
-The next symmetric feature transfer method is the \ac{GFK} and is proposed by Gong et al. in \cite{Gong.}\footnote{\url{http://www-scf.usc.edu/~boqinggo/domain\_adaptation/GFK\_v1.zip}}.
+\begin{figure}[t]
+	\centering
+	\floatbox[{\capbeside\thisfloatsetup{capbesideposition={right,top},capbesidewidth=5cm}}]{figure}[\FBwidth]
+	{\caption[Summary of Geodesic Flow Kernel Approach]{The geodesic flow with the start and endpoints from source and target data and the induced kernel.\cite{Gong.}}}
+	{\includegraphics[width=\linewidth]{figures/GFKApproach.png}\label{FigGFKApproach}}
+\end{figure}
+Another symmetric feature transfer method is the \ac{GFK} and is proposed by Gong et al. in \cite{Gong.}\footnote{\url{http://www-scf.usc.edu/~boqinggo/domain\_adaptation/GFK\_v1.zip}}.
 Following definition of homogeneous methods and similar to \acs{TCA}, the \acl{GFK} is trying to lower the marginal distribution differences.\cite[p. 13]{Weiss.2016}\\
-Furthermore, it can be seen as unsupervised transfer learning method, but because the results of this method is, in fact, a kernel, it can be trained with a kernel machine.\cite{Gong.}
+Furthermore, it is calimed as unsupervised transfer learning method, but because the results of this method is, in fact, a kernel, it can be trained with a kernel machine.\cite{Gong.}
 Again because it needs target data in the learning process, it will be considered as inductive transfer learning method.\\
 The idea of \acs{GFK} can be summarized in the following steps:
 The source and the target data has to be embedded in a Grassmann manifold.
 Consider a subspace $\mathcal{P} \in \mathbb{R}^{N \times d}$ with $N$ observations (dimensionality of the data) and $d$ is the feature space dimension.
-Then the collection of the $d$ dimensional subspaces are forming the Grassmannian $\mathbb{G}(d, N)$ in the original $N$ dimensional feature space.
-Next, construct a geodesic flow and merge source and target data as points in it with a certain distance between them.
-Proceed by integrating an infinite number of subspaces along the flow $\boldsymbol{\Phi}(t)$.
+Then the collection of the $d$ dimensional subspaces are forming the Grassmannian $\mathbb{G}(d, N)$ in the original $N$ dimensional feature space.\cite{Gong.}\\
+Next, construct a geodesic flow and merge source (start) and target (end) data as points on the flow.
+Proceed by integrating an infinite number of subspaces from start to end along the flow $\boldsymbol{\Phi}(t)$.\cite{Gong.}\\
 After that, the raw features $\mathbf{x}$ are projected into the subspaces, which makes them infinite dimensional feature vectors $\mathbf{z}^\infty \in \mathcal{H}^\infty$.
-The inner product will be applied over the vectors $\mathbf{z}^\infty$ to define a kernel function, which can be computed in the original feature space.
+The inner product will be applied over the vectors $\mathbf{z}^\infty$ to define a kernel function, which can be computed in the original feature space(kernel trick).
 The kernel in the space $\mathcal{H}^\infty$ should then encapsulate the underlying difference and commonness of the source and target data.\cite{Gong.} The approach is summarised in figure \ref{FigGFKApproach}\\
-In order to create and apply the \acl{GFK}, there are four major steps necessary.
-First, reduce the dimension of the original feature space to create the embedding subspace $\mathbf{P}_\mathcal{Z}$ and $\mathbf{P}_\mathcal{X}$ with $\mathbb{R}^{N\times d}$ as $N$ samples and $d$ dimensions.
-This is done via the \ac{PCA}.\cite{Gong.}\\
-The \acs{PCA} is a linear transformation and uses the $d$ dominant eigenvectors, which are orthogonal to each other, of the covariance matrix of the data to transform the data into a lower $d$ dimensional subspace.
-With this, the \acs{PCA} tries to maximize the projected variance.\cite[p.561-563]{Bishop.2009}\\
-Furthermore, the $d$ as the number of dimensions becomes a free parameter.
-Note that in according to \cite{Gong.}, originally the optimal number of dimension is obtained analytically.
-However, it seems that in practice (public implementation from above, which is used in chapter \ref{EmChap}) the dimensionally is, in fact, a free parameter and therefore this determination will not be further discussed.\\
-The second step is to construct the geodesic flow.
-This means projecting the samples on the flow, which is done by using the transformation $\boldsymbol{\Phi}:t\in [0,1] \to \boldsymbol{\Phi}(t) \in G(d,N)$.
-Note the constraints $\boldsymbol{\Phi}(0) = \mathbf{P}_\mathcal{Z}$ and $\boldsymbol{\Phi}(1)=\mathbf{P}_\mathcal{X}$, which are the 'start' and 'end' points.
-For other $t \in (0,1) $ they construct the following transformation:\cite{Gong.}
-\begin{equation}\label{EqGFKTransformation}
-	\boldsymbol{\Phi}(t) = \mathbf{P}_\mathcal{Z}\mathbf{U}_1\boldsymbol{\Gamma}(t) - \mathbf{R}_\mathcal{Z}\mathbf{U}_2\boldsymbol{\Sigma}(t)
-\end{equation}
-Where $\mathbf{R}_\mathcal{Z} \in \mathbb{R}^{N\times (N-d)}$ is the orthogonal complement of the source subspace with $\mathbf{P}_\mathcal{Z}\mathbf{R}_\mathcal{Z}=0$.
-Furthermore $\mathbf{U}_1 \in \mathbb{R}^{d\times d}$ and $\mathbf{U}_2 \in \mathbb{R}^{(N-d)\times d}$ are orthogonal matrices which are given by the pair of \ac{SVD} values.\cite{Gong.}\\
-In general the \acs{SVD} has the form of $\mathbf{A} = \mathbf{U\Sigma V}^T$, which can decompose a rectangular or symmetric matrix $\mathbf{A}$.\cite{Golub.1965}.\\
-The \acs{SVD} is applied and reorganized to:
-\begin{equation}\label{EqGFKSVDRe}
-		\mathbf{P}_\mathcal{Z}^T\mathbf{P}_\mathcal{X} = \mathbf{U}_1\boldsymbol{\Gamma}\mathbf{V}^T,\>\>\> \mathbf{R}_\mathcal{Z}^T\mathbf{P}_\mathcal{X} = -\mathbf{U}_2\boldsymbol{\Sigma}\mathbf{V}^T
-\end{equation}
-Where $\boldsymbol{\Gamma}$ and $\boldsymbol{\Sigma}$ are $d\times d$ diagonal matrix for the transformation (resulting from \acs{SVM}), with elements $\cos(\theta_i)$ and $\sin(\theta_i)$.
-Furthermore they are the 'overlapping' between the two subspaces, which is the smallest series of angles between the bases.\cite{Gong.2015}
-The $\theta_i$ in the matrices have a ascending order.
-For $\boldsymbol{\Sigma}(t)$ are the diagonal matrix $\cos(t\theta_i)$, the other diagonal transformation matrix consists of $\sin(t\theta_i)$.\cite{Gong.}\\
-The third step is to compute the \acs{GFK} itself.
-The created geodesic flow parametrises how smooth the source data changes to the target data through the subspaces.
-Consider a training data in subspace, which is near to the target endpoint, then a classifier trained on this subspace projection can use the characteristics of both domains and vice versa.
-Therefore Gong et al. conclude to use every subspace, which is in the flow.\cite{Gong.}\\
-Although, they have may an infinite number of subspaces, the problem of involving 'all' subspaces is solved by threatening $t$ as a continues variable with $\boldsymbol{\Phi}(t) \in (0,1)$ and solving the integral of inner products between zero and one.
-
-Furthermore, the problem of calculating the inner product of two infinite vectors is in fact solved by the kernel trick:\cite{Gong.}
-\begin{equation}
-	\langle\mathbf{z}_i^\infty,\mathbf{z}_i^\infty\rangle = \int_{0}^{1}(\boldsymbol{\Phi}(t)^T\mathbf{x}_i)^T(\boldsymbol{\Phi}(t)^T\mathbf{x}_j)dt = \mathbf{x}_i^T\mathbf{G}\mathbf{x}_j
-\end{equation}
-Where $\mathbf{G} \in \mathbb{R}^{D\times D}$ is the \acs{PSD} kernel.\\ 
-The kernel trick is known, to induce the inner product between two infinite dimensional vectors and the kernel is computed as:\cite{Gong.}
-\begin{equation}
-		G = \begin{bmatrix}	\mathbf{P}_\mathcal{Z} \mathbf{U}_1\>\>\>\>\mathbf{R}_2 \mathbf{U}_2\end{bmatrix}
-		\begin{bmatrix}
-			\boldsymbol{\Lambda}_1 \>\>\>\> \boldsymbol{\Lambda}_2\\
-			\boldsymbol{\Lambda}_4 \>\>\>\> \boldsymbol{\Lambda}_3
-		\end{bmatrix}
-		\begin{bmatrix}
-			\mathbf{U}_1^T\mathbf{P}_\mathcal{Z}^T\\
-			\mathbf{U}_2^T\mathbf{R}_\mathcal{Z}^T
-		\end{bmatrix}
-\end{equation}
-The $\boldsymbol{\Lambda}$ are diagonal matrices and preserving the angles between the subspaces.
-For details please see the derivation in the thesis \cite[p. 45;110-113]{Gong.2015}.\\
-With the previous steps the kernel is applicable, to use it with a kernel machine.\cite{Gong.}
-\begin{figure}
-	\centering
-	\floatbox[{\capbeside\thisfloatsetup{capbesideposition={right,top},capbesidewidth=5cm}}]{figure}[\FBwidth]
-	{\caption[Summary of Geodesic Flow Kernel Approach]{The geodesic flow with the start and endpoints from source and target data and the induced kernel.}}
-	{\includegraphics[width=\linewidth]{figures/GFKApproach.png}\label{FigGFKApproach}}
-\end{figure}
+For more details please have a look in the thesis \cite[p. 45;110-113]{Gong.2015} and the article \cite{Gong.}.
 \subsection{Asymmetric-Feature-Transfer}\label{TlSubSecHomoAsymFeature}
 The asymmetric feature transfer learning approach tries to transform the source domain data in the target (subspace) domain.
 This should be done in a way that the transformed source data will match the target distribution.
@@ -456,45 +362,21 @@ In the following, the \ac{JDA} algorithm is described to give an idea of an asym
 \subsubsection{Joint Distribution Adaptation}
 The \acl{JDA} algorithm tries to not only solve the marginal probability distribution but the conditional probability distribution, too.
 This solution is proposed by Long et al. in \cite{Long.}.\footnote{\url{http://ise.thss.tsinghua.edu.cn/~mlong/doc/joint-distribution-adaptation-iccv13.zip}}\\
-Because it solves the differences between the domains, it can be considered as transductive setting, with the need for target data.\\
+Because it solves the probabilistic differences between the domains, it can be considered as transductive setting, with the need for unlabeled target data.\\
 The primary goal is to alter the joint distribution by a feature transformation in a way that the joint expectations of the source and target features are matched between the domains.
-However, this problem is assumed as non-trivial, and therefore they created an approximation to solve it.
-They approximate it by searching an adaptation matrix $\mathbf{A} \in \mathbb{R}^{K\times M}$, which can transform any new data in the subspace and is, in fact, an orthogonal transformation matrix.\cite{Long.}\\
-Furthermore, the embedding matrix $\mathbf{Z}$ is searched to transform the already existing data in the subspace.
-
-This approach consists of the four steps, which are feature transformation, marginal distribution adaptation, conditional distribution adaptation and solving the resulting optimisation problem.\cite{Long.}\\
+However, this solution for this problem is assumed as non-trivial.\cite{Long.}\\
+They approximate it by searching an adaptation matrix $\mathbf{A} \in \mathbb{R}^{K \times N_\mathcal{X} }$, which can transform any new data in the subspace and is, in fact, an orthogonal transformation matrix.
+Furthermore, the embedded data matrix $\mathbf{Z} \in \mathbb{R}^{N\mathcal{Z}\times K}$ is searched to transform the already existing data in the subspace.\cite{Long.}\\
+This approach consists of the four steps, which are feature transformation, marginal distribution adaptation, conditional distribution adaptation and solving the resulting optimization problem.\cite{Long.}\\
 Revisiting our transfer learning definition, source and target data can be represented as data matrix $T = [\mathbf{Z};\mathbf{X}] \in \mathbf{R}^{N\times M}$ where $N = N_\mathcal{Z}+N_\mathcal{X}$, with the number of source and target data respectively.
-The adaptation matrix is using the \acs{PCA}, as standard dimensionality reduction method, coupled with a centring matrix, which is $\mathbf{H}=\mathbf{I}-\frac{1}{N}\mathbf{1}$.
-It is represented as optimization problem which:\cite{Long.}
-\begin{equation}\label{EqJDAEigsOpt}
-\max_{\mathbf{A}^T\mathbf{A}=\mathbf{I}} = tr\big(\mathbf{A}\mathbf{X}^T\mathbf{HX}\mathbf{A}^T\big)
-\end{equation}
-However, the end of the day the adaptation matrix is found by solving the eigenvalue equation with $\mathbf{X}^T\mathbf{HXA} = \mathbf{A}\mathbf{\Phi}$ where $\mathbf{\Phi} \in \mathbb{R}^{K\times K}$ is the diagonal matrix with the $K$ largest eigenvalues, which finally results in $\mathbf{Z} = \mathbf{A}\mathbf{X}^T$, with $\mathbf{Z} \in \mathbb{R}^{N\times K}$.
-But equation \eqref{EqJDAEigsOpt}, will be important later on.\cite{Long.}\\
-The marginal distribution is adapted by using the empirical \acs{MMD} from equation \eqref{EqMMdExp}, by incorporating the adoption matrix, the \acs{MMD} will compare the source and target means in the $K$ dimensional subspace:\cite{Long.}
-\begin{equation}\label{EqJDAMarginalOpt}
-\min_{\mathbf{A}^T\mathbf{A}} tr(\mathbf{A}\mathbf{X}^T\mathbf{M}_0\mathbf{X}\mathbf{A}^T),
-\end{equation}
-With $\mathbf{M}_0$ as \acs{MMD} matrix to compute the empirical estimate in matrix form.
-It has the following elements.
-\begin{equation}\label{EqJDAMarginalMMD}
-(M_0)_{ij}= \begin{dcases}
-\frac{1}{N_\mathcal{Z}N_\mathcal{Z}},\>\>\> \mathbf{x_i},\mathbf{x_j} \in \mathcal{Z}\\
-\frac{1}{N_\mathcal{X}N_\mathcal{X}},\>\>\> \mathbf{x_i},\mathbf{x_j} \in \mathcal{X}\\
-\frac{-1}{N_\mathcal{Z}N_\mathcal{X}},\>\>\> otherwise
-\end{dcases}
-\end{equation}
-This is done because of estimating the probability density for distribution is often considered as a non-trivial problem.
-Furthermore, the differences in the marginal distributions are still large.
-By minimising equation \eqref{EqJDAMarginalOpt} in a way that equation \eqref{EqJDAEigsOpt} is maximised, the domains are drawn closer in the subspace.
-Which is in fact similar to \acs{TCA} from \ref{TlSubSecHomoSymFeature}.\cite{Long.}\\
+In fact, the optimization problem to solve the marginal differences are very similar to the \acs{TCA} solution from equation \eqref{EqTCAReducedOpt}.\cite{Pan.2011}\\
 It seems that adopting the conditional probability distribution is a kind of bigger problem.
-Since the goal is to be able to solve the transfer problem without labelled target data the $P(\mathbf{y}_\mathcal{X}\vert \mathbf{X})$ cannot be directly modelled or estimated with some statistics like it is done by the marginal adaptation.\cite{Long.}\\
-Because of this, they created the pseudo label technique.
+Since the goal is to be able to solve the transfer problem without labelled target data the $P(\mathbf{y}_\mathcal{X}\vert \mathbf{X})$ cannot be directly modeled or estimated with some statistics like it is done by the marginal adaptation.\cite{Long.}\\
+Because of this, they applied a pseudo label technique.
 This is done by applying a base classifier, e.\,g. \acs{SVM} to predict the not 'final' class labels for the target domain, which are the pseudo labels.
-Since $P(\mathbf{y_\mathcal{Z}}\vert \mathbf{Z})$ is unknown, the class conditional probability function in form of $P(\mathbf{X}\vert \mathbf{y}_\mathcal{X}=c)$, with the true class labels and $P(\mathbf{X}\vert \mathbf{y}_\mathcal{X}=c)$, with the pseudo labels, the conditional probability distributions can be matched.
-Here $c$ represents the classes of the label space $\mathcal{Y}$, i.\,e. $c\in{1,\dots,C}$ for $C$ labels.
-By incorporating the class conditional distribution in equation \eqref{EqJDAMarginalOpt}, not the sample means, but the distance between the class conditional distributions are measured.\cite{Long.}
+Since $P(\mathbf{y}_\mathcal{X}\vert \mathbf{X})$ is unknown, the class conditional probability functions in form of $P(\mathbf{X}\vert \mathbf{y}_\mathcal{X}=c)$(true class labels) and $P(\mathbf{X}\vert \mathbf{y}_\mathcal{X}=c)$(pseudo labels) are matched.
+Here $c$ represents the classes of the label space $\mathcal{Y}$, i.\,e. $c\in{1,\dots,C}$ for $C$ labels.\cite{Long.}\\
+By incorporating the class conditional distribution in the \acl{MMD}, not the sample means, but the distance between the class conditional distributions are measured:\cite{Long.}
 \begin{equation}\label{EqJDAConditionalOpt}
 \bigg|\bigg| \frac{1}{N_\mathcal{Z}^{(c)}} \sum_{\mathbf{x}_i \in \mathcal{Z}^{(c)}}^{N_\mathcal{Z}^{(c)}}\mathbf{A}\mathbf{x}_i^T- \frac{1}{N_\mathcal{X}^{(c)}} \sum_{\mathbf{x}_j \in \mathcal{X}^{(c)}}^{N_\mathcal{X}^{(c)}}\mathbf{A}\mathbf{x}_j^T \bigg|\bigg|^2 = \min_{\mathbf{A}^T\mathbf{A}} tr(\mathbf{A}\mathbf{X}^T\mathbf{M}_c\mathbf{X}\mathbf{A}^T)
 \end{equation}
@@ -512,30 +394,14 @@ The elements of the $\mathbf{M}_c$ with the use of the class labels are computed
 0,\>\>\>\>\>\>\>\> otherwise
 \end{dcases}
 \end{equation}
-Again by minimising equation \eqref{EqJDAConditionalOpt} it will maximise equation \eqref{EqJDAEigsOpt}.
 Note that because of the differences in the domains the most pseudo labels are incorrect, but it seems that in combination with the modified \acs{MMD}, it helps to draw the distribution closer together in the subspace.\cite{Long.}\\
-With this tools, the last step can be made.
-The optimisation problem is made to minimise the differences in both types of distributions.
-This means they reformulated equation \eqref{EqJDAEigsOpt} with \eqref{EqJDAMarginalOpt} and \eqref{EqJDAConditionalOpt} to:\cite{Long.}
+Incorporating, they class conditional \acs{MMD} the final \acs{JDA} optimization problem is given with:\cite{Long.}
 \begin{equation}\label{EqJDAMergeOpt}
 \min_{\mathbf{A}\mathbf{X}^T\mathbf{M}_c\mathbf{X}\mathbf{A}^T=\mathbf{I}} \sum_{c=0}^{C} tr(\mathbf{A}\mathbf{X}^T\mathbf{M}_c\mathbf{X}\mathbf{A}^T) + \lambda \Vert\mathbf{A}\Vert^2_F
 \end{equation}
-Where $\lambda$ is again the regulation parameter to guarantee a distinct function for the optimisation problem.\\
-In fact, the \acs{PCA} is designed for linear problems.\cite[p. 428-429]{Scholkopf.2001}
-To get rid of this constraint, Long et al. used the Representer Theorem, for example, defined in \cite[p. 90]{Scholkopf.2001}, to a kernel-\acs{JDA} for a non-linear problem.
-Note that it is similar to equation \eqref{EqJDAMergeOpt} when the data matrix $\mathbf{X}$ is replaced with some kernel $\mathbf{K}$.
-Revisiting the merged optimisation function, they showed how to formulate the problem as Lagrange function.
-This problem is solved by analysing the derivatives concerning the $\mathbf{A}$, i.\,e. $\delta L / \delta \mathbf{A}$, which results in the following in the eigendecompension:\cite{Long.}
-\begin{equation}\label{EqJDAFinalEigs}
-\bigg(\mathbf{X}^T \sum_{c=0}^{C} \mathbf{M}_c\mathbf{X}^T+\lambda\mathbf{I}\bigg)\mathbf{A}^T = \mathbf{X}^T\mathbf{HX}\mathbf{A}^T\boldsymbol{\Phi}
-\end{equation}
-Where $\boldsymbol{\Phi} = diag(\phi_1,\dots,\phi_n)$ are the Lagrange multiplier.
-The problem from equation \eqref{EqJDAMergeOpt} is reduced to finding the $K$ smallest eigenvectors for the eigenproblem of equation \eqref{EqJDAFinalEigs}.\cite{Long.}\\
-Finally, we can describe the presented algorithm for \acs{JDA}.
-First construct the $\mathbf{M}_0$ for the marginal distribution alignment problem from equation \eqref{EqJDAMarginalOpt} and setting $\{\mathbf{M}_c\}_{c=1}^C = 0$ for the pseudo label matrix.
-Furthermore, repeat the eigendecomposition in equation \eqref{EqJDAFinalEigs}, the training and prediction from the classifier for the pseudo labels and construct the \acs{MMD} matrix $\mathbf{M}_0$ from equation \eqref{EqJDAMMDPseudoMatrix} until convergence.\cite{Long.}\\
-With that, a classifier trained in the subspace and the adaptive matrix $\mathbf{A}$ can be obtained.
-Through $\mathbf{A}$, any new points can be transformed in the subspace.\cite{Long.}\\
+Where $\lambda$ is again the regulation parameter to guarantee a distinct function for the optimization problem.\\
+By analyzing this problem, they showed that solving equation \eqref{EqJDAMergeOpt} is equal by solving the eigenvalue problem of $\mathbf{X}^T\mathbf{HX}\mathbf{A}^T\boldsymbol{\Phi}$ where $\boldsymbol{\Phi} = diag(\phi_1,\dots,\phi_n)$ are the Lagrange multiplier. By finding the $K$ smallest eigenvectors for the eigenproblem of equation the transformation matrix $\mathbf{A}$ can be obtained. The embedded matrix $\mathbf{Z}$ can be obtained with $\mathbf{Z} = \mathbf{A}\mathbf{X}^T$.\cite{Long.}\\
+For details to the algorithm, please refer to \cite{Long.}.
 The \acs{JDA} complexity for $T\le 50$ as the number of iterations until convergence and the subspace bases with $K\le 500$ the computational complexity is given by $\mathcal{O}(TKM^2+TCN^2+TMN)$.\cite{Long.}
 \subsection{Parameter-Transfer}\label{TlSubSecPara}
 The third approach, the parameter transfer aims to transfer knowledge through shared parameters from source and target domains.
@@ -550,37 +416,14 @@ The transfer knowledge method is adopted from his previous work in \cite{Tommasi
 Note that this method does not try to explicit minimise the distribution differences, as per definition of the homogeneous transfer learning from \ref{DefHomogeneous}.
 Again, consider a labeled source dataset with $\{\mathbf{z},{y_i}\}_{i=1}^{N}$, where $y_i \in \mathcal{Y_Z} =\{1,-1\}$.
 Furthermore, the feature mapping function $\phi(\cdot)$, which maps the features in the infinite space and the inducing kernel function $\mathbf{K}(\mathbf{x},\mathbf{x}')=\phi(\mathbf{x})^T\phi(\mathbf{x}')$.
-Revisiting the \acs{LS-SVM}, it has the following optimisation problem for determining the hyperplane parameter $\mathbf{w}$ and the bias $b$.\cite{Tommasi.}
-\begin{equation}\label{EqLSVMOptProblem}
-	\min_{\mathbf{w},b} \frac{1}{2}\Vert\mathbf{w}\Vert^2 + \frac{C}{2}\sum_{i=1}^{N}[y_i-\mathbf{w}\phi(\mathbf{x}_i)-b]^2
-\end{equation}
-It can be shown  that the optimal value of $\mathbf{w}$ is found by $\mathbf{w} = \sum_{i=1}^{N}\alpha_i\phi(\mathbf{x}_i)$.
-Furthermore, $\boldsymbol{\alpha}$ and $b$ can be found by solving:\cite{Tommasi.}
-\begin{equation}
-	\begin{bmatrix}
-		\mathbf{K}+\frac{1}{C}\mathbf{I} \>\>\>\> \mathbf{1}\\
-		\mathbf{1}^T \>\>\>\>\>\>\>\>\>\>\>\>\>\> 0
-	\end{bmatrix}
-	\begin{bmatrix}
-		\boldsymbol{\alpha}\\
-		b
-	\end{bmatrix}
-	= 
-	\begin{bmatrix}
-		\mathbf{y} \\
-		0
-	\end{bmatrix}
-\end{equation}
-Where $\mathbf{I}$ is the identity matrix and $\mathbf{1}$ is a vector of ones
-The solution is found by inverting the left matrix of the left-hand side, which is further called $\mathbf{G}$.\cite{Tommasi.}\\
-Now suppose that we have prior knowledge from $K$ classes (not models, but in following we will call it models), which are already trained.
+Suppose that we have prior knowledge from $K$ classes (not models, but in following we will call it models), which are already trained.
 This knowledge is represented with the hyperplane parameter, i.\,e. $\mathbf{w}'_j, j = \{1,\dots,K\}$, for each class.\cite{Tommasi.}\\
 With that Tommasi et al. assuming that the transfer happens when the constraints of the hyperplane of the new class $K+1$ are set in a manner that it is close to the already trained classes of $K$.
-Keeping this in mind, the optimization problem can be rewritten as model for multi knowledge transfer:\cite{Tommasi.}
+Keeping this in mind, the optimization problem for the \acs{LS-SVM} can be extended to a model for multi knowledge transfer:\cite{Tommasi.}
 \begin{equation}\label{EqMMKTOpt}
 		\min_{\mathbf{w},b} \frac{1}{2}\Vert\mathbf{w}-\sum_{j=1}^{K}\beta_j\mathbf{w}_j'\Vert^2 + \frac{C}{2}\sum_{i=1}^{N}\zeta_i[y_i-\mathbf{w}\phi(\mathbf{x}_i)-b]^2
 \end{equation}
-With $\mathbf{w}'_j$ as a parameter for the already trained model of $K$ models and $\zeta_i$ as a parameter for weighting, which helps to balance the contribution of positive and negative examples in the training data in equation \eqref{EqMMKTOpt}.
+Where $\mathbf{w}$ is searched model parameter and $C$ as free cost parameter. With $\mathbf{w}'_j$ as a parameter for the already trained model of $K$ models and $\zeta_i$ as a parameter for weighting, which helps to balance the contribution of positive and negative examples in the training data in equation \eqref{EqMMKTOpt}.
 It is determined with the following chase:\cite{Tommasi.}
 \begin{equation}\label{EqMMKTZeta}
 	\zeta_i = \begin{cases}
@@ -620,21 +463,13 @@ In this method the error of the \acs{LS-SVM} is quantified with the \ac{LOO}-Err
 The 'classical' definition of the \acs{LOO}-Error is, as the name says, leaves one data point out and creates a new 'dataset' on which a model is trained.
 After that the error is calculated and is repeated as long as not all data points are already leaved out.
 From the resulting errors the mean is calculated, this forms the \acl{LOO}-Error.\cite[p.74-76]{Evgeniou.2004}\\
-They have incorporated this error with the \acs{LS-SVM} and obtained the \acs{LOO}-Error with:\cite{Tommasi.}
-\begin{equation}\label{EqMMKTLOOError}
-	r_i^{-1} = y_i - \tilde{y}_i \frac{\alpha_i} = {\mathbf{G}^{-1}_{ii}} - \sum_{j=1}^{k}\beta_j \frac{\alpha_{i(j)}'}{\mathbf{G}^{-1}_{ii}}
-\end{equation}
-Where $\alpha_i$ is the Lagrange multiplier for the current model and the $y_i$ is the label with respect to the $i$-th data point.
-Note that $(-i)$ in this context means, the dataset without the $i$-th data point is applied.
-Furthermore, $\tilde{y}_i$ are the \acs{LOO} predictions and $\alpha_i =\mathbf{G}_(-i)^{-1} = [\hat{y}_1^j,\dots,\hat{y}_{i-1}^j,\hat{y}_{i+1}^j,\dots,\hat{y}_N^j,0]^T$, with $\hat{y}_i^= \mathbf{w}'_j+\phi(x_i)$.
-With that, $\mathbf{G}_{(-i)}^{-1}$ is the matrix obtained, when the $i$-th sample is omitted.\\
-Tommasi et al. showed that the best values for $\beta_j$ are those minimising equation \eqref{EqMMKTLOOError}.
-However minimising directly would result in a non-convex formulation with many local minima.
-Therefore they formulated a loss function, which is rather similar to the hinge loss in \acs{SVM}, which leads to a smooth function:\cite{Tommasi.}
+They have incorporated this error with the \acs{LS-SVM} optimization problem and obtained the  loss function for the new approach:\cite{Tommasi.}
 \begin{equation}
-	loss(y_i,\tilde{y}_i)= \zeta_i max[1-y_i\tilde{y}_i,0] = max \bigg[y_i\zeta_i\bigg({\mathbf{G}^{-1}_{ii}} - \sum_{j=1}^{k}\beta_j \frac{\alpha_{i(j)}'}{\mathbf{G}^{-1}_{ii}}\bigg),0\bigg]
+loss(y_i,\tilde{y}_i)= \zeta_i max[1-y_i\tilde{y}_i,0] = max \bigg[y_i\zeta_i\bigg({\mathbf{G}^{-1}_{ii}} - \sum_{j=1}^{k}\beta_j \frac{\alpha_{i(j)}'}{\mathbf{G}^{-1}_{ii}}\bigg),0\bigg]
 \end{equation}
-With that, the 'global' loss function over all models can be formulated with respect to the constrain $\Vert\boldsymbol{\beta}\Vert_2\le 1$.
+Note that $\mathbf{G}_{ii}$ and in this context means, the dataset without the $i$-th data point is applied.
+Furthermore, $\tilde{y}_i$ are the \acs{LOO} predictions and $\alpha_i =\mathbf{G}_{ii}^{-1} = [\hat{y}_1^j,\dots,\hat{y}_{i-1}^j,\\\hat{y}_{i+1}^j,\dots,\hat{y}_N^j,0]^T$, with $\hat{y}_i^= \mathbf{w}'_j+\phi(x_i)$.\\
+With that, the convex 'global' loss function over all models can be formulated with respect to the constrain $\Vert\boldsymbol{\beta}\Vert_2\le 1$.
 This will find the optimal $\beta$'s.
 In practice, the in the optimisation process is implemented with a project sub-gradient descent algorithm.\cite{Tommasi.}
 The computational complexity of the algorithm is $\mathcal{O}(N^3+KN^2)$, with $N$ data points and $K$ classes, i.\,e. prior models.
