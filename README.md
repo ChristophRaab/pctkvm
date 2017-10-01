@@ -28,6 +28,6 @@ The image dataset contains images from the datasets office and Caltech-256. Furt
    * OfficeCaltech
 * Result:
    * Top level: Aggregated results
-   * average: results of test-type average
-   * fivetwo: results of test-type fivetwo
+   * average: Results of test-type average
+   * fivetwo: Results of test-type fivetwo
 
