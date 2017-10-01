@@ -4,7 +4,7 @@ This repository contains source code and latex sources. The folder Thesis contai
 
 * The folder Source Code is divided into three subfolders:
 
-   * The folder code which contains MatLab files for the PCKTVM and every other Transfer Learning solutions which are used in the study. Furthermore, it contains the supplementary source code for visualizing results and datasets, calculating divergencies, etc.
+   * The folder code contains MatLab files for the PCKTVM and every other Transfer Learning solutions which are used in the study. Furthermore, it contains the supplementary source code for visualizing results and datasets, calculating divergencies, etc.
 
    * The folder data contains the datasets which are used in the study. It uses the Reuters-21578 dataset for text classification. 
 The image dataset contains images from the datasets office and Caltech-256. Furthermore, the 20-Newsgroup, dataset which is only used for testing the RT-PCVM
