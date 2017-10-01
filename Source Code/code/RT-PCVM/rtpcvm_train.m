@@ -6,9 +6,10 @@ function [model] = rtpcvm_train(trainX,trainY,testX,options)
 % IEEE Transactions on Neural Networks. vol.20, no.6, pp.901-914, June 2009.
 %	Copyright (c) Huanhuan Chen
 % The following improvments by Christoph Raab:
-% Ability to Transfer Learning with Domain Invariant Transfer Kernel Learning
-% See the Matlab-method TKL(.) to refer to the original paper
-% Optional theta estimation
+% Ability to Transfer Learning with SVD Rotation to algin source and target
+% distributions. 
+% BETA VERSION
+% Optional: theta estimation
 % Multi-Class Label with One vs One
 %--------------------------------------------------------------------------
 %Parameters:

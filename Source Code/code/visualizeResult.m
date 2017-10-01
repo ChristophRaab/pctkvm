@@ -1,6 +1,7 @@
-% This script visualize the mean errors and standard deviation over the
-% Reuters and image datasets for the cross-validation sampling results and
-% the average results
+%% Visualize of the Results as Graph
+% This script visualizes the mean errors and standard deviation over
+% Reuters and image datasets for cross-validation sampling results and
+% the average results as graphs.
 
 load ../result/average_image_Result.mat;
 mea = meanErrors'; mstd = stdErrors';

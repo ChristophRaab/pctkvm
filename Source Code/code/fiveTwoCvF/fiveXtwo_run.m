@@ -1,6 +1,27 @@
-function [ ftresultErr,ftresultAuc,ftresultAcc,accResult,errResult,aucResult,timeResult,nvecResult,ormse] = fiveXtwo_run( Xs,Xt,Ys,Yt,options,data)
-%FIVEXTWO_RUN Summary of this function goes here
-%   Detailed explanation goes here
+function [ ftresultErr,ftresultAuc,ftresultAcc,accResult,errResult,aucResult,timeResult,nvecResult,ormse] = fiveXtwo_run( Xs,Xt,Ys,Yt,options)
+%FIVEXTWO_RUN This script divides the dataset for the 5x2 test and calls
+% the tlfun to evaluate the classifiers. After this, it calls the function
+% calcFiveTwoFvalue for calculating an F value and determines wins, loses, ties.
+% The result is aggregated and returned.
+% --------------------------------------------------------------------------
+%INPUT: 
+% Xs - Source Data
+% Xt - Target Data
+% Ys - Source Label
+% Yt - Target Label
+% options - Struct for the classifier parameters. For example, the cost
+% Parameter C is given with: options.svmc = 10
+%OUTPUT: 
+% accResult - The test accuracy of the classifier over five runs for the given data
+% errResult - The test error
+% aucResult - The AUC value. Note 1 is positive class. GFK has no prob. est.
+% timeResult - Needed time 
+% nvecResult - Used support vectors. Note GFK uses no vector machine
+% ormse - The root mean square error for one dataset
+% ftresultErr - Result of the F test for the error metrics
+% ftresultAuc - F test result with AUC values
+% ftresultAcc - F test result with ACC values
+
 foldOneErr = [];
 foldTwoErr = [];
 foldOneAuc = [];
@@ -34,7 +55,7 @@ for i=1:5
     Yt1 = Yt(find(targetIndx==1),:);
     
     
-    [ accTmp,errTmp,aucTmp,timeTmp,nvecTmp ] = tlfun(Xs1',Xt1',Ys1,Yt1,options,data);
+    [ accTmp,errTmp,aucTmp,timeTmp,nvecTmp ] = tlfun(Xs1',Xt1',Ys1,Yt1,options);
     foldOneErr = [foldOneErr;errTmp];
     foldOneAuc = [foldOneAuc;aucTmp];
     foldOneAcc = [foldOneAcc;accTmp];
@@ -48,7 +69,7 @@ for i=1:5
     Xt2 = Xt(find(targetIndx==2),:);
     Yt2 = Yt(find(targetIndx==2),:);
     
-    [accTmp,errTmp,aucTmp,timeTmp,nvecTmp ]  = tlfun(Xs2',Xt2',Ys2,Yt2,options,data);
+    [accTmp,errTmp,aucTmp,timeTmp,nvecTmp ]  = tlfun(Xs2',Xt2',Ys2,Yt2,options);
     foldTwoErr = [foldTwoErr;errTmp];
     foldTwoAuc = [foldTwoAuc;aucTmp];
     foldTwoAcc = [foldTwoAcc;accTmp];

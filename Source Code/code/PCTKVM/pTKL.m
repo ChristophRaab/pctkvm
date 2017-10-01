@@ -2,6 +2,7 @@
 % M. Long, J. Wang, J. Sun, and P.S. Yu
 % IEEE Transactions on Knowledge and Data Engineering (TKDE)
 % Contact: Mingsheng Long (longmingsheng@gmail.com)
+% Extension for usage with dissimilarity matrix by Christoph Raab
 function K = pTKL(D,m, options)
 
 if nargin < 3

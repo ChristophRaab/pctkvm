@@ -1,4 +1,10 @@
 function [ftmerge] = sumFtResult(ftresult,metricType)
+%SUMFTRESULT This function aggregates the 5x2 cv F test over a dataset-type
+% and metric.
+%-------------------------------------------------------------------------
+%INPUT:
+% ftresult - Matrix of the wins, loses and ties of all classifiers
+% metricType - Performance metric: AUC, err, acc. The default is error.
 ftmerge = zeros(7,6);
 
 if strcmp(metricType,'err')

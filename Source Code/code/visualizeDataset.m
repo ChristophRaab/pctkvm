@@ -1,7 +1,9 @@
 %% Visualize of the Datasets in 2 Dimensions 
-% This Script reduces the dimensions of the datasets to two dimensions to plot the datasets.
-% the tsne Algorithm with the euclidean distance is used for the
+% This script reduces the dimensions of the datasets to two dimensions to plot the datasets.
+% The t-SNE Algorithm with the euclidean distance is used for the
 % reduction.
+% NOTE: It may take a while. Comment out some dataset to speed up the
+% script
 
 load ../data/Reuters/org_vs_people_1;
 Xs = Xs';
@@ -73,6 +75,6 @@ function [] = plotData(X,Y,categories,titleText)
     else
          legend(categories{1},categories{2});
     end
-%     title(titleText);
+    title(titleText);
 
 end

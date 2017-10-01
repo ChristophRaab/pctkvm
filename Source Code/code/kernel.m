@@ -1,3 +1,4 @@
+%% Kernel function by Mingsheng Long
 % With Fast Computation of the RBF kernel matrix
 % To speed up the computation, we exploit a decomposition of the Euclidean distance (norm)
 %

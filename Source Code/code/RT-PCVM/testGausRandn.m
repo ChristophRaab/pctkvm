@@ -1,5 +1,7 @@
-close all;
+% This script visualizes the problem of transfer learning with and synthetic
+% gaussian dataset
 
+close all;
 
 Z= [randn(100,3); randn(100,3)+2];
 Ys = [ones(100,1); ones(100,1)*2];

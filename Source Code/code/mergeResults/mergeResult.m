@@ -1,4 +1,10 @@
-function[]=mergeResult(testType,dataSet);
+function[]=mergeResult(testType,dataSet)
+%MERGERESULT: This function aggregates the metrics of classifiers. 
+% This merge is dataset-type and test-type dependent.
+%--------------------------------------------------------------------------
+%INPUT: 
+% testType - String; average or fivetwo
+% dataSet - String; reuters or image
 addpath(genpath('../../result/'));
 
 if ~exist('testType', 'var')

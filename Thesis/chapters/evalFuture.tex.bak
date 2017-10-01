@@ -11,12 +11,12 @@ With that, it can be seen if the \acs{SVM} is, in fact, better for the transfer 
 Another topic which is not included in this work is the use of other datasets, to give a more general evidence, whether a transfer learning solution is better or not.
 For example the 20-Newsgroup\footnote{\url{http://qwone.com/~jason/20Newsgroups/}} dataset, as a text-based dataset, as suggested in \cite{Pan.2010}.
 The reason why we did not include this dataset is that the \acs{GFK} algorithm needs to calculate the null space of the dataset.
-This task is a main-memory consuming and can not be done by the for the study available computers, which results finally in an 'out of memory' error from MatLab.
+This task is a main-memory consuming and can not be done by the for the study available computers, which results finally in an 'out of memory' error from Matlab.
 We decided for the comparison with the \acs{PCTKVM}, and it would be better to include more transfer learning solutions than datasets.\\
 Other examples for image transfer learning datasets are \textit{USPS}\footnote{\url{http://www-i6.informatik.rwth-aachen.de/~keysers/usps.html}}, \textit{MNIST}\footnote{\url{http://yann.lecun.com/exdb/mnist/}}, \textit{COIL20}\footnote{\url{http://www.cs.columbia.edu/CAVE/software/softlib/coil-20.php}}.\cite{Long.}\cite{Long.2014}
 These are not included in the study. Again for a more general assumption on the performance, it would be useful.
-As well as real-world scenarios like WiFi-localization or human activity classification.\cite[p. 32]{Weiss.2016}\\
-Furthermore, as described in \ref{EmSubSecMetricResult}, a more analytic way to determine the width of the Gaussian kernel should be found. Moreover, the current estimation should be modified in a future work to improve the performance and reduce the 'smoothness' of it.
+As well as real-world scenarios like WiFi-localisation or human activity classification.\cite[p. 32]{Weiss.2016}\\
+Furthermore, as described in \ref{EmSubSecMetricResult}, a more analytical way to determine the width of the Gaussian kernel should be found. Moreover, the current estimation should be modified in a future work to improve the performance and reduce the 'smoothness' of it.
 A possible approach would be to incorporate another estimation for finding the theta between the separated classes in the training set and combining them with the overall theta. In this case, we could decide whether the theta over all sample is too large.\\
 In the course of this study, we observed an overall good performance. However, we can observe that a mixed performance for the small multi-class image problem. Furthermore, we can also observe a drop of performance by the \textit{people vs. places} dataset, which is larger than the image sets.
 In future work, the reason for the mixed performance and the performance dips could be determined.\\

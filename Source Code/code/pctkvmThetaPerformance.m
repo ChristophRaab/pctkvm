@@ -1,8 +1,8 @@
-% This script calculates the error, accuracy and auc values over the 15
-% subsets of selected transfer learning methods. This will be repeated 10
-% times to get an additional standart deviation. The datasets are generated
-% from preprocessed versions of Reuters-21578, Office and
-% Caltech-256.
+%% Theta Performance
+% This script shows the performance of the PCTKVM over the Reuters dataset
+% with varying thetas.
+% Output is plotted and saved as matrix 
+
 
 
 addpath(genpath('../libsvm/matlab'));

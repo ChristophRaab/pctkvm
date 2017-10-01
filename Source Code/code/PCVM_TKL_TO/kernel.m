@@ -15,7 +15,6 @@
 % Modified by Mingsheng Long
 % 2013(c)
 % Mingsheng Long (longmingsheng@gmail.com), 2013
-
 function K = kernel(ker, X, X2, theta)
 
 if ~exist('ker', 'var')

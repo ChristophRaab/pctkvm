@@ -1,7 +1,7 @@
 \chapter{Complete Test Results}\label{appaB}
 This appendix shows the complete result tables.
-They are not in the chapter \ref{EmChap} for clarity.
-The detailed metrics for the single datasets can be looked up her.
+They are not in chapter \ref{EmChap} for clarity.
+The detailed metrics for the single datasets can be looked up here.
 Furthermore in this chapter are test results which are not discussed yet. 
 The reason for this is that the test in his construction has no cross-validation.
 However, this test is sometimes used to test transfer learning classification \cite{Long.} and can be found in section \ref{BSecCom}.
@@ -12,9 +12,9 @@ This section shows the detailed metrics of the cross-validation test.
 The table is showing the mean over the 5x2 cv F test, which is a total of ten repetitions.
 Every repetition has his unique sampling from the dataset. 
 Note that in table \ref{BTableFTErr} shows not only the mean but the standard deviation in brackets.
-This results is also plotted in figure \ref{FigErrorImgDatasetsB} for images and plotted in figure \ref{FigErrorReutersDatasetsB} for Reuters.
-The numbers of a dataset is the order of the sets, shown for example in \ref{BTableFTErr}.
-Furthermore in table \ref{BTableFTAUC} the \acs{AUC} values are shown. 
+This result is also plotted in figure \ref{FigErrorImgDatasetsB} for images and plotted in figure \ref{FigErrorReutersDatasetsB} for Reuters.
+The number of a dataset is the order of the sets, shown, for example, in \ref{BTableFTErr}.
+Furthermore, in table \ref{BTableFTAUC}, the \acs{AUC} values are shown. 
 The mean number of support vectors used can be viewed in table \ref{BTableFTNev}.
 The last table \ref{BTableFTTime} shows the needed time in seconds.  
 \begin{table}[]
@@ -45,7 +45,7 @@ The last table \ref{BTableFTTime} shows the needed time in seconds.
 			People vs Places       & 41.08          (1.98)& 40.69 (5.52)& 33.96 (8.17)& 41.08  (1.33)& 41.39          (3.26)& 43.51 (2.23)& 42.56 (2.46)& \textbf{33.42} (3.28)\\\midrule
 			RSME                   & 31.88          (8.43)& 34.48 (5.93)&  30.78 (10.35)& 26.28  (9.32)& 31.03          (9.00)& 33.05 (8.81)& 34.63 (6.28)& \textbf{22.81}(7.63) \\ \bottomrule
 	\end{tabular}}
-	\caption[Complete Cross-Validtion Result of Error]{Cross-validation comparison of the tested algorithms on 18 domain adaptation datasets by the error and \acs{RMSE} metrics. It shows the mean of the ten runs of cross-validation per dataset with the standard deviation.\label{BTableFTErr}}
+	\caption[Complete Cross-Validtion Result of Error]{Cross-validation comparison of the tested algorithms on 18 domain adaptation datasets by the error and \acs{RMSE} metrics. It demonstrates the mean of the ten runs of cross-validation per dataset with the standard deviation.\label{BTableFTErr}}
 \end{table}
 \begin{figure}
 	\centering
@@ -59,7 +59,7 @@ The last table \ref{BTableFTTime} shows the needed time in seconds.
 		\includegraphics[width=1\linewidth]{figures/PerformanceImage.png}
 		\caption{\label{FigErrorImgO}}
 	\end{subfigure}
-	\caption[Plot of mean Error and standard Deviation on Image Dataset]{The plot of mean errors with standard deviation of the cross-validation. The left shows the transfer \acs{PCVM} in comparison with the other transfer learning solutions. The right side shows all \acs{PCVM}'s in comparison with \acs{SVM} and \acs{TKL}. A graph shows the error and a vertical bar shows the standard deviation. \label{FigErrorImgDatasetsB}}
+	\caption[Plot of mean Error and a standard Deviation on Image Dataset]{The plot of mean errors with standard deviation of the cross-validation. The left shows the transfer \acs{PCVM} in comparison with the other transfer learning solutions. The right side shows all \acs{PCVM}'s in comparison with \acs{SVM} and \acs{TKL}. A graph shows the error and a vertical bar shows the standard deviation. \label{FigErrorImgDatasetsB}}
 \end{figure}
 
 \begin{figure}[!]
@@ -103,7 +103,7 @@ The last table \ref{BTableFTTime} shows the needed time in seconds.
 			Places vs People     & 59.36 & 63.11 & 71.77 & 77.15          & 60.95 & 58.72 & 76.57 \\
 			People vs Places     & 47.77 & 57.78 & 55.25 & 54.97          & 54.35 & 49.15 & 66.63 \\ \bottomrule
 	\end{tabular}}
-	\caption[Complete Cross-Validtion Result of AUC]{Cross-validation comparison of the tested algorithms on 18 domain adaptation datasets by the AUC value. It shows the mean of the ten runs of cross-validation per dataset. The positive class is one, and the negative class are the remaining classes.\label{BTableFTAUC}}
+	\caption[Complete Cross-Validtion Result of AUC]{Cross-validation comparison of the tested algorithms on 18 domain adaptation datasets by the AUC value. It shows the mean of the ten runs of cross-validation per dataset. The positive class is one, and the negative class is the composition of remaining classes.\label{BTableFTAUC}}
 \end{table}
 
 
@@ -167,11 +167,11 @@ The last table \ref{BTableFTTime} shows the needed time in seconds.
 This section shows the results of the classifiers trained on the whole dataset. 
 In general, the tables are showing the mean over five runs and are separated in the Reuters and image dataset.
 In table \ref{BTableCompleteErr} are the error and \acs{RMSE} values shown.
-This results is also plotted in figure \ref{FigErrorImgDatasetsB} for images and plotted in figure \ref{FigErrorReutersDatasetsB} for Reuters.
+This results are also plotted in figure \ref{FigErrorImgDatasetsB} for images and plotted in figure \ref{FigErrorReutersDatasetsB} for Reuters.
 The numbers of a dataset is the order of the sets, shown for example in \ref{BTableFTErr}.
 The \acs{AUC} values are shown in table \ref{BTableCompletAUC}.
 For a complete overview over the used support vectors, see table \ref{BTableCompleteNvec}.
-And finally the computation time in second as mean over the 5 runs is shown in \ref{BTableCompleteTime}. 
+Finally, the computation time in second as the mean over five runs is shown in \ref{BTableCompleteTime}. 
 \begin{table}[h]
 	\centering
 	\resizebox{\textwidth}{!}{%
@@ -225,7 +225,7 @@ And finally the computation time in second as mean over the 5 runs is shown in \
 		\includegraphics[width=1\linewidth]{figures/AverageImageTL.png}
 		\caption{\label{FigErrorAvImO}}
 	\end{subfigure}
-	\caption[Plot of mean Error and standard Deviation on the whole Datasets]{The plot of mean errors with standard deviation on the whole datasets. The left side shows all \acs{PCVM}'s in comparison with \acs{SVM} and \acs{TKL}. The right side shows all \acs{PCVM}'s in comparison to the other transfer learning solutions. The first row shows the result on Reuters and the second row shows the result on image dataset. A graph shows the error and a vertical bar shows the standard deviation. \label{FigErrorAv}}
+	\caption[Plot of mean Error and standard Deviation on the whole Datasets]{The plot of mean errors with a standard deviation on the whole datasets. The left side shows all \acs{PCVM}'s in comparison with \acs{SVM} and \acs{TKL}. The right side shows all \acs{PCVM}'s in comparison to the other transfer learning solutions. The first row shows the result on Reuters and the second row illustrates the result on image dataset. A graph shows the error and a vertical bar shows the standard deviation. \label{FigErrorAv}}
 \end{figure}
 
 
@@ -255,7 +255,7 @@ And finally the computation time in second as mean over the 5 runs is shown in \
 			Places vs People     & 56.36 & 60.64 & 66.2     & 77.03          & 56.78 & 56.43  & 76.31 \\
 			People vs Places     & 42.59 & 51.82 & 66.2     & 58.40          & 39.85 & 45.87  & 66.95 \\ \bottomrule
 	\end{tabular}}
-	\caption[Complete Dataset Result of AUC]{The test result of the classifiers by using the whole 18 datasets. It shows the mean AUC value over five runs. The positive class is one, and the negative class are the remaining classes.\label{BTableCompletAUC}}
+	\caption[Complete Dataset Result of AUC]{The test result of the classifiers by using the whole 18 datasets. It shows the mean AUC value over five runs. The positive class is one, and the negative class is the composition of remaining classes.\label{BTableCompletAUC}}
 \end{table}
 
 \begin{table}[]

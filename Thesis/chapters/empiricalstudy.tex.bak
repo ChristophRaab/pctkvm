@@ -9,7 +9,7 @@ With that, all datasets described in this thesis are tested.\\
 The procedure and selection of statistics are mainly adopted from \cite{Chen.2009} and \cite{Long.2015}.
 The main reason for this is to guarantee a fair comparison of the \acs{PCVM}, \acs{PCTKVM} and the \acs{TKL} method as wrapper algorithm for the \acs{SVM}.\\
 On first sight, it may be strange to compare first the difference between single datasets and proceed with an overall test.
-This is made because of two analytic reasons. First, the study has two different kinds of datasets (image and text) and many subcategories and subsets.
+This is made because of two analytical reasons. First, the study has two different kinds of datasets (image and text) and many subcategories and subsets.
 With the single test, it can be determined if there is a significant difference between the performance of classifiers and datasets.
 When it comes to a real-world scenario, the choice of a classifier may depend on his strengths and weaknesses to solve a task on a specific kind of dataset.
 With this listing of the performance may one can choose more precisely which classifier he chooses for the job. At least for text documents and images.\\
@@ -41,8 +41,8 @@ This makes the categories nearly even because more than a half of the documents 
 Furthermore, some pre-processing done at the collection.\cite{WenyuanDai.2007}\\
 First, all letters are converted to lower case, and the words are stemmed using the Porter stemmer.
 This stemmer removes the suffixes form the terms.\cite{Porter.1997} 
-Furthermore, stopwords are removed. With the \ac{DF} Threshold, the numbers of features are cut down.
-To apply the \acs{DF} Threshold the number of documents in which a certain term occurs has to be count.
+Furthermore, stopwords are removed. With the \ac{DF} Thresholding, the numbers of features are cut down.
+To apply the \acs{DF} Thresholding the number of documents in which a certain term occurs has to be count.
 Each term which is less than a previously set threshold is removed from the feature space.\cite{Yang.1997}
 The Threshold parameter is set to three with the goal to speed up the classification process.
 Finally, \ac{TFIDF} is applied for feature generation.
@@ -305,7 +305,7 @@ The performance, in general, is divided into datasets. The full result can be co
 		\includegraphics[width=1\linewidth]{figures/PerformanceImage.png}
 		\caption{\label{FigErrorImg}}
 	\end{subfigure}
-	\caption[Plot of mean Error and standard Deviation]{The plot of mean errors with standard deviation of the cross-validation. The left shows the result on Reuters and the right shows the result on images. A graph shows the error and a vertical bar shows the standard deviation. \label{FigErrorDatasets}}
+	\caption[Plot of mean Error and standard Deviation]{The plot of mean errors with standard deviation of the cross-validation. The left shows the result on reuters and the right shows the result on images. A graph shows the error and a vertical bar shows the standard deviation. \label{FigErrorDatasets}}
 \end{figure}
 In this subsection, the performance over the metrics, which are described earlier, is shown.
 In general, according to the \acs{MMD}'s and \acs{KLD}'s for the 18 datasets, classification of a image datasets is a more challenging problem in comparison with the Reuters dataset.
@@ -319,7 +319,7 @@ The classifier, which is created in the course of this work are italics.
 The performance of the best classifier is bold.
 The \acs{GFK} implementation supports no probabilistic output and therefore has no \acs{AUC} value in general.
 Note that through a cross-validation on the 18 datasets, the means metrics are combined from 180 performance results.
-Furthermore, the mean error over Reuters and image datasets for the \acs{SVM}, \acs{TKL} and the \acs{PCVM}'s are shown in figure \ref{FigErrorDatasets}. The error graph over the whole datasets can be seen in \ref{appaB}\\
+Furthermore, the mean error over reuters and image datasets for the \acs{SVM}, \acs{TKL} and the \acs{PCVM}'s are shown in figure \ref{FigErrorDatasets}. The error graph over the whole datasets can be seen in \ref{appaB}\\
 It can be observed that the \acs{TKL} with the \acs{SVM} has the overall best performance. 
 In general and according to section \ref{TlSecNeg}, it can be seen that negative transfer happens between the baseline \acs{SVM} and the transfer solutions.
 However, we can see that the \acs{PCTKVM}  achieves an \textit{overall} better performance result than the \acs{PCVM} in this test.\\
@@ -381,7 +381,7 @@ This has two reasons:
 The first is that the $\theta$ optimization is replaced with a fixed value or the estimation.
 The second is that the new \acs{PCVM}'s are converge much faster and therefore may need fewer iterations to finish.
 The theta estimation in comparison with the fixed value makes a mean difference from 11.52 seconds.\\
-The computer which is used to determining the needed time was an Acer Aspire V5-573G, containing an Intel Core i5 4200U Processor with 2x 1.60 GHz, 8GB of main memory and a NVIDIA GeForce GT 750M with 4GB of memory as graphic card.
+The computer which is used to determining the needed time was an Acer Aspire V5-573G, containing an Intel Core i5 4200U Prozessor with 2x 1.60 GHz, 8GB of main memory and a NVIDIA GeForce GT 750M with 4GB of memory as graphic card.
 \begin{table}[h]
 	\centering
 	\resizebox{\textwidth}{!}{%
@@ -447,7 +447,7 @@ The result of the 5x2 cv F test is shown in table \ref{TableFiveTwo}.
 In this table the cells are not showing the value of error in percent, but rather the summary of the wins,  loses and ties against the \acs{PCTKVM} as competitor algorithm.
 The row Significant is showing the amount of the significant wins loses or ties of the total.
 Note that because of this setup, one has to read the table the other way around. 
-A lose for a classifier shown in this table is a win for the \acs{PCTKVM} and vice verse. 
+A lose for a classifier shown in this table is a win for the \acs{PCTKVM} and vice versa. 
 A win is determined by comparing the performance of the two folds (10 runs).
 If there are more wins out of the 10 for one classifier, then it is a win for it. If the wins and losses are equal, then is a tie. 
 That means a tie does not represent a real equal performance, but rather that the wins and losses are even.\\
@@ -533,7 +533,7 @@ These key values are showing the difference of mean ranks against the mean rank 
 To see if a classifier has a significant difference in performance a key value in the table has to be at least the critical difference.
 For clarity, it shows not the absolute rank difference, but rather with the corresponding sign.
 That means for error, \acs{RMSE} a classifier is better if the rank difference is negative and worse if it is positive.
-For \acs{AUC} and \acs{ACC}, it is vice verse.
+For \acs{AUC} and \acs{ACC}, it is vice versa.
 The bold cells are indicating any significance.
 Note that one may draw further results out of the results by just taking the mean ranks of two classifiers from table \ref{TableMeanRank}, subtract them and compare the difference against the critical difference. \\
 Although we have omitted some metrics in the previous discussion, it seems reasonable to show all four metrics, because they differ more in this test in comparison with the previous statistics.
@@ -560,7 +560,7 @@ Furthermore, the differences of \acs{PCTKVM}\textsubscript{$\theta$Est} and the 
 				AUC        & 3.39 & 2.94 & 4.33                                & 4.94   & 3.22 & 4    & -    & 5.17 \\
 				ACC        & 4.5  & 2.06 & 4.06                                & 5.22   & 5.61 & 4.89 & 2.44 & 7.22 \\ \bottomrule
 			\end{tabular}}
-	\caption[Mean Ranks under the Performance Metrics]{The Mean Rank of the tested classifiers under the Metrics ERR, AUC, and RMSE.	\label{TableMeanRank}}
+	\caption[Mean Ranks under the Perfomance Metrics]{The Mean Rank of the tested classifiers under the Metrics ERR, AUC, and RMSE.	\label{TableMeanRank}}
 
 \end{table}
 

@@ -1,8 +1,13 @@
 % This script calculates the 5 x 2 cv F test statistic over the 15
 % datasets of selected transfer learning methods. This will be repeated 10
-% times to get an additional standart deviation. The datasets are generated
+% times to get an additional standard deviation. The datasets are generated
 % from preprocessed versions of Reuters-21578, Office and
 % Caltech-256. 
+% Testdesign from:
+% Ethem Alpaydin. 1999. 
+% Combined 5 × 2 cv F test for comparing supervised 
+% classification learning algorithms.
+% Neural Comput. 11, 9 (November 1999), 1885-1892. 
 
 addpath(genpath('../../libsvm/matlab'));
 addpath(genpath('../../data'));
@@ -29,7 +34,7 @@ for strData = {'org_vs_people','org_vs_place', 'people_vs_place'} %
 
         fprintf('data=%s\n', data);
 
-        [ftresultErr,ftresultAuc,ftresultAcc,accResult,errResult,aucResult,timeResult,nvecResult,ormse] = fiveXtwo_run( Xs,Xt,Ys,Yt,options,data);
+        [ftresultErr,ftresultAuc,ftresultAcc,accResult,errResult,aucResult,timeResult,nvecResult,ormse] = fiveXtwo_run( Xs,Xt,Ys,Yt,options);
 
 
         name = strcat('../../result/fivetwo/fiveTwo_Only',data,'.mat');
@@ -74,7 +79,7 @@ for iData = 1:12
     
     fprintf('data=%s\n', data);
     
-    [ftresultErr,ftresultAuc,ftresultAcc,accResult,errResult,aucResult,timeResult,nvecResult,ormse]  = fiveXtwo_run( Xs,Xt,Ys,Yt,options,data);
+    [ftresultErr,ftresultAuc,ftresultAcc,accResult,errResult,aucResult,timeResult,nvecResult,ormse]  = fiveXtwo_run( Xs,Xt,Ys,Yt,options);
    
     name = strcat('../../result/fivetwo/fiveTwo_Only',data,'.mat');
     save(name,'ftresultErr','ftresultAuc','ftresultAcc','errResult','accResult','aucResult','timeResult','nvecResult','ormse');

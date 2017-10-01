@@ -1,4 +1,13 @@
-function[]=friedmann(testType);
+function[]=friedman(testType)
+%FRIEDMAN This function aggregates the results of the Friedman test over 
+% the four performance metrics. The function proceeds with the Bonferroni-Dunn 
+% post-hoc test. The critical difference is calculated, and the mean rank
+% is estimated. The matrix diff shows the results of the post-hoc test.
+%--------------------------------------------------------------------------
+%INPUT:
+% testType - String with the options 'average' and 'fivetwo'. Depending on
+% this the friemand test will be calculated for the corresponding data
+% sampling.
 addpath(genpath('../../result/'));
 addpath(genpath('../../libsvm/matlab'));
 addpath(genpath('../../data'));

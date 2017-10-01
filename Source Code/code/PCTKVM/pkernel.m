@@ -15,8 +15,8 @@
 % Modified by Mingsheng Long
 % 2013(c)
 % Mingsheng Long (longmingsheng@gmail.com), 2013
-% Works with dissimilarity matrix and standard Gaussian Kernel
-% Christoph Raab 
+% Extension: Works with dissimilarity matrix and standard Gaussian Kernel
+% by Christoph Raab 
 
 function K = pkernel(ker, D, theta)
 

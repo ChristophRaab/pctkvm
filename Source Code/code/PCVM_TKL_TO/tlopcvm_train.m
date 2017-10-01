@@ -5,6 +5,9 @@ function [w,b,used,theta,errlog,K] = tlopcvm_train(trainX,trainY,testX)
 % Huanhuan Chen, Peter Tino and Xin Yao. Probabilistic Classification Vector Machines. 
 % IEEE Transactions on Neural Networks. vol.20, no.6, pp.901-914, June 2009. 
 %	Copyright (c) Huanhuan Chen
+% Simple integration of the TKL algorithm without solving the issue of theta
+% optimization.
+%NOTE: No multi-class option available
 
 % the maximal iterations
 niters = 500;

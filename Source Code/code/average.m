@@ -1,8 +1,10 @@
-% This script calculates the error, accuracy and auc values over the 15
+%% Average Test Script
+% This script calculates the error, accuracy and AUC values over the 15
 % subsets of selected transfer learning methods. This will be repeated 10
-% times to get an additional standart deviation. The datasets are generated
+% times to get an additional standard deviation. The datasets are generated
 % from preprocessed versions of Reuters-21578, Office and
 % Caltech-256.
+% Optional: For parallel computing uncomment parfor in line 38, 85
 
 
 addpath(genpath('../libsvm/matlab'));
@@ -45,7 +47,7 @@ for strData = {'org_vs_people','org_vs_place', 'people_vs_place'} %
             Xs=bsxfun(@rdivide, bsxfun(@minus,Xs,mean(Xs)), std(Xs));
             Xt=bsxfun(@rdivide, bsxfun(@minus,Xt,mean(Xt)), std(Xt));
             
-            [accTmp,errTmp,aucTmp,timeTmp,nvecTmp] = tlfun(Xs,Xt,Ys,Yt,options,data);
+            [accTmp,errTmp,aucTmp,timeTmp,nvecTmp] = tlfun(Xs,Xt,Ys,Yt,options);
             accResult = [accResult; accTmp]; errResult =[errResult; errTmp]; aucResult = [aucResult; aucTmp]; timeResult = [timeResult; timeTmp]; nvecResult = [nvecResult; nvecTmp];
             
         end
@@ -100,7 +102,7 @@ for iData = 1:12
         
         fprintf('data=%s\n', data);
         
-        [accTmp,errTmp,aucTmp,timeTmp,nvecTmp] = tlfun(Xs',Xt',Ys,Yt,options,data);
+        [accTmp,errTmp,aucTmp,timeTmp,nvecTmp] = tlfun(Xs',Xt',Ys,Yt,options);
         accResult = [accResult; accTmp]; errResult =[errResult; errTmp]; aucResult = [aucResult; aucTmp]; timeResult = [timeResult; timeTmp]; nvecResult = [nvecResult; nvecTmp];
         
     end

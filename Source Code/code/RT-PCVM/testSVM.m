@@ -1,4 +1,6 @@
-%--------------------------------------------------------------------------
+% This script evalutes the rotational transfer idea with the SVM as
+% baseliner.
+% BETA VERSION
 
 
 options.gamma = 1;

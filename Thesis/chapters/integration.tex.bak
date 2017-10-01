@@ -100,7 +100,7 @@ As a consequence, from above choosing only $P$ samples with $P< M$ the error ris
 The problem with choosing (sampling) columns/rows is that we usually do not know which columns are linearly independent.
 May, therefore, some sampling methods or approximations are made in the past to make this sampling more deterministic.
 For example, \cite{Kumar.2012}, which tries to find good samples through various sampling techniques, or \cite{Li.2015}, where the authors are drawing a large sample but approximate the submatrices with \ac{SVD}.\\
-To summarize the Nyström Kernel approximation, first, we select $P$ of $N$ 'good' samples from the data reorganizing the kernel according to \eqref{EqNystKernelParts}.
+To summarise the Nyström Kernel approximation, first, we select $P$ of $N$ 'good' samples from the data reorganizing the kernel according to \eqref{EqNystKernelParts}.
 At this point, we have two options:
 First calculating the kernel just for the $\mathbf{K}_{M, M}$ and the submatrix ${K}_{N-M, M}$, continuing with approximate the eigenvectors and eigenvalues and finally calculating the approximated kernel $\tilde{\mathbf{K}}$ \eqref{EqNystKernelEigsApprox}.
 Second calculate the approximation directly from the kernel as shown in equation \eqref{EqNystKernelApprox}. Note that the second approach needs a matrix inversion, which should be considered for the use with large datasets.
@@ -169,7 +169,7 @@ With this, they should contribute more to the knowledge process.\cite{Long.2015}
 In the above section, we defined the squared error loss function for the \acs{TKL} approach.
 In this subsection, we will introduce the resulting optimization problem and the \acs{TKL} algorithm in general.\\
 The learning problem is convex and therefore will always find the global minimum.
-Furthermore, it is a \ac{QP} with linear constraints which can be solved for example by the build in MatLab package \textit{quadprog}.
+Furthermore, it is a \ac{QP} with linear constraints which can be solved for example by the build in Matlab package \textit{quadprog}.
 The squared loss function from \eqref{EqTKLSquareErrorLoss} is reformulated in a general matrix format and is expressed as:\cite{Long.}
 \begin{equation}\label{EqTklQP}
 	\begin{gathered}
@@ -273,7 +273,7 @@ In the approach, they using a \textit{Min-Max} Normalization to do it.\cite{Kita
 	x_j = \frac{x_j - x_j^L}{x_j^U-x_j^L} \times s, \>\>\> i=1,\dots,D 
 \end{equation}
 Where $x_j^L$ is the lower bound and $x_j^U$ is the upper bound of value and $s=\alpha\times s \alpha \ge 0$.
-The $s$ is the abort criterion, but not needed in our approach.
+The $s$ is the abort criterium, but not needed in our approach.
 The author's recommendation is to set alpha to 1.1.
 Moreover, in every iteration of the algorithm, the dimension are rescaled.\\
 However, in general, the training and test data for the \acs{PCVM} must be z-scored, as discussed in section \ref{Pc}.
@@ -323,7 +323,7 @@ This matrix is symmetric and is zero on the diagonal.\cite[p. 22,299]{Gentle.200
 Because the Gaussian kernel is used in this approach, the dissimilarity matrix is already involved in the computational complexity.
 Therefore, this matrix has just to be calculated once and can be reused in the theta estimation and the Gaussian kernel.
 Another important thing to notice is that the data is already z-scored in the preparation and therefore there is no need to do it twice.
-With this, we just search the maximum distance with the built-in MatLab function \textit{min()} and can proceed with \eqref{EqMaxDist} in Step 3.
+With this, we just search the maximum distance with the built-in Matlab function \textit{min()} and can proceed with \eqref{EqMaxDist} in Step 3.
 In the tests, we are using the whole dataset including training and testing.\\
 Although we can reduce the complexity with a clever implementation, the complexity discussion is based on the worst case involving all steps to compute.
 The computational complexity of calculating the dissimilarly matrix is $\mathcal{O}(K^2)$.\cite{Kobti.2007}
@@ -331,7 +331,7 @@ Furthermore, finding a maximum in $K$ rows with $D$ values can be solved in $\ma
 Because the dissimilarity matrix is symmetric the complexity changes to $\mathcal{O}(N^2)$ and multiplying a scalar to $K$ elements costs $\mathcal{O}(K)$, which can be summarized in $\mathcal{O}(K^2+K)=\mathcal{O}K^2)$.
 Again finding a minimum within the theta array from step four takes $\mathcal{O}(K)$.
 Summarizing, we can obtain the complexity of the theta estimation with $\mathcal{O}(K^2)$.
-Note that in practice, we have no insight into the built-in MatLab function, which algorithm or implementation is used.
+Note that in practice, we have no insight into the built-in Matlab function, which algorithm or implementation is used.
 Because of this, the performance may be better for finding a minimum.
 Furthermore, we observed for small datasets, that the theta would be large, which will eventually lead to a worse performance, see section \ref{EmSecDaDes} and table \ref{TableThetaEst}.
 \subsection{Training Algorithm}\label{InSubSecTraining}
@@ -387,7 +387,7 @@ In the implementation consider a test set with size $M$.
 Then our label matrix $\mathbf{Y}$ and the probabilistic output matrix $\mathbf{P}$ has size $M\times K$.\\
 We choose then the final label for the returning label vector $\mathbf{y}$ by counting the number of occurrences of a label for a data point.
 The data point is then assigned to the label which the classifier has assigned the most.
-In case of a tie the lower, the smaller class label is assigned regarding whole numbers, according to the MatLab \textit{mode}\footnote{\url{https://de.mathworks.com/help/matlab/ref/mode.html}} function.
+In case of a tie the lower, the smaller class label is assigned regarding whole numbers, according to the Matlab \textit{mode}\footnote{\url{https://de.mathworks.com/help/matlab/ref/mode.html}} function.
 This is rather unconventional because it is likely to be a random selection, but in our tests, the results are the better as to assign the class label according to the biggest probability given from $\mathbf{P}$.\\
 To determine a final probability output for a final label decision with concerning a data point, the algorithm calculates the mean of the probabilistic output for the runs where the label is equal to the final label is assigned.\\
 The number of relevance vectors is determined by counting all unique vectors, which are used during the $K$ iterations.
@@ -398,5 +398,5 @@ We successfully integrated a proposed transfer learning method in the \acs{PCVM}
 Furthermore, we solved the problem that the algorithm will be slow through the theta optimization by adopting a simple theta estimation and adjust it to the needs of the \acs{PCVM}.
 Because it uses unlabeled target data, the algorithm is transductive and solves the transfer problem with a relational-knowledge approach regarding homogeneous transfer learning.\\
 Additionally, we extend the \acs{PCVM} and \acs{PCTKVM} to being able to solve multi-class problems via the one vs. one approach.
-The MatLab source code of the \acs{PCTKVM} and \acs{PCTKVM}\textsubscript{$\theta$Est} can be obtained from Github\footnote{\url{https://github.com/ChristophRaab/pctkvm.git}}.
+The Matlab source code of the \acs{PCTKVM} and \acs{PCTKVM}\textsubscript{$\theta$Est} can be obtained from Github\footnote{\url{https://github.com/ChristophRaab/pctkvm.git}}.
 Furthermore, the reader can find the complete code written for this thesis, including all tests, in the repository.

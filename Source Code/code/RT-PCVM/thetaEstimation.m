@@ -1,7 +1,10 @@
 function [ rmin ] = thetaEstimation( X)
-%THETAESTIMATION Calulates the minimum width of the gaussian kernel based on the
-%given data matrix X(m,n) with n dimensions or the precalculated distance matrix D(m,m). 
-%         X = X';
+%THETAESTIMATION Calculates the minimum width of the gaussian kernel based on the
+%given data matrix X(m,n) with n dimensions or the precalculated distance matrix D(m,m).
+%-------------------------------------------------------------------------
+%INPUT: Datamatrix
+%OUTPUT: rmin - Minimum width
+
         m = size(X, 1);
         n = size(X, 2);
        

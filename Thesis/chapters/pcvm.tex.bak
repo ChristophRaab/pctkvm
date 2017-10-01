@@ -21,7 +21,7 @@ The second parameter $b$ is called the bias and models the location of the hyper
 If a sample has a certain distance to the hyperplane, then it is considered as support vector.
 The support vectors are on both sides of the hyperplane for the two classes.
 The prediction is made by determining the edge of a data point corresponding to the decision boundary.
-If a new sample point is one side of the hyperplane, the point belongs to the corresponding class and vice verse:\cite[p. 236;328]{Bishop.2009}
+If a new sample point is one side of the hyperplane, the point belongs to the corresponding class and vice versa:\cite[p. 236;328]{Bishop.2009}
 \begin{equation}\label{EqSVMPred}
 y(\textbf{x}) = \sum_{i=1}^{N} w_i \phi_i(\mathbf{x}) + b= \textbf{w}^T \mathbf{\Phi}(\textbf{x}) + b
 \end{equation}
@@ -41,7 +41,7 @@ It is created and maintained from Chih-Jen Lin and Chih-Chung Chang and can be d
 \begin{figure}
 	\centering
 	\floatbox[{\capbeside\thisfloatsetup{capbesideposition={right,top},capbesidewidth=6cm}}]{figure}[\FBwidth]
-	{\caption[Example of SVM Classification]{Example of the SVM trained with the synthetic dataset with two classes in two dimensions. The green surrounded data points are the support vectors. \cite[p. 331]{Bishop.2009}}}
+	{\caption[Example of SVM Clasification]{Example of the SVM trained with the synthetic dataset with two classes in two dimensions. The green surrounded data points are the support vectors. \cite[p. 331]{Bishop.2009}}}
 	{\includegraphics[width=\linewidth]{figures/SVMProd.png}\label{FigSVMProd}}
 \end{figure}
 
@@ -73,7 +73,7 @@ One the right, the circled points are the relevance vectors of the model and on 
 \begin{figure}
 	\centering
 	\includegraphics[width=.8\linewidth]{figures/RVMProbEst.png}
-	\caption[Probabilistic Estimate of the RVM]{The probabilistic estimate of the \acs{RVM} on a synthetic dataset. The green circled points are relevance vectors.\cite[p. 356]{Bishop.2009}}
+	\caption[Probabilitc Estimate of the RVM]{The probabilistic estimate of the \acs{RVM} on a synthetic dataset. The green circled points are relevance vectors.\cite[p. 356]{Bishop.2009}}
 	\label{FigRVMProbEst}
 \end{figure}
 
@@ -173,9 +173,9 @@ But consider, that some of the data points which are not support vectors have $v
 The \ac{RVM} estimates the weights according to equation \eqref{EqBayesInfeRVM}.
 The likelihood is always positive because exponential function $e$ is always positive \cite[p. 355]{Hartmann.2015} and hence the logistic sigmoid link function is it.
 Therefore the sign depends on the prior, which uses the zero-mean Gaussian over all weights and hence providing some problems.\\
-It can happen that training errors occur with the use of the zero-mean Gaussian because the weight of a positive relevance vector can get a negative weight assigned and vice verse.
-This may lead to an unstable result corresponding to non-reliable vectors.
-As a consequence, the \acs{RVM} is more likely to overfit noise in comparison with the \acs{SVM} and \acs{PCVM}, with the same selection of parameters.\cite{Chen.2009}\\
+It can happen that training errors occur with the use of the zero-mean Gaussian because the weight of a positive relevance vector can get a negative weight assigned and vice versa.
+This may lead to an unstable result corresponding to nonreliable vectors.
+As a consequence, the \acs{RVM} is more likely to overfit the noise in comparison with the \acs{SVM} and \acs{PCVM}, with the same selection of parameters.\cite{Chen.2009}\\
 At this point the improvements of the \acs{PCVM} take place. 
 Instead of the zero-mean Gaussian prior, it uses the zero-mean truncated Gaussian as prior. \cite{Chen.2009}
 \begin{equation}\label{EqPcvmNtPrior}
@@ -258,7 +258,7 @@ Based on their work, many other applications are made to determine parameters.
 For example Bishop used a \acs{EM} algorithm within the algorithm $k$-means cluster.\cite[p. 426-428]{Bishop.2009}
 Furthermore, Hasti et al. using it in \cite[p. 272-276]{TrevorHastie.2009} for a two-component mixture model.\
 Although Tipping never mentioned the use of the \acs{EM} algorithm in the \acs{RVM}, the procedure of it, explained in \ref{PcSecRVM} is similar.\cite[p. 233-234]{Tipping.2001}.
-Furthermore, he introduced an Expectation-Maximization Update approach for determining the parameters.\cite[. 235]{Tipping.2001} \newline
+Furthermore, he introduced an Expectation-Maximisation Update approach for determining the parameters.\cite[. 235]{Tipping.2001} \newline
 As the name says, it consists of two steps.
 The algorithm has the $E$ and $M$ steps per iteration and will repeat as long as a convergence criterion, or the maximum iteration is reached, which can be specified in algorithm \ref{PcSubSecAlgo}.
 The first, the Expectation-Step finds expectations for the latent variables and furthermore an expectation for posterior of the parameters, which is referred as $\mathcal{Q}$ function.
@@ -273,7 +273,7 @@ With $\mathbf{\expB{H}}_\theta =  E[\mathbf{H}_\theta \vert y, \mathbf{w}^{old},
 For details to the determination the expectation, see Appendix B in \cite{Chen.2009}.\\
 This step relies on the 'old' latent variables and parameters from the previous iteration.
 The next part in the iteration is the Maximization-Step.\cite{Chen.2009}\\
-The Maximization step is done by analyzing the derivative of equation \ref{EqPcvmEStep}, to find the most likely values concerning the parameters.
+The Maximization step is done by analyzing the derivate of equation \ref{EqPcvmEStep}, to find the most likely values concerning the parameters.
 However, a joint optimization is not possible. Therefore, every parameter is optimized separately:\cite{Chen.2009}
 \begin{equation}\label{EqPcvmUpdateW}
 \mathbf{w}_{new} = (\mathbf{\Phi}_\theta^T \mathbf{\Phi}_\theta + \mathbf{\expB{A}})^{-1} (\mathbf{\Phi}_\theta^T \expB{\mathbf{H}}_\theta - b\mathbf{\Phi}_\theta^T \mathbf{I})

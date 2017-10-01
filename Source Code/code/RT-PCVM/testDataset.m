@@ -1,3 +1,8 @@
+% This script tests the performance of the RT-PCVM for the Reuters, 20
+% newsgroup and image dataset.
+% BETA VERSION: To evaluate th RT-PCVM for only one dataset-type, comment
+% the others.
+
 close all;
 clear all;
 addpath(genpath('../../libsvm/matlab'));
@@ -7,45 +12,45 @@ addpath(genpath('../code'));
 
 options.ker = 'rbf';      % TKL: kernel: | 'rbf' |'srbf | 'lap'
 testSize = 1;
-% for strData = {'org_vs_people','org_vs_place', 'people_vs_place'} %
-%     
-%     accResult = [];
-%     errResult = [];
-%     aucResult = [];
-%     timeResult = [];
-%     nvecResult = [];
-%     
-%     for iData = 1:2
-%         for i=1:testSize
-%             data = char(strData);
-%             data = strcat(data, '_', num2str(iData));
-%             load(strcat('../data/Reuters/', data));
-%             
-%             fprintf('data=%s\n', data);
-%             Z =full(Xs);
-%             X = full(Xt);
-%             Z=bsxfun(@rdivide, bsxfun(@minus,Z,mean(Z)), std(Z));
-%             X=bsxfun(@rdivide, bsxfun(@minus,X,mean(X)), std(X));
-%             Z = Z';X = X';
-%             soureIndx = crossvalind('Kfold', Ys, 2);
-%             targetIndx = crossvalind('Kfold', Yt, 2);
-%             
-%             Z = Xs(find(soureIndx==1),:);
-%             Ys = Ys(find(soureIndx==1),:);
-%             
-%             
-%             X = Xt(find(targetIndx==1),:);
-%             Yt = Yt(find(targetIndx==1),:);
-%             
-%             options.theta = 2;
-%             model = rtpcvm_train(full(Z),full(Ys),full(X),options);
-%             [erate, nvec, label, y_prob] = rtpcvm_predict(Yt,model);
-%             erate = erate*100;
-%             acc = 100-erate;
-%             fprintf('\nPCVM %.2f%% \n', acc);
-%         end
-%     end
-% end
+for strData = {'org_vs_people','org_vs_place', 'people_vs_place'} %
+    
+    accResult = [];
+    errResult = [];
+    aucResult = [];
+    timeResult = [];
+    nvecResult = [];
+    
+    for iData = 1:2
+        for i=1:testSize
+            data = char(strData);
+            data = strcat(data, '_', num2str(iData));
+            load(strcat('../data/Reuters/', data));
+            
+            fprintf('data=%s\n', data);
+            Z =full(Xs);
+            X = full(Xt);
+            Z=bsxfun(@rdivide, bsxfun(@minus,Z,mean(Z)), std(Z));
+            X=bsxfun(@rdivide, bsxfun(@minus,X,mean(X)), std(X));
+            Z = Z';X = X';
+            soureIndx = crossvalind('Kfold', Ys, 2);
+            targetIndx = crossvalind('Kfold', Yt, 2);
+            
+            Z = Xs(find(soureIndx==1),:);
+            Ys = Ys(find(soureIndx==1),:);
+            
+            
+            X = Xt(find(targetIndx==1),:);
+            Yt = Yt(find(targetIndx==1),:);
+            
+            options.theta = 2;
+            model = rtpcvm_train(full(Z),full(Ys),full(X),options);
+            [erate, nvec, label, y_prob] = rtpcvm_predict(Yt,model);
+            erate = erate*100;
+            acc = 100-erate;
+            fprintf('\nPCVM %.2f%% \n', acc);
+        end
+    end
+end
 
 %--------------------------------------------------------------------------
 options.theta = 1;
@@ -66,11 +71,11 @@ X = zscore(fts, 1);
 Yt = labels;
 %
 
-% model = rtpcvm_train(Z,Ys,X,options);
-% [erate, nvec, label, y_prob] = rtpcvm_predict(Yt,model);
-% erate = erate*100;
-% acc = 100-erate;
-% fprintf('\nPCVM %.2f%% \n', acc);
+model = rtpcvm_train(Z,Ys,X,options);
+[erate, nvec, label, y_prob] = rtpcvm_predict(Yt,model);
+erate = erate*100;
+acc = 100-erate;
+fprintf('\nPCVM %.2f%% \n', acc);
 
 %--------------------------------------------------------------------------
 

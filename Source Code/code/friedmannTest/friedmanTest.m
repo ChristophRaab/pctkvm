@@ -3,18 +3,16 @@ function [ friedmanResult] = friedmanTest(ranks)
 % by: Iman, Ronald & Davenport, James. (1980).
 % Approximations of the critical region of the Friedman statistic.
 % Communications in Statistics-Theory and Methods. 9. 571-595.
-% Implementation idea adopted from:
+% Testdesign by:
 % Janez Demšar. 2006.
 % Statistical Comparisons of Classifiers over Multiple Data Sets.
 % J. Mach. Learn. Res. 7 (December 2006), 1-30.
-% Implementation by: Christoph Raab (2017)
 % -------------------------------------------------------------------------
 % INPUT: Ranks from the k classifier over N datasets as Nxk matrix.
 %        At least 2 Columns and 2 Rows
-% OUTPUT: pFriedman: Confidence Probabilisitc for rejecting null Hyopthesis
+% OUTPUT: pFriedman: Confidence Probabilistic for rejecting null Hypothesis
 %         fFriedman: f Value from Friemand test statistic. F-Distributed
 %         df and ddf: degrees of freedom for this statistic
-
 
 N = size(ranks,1);
 k = size(ranks,2);

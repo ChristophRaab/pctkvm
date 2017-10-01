@@ -4,24 +4,24 @@ function [model] = pctkvm_train(trainX,trainY,testX,options)
 % The original PCVM Algorithm is presented in the following paper:
 % Huanhuan Chen, Peter Tino and Xin Yao. Probabilistic Classification Vector Machines.
 % IEEE Transactions on Neural Networks. vol.20, no.6, pp.901-914, June 2009.
-%	Copyright (c) Huanhuan Chen
-% The following improvments by Christoph Raab:
+%    Copyright (c) Huanhuan Chen
+% The following improvements by Christoph Raab:
 % Ability to Transfer Learning with Domain Invariant Transfer Kernel Learning
-% See the Matlab-method TKL(.) to refer to the original paper
+% See the Matlab-method TKL(.) for to the original paper
 % Optional theta estimation
 % Multi-Class Label with One vs One
 %--------------------------------------------------------------------------
 %Parameters:
-% [trainX] - (N,M) Matrix with training data. M refers to dims
-% [trainY] - Corrosponding training label for the training
-% [testX] - Testdata to train the Transfer Kernel. (Optional)
-% [options] - Struct which contains parameters:
+% trainX - (N,M) Matrix with training data. M refers to dims
+% trainY - Corresponding training label for the training
+% testX - Testdata to train the Transfer Kernel. (Optional)
+% options - Struct which contains parameters:
 %          .theta - Parameter for theta. Give -1 to make a theta estimation
 %                   with theta ~= 0. The theta is fixed to this.
 %          .eta - eigenspectrum damping factor for TKL
-%          .ker - Kernel Type: 'linear' | 'rbf' | 'lap'
+%          .ker - Kernel-Type: 'linear' | 'rbf' | 'lap'
 % Output:
-% The trained model as struct. For multiclass problems it is a struct
+% The trained model as a struct. For multiclass problems, it is a struct
 % array.
 
 C = unique(trainY);

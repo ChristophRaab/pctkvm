@@ -1,7 +1,7 @@
 function [] = calcThetaEst()
-% This script calculates the estimate of the theta used for the tl_PCVM
-% for the test datasets reuters, 20newsgroup and the Image datasets
-% caltech,webcam,dslr,amazon
+%CALCTHETAEST: This function calculates the estimate of the theta used for the PCTKVM
+% for the test datasets Reuters and the Image datasets
+% caltech,webcam,dslr,amazon.
 
 addpath(genpath('../libsvm/matlab'));
 addpath(genpath('../data'));
@@ -10,7 +10,7 @@ addpath(genpath('../code'));
 
 clear all;
 estThetas = [];
-%% Reuters Dataset
+
 for strData = {'org_vs_people','org_vs_place', 'people_vs_place'} %
     
     for iData = 1:2
@@ -21,8 +21,6 @@ for strData = {'org_vs_people','org_vs_place', 'people_vs_place'} %
         
         fprintf('data=%s\n', data);
         
-        % Z-Transformation
-        
         Xs=bsxfun(@rdivide, bsxfun(@minus,Xs,mean(Xs)), std(Xs));
         Xt=bsxfun(@rdivide, bsxfun(@minus,Xt,mean(Xt)), std(Xt));
         X = [Xs, Xt];
@@ -31,7 +29,6 @@ for strData = {'org_vs_people','org_vs_place', 'people_vs_place'} %
     end
 end
 
-%% OFFICE vs CALLTECH-256 Dataset
 srcStr = {'Caltech10', 'Caltech10', 'Caltech10', 'amazon', 'amazon', 'amazon', 'webcam', 'webcam', 'webcam', 'dslr', 'dslr', 'dslr'};
 tgtStr = {'amazon', 'webcam', 'dslr', 'Caltech10', 'webcam', 'dslr', 'Caltech10', 'amazon', 'dslr', 'Caltech10', 'amazon', 'webcam'};
 for iData = 1:12

@@ -204,7 +204,7 @@ Summarizing, because the two domains are different, transductive transfer learni
 The last one, the unsupervised transfer learning section, which is obviously not part of the category supervised learning, but will be described for completeness.
 It assumes that in both domains no labeled data is available.
 Furthermore, the task of the source and target data are different.
-In comparison with the supervised learning transfer learning methods, the goal is not to find labels for the target data but solving clustering, dimensionality reduction and density estimation.\cite{Pan.2010}
+In comparison with the supervised learning transfer learning methods, the goal is not to find labels for the target data but solving clustering, dimensionally reduction and density estimation.\cite{Pan.2010}
 Finally, we can give the following definition.
 \begin{mDef}[Unsupervised Transfer Learning {\cite{Pan.2010}}]\label{DefUTL}
 	 Given a source domain $\mathcal{Z}$ with a learning task $\mathcal{T_Z}$, a target domain $\mathcal{X}$ and a corresponding learning task $\mathcal{T_X}$, unsupervised transfer learning aims to help improve the learning of the target predictive function $f_\mathcal{X}(\cdot)$ in $\mathcal{X}$ using the knowledge in $\mathcal{Z}$ and $\mathcal{T_Z}$, where $\mathcal{T_Z} \neq \mathcal{T_X}$ and $\mathcal{Y_Z}$ and $\mathcal{Y_X}$ are not observable.
@@ -233,8 +233,8 @@ These approaches are sometimes called categories of information transfer.
 They give a general understanding of how the methods are trying to align the differences.\cite[p. 6-7]{Weiss.2016}
 Unlike the previous definitions, settings and explanations, which describing the problem and only giving an abstract solution through the predictive function $f_\mathcal{X}(\cdot)$.
 \subsection{Instance-transfer}\label{TlSubSecInstance}
-The instance transfer method tries to full fill the goal of aligning the marginal distribution by re-weighting some source data.
-This re-weighted data is then directly used with target data for training.
+The instance transfer method tries to full fill the goal of aligning the marginal distribution by reweighting some source data.
+This reweighted data is then directly used with target data for training.
 It seems that these type of algorithm works best when the conditional probability is the same in source and target domain \cite[p. 6]{Weiss.2016}\\
 In the following, we will present such an Instance transfer algorithm.
 The so-called \textit{TrAdaBoost} which is proposed by Dai et al.\cite{Pan.2010}\\
@@ -350,7 +350,7 @@ Following definition of homogeneous methods and similar to \acs{TCA}, the \acl{G
 Furthermore, it is claimed as unsupervised transfer learning method, but because the result of this method is, in fact, a kernel, it can be trained with a kernel machine.\cite{Gong.}
 Again because it needs target data in the learning process, it will be considered as inductive transfer learning method.\\
 The idea of \acs{GFK} can be summarized in the following steps:
-The source and the target data has to be embedded in a Grassmannian manifold.
+The source and the target data has to be embedded in a Grassmann manifold.
 Consider a subspace $\mathcal{P} \in \mathbb{R}^{K \times L}$ with $K$ observations (dimensionality of the data) and $L$ is the feature space dimension.
 Then the collection of the $L$ dimensional subspaces are forming the Grassmannian $\mathbb{G}(L, D)$ in the original $N$ dimensional feature space.\cite{Gong.}\\
 Next, construct a geodesic flow and merge source (start) and target (end) data as points on the flow.

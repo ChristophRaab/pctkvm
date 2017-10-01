@@ -26,7 +26,7 @@
 \acro{PCA}{Principal Component Analysis}
 \acro{PCTKVM}{Probabilistic Classification Transfer Kernel Vector Machine}
 \acro{PCVM}{Probabilistic Classification Vector Machine}
-\acro{PSD}{Positive Semi-definite Kernel}
+\acro{PSD}{Positive Semidefinite Kernel}
 \acro{QP}{Quadratic Program}
 \acro{RAP}{Relational Adaptive bootstrapping}
 \acro{RBF}{Radial basis function}
