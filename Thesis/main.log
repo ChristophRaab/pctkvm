@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.12)  1 OCT 2017 10:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.7.12)  3 OCT 2017 12:08
 entering extended mode
 **./main.tex
 (main.tex
@@ -993,12 +993,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 \openout2 = `contents.aux'.
 
  (contents.tex (main.toc
-LaTeX Font Info:    Try loading font information for U+msa on input line 7.
+LaTeX Font Info:    Try loading font information for U+msa on input line 8.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 7.
+LaTeX Font Info:    Try loading font information for U+msb on input line 8.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1036,10 +1036,17 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
  [8
 
+] (main.loa)
+\tf@loa=\write8
+\openout8 = `main.loa'.
+
+ [9
+
 ])
 \openout2 = `chapters/abbreviations.aux'.
 
- (chapters/abbreviations.tex [9
+ (chapters/abbreviations.tex
+[10
 
 
 
@@ -1050,7 +1057,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10])
+[11])
 \openout2 = `chapters/introduction.aux'.
 
  (chapters/introduction.tex
@@ -1088,26 +1095,26 @@ although it is yet undefined on input line 3.
 
 
 
-] <figures/SVMProd.png, id=611, 308.352pt x 231.86626pt>
+] <figures/SVMProd.png, id=632, 308.352pt x 231.86626pt>
 File: figures/SVMProd.png Graphic file (type png)
 
 <use figures/SVMProd.png>
-Package pdftex.def Info: figures/SVMProd.png used on input line 45.
+Package pdftex.def Info: figures/SVMProd.png used on input line 46.
 (pdftex.def)             Requested size: 208.39568pt x 156.70462pt.
 File: figures/SVMProd.png Graphic file (type png)
  <use figures/SVMProd.png>
-Package pdftex.def Info: figures/SVMProd.png used on input line 45.
+Package pdftex.def Info: figures/SVMProd.png used on input line 46.
 (pdftex.def)             Requested size: 208.39568pt x 156.70462pt.
 File: figures/SVMProd.png Graphic file (type png)
  <use figures/SVMProd.png>
-Package pdftex.def Info: figures/SVMProd.png used on input line 45.
+Package pdftex.def Info: figures/SVMProd.png used on input line 46.
 (pdftex.def)             Requested size: 208.39568pt x 156.70462pt.
 
-<figures/RVMProbEst.png, id=629, 493.845pt x 176.45924pt>
+<figures/RVMProbEst.png, id=650, 493.845pt x 176.45924pt>
 File: figures/RVMProbEst.png Graphic file (type png)
 
 <use figures/RVMProbEst.png>
-Package pdftex.def Info: figures/RVMProbEst.png used on input line 75.
+Package pdftex.def Info: figures/RVMProbEst.png used on input line 76.
 (pdftex.def)             Requested size: 341.43437pt x 121.99933pt.
 
 
@@ -1132,11 +1139,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [6 <./figures/RVMProbEst.png>]
 Package acronym Info: Label `acro:EM' newly defined as it shall be overridden
-although it is yet undefined on input line 144.
+although it is yet undefined on input line 145.
 Package acronym Info: Label `acro:MAP' newly defined as it shall be overridden
-although it is yet undefined on input line 144.
+although it is yet undefined on input line 145.
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--148
+Underfull \hbox (badness 10000) in paragraph at lines 143--149
 
  []
 
@@ -1148,7 +1155,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [7]
 Package acronym Info: Label `acro:CDF' newly defined as it shall be overridden
-although it is yet undefined on input line 157.
+although it is yet undefined on input line 158.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1164,33 +1171,33 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [9]
-Underfull \hbox (badness 1533) in paragraph at lines 210--210
+Underfull \hbox (badness 1533) in paragraph at lines 211--211
 \OT1/cmr/m/n/12 left side the non-positive left-
  []
 
-<figures/TuncatedGaussian.png, id=737, 604.659pt x 460.119pt>
+<figures/TuncatedGaussian.png, id=758, 604.659pt x 460.119pt>
 File: figures/TuncatedGaussian.png Graphic file (type png)
 
 <use figures/TuncatedGaussian.png>
-Package pdftex.def Info: figures/TuncatedGaussian.png used on input line 210.
+Package pdftex.def Info: figures/TuncatedGaussian.png used on input line 211.
 (pdftex.def)             Requested size: 208.39568pt x 158.57974pt.
 
-Underfull \hbox (badness 1533) in paragraph at lines 210--210
+Underfull \hbox (badness 1533) in paragraph at lines 211--211
 \OT1/cmr/m/n/12 left side the non-positive left-
  []
 
 File: figures/TuncatedGaussian.png Graphic file (type png)
 <use figures/TuncatedGaussian.png>
-Package pdftex.def Info: figures/TuncatedGaussian.png used on input line 210.
+Package pdftex.def Info: figures/TuncatedGaussian.png used on input line 211.
 (pdftex.def)             Requested size: 208.39568pt x 158.57974pt.
 
-Underfull \hbox (badness 1533) in paragraph at lines 210--210
+Underfull \hbox (badness 1533) in paragraph at lines 211--211
 \OT1/cmr/m/n/12 left side the non-positive left-
  []
 
 File: figures/TuncatedGaussian.png Graphic file (type png)
 <use figures/TuncatedGaussian.png>
-Package pdftex.def Info: figures/TuncatedGaussian.png used on input line 210.
+Package pdftex.def Info: figures/TuncatedGaussian.png used on input line 211.
 (pdftex.def)             Requested size: 208.39568pt x 158.57974pt.
 
 
@@ -1207,7 +1214,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [11]
-Overfull \hbox (9.1315pt too wide) in paragraph at lines 271--278
+Overfull \hbox (9.1315pt too wide) in paragraph at lines 272--279
 \OT1/cmr/m/n/12 With $[] = \OML/cmm/m/it/12 E\OT1/cmr/m/n/12 [\OT1/cmr/bx/n/12 
 H[]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 y; \OT1/cmr/bx/n/12 w[]\OML/cmm/m/it/12 ;
  b[]\OT1/cmr/m/n/12 ]$, $[] = \OML/cmm/m/it/12 diag\OT1/cmr/m/n/12 (\OML/cmm/m/
@@ -1246,7 +1253,20 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[15]
+[15] <figures/TraditionalProblem.png, id=858, 526.96875pt x 395.22656pt>
+File: figures/TraditionalProblem.png Graphic file (type png)
+
+<use figures/TraditionalProblem.png>
+Package pdftex.def Info: figures/TraditionalProblem.png used on input line 54.
+(pdftex.def)             Requested size: 213.39568pt x 160.04778pt.
+
+<figures/TransferProblem.png, id=859, 526.96875pt x 395.22656pt>
+File: figures/TransferProblem.png Graphic file (type png)
+
+<use figures/TransferProblem.png>
+Package pdftex.def Info: figures/TransferProblem.png used on input line 59.
+(pdftex.def)             Requested size: 213.39568pt x 160.04778pt.
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1255,7 +1275,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [16]
 Package acronym Info: Label `acro:DA' newly defined as it shall be overridden
-although it is yet undefined on input line 89.
+although it is yet undefined on input line 109.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1263,18 +1283,27 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[17]
+[17 <./figures/TraditionalProblem.png (PNG copy)> <./figures/TransferProblem.pn
+g (PNG copy)>]
 Package acronym Info: Label `acro:MMD' newly defined as it shall be overridden
-although it is yet undefined on input line 102.
+although it is yet undefined on input line 123.
 Package acronym Info: Label `acro:KLD' newly defined as it shall be overridden
-although it is yet undefined on input line 102.
+although it is yet undefined on input line 123.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[18]
 Package acronym Info: Label `acro:IID' newly defined as it shall be overridden
-although it is yet undefined on input line 109.
+although it is yet undefined on input line 130.
 Package acronym Info: Label `acro:RKHS' newly defined as it shall be overridden
 
-although it is yet undefined on input line 114.
+although it is yet undefined on input line 135.
 Package acronym Info: Label `acro:PSD' newly defined as it shall be overridden
-although it is yet undefined on input line 117.
+although it is yet undefined on input line 138.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1282,23 +1311,15 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[18] <figures/SettingsTransferLearning.png, id=904, 539.76656pt x 334.24875pt>
+[19] <figures/SettingsTransferLearning.png, id=938, 539.76656pt x 334.24875pt>
 File: figures/SettingsTransferLearning.png Graphic file (type png)
 
 <use figures/SettingsTransferLearning.png>
 Package pdftex.def Info: figures/SettingsTransferLearning.png used on input lin
-e 162.
+e 183.
 (pdftex.def)             Requested size: 341.43437pt x 211.43465pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[19]
 Package acronym Info: Label `acro:ITL' newly defined as it shall be overridden
-although it is yet undefined on input line 168.
+although it is yet undefined on input line 189.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1306,9 +1327,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[20 <./figures/SettingsTransferLearning.png>]
+[20]
 Package acronym Info: Label `acro:TTL' newly defined as it shall be overridden
-although it is yet undefined on input line 185.
+although it is yet undefined on input line 206.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1316,7 +1337,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[21]
+[21 <./figures/SettingsTransferLearning.png>]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1324,14 +1345,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [22]
-Overfull \hbox (3.88348pt too wide) in paragraph at lines 226--227
+Overfull \hbox (3.88348pt too wide) in paragraph at lines 247--248
 []\OT1/cmr/m/it/12 Given a source do-main $\OMS/cmsy/m/n/12 Z$ \OT1/cmr/m/it/12
  and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 236--241
-
  []
 
 
@@ -1341,6 +1357,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [23]
+Underfull \hbox (badness 10000) in paragraph at lines 257--262
+
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1349,7 +1369,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [24]
 Package acronym Info: Label `acro:TCA' newly defined as it shall be overridden
-although it is yet undefined on input line 295.
+although it is yet undefined on input line 316.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1360,26 +1380,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [25]
 Package acronym Info: Label `acro:MMDE' newly defined as it shall be overridden
 
-although it is yet undefined on input line 326.
+although it is yet undefined on input line 347.
 Package acronym Info: Label `acro:SDP' newly defined as it shall be overridden
-although it is yet undefined on input line 336.
- <figures/GFKApproach.png, id=1018, 1001.54175pt x 243.91125pt>
-File: figures/GFKApproach.png Graphic file (type png)
+although it is yet undefined on input line 357.
 
-<use figures/GFKApproach.png>
-Package pdftex.def Info: figures/GFKApproach.png used on input line 346.
-(pdftex.def)             Requested size: 208.39568pt x 50.7502pt.
-File: figures/GFKApproach.png Graphic file (type png)
- <use figures/GFKApproach.png>
-Package pdftex.def Info: figures/GFKApproach.png used on input line 346.
-(pdftex.def)             Requested size: 208.39568pt x 50.7502pt.
-File: figures/GFKApproach.png Graphic file (type png)
+Overfull \vbox (1.0236pt too high) has occurred while \output is active []
 
-<use figures/GFKApproach.png>
-Package pdftex.def Info: figures/GFKApproach.png used on input line 346.
-(pdftex.def)             Requested size: 208.39568pt x 50.7502pt.
-Package acronym Info: Label `acro:GFK' newly defined as it shall be overridden
-although it is yet undefined on input line 348.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1387,9 +1393,23 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[26]
-Package acronym Info: Label `acro:JDA' newly defined as it shall be overridden
-although it is yet undefined on input line 366.
+[26] <figures/GFKApproach.png, id=1052, 1001.54175pt x 243.91125pt>
+File: figures/GFKApproach.png Graphic file (type png)
+
+<use figures/GFKApproach.png>
+Package pdftex.def Info: figures/GFKApproach.png used on input line 367.
+(pdftex.def)             Requested size: 208.39568pt x 50.7502pt.
+File: figures/GFKApproach.png Graphic file (type png)
+ <use figures/GFKApproach.png>
+Package pdftex.def Info: figures/GFKApproach.png used on input line 367.
+(pdftex.def)             Requested size: 208.39568pt x 50.7502pt.
+File: figures/GFKApproach.png Graphic file (type png)
+
+<use figures/GFKApproach.png>
+Package pdftex.def Info: figures/GFKApproach.png used on input line 367.
+(pdftex.def)             Requested size: 208.39568pt x 50.7502pt.
+Package acronym Info: Label `acro:GFK' newly defined as it shall be overridden
+although it is yet undefined on input line 369.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1398,6 +1418,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [27 <./figures/GFKApproach.png>]
+Package acronym Info: Label `acro:JDA' newly defined as it shall be overridden
+although it is yet undefined on input line 387.
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1405,13 +1428,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [28]
-Package acronym Info: Label `acro:MMKT' newly defined as it shall be overridden
-
-although it is yet undefined on input line 414.
-Package acronym Info: Label `acro:LS-SVM' newly defined as it shall be overridd
-en
-although it is yet undefined on input line 417.
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1419,8 +1435,12 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [29]
-Package acronym Info: Label `acro:LOO' newly defined as it shall be overridden
-although it is yet undefined on input line 467.
+Package acronym Info: Label `acro:MMKT' newly defined as it shall be overridden
+
+although it is yet undefined on input line 435.
+Package acronym Info: Label `acro:LS-SVM' newly defined as it shall be overridd
+en
+although it is yet undefined on input line 438.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1429,6 +1449,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [30]
+Package acronym Info: Label `acro:LOO' newly defined as it shall be overridden
+although it is yet undefined on input line 488.
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1436,12 +1459,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [31]
-Underfull \hbox (badness 10000) in paragraph at lines 496--505
+Underfull \hbox (badness 10000) in paragraph at lines 517--526
 
  []
 
-Package acronym Info: Label `acro:TTI' newly defined as it shall be overridden
-although it is yet undefined on input line 508.
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1449,6 +1470,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [32]
+Package acronym Info: Label `acro:TTI' newly defined as it shall be overridden
+although it is yet undefined on input line 529.
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1514,7 +1538,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[40] <figures/ProcessTKL.png, id=1279, 505.89pt x 110.66344pt>
+[40] <figures/ProcessTKL.png, id=1306, 505.89pt x 110.66344pt>
 File: figures/ProcessTKL.png Graphic file (type png)
 
 <use figures/ProcessTKL.png>
@@ -1540,6 +1564,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [42]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 205.
+ <figures/GaussianKernelIMG.png, id=1351, 1028.34187pt x 497.60907pt>
+File: figures/GaussianKernelIMG.png Graphic file (type png)
+
+<use figures/GaussianKernelIMG.png>
+Package pdftex.def Info: figures/GaussianKernelIMG.png used on input line 234.
+(pdftex.def)             Requested size: 213.39568pt x 103.25575pt.
+
+<figures/TKLKernelIMG.png, id=1352, 421.575pt x 316.18124pt>
+File: figures/TKLKernelIMG.png Graphic file (type png)
+
+<use figures/TKLKernelIMG.png>
+Package pdftex.def Info: figures/TKLKernelIMG.png used on input line 239.
+(pdftex.def)             Requested size: 213.39568pt x 160.04898pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1548,45 +1585,46 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [43]
-Underfull \hbox (badness 1389) in paragraph at lines 257--257
-[]\OT1/cmr/m/n/12 Figure 4.2: |The per-for-mance of
- []
-
-<figures/PerformanceGaussianKernel.png, id=1336, 526.96875pt x 395.22656pt>
-File: figures/PerformanceGaussianKernel.png Graphic file (type png)
-
-<use figures/PerformanceGaussianKernel.png>
-Package pdftex.def Info: figures/PerformanceGaussianKernel.png used on input li
-ne 257.
-(pdftex.def)             Requested size: 208.39568pt x 156.2967pt.
-
-Underfull \hbox (badness 1389) in paragraph at lines 257--257
-[]\OT1/cmr/m/n/12 Figure 4.2: |The per-for-mance of
- []
-
-File: figures/PerformanceGaussianKernel.png Graphic file (type png)
-<use figures/PerformanceGaussianKernel.png>
-Package pdftex.def Info: figures/PerformanceGaussianKernel.png used on input li
-ne 257.
-(pdftex.def)             Requested size: 208.39568pt x 156.2967pt.
-
-Underfull \hbox (badness 1389) in paragraph at lines 257--257
-[]\OT1/cmr/m/n/12 Figure 4.2: |The per-for-mance of
- []
-
-File: figures/PerformanceGaussianKernel.png Graphic file (type png)
-<use figures/PerformanceGaussianKernel.png>
-Package pdftex.def Info: figures/PerformanceGaussianKernel.png used on input li
-ne 257.
-(pdftex.def)             Requested size: 208.39568pt x 156.2967pt.
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[44]
+[44 <./figures/GaussianKernelIMG.png (PNG copy)> <./figures/TKLKernelIMG.png (P
+NG copy)>]
+Underfull \hbox (badness 1389) in paragraph at lines 274--274
+[]\OT1/cmr/m/n/12 Figure 4.3: |The per-for-mance of
+ []
+
+<figures/PerformanceGaussianKernel.png, id=1373, 526.96875pt x 395.22656pt>
+File: figures/PerformanceGaussianKernel.png Graphic file (type png)
+
+<use figures/PerformanceGaussianKernel.png>
+Package pdftex.def Info: figures/PerformanceGaussianKernel.png used on input li
+ne 274.
+(pdftex.def)             Requested size: 208.39568pt x 156.2967pt.
+
+Underfull \hbox (badness 1389) in paragraph at lines 274--274
+[]\OT1/cmr/m/n/12 Figure 4.3: |The per-for-mance of
+ []
+
+File: figures/PerformanceGaussianKernel.png Graphic file (type png)
+<use figures/PerformanceGaussianKernel.png>
+Package pdftex.def Info: figures/PerformanceGaussianKernel.png used on input li
+ne 274.
+(pdftex.def)             Requested size: 208.39568pt x 156.2967pt.
+
+Underfull \hbox (badness 1389) in paragraph at lines 274--274
+[]\OT1/cmr/m/n/12 Figure 4.3: |The per-for-mance of
+ []
+
+File: figures/PerformanceGaussianKernel.png Graphic file (type png)
+<use figures/PerformanceGaussianKernel.png>
+Package pdftex.def Info: figures/PerformanceGaussianKernel.png used on input li
+ne 274.
+(pdftex.def)             Requested size: 208.39568pt x 156.2967pt.
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1594,29 +1632,28 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [45 <./figures/PerformanceGaussianKernel.png (PNG copy)>]
-<figures/GaussianWidthSmall.png, id=1369, 251.13824pt x 184.2885pt>
-File: figures/GaussianWidthSmall.png Graphic file (type png)
-
-<use figures/GaussianWidthSmall.png>
-Package pdftex.def Info: figures/GaussianWidthSmall.png used on input line 308.
-
-(pdftex.def)             Requested size: 213.39568pt x 156.59814pt.
-
-<figures/GaussianWidthLarge.png, id=1370, 239.09325pt x 178.86826pt>
-File: figures/GaussianWidthLarge.png Graphic file (type png)
-
-<use figures/GaussianWidthLarge.png>
-Package pdftex.def Info: figures/GaussianWidthLarge.png used on input line 313.
-
-(pdftex.def)             Requested size: 213.39568pt x 159.65076pt.
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[46]
+[46] <figures/GaussianWidthSmall.png, id=1406, 251.13824pt x 184.2885pt>
+File: figures/GaussianWidthSmall.png Graphic file (type png)
+
+<use figures/GaussianWidthSmall.png>
+Package pdftex.def Info: figures/GaussianWidthSmall.png used on input line 325.
+
+(pdftex.def)             Requested size: 213.39568pt x 156.59814pt.
+
+<figures/GaussianWidthLarge.png, id=1407, 239.09325pt x 178.86826pt>
+File: figures/GaussianWidthLarge.png Graphic file (type png)
+
+<use figures/GaussianWidthLarge.png>
+Package pdftex.def Info: figures/GaussianWidthLarge.png used on input line 330.
+
+(pdftex.def)             Requested size: 213.39568pt x 159.65076pt.
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1672,14 +1709,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[52] <figures/Plot_Train_OP_1.png, id=1477, 450.18187pt x 357.58594pt>
+[52] <figures/Plot_Train_OP_1.png, id=1506, 450.18187pt x 357.58594pt>
 File: figures/Plot_Train_OP_1.png Graphic file (type png)
 
 <use figures/Plot_Train_OP_1.png>
 Package pdftex.def Info: figures/Plot_Train_OP_1.png used on input line 76.
 (pdftex.def)             Requested size: 213.39568pt x 169.50587pt.
 
-<figures/Plot_Test_OP_1.png, id=1478, 448.67625pt x 353.82187pt>
+<figures/Plot_Test_OP_1.png, id=1507, 448.67625pt x 353.82187pt>
 File: figures/Plot_Test_OP_1.png Graphic file (type png)
 
 <use figures/Plot_Test_OP_1.png>
@@ -1700,7 +1737,7 @@ although it is yet undefined on input line 133.
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 140.
 
-<figures/ExampleImages.png, id=1493, 570.33075pt x 413.74574pt>
+<figures/ExampleImages.png, id=1522, 570.33075pt x 413.74574pt>
 File: figures/ExampleImages.png Graphic file (type png)
 
 <use figures/ExampleImages.png>
@@ -1792,7 +1829,7 @@ Package acronym Info: Label `acro:RMSE' newly defined as it shall be overridden
 although it is yet undefined on input line 278.
 Package acronym Info: Label `acro:MAE' newly defined as it shall be overridden
 although it is yet undefined on input line 283.
- <figures/PerformanceReuters.png, id=1576, 526.96875pt x 395.22656pt>
+ <figures/PerformanceReuters.png, id=1605, 526.96875pt x 395.22656pt>
 File: figures/PerformanceReuters.png Graphic file (type png)
 
 <use figures/PerformanceReuters.png>
@@ -1800,7 +1837,7 @@ Package pdftex.def Info: figures/PerformanceReuters.png used on input line 300.
 
 (pdftex.def)             Requested size: 213.39568pt x 160.04778pt.
 
-<figures/PerformanceImage.png, id=1577, 526.96875pt x 395.22656pt>
+<figures/PerformanceImage.png, id=1606, 526.96875pt x 395.22656pt>
 File: figures/PerformanceImage.png Graphic file (type png)
 
 <use figures/PerformanceImage.png>
@@ -1808,6 +1845,10 @@ Package pdftex.def Info: figures/PerformanceImage.png used on input line 305.
 (pdftex.def)             Requested size: 213.39568pt x 160.04778pt.
 Package acronym Info: Label `acro:ACC' newly defined as it shall be overridden
 although it is yet undefined on input line 317.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 351.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1824,10 +1865,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [61 <./figures/PerformanceReuters.png (PNG copy)> <./figures/PerformanceImage.p
 ng (PNG copy)>]
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 345.
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1851,7 +1888,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [64]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 468.
+               Default added (so using `tbp') on input line 477.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1862,9 +1899,9 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [65]
 Package acronym Info: Label `acro:ANOVA' newly defined as it shall be overridde
 n
-although it is yet undefined on input line 485.
+although it is yet undefined on input line 494.
 
-Underfull \hbox (badness 10000) in paragraph at lines 483--486
+Underfull \hbox (badness 10000) in paragraph at lines 492--495
 
  []
 
@@ -1889,24 +1926,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [68]
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 552.
-
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 562.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 562.
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 562.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 567.
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -2010,7 +2029,7 @@ Appendix B.
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 20.
 
-<figures/FiveTwoImageTL.png, id=1802, 526.96875pt x 395.22656pt>
+<figures/FiveTwoImageTL.png, id=1833, 526.96875pt x 395.22656pt>
 File: figures/FiveTwoImageTL.png Graphic file (type png)
 
 <use figures/FiveTwoImageTL.png>
@@ -2025,7 +2044,7 @@ Package pdftex.def Info: figures/PerformanceImage.png used on input line 59.
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `!tbp') on input line 65.
 
-<figures/FiveTwoReutersTL.png, id=1803, 526.96875pt x 395.22656pt>
+<figures/FiveTwoReutersTL.png, id=1834, 526.96875pt x 395.22656pt>
 File: figures/FiveTwoReutersTL.png Graphic file (type png)
 
 <use figures/FiveTwoReutersTL.png>
@@ -2086,28 +2105,28 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `!tbp') on input line 206.
 
-<figures/AverageReuters.png, id=1832, 526.96875pt x 395.22656pt>
+<figures/AverageReuters.png, id=1863, 526.96875pt x 395.22656pt>
 File: figures/AverageReuters.png Graphic file (type png)
 
 <use figures/AverageReuters.png>
 Package pdftex.def Info: figures/AverageReuters.png used on input line 210.
 (pdftex.def)             Requested size: 213.39568pt x 160.04778pt.
 
-<figures/AverageReutersTL.png, id=1833, 526.96875pt x 395.22656pt>
+<figures/AverageReutersTL.png, id=1864, 526.96875pt x 395.22656pt>
 File: figures/AverageReutersTL.png Graphic file (type png)
 
 <use figures/AverageReutersTL.png>
 Package pdftex.def Info: figures/AverageReutersTL.png used on input line 215.
 (pdftex.def)             Requested size: 213.39568pt x 160.04778pt.
 
-<figures/AverageImage.png, id=1834, 526.96875pt x 395.22656pt>
+<figures/AverageImage.png, id=1865, 526.96875pt x 395.22656pt>
 File: figures/AverageImage.png Graphic file (type png)
 
 <use figures/AverageImage.png>
 Package pdftex.def Info: figures/AverageImage.png used on input line 220.
 (pdftex.def)             Requested size: 213.39568pt x 160.04778pt.
 
-<figures/AverageImageTL.png, id=1835, 526.96875pt x 395.22656pt>
+<figures/AverageImageTL.png, id=1866, 526.96875pt x 395.22656pt>
 File: figures/AverageImageTL.png Graphic file (type png)
 
 <use figures/AverageImageTL.png>
@@ -2172,7 +2191,13 @@ Appendix C.
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `!htbp') on input line 14.
 
-[89
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 47.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 47.
+ [89
 
 
 
@@ -2282,17 +2307,17 @@ ntents.aux) (chapters/abbreviations.aux) (chapters/introduction.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 37.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 37.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: A955F58B2F91C1C85903D094D89F6628;5416.
+(rerunfilecheck)             Checksum: 620146A4F98FD249A44F7CD50245B7BE;5468.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 37.
  ) 
 Here is how much of TeX's memory you used:
- 12509 strings out of 493323
- 183405 string characters out of 3139037
- 345314 words of memory out of 3000000
- 15261 multiletter control sequences out of 15000+200000
+ 12556 strings out of 493323
+ 184440 string characters out of 3139037
+ 345868 words of memory out of 3000000
+ 15297 multiletter control sequences out of 15000+200000
  18190 words of font info for 66 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 46i,19n,56p,1478b,582s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 46i,19n,56p,1478b,580s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files/MiKTe
@@ -2312,9 +2337,9 @@ fonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
 cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 ><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (112 pages, 2717176 bytes).
+Output written on main.pdf (113 pages, 4010722 bytes).
 PDF statistics:
- 2128 PDF objects out of 2487 (max. 8388607)
- 440 named destinations out of 1000 (max. 500000)
- 717 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2151 PDF objects out of 2487 (max. 8388607)
+ 444 named destinations out of 1000 (max. 500000)
+ 745 words of extra memory for PDF output out of 10000 (max. 10000000)
 

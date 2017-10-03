@@ -1,12 +1,12 @@
 \chapter{Evaluation and Future Work}\label{EvalF}	
-This chapter is devoted to critical review the characteristics of the study and future work.\\
-The study classifier used in this thesis are primarily based on the kernel from \eqref{EqRBFAKernel}.
+This chapter is devoted to critically review the characteristics of the study and future work.\\
+The study classifiers used in this thesis are primarily based on the kernel from \eqref{EqRBFAKernel}.
 According to the corresponding articles, they are using the standard Gaussian kernel from \eqref{EqRBFOriginalKernel}.\cite{Long.}\cite{Gong.}\cite{Pan.2011}
 There we can naturally observe different performances, may better or worse.
 For more insights, whether the transfer learning performance is rather critical to the suggested kernel type, it would be useful to repeat the study with the suggested kernels from the corresponding articles.
 Furthermore, it should be compared to this study to determine the differences.
-Additional, the ability to transfer knowledge of the \acs{SVM} is comparable to the transfer learning solutions with the use of the new kernel, according to Friedman test from table \ref{TableFriedman}.
-In a new study, we can verify, whether the \acs{SVM} works comparable good with the standard Gaussian kernel or not.
+Additionally, the ability to transfer knowledge of the \acs{SVM} is comparable to the transfer learning solutions with the use of the new kernel, according to Friedman test from table \ref{TableFriedman}.
+In a new study, we can verify, whether the \acs{SVM} works comparably good with the standard Gaussian kernel or not.
 With that, it can be seen if the \acs{SVM} is, in fact, better for the transfer learning settings as the \acs{PCVM}.\\
 Another topic which is not included in this work is the use of other datasets, to give a more general evidence, whether a transfer learning solution is better or not.
 For example the 20-Newsgroup\footnote{\url{http://qwone.com/~jason/20Newsgroups/}} dataset, as a text-based dataset, as suggested in \cite{Pan.2010}.
@@ -29,7 +29,7 @@ With that, we could extend the \acs{PCVM} with a transfer learning in a probabil
 A recent approach for 'self-paced' learning which uses a latent variable model and the \acs{EM} algorithm is a step in this direction and proposed in \cite{Kumar.2010}.
 
 \section{Extensions}\label{InSubSecFExt}
-Although that in the course of this chapter are already future works mentioned, we want to point out some further extensions, which can help to make the \acs{PCTKVM} for applicable.
+Although, future works have already been mentioned in the course of this chapter, we want to point out some further extensions, which can help to make the \acs{PCTKVM} applicable.
 These extensions are coming mainly from \cite{Long.2015}.\\
 The current algorithm can be extended to multiple source learning.
 With that, we can match the distribution difference of multiple source domains with the target domain.
@@ -50,7 +50,7 @@ The procedure is similar to \eqref{EqLargeNsystromApprox} or with the use of the
 \mathbf{K}_\mathcal{Z} \simeq	\mathbf{K}_{\mathcal{Z\hat{Z}}}\mathbf{K}_\mathcal{\hat{Z}}^{-1}\mathbf{K}_{\mathcal{\hat{Z}Z}}
 \end{equation}
 For being able to solve the quadratic programming problem from \eqref{EqTklQP}, we need to approximate the extrapolated eigensystem.
-This means. First, we extrapolate the eigensystem of the target kernel to the source subset via \eqref{EqExtraEigs}:
+First, we extrapolate the eigensystem of the target kernel to the source subset via \eqref{EqExtraEigs}:
 \begin{equation}
 \expP{\mathbf{U}}_\mathcal{\hat{Z}}\simeq\mathbf{K}_{\mathcal{\hat{Z}X}}\mathbf{U}_{\mathcal{X}}\boldsymbol{\Lambda}_\mathcal{\hat{X}}^{-1}
 \end{equation}
@@ -59,4 +59,4 @@ Second, the approximated eigensystem has to be extrapolated to the full source d
 \expP{\mathbf{U}}_\mathcal{Z} \simeq \mathbf{K}_{\mathcal{Z\hat{Z}}}\expP{\mathbf{U}}_\mathcal{\hat{Z}}\boldsymbol{\Lambda}_\mathcal{\hat{X}}^{-1}
 \end{equation}
 With this, we have the required information to solve the \acl{QP} and are making the \acs{TKL} algorithm large scale and applicable for big data.\cite{Long.2015}\\
-Because it is a Nyström approximation, the quality of the approximation depends hardly on the quality of the taken sample, as mentioned in \ref{InSubSecNyKerneLearning}.
+Because it is a Nyström approximation, the quality of the approximation depends a lot on the quality of the taken sample, as mentioned in \ref{InSubSecNyKerneLearning}.

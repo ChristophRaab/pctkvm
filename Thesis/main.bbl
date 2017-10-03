@@ -9,8 +9,9 @@
 
 \bibitem[1]{Abe.2010}
 \textsc{Abe}, Shigeo:
-\newblock {Support Vector Machines for Pattern Classification}.
-\newblock   (2010)
+\newblock \emph{{Support Vector Machines for Pattern Classification}}.
+\newblock London : {Springer London}, 2010. --
+\newblock ISBN 978--1--84996--098--4
 
 \bibitem[2]{Aggarwal.2015}
 \textsc{Aggarwal}, Charu~C. (Hrsg.):
@@ -23,8 +24,7 @@
 \textsc{Albert}, James~H. ; \textsc{Chib}, Siddhartha:
 \newblock {Bayesian Analysis of Binary and Polychotomous Response Data}.
 \newblock {In: }\emph{{Journal of the American Statistical Association}} 88
-  (1993), Nr. 422, 669--679.
-\newblock \url{http://www.jstor.org/stable/2290350}. --
+  (1993), Nr. 422, S. 669--679. --
 \newblock ISSN 01621459
 
 \bibitem[4]{Alpaydm.1999}
@@ -153,7 +153,8 @@
 \bibitem[20]{Czado.2011}
 \textsc{Czado}, Claudia ; \textsc{Schmidt}, Thorsten:
 \newblock \emph{{Mathematische Statistik}}.
-\newblock Berlin, Heidelberg : {Springer Berlin Heidelberg}, 2011
+\newblock Berlin, Heidelberg : {Springer Berlin Heidelberg}, 2011. --
+\newblock ISBN 9783642172618
 
 \bibitem[21]{Dai.}
 \textsc{Dai}, Wenyuan ; \textsc{Yang}, Qiang ; \textsc{Xue}, Gui-Rong  ;
@@ -174,8 +175,7 @@
 \textsc{Dempster}, A.~P. ; \textsc{Laird}, N.~M.  ; \textsc{Rubin}, D.~B.:
 \newblock {Maximum Likelihood from Incomplete Data via the EM Algorithm}.
 \newblock {In: }\emph{{Journal of the Royal Statistical Society. Series B
-  (Methodological)}} 39 (1977), Nr. 1, 1--38.
-\newblock \url{http://www.jstor.org/stable/2984875}. --
+  (Methodological)}} 39 (1977), Nr. 1, S. 1--38. --
 \newblock ISSN 00359246
 
 \bibitem[24]{Dietterich.1998}
@@ -327,8 +327,7 @@
 \textsc{{Jing Gao, Wei Fan,Jing Jiang,Jiawei Han}}:
 \newblock \emph{{Knowledge Transfer via Multiple Model Local Structure
   Mapping}}.
-\newblock New York, NY : ACM, 2008
-  \url{http://dl.acm.org/citation.cfm?id=1401890}. --
+\newblock New York, NY : ACM, 2008. --
 \newblock ISBN 9781605581934
 
 \bibitem[45]{KaiZhang.2013}
@@ -378,8 +377,7 @@
 \bibitem[50]{Kumar.2012}
 \textsc{Kumar}, Sanjiv ; \textsc{Mohri}, Mehryar  ; \textsc{Talwalkar}, Ameet:
 \newblock {Sampling Methods for the Nystr{\"o}m Method}.
-\newblock {In: }\emph{{J. Mach. Learn. Res.}} 13 (2012), 981--1006.
-\newblock \url{http://dl.acm.org/citation.cfm?id=2188385.2343678}. --
+\newblock {In: }\emph{{J. Mach. Learn. Res.}} 13 (2012), S. 981--1006. --
 \newblock ISSN 1532--4435
 
 \bibitem[51]{Leskovec.2014}

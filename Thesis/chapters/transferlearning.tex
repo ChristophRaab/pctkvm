@@ -9,9 +9,9 @@ There are various definitions of transfer learning in general.
 Many of the solutions obtained in this chapter are made for different definitions.
 Moreover, because of this the difficulty of the problem which is solved by the solutions may vary, see \ref{TlSecDef}.\\
 Additionally, we will see how the difference in transfer learning is measured.\\
-Furthermore, the settings of transfer learning will be introduced.
+Then, the settings of transfer learning will be introduced.
 The settings are implying the different setups to solve the transfer problem.\\
-In the next section will introduce and explain the two main types of the transfer learning which describes the conditions of the feature space and probability distributions.
+In the next section the two main types of the transfer learning which describes the conditions of the feature space and probability distributions will be introduced and explained.
 These types can be divided into approach categories.
 Most of the discussed solutions are based on the formal ideas of a category.\\
 The section, negative transfer deals with the problem that the provided transfer learning solutions are in fact worse than the baseline methods.
@@ -21,42 +21,62 @@ For details to kernels see section \ref{EmSubSecKernel}.
 The current state of 'traditional' machine learning algorithms is the assumption that training and test data existing in the same feature space and that they have the same distribution.
 They are successfully learning patterns and predict events in the future.
 However, it is not always possible to obtain training and test data, which matches in distribution or features space.
-Reason for this may that training data, which has to be labeled, is expensive or difficult to achieve.\cite[p. 1]{Weiss.2016}\\
+A reason for this is that training data, which has to be labeled, is expensive or difficult to achieve.\cite[p. 1]{Weiss.2016}\\
 When it comes to supervised learning, the algorithms are designed in a way to learn from the pre-labeled data and hence it is crucial for this types of algorithms to have some.\cite[p. 6-7]{Theodoridis.2008}\\
 In the 'traditional' manner, which applies to the most statistical models, to solve the problem of differences, they have to collect new training data for the new feature space or distribution of the test data and rebuild the model.\cite{Pan.2010}
 Therefore, the good performance cannot be obtained, when the training and test data differs in feature space or distribution.
 This is the reason, one has to find a classifier, which can be applied to the target domain, although it is trained on the source domain, which is the main motivation of Transfer Learning.\cite[p. 1.]{Weiss.2016}\\
 A simple interpretation of Transfer Learning in the real world is given in the following:
-Imaging two people, who want to learn piano.
-One has never played any musical instrument before, while the second has previous collected knowledge on how to play music through experience with other instruments.
-The latter will be able to learn the new instrument much faster than the first with no previous experience because he can transfer his general music knowledge to boost his learning of the new instrument.\cite[p. 1]{Weiss.2016}\\
-When going back to machine learning, there are be more technical examples.
+Imaging two people, who want to learn the piano.
+One has never played any musical instrument before, while the second one has previous knowledge on how to play the music through experience with other instruments.
+The latter will be able to learn the new instrument much faster than the first one with no previous experience because he can transfer his general music knowledge to boost his learning of the new instrument.\cite[p. 1]{Weiss.2016}\\
+When going back to machine learning, there are more technical examples.
 Consider the task of web document classification.
 The goal is to classify web documents in predefined categories.
 The training data in this example are university web pages, which are associated with a category by manual labeling.
-If we want to classify our test data, which may not come from a university page and as a consequence the data features or distribution may be different, based on the structure or topics of the new web page.
+If we want to classify our test data, which does not come from a university page, then the data features or distribution is different, based on the structure or topics of the new web page.
 Therefore, we can not directly apply the classifier trained on the university web page and assume a good category prediction rate on non-university web pages.
 Instead, we have to collect new websites from the same type as of the test web pages, assign the category manually and finally learn a new model.
-This process could be avoided if a classifier can transfer knowledge from one domain of pages into another web page domain.\cite{Pan.2010}\\
+This process could be avoided if a classifier could transfer knowledge from one domain of pages into another web page domain.\cite{Pan.2010}\\
 The last example is given from the topic of product reviews.
 Consider the problem that a model needs to be learned, in a way that it can automatically classify positive and negative reviews on a product.
 To create a source domain, one has to collect many reviews of the product and manually decide if it is positive or negative.
 Then the model can be trained and can predict the sentiment of new reviews.
 However, if the product changes, then the distribution of the review may change, and the traditionally learned classifier cannot be applied anymore.
 Therefore, again one has to collect reviews manually and annotate them.
-This can be a very expensive process, and therefore the learner should be adaptable that it can be learned on the source domain (one product category) and can help to learn the classification model (another product category).\cite{Pan.2010}
+This can be a very expensive process, and therefore the learner should be adaptable so that it can be learned on the source domain (one product category) and can help to learn the classification model (another product category).\cite{Pan.2010}
 
 \section{Definition of Transfer Learning}\label{TlSecDef}
-After more practical examples are given, the term transfer learning and associated keywords are defined in this section.\newline
+\begin{figure}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/TraditionalProblem.png}
+		\caption{Traditional Learning Problem\label{FigTradProblem}}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/TransferProblem.png}
+		\caption{Transfer Learning Problem \label{FigTLProblem}}
+	\end{subfigure}
+	\caption[Comparison of Transfer and Traditional Learning Problem]{Comparison of distributions for two classes in the traditional and the transfer learning state. The left shows one domain and the right figure shows two different domains.\label{FigProblemComparison}}
+\end{figure}
+Now that more practical examples have been given, the term transfer learning and associated keywords are defined in this section.\newline
 In this thesis, a domain $\mathcal{D}$ is composed of a $D$-dimensional feature space $\mathcal{F}$, which can be feature extraction of text documents. Moreover, a marginal probability distribution of the data matrix $\mathbf{X}$ with $P(\mathbf{X})$.
 Formally, this means $\mathcal{D} = \{\mathcal{F},P(\mathbf{X})\}$ with $\mathbf{X} \in \mathcal{F}$.
 In general, if two domains $\mathcal{X}$ and $\mathcal{Z}$ are different, then they have either different feature spaces or marginal distributions.
-This can be expressed as $\mathcal{F_{Z}} \neq \mathcal{F_{X}} \vee P(x) \neq \textit{P}(z)$.\cite[. 542]{Aggarwal.2015}\\
+This can be expressed as $\mathcal{F_{Z}} \neq \mathcal{F_{X}} \vee P(x) \neq \textit{P}(z)$.\cite[p. 542]{Aggarwal.2015}
+The issue of different distributions is illustrated in figure \ref{FigProblemComparison}.
+In \ref{FigTradProblem} the traditional problem with similar source and target probability distributions is shown.
+In the figure \ref{FigTLProblem} shows the problem of transfer learning where conditional and marginal probability distributions are different (two domains).
+The samples are generated with the Gaussian-Random function in MatLab.
+The blue and green colors are showing two classes.
+Moreover, in \ref{FigTLProblem} shows the problem with two domains.\\
 A task $\mathcal{T}$ with a given domain $\mathcal{D}$ is put together with a label set $\mathcal{Y}$, for example $\{-1,1\}$, and a classifier $f(\cdot)$ which is  $\mathcal{T} = \{\mathcal{Y},\textit{f}(\cdot)\}$ with $\mathbf{y} \in \mathcal{Y}$.
 The vector $\mathbf{y}$ represent the (predicted) labels for \textit{all} data points regarding the label set $\mathcal{Y}$.
 The function $f(\cdot)$ is a predictive function to make predictions for unseen, i.\,g. new data points $\mathbf{x}$.
 From a probabilistic viewpoint we can interpret $f(\mathbf{x})$ as $P(y\mid \mathbf{x})$.
-In other words given $\mathbf{x}$ how probable is it that label y is correctly assigned.
+In other words, given $\mathbf{x}$ how probable it is that label y is correctly assigned.
 For example, based on the content of document, how probable is it to be correctly assigned to category politics.\\
 In classification, the number of varying labels will distinguish the classification problem.
 The Binary classification problem for two labels, e.\,g. $\mathcal{Y} ={-1,+1}$ or discrete values, i.\,e. multiple classes, for example $\mathcal{Y}= \{1,2,..,C\}$ with $C$ classes.
@@ -72,7 +92,7 @@ Because of this, the whole data is represented as a matrix.
 \begin{mDef}[Transfer Learning]\label{DefTl}
 	Given a source domain $\mathcal{Z}$ and learning task $\mathcal{T}_\mathcal{Z}$, a target domain $\mathcal{X}$ and learning task $\mathcal{T}_\mathcal{X}$, transfer learning aims to help improve the learning of the target predictive function $f_\mathcal{X}(\cdot)$ in $\mathcal{X}$ using the knowledge in $\mathcal{Z}$ and $\mathcal{T}_\mathcal{Z}$, where $\mathcal{Z} \neq \mathcal{X}$, or $\mathcal{T}_\mathcal{Z} \neq \mathcal{T}_\mathcal{X}$.\cite[p. 542]{Aggarwal.2015}
 \end{mDef}
-Summarizing, our source domain consist of $\mathcal{Z}=\{\mathcal{F}_\mathcal{Z},P(\mathbf{Z})\}$ and $\mathcal{T_Z}=\{\mathcal{Y_Z},f_\mathcal{Z}(\mathbf{Z})\}$ with $f_\mathcal{Z}(\mathbf{Z}) = P(\mathbf{y}_\mathcal{Z}|\mathbf{Z})$. Moreover, the target domain is  $\mathcal{X}=\{\mathcal{F}_\mathcal{X},P(\mathbf{X})\}$ and $f_\mathcal{X}(\mathbf{X}) = P(\mathbf{y}_\mathcal{X}|\mathbf{X})$ with $\mathcal{T_X}=\{\mathcal{Y_X},f_\mathcal{X}(\mathbf{X})\}$. 
+Summarizing, our source domain consists of $\mathcal{Z}=\{\mathcal{F}_\mathcal{Z},P(\mathbf{Z})\}$ and $\mathcal{T_Z}=\{\mathcal{Y_Z},f_\mathcal{Z}(\mathbf{Z})\}$ with $f_\mathcal{Z}(\mathbf{Z}) = P(\mathbf{y}_\mathcal{Z}|\mathbf{Z})$. Moreover, the target domain is  $\mathcal{X}=\{\mathcal{F}_\mathcal{X},P(\mathbf{X})\}$ and $f_\mathcal{X}(\mathbf{X}) = P(\mathbf{y}_\mathcal{X}|\mathbf{X})$ with $\mathcal{T_X}=\{\mathcal{Y_X},f_\mathcal{X}(\mathbf{X})\}$. 
 If we consider that the training and testing domain are equal and their learning tasks are the same, we step back to the traditional machine learning problem.
 Note that in this thesis the size of the whole dataset (source and target data points) is denoted as $K=N+M$.
 Furthermore if any of the methods are transforming the original features into a subspace. The dimension of the subspace is denoted with $L$.
@@ -81,11 +101,11 @@ According to our challenges from section \ref{TlSecChal}, the definition can be 
 The example can be divided into two cases:
 In case one, if two domains are different, which means that $\mathcal{Z} \neq \mathcal{X}$ as above, then they differ in either the feature space $\mathcal{F_Z}, \neq \mathcal{F_X}$ or in their marginal probability distribution $P(\mathbf{Z}) \neq P(\mathbf{X})$.
 Going back to the web document example, the first would imply that the language of the two documents is different.
-The second could be caused by the fact that the documents focusing on various topics, which would be lead to different terms.\cite{Pan.2010}\\
-The second case is that the tasks are different, which implies $\mathcal{T_Z} \neq \mathcal{T_X}$ and furthermore can divided into that they rather differ in the label space $\mathcal{Y_Z} \neq \mathcal{Y_X}$ or the conditional probability of the two tasks are different with $P(\mathbf{y}_\mathcal{Z}\vert \mathbf{Z}) \neq P(\mathbf{y}_\mathcal{X}\vert \mathbf{X})$.
+The second could be caused by the fact that the documents are focusing on various topics, which would be lead to different terms.\cite{Pan.2010}\\
+The second case is that the tasks are different, which implies $\mathcal{T_Z} \neq \mathcal{T_X}$ and can further be divided that they rather differ in the label space $\mathcal{Y_Z} \neq \mathcal{Y_X}$ or the conditional probability of the two tasks are different with $P(\mathbf{y}_\mathcal{Z}\vert \mathbf{Z}) \neq P(\mathbf{y}_\mathcal{X}\vert \mathbf{X})$.
 In practice, the first would imply that the source task has only two categories, which results in a binary classification problem, although the second task has more than two labels and is, therefore, a multi-class problem.
 The second case could be based on the fact that source and target documents are divided into very unbalanced user-defined classes.
-Finally, if there exists any relationship between the feature spaces of the two domains, then they are \textit{related}.\cite{Pan.2010}\\
+Finally, if there exists any relation between the feature spaces of the two domains, then they are \textit{related}.\cite{Pan.2010}\\
 Note that in the context of transfer learning the term \ac{DA} may appear.
 Based on the discussion in \cite{Pan.2011}, the following definition can be extracted.
 \begin{mDef}[Domain Adaptation]\label{DefDa}
@@ -96,12 +116,13 @@ It assumes that the domain data generation is made in a way that the sampling, w
 Furthermore, the marginal distribution $P(\mathbf{X})$ changes through the domain shift that the marginal distribution for data sampling of the source and target data are different. As a consequence, the distributions may be different.\cite[p. 8-9]{QuinoneroCandela.2009}\\
 In practice, we can observe that the key challenge of \acl{DA} methods is to focus on aligning the differences in the marginal distribution, which can be observed in \cite{Pan.2011}, \cite{Long.}, \cite{Fernando.} and \cite{Arnold.2007}, which is described by \cite{Pan.2011} too.
 
+\FloatBarrier
 \section{Measurement of Difference}\label{TlSecMeasure}
 From the previous examples \ref{TlSecChal} and definitions \ref{TlSecDef}, it seems that the domains are different.
 This difference needs to be determined to classify the amount of transfer which is done.
 In this thesis, it is measured with the \ac{MMD} and \ac{KLD}.
 Note that they only consider the differences in the marginal domain distributions.
-Another, point worth to mention is that the methods, which we will introduce later on, are based on these measures.
+Another, point worth mentioning is that the methods, which we will introduce later on, are based on these measures.
 For example, the \acl{TCA} and the \acl{JDA} solutions are using the \acs{MMD} in the optimization problem.
 On the other hand, the authors of TrAdaBoost using the \acs{KLD} to determine the difference in domains, to measure the quality of the transfer-algorithm.
 
@@ -160,12 +181,12 @@ The relationship is shown in figure \ref{FigSettingsTransferLearning}.
 \begin{figure}
 	\centering
 	\includegraphics[width=.8\linewidth]{figures/SettingsTransferLearning.png}
-	\caption[Settings of Transfer Learning]{The various settings of transfer learning approaches and their relation to traditional machine learning problems.\cite{Pan.2010}}
+	\caption[Settings of Transfer Learning]{The various settings of transfer learning, their relation to traditional machine learning problems and the required dataset compositions.\cite{Pan.2010}}
 	\label{FigSettingsTransferLearning}
 \end{figure}
 
 \subsection{Inductive Transfer Learning}\label{TlSubSecInduc}
-The setting \ac{ITL} takes the assumption that the target task and the source task are different regardless of whether the domains of source and target are different or not.
+The setting \ac{ITL} makes the assumption that the target task and the source task are different regardless of whether the domains of source and target are different or not.
 Methods of this setting requiring some labeled test data to \textit{induce} a predictive model $f_\mathcal{X}(\mathbf{X})$ for the training domain.\cite{Pan.2010}
 Therefore Pan et al. formulated the following definitions.
 \begin{mDef}[Inductive Transfer learning {\cite{Pan.2010}}]\label{DefITL}
@@ -177,9 +198,9 @@ This is related to the multi-task learning approach where a learner tries to lea
 In the second case, there are no labeled source data at all available.
 The goal is similar to the self-thought learning setting.
 The challenge of self-thought learning is information from the source domain can not be applied to the target because they are not the same and therefore can not be used directly.
-Summarizing, because the source data cannot be used directly, we have to find are parts of the data which can be combined with a few labeled target data to reach the goal.\cite{Pan.2010}\\
+Summarizing, because the source data cannot be used directly, we have to find the parts of the data which can be combined with a few labeled target data to reach the goal.\cite{Pan.2010}\\
 In the section \ref{TlSubSecInstance}, we will give an example of an instance based approach, based on the inductive transfer learning setting.
-Note that this solution tries to aligning the marginal distributions with some labeled data, which is little different to the original definition of inductive learning.
+Note that this solution tries to align the marginal distributions with some labeled data, which is little different from the original definition of inductive learning.
 
 \subsection{Transductive Transfer Learning}\label{TlSubSecTrans}
 The \ac{TTL} setting assumes that the tasks of the two domains are the same, but the source and target domains are different.
@@ -197,11 +218,11 @@ This is related to the definition of heterogeneous transfer learning from \ref{T
 The second case is that the feature spaces are the same, but the marginal probability distributions differ, i.\,e. $P(\mathbf{Z}) \neq P(\mathbf{X})$.\cite{Pan.2010}\\
 In this case, the transductive transfer learning is related to the domain adaptation task from \ref{DefDa}.
 An example of transductive transfer learning method is given in \cite{Wang.2008}.
-In this, they cluster the unlabeled target data for pseudo label generation and using a custom dimension reduction with the clustered target data and the labeled source data to create a subspace.
+In this, they cluster the unlabeled target data for pseudo label generation and use a custom dimension reduction with the clustered target data and the labeled source data to create a subspace.
 Summarizing, because the two domains are different, transductive transfer learning aims to improve the learning by using the source data and task in combination with a few unlabeled target data.
 
 \subsection{Unsupervised Transfer Learning}\label{TlSubSecUnsuper}
-The last one, the unsupervised transfer learning section, which is obviously not part of the category supervised learning, but will be described for completeness.
+The last one, the unsupervised transfer learning section, which obviously is not part of the category supervised learning, but will be described for completeness.
 It assumes that in both domains no labeled data is available.
 Furthermore, the task of the source and target data are different.
 In comparison with the supervised learning transfer learning methods, the goal is not to find labels for the target data but solving clustering, dimensionality reduction and density estimation.\cite{Pan.2010}
@@ -219,7 +240,7 @@ This is, in fact, similar to the inductive transfer learning setting from sectio
 In this section, the homogeneous transfer learning approach will be introduced.
 In general, it has the assumption that the feature spaces are equal and the conditional or marginal distributions of the domains are different.
 There are three main goals of homogeneous transfer learning.
-The first is one is to align the marginal distribution difference.
+The first one is to align the marginal distribution difference.
 The second is to correct the difference in the conditional probability distributions, and the last one tries to align both, the marginal and conditional distribution difference.\cite[p. 6]{Weiss.2016}
 This is formalized in the same way as the previous definition, which is influenced by the formulation of Pan et al. from \cite{Pan.2010}.
 \begin{mDef}[Homogeneous Transfer Learning]\label{DefHomogeneous}
@@ -233,7 +254,7 @@ These approaches are sometimes called categories of information transfer.
 They give a general understanding of how the methods are trying to align the differences.\cite[p. 6-7]{Weiss.2016}
 Unlike the previous definitions, settings and explanations, which describing the problem and only giving an abstract solution through the predictive function $f_\mathcal{X}(\cdot)$.
 \subsection{Instance-transfer}\label{TlSubSecInstance}
-The instance transfer method tries to full fill the goal of aligning the marginal distribution by re-weighting some source data.
+The instance transfer method tries to fullfill the goal of aligning the marginal distribution by re-weighting some source data.
 This re-weighted data is then directly used with target data for training.
 It seems that these type of algorithm works best when the conditional probability is the same in source and target domain \cite[p. 6]{Weiss.2016}\\
 In the following, we will present such an Instance transfer algorithm.
@@ -300,7 +321,7 @@ However, the resulting kernel and the transformation matrix can be used to train
 It has the assumption, which makes it a homogeneous transfer method that the feature space is the same, the conditional probabilities are similar, but the marginal probability distribution is different.
 Furthermore, they assume that there exists a feature transformation $\phi$, which can align the differences, i.\,e. $P(\phi(\mathbf{Z})) \approx(\phi(\mathbf{X}))$ and preserve $P(\mathbf{y}_\mathcal{Z}\vert \phi(\mathbf{Z}))\approx P(\mathbf{y}_\mathcal{X}\vert \phi(\mathbf{X}))$.\cite{Pan.2011}\\
 In the following, we will see that \acs{TCA} requires target data in the training process and is therefore transductive.\\
-In general, there may exists underlying data structures and relationships in between them.
+In general, there may exists underlying data structures and relations between them.
 Some of them do cause the distribution difference, and some of them are the reason for relations between the source and target domain.
 The part of the data which causes the relation is called \textit{transfer component} and should be found to preserve structure but at the same time aligning the differences.\cite{Pan.2011}\\
 Consider $\mathbf{K}$ as a cross-domain kernel, as a composition of the source and target domain, in the embedded subspace which has the form:\cite{Pan.2011}
@@ -347,7 +368,7 @@ The computational complexity is given by $\mathcal{O}(L(N+M)^2)$, where again $L
 \end{figure}
 Another symmetric feature transfer method is the \ac{GFK} and is proposed by Gong et al. in \cite{Gong.}\footnote{\url{http://www-scf.usc.edu/~boqinggo/domain\_adaptation/GFK\_v1.zip}}.
 Following definition of homogeneous methods and similar to \acs{TCA}, the \acl{GFK} is trying to lower the marginal distribution differences.\cite[p. 13]{Weiss.2016}\\
-Furthermore, it is claimed as unsupervised transfer learning method, but because the result of this method is, in fact, a kernel, it can be trained with a kernel machine.\cite{Gong.}
+Furthermore, it is claimed as unsupervised transfer learning method, but because the result of this method are, in fact, a kernel, it can be trained with a kernel machine.\cite{Gong.}
 Again because it needs target data in the learning process, it will be considered as inductive transfer learning method.\\
 The idea of \acs{GFK} can be summarized in the following steps:
 The source and the target data has to be embedded in a Grassmannian manifold.
@@ -363,9 +384,9 @@ For more details please have a look in the thesis \cite[p. 45;110-113]{Gong.2015
 The asymmetric feature transfer learning approach tries to transform the source domain data in the target (subspace) domain.
 This should be done in a way that the transformed source data will match the target distribution.
 In comparison to the symmetric feature transfer approaches, there will be no shared subspace, but only the target space.
-In the following, the \ac{JDA} algorithm is described to give an idea of an asymmetric approach.\cite[p. 6; 10]{Weiss.2016}
+In the following, the \ac{JDA} algorithm is described, to give an idea of an asymmetric approach.\cite[p. 6; 10]{Weiss.2016}
 \subsubsection{Joint Distribution Adaptation}
-The \acl{JDA} algorithm tries to not only solve the marginal probability distribution but the conditional probability distribution, too.
+The \acl{JDA} algorithm tries not only to solve the marginal probability distribution but the conditional probability distribution, too.
 This solution is proposed by Long et al. in \cite{Long.}.\footnote{\url{http://ise.thss.tsinghua.edu.cn/~mlong/doc/joint-distribution-adaptation-iccv13.zip}}\\
 Because it solves the probabilistic differences between the domains, it can be considered as transductive setting, with the need for unlabeled target data.\\
 The primary goal is to alter the joint distribution by a feature transformation in a way that the joint expectations of the source and target features are matched between the domains.
@@ -416,7 +437,7 @@ One approach in this category is based \ac{MMKT}.\cite[p. 7-8]{Weiss.2016}
 The \acs{MMKT} approach is proposed by Tommasi et al. in \cite{Tommasi.}.
 They are using the \ac{LS-SVM} in combination with a discriminative method to transfer knowledge from previously learned models based on the source data and transferring it to the target data.
 Note that the term models may confusing, which we will see in the following.
-Furthermore, they want a classifier, which can be trained only on few training examples and being able to learn more only from few data than the standard \acs{LS-SVM} does.
+Furthermore, they want a classifier, that can be trained only on a few training examples and is able to learn more from less data than the standard \acs{LS-SVM} does.
 The transfer knowledge method is adopted from his previous work in \cite{Tommasi.2009}.\\
 Note that this method does not try to explicit minimize the distribution differences, as per definition of the homogeneous transfer learning from \ref{DefHomogeneous}.
 Again, consider a labeled source dataset with $\{\mathbf{z},{y_\mathcal{Z}i}\}_{i=1}^{N}$, where $y_i \in \mathcal{Y_Z} =\{1,-1\}$.
@@ -493,7 +514,7 @@ We can again give the formal definition with:
 \begin{mDef}[Heterogeneous Transfer Learning]
 	Given a source domain $\mathcal{Z}$ and learning task $\mathcal{T_Z}$, a target domain $\mathcal{X}$ and learning task $\mathcal{T_T}$, heterogeneous transfer learning aims to help improve the learning of the target predictive function $f_\mathcal{T}(\cdot)$ in $\mathcal{X}$ using the knowledge in $\mathcal{Z}$ and $\mathcal{T_Z}$, where $P(\mathbf{Z}) = P(\mathbf{X})$, but $\mathcal{F_Z} \neq \mathcal{F_X}$ and $\mathcal{Y_Z} \neq \mathcal{Y_X} $.\cite[p. 4]{Weiss.2016}
 \end{mDef}
-Because the examples in challenges, section \ref{TlSecChal}, may not covering the heterogeneous definition, we will give an example in the following.
+Because the examples in challenges, section \ref{TlSecChal}, do not cover the heterogeneous definition, we will give an example in the following.
 Imagine a machine learning application of software module defect classification, where a learner is trained to predict whether a software module works well or is defect prone.
 Furthermore, there exists a metric for every software module, which measures, e.\,g., some performance criteria.
 This forms the feature space.
@@ -562,13 +583,13 @@ For further information about the algorithm, the reader may consider \cite{Qi.20
 A major key assumption of transfer learning is that the source and target domains are related to each other.
 This is pointed out in the examples from section \ref{TlSecChal}.\\
 If this assumption, however, does not hold and the domains may not relate, then the transfer learning solution can impact the performance of the underlying classifier for the target data in a negative way.\cite[p. 29]{Weiss.2016}\\
-The problem is that all methods take the assumption that a relation exists, but there is no current way to determine whether a relationship exists or not.\cite[p. 1672]{Taylor.2009}
+The problem is that all methods take the assumption that a relation exists, but there is no current way to determine whether a relation exists or not.\cite[p. 1672]{Taylor.2009}
 This is also shown in the dataset description in chapter \ref{EmChap}, where the datasets are designed in a way that the domains are related to each other.
 However, as pointed out in the chapter, this selection of datasets is common in transfer learning community and may not consider the fact of negative transfer.
 However, the negative transfer is a phenomenon that exists, which is seen in the results of sections \ref{EmSecOneData} and \ref{EmSecMulDa}, where the transfer learning methods are worse than the baseline classifier.
 
 \section{Conclusion}
-It is again worth to mention that there are not only many relationships among the definitions, but in the solutions too, refer to section \ref{TlSecHomo}.
+It is again worth mentioning that there are not only many relations among the definitions, but in the solutions too, refer to section \ref{TlSecHomo}.
 Weiss et al. pointed out that there are many inconsistencies in the definition of transfer learning.\cite[p. 5-6]{Weiss.2016}
 However, fair enough, many of the definitions are used to distinguish how the transfer is done.
 For example, is labeled target data or any target data at all needed, or how much source data has to be available, for the transfer.
@@ -577,11 +598,11 @@ Furthermore, one has to additional manual label target data before an inductive 
 Therefore the mentioned definition of inductive transfer \ref{DefITL} and transductive transfer \ref{DefTTL} are a solid extension to the homogeneous \ref{TlSecHomo} and heterogeneous \ref{TlSecHetero} transfer learning definitions.\\
 In contrast to the mentioned survey papers of \cite{Weiss.2016} and \cite{Pan.2010}, we choose to dive into the transfer learning methods in detail, to get an idea of how the general problem is formulated.
 Furthermore, the process of how they get a solution for the problem is described, instead of giving a high-level description.
-This seems reasonable, because of the already pointed out relations among the solutions, which does not omit the need for further research, give a generalized understanding of how the transfer problem can be solved.\\
-Another point worth mention is that the provided solutions are proposed to support only certain learning approaches and varying between supervised, semi-supervised and unsupervised.
+This seems reasonable, because of the already pointed out relations between the solutions, which do not omit the need for further research, give a generalized understanding of how the transfer problem can be solved.\\
+Another point worth mentioning is that the provided solutions are proposed to support only certain learning approaches and varying between supervised, semi-supervised and unsupervised.
 However, as seen in this chapter, the output of a solution is often a kernel or transformation matrix, which can be used with any kernel-based algorithm.
 Nevertheless, to be careful, for example from \cite{Long.}, \cite{Long.2015} \cite{Gong.} appears that their solutions can be easily applied to any standard classifier.\\
 In practice, a classifier may have dependencies in their algorithm, and the integration is a more challenging problem.
-This is might the reason that in \cite{Gong.}, they are using their implementation of $k$-nearest neighbor or that only the LibSVM, which supports pre-calculated kernels, is utilized in the corresponding articles of a transfer learning solution. 
+This might be the reason why in \cite{Gong.}, they are using their implementation of $k$-nearest neighbor or that only the LibSVM, which supports pre-calculated kernels, is utilized in the corresponding articles of a transfer learning solution. 
 Therefore the integration into a kernel machine may need further investigation.
-In this chapter are various transfer learning definitions and methods discussed.
+In this chapter various transfer learning definitions and methods have been discussed.

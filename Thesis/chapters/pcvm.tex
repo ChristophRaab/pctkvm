@@ -1,7 +1,7 @@
 \chapter{Vector Machines}\label{Pc}
 In this chapter, we will introduce supervised vector machines.
 In particular, the \ac{SVM}, \ac{RVM} and \ac{PCVM}.
-Although that the \acs{SVM} is a popular solution for supervised learning, it comes with several disadvantages.\cite{Chen.2009}
+Although the \acs{SVM} is a popular solution for supervised learning, it comes with several disadvantages.\cite{Chen.2009}
 To tackle these problems, Tipping et al. proposed the \acs{RVM} in \cite{Tipping.2001} to align these drawbacks.
 The idea of the \acs{RVM} is mainly motivated to improve the \acs{SVM}\cite[p. 1-2]{Tipping.2001}.
 However, the \acs{RVM} itself provides some conception assumptions, which are leading in the opinion of Chen et al. to unstable results.
@@ -14,11 +14,11 @@ With this, any local solution is also global.
 The Lagrange multipliers are used in the optimization problem for the dual optimization problem.\cite[p. 328-239]{Bishop.2009}\\
 The \acs{SVM} is a maximum margin classifier with the goal to determine a margin to separate two classes of samples. This margin which should be maximal. 
 Therefore the margin is the smallest distance between the decision boundary and any sample.\cite[p. 327]{Bishop.2009}\\
-The classifier in his simplest form and besides the choice of the kernel has two model parameters $\mathbf{w}$ and $b$. 
+The classifier in his simplest form and furthermore the choice of the kernel has two model parameters $\mathbf{w}$ and $b$. 
 The first one is modeling the hyperplane which separates the two classes.
 This is just introduced by the decision boundary. 
 The second parameter $b$ is called the bias and models the location of the hyperplane.\cite[p. 327-328]{Bishop.2009}\\
-If a sample has a certain distance to the hyperplane, then it is considered as support vector.
+If a sample has a certain distance to the hyperplane, then it is considered as a support vector.
 The support vectors are on both sides of the hyperplane for the two classes.
 The prediction is made by determining the edge of a data point corresponding to the decision boundary.
 If a new sample point is one side of the hyperplane, the point belongs to the corresponding class and vice verse:\cite[p. 236;328]{Bishop.2009}
@@ -28,11 +28,12 @@ y(\textbf{x}) = \sum_{i=1}^{N} w_i \phi_i(\mathbf{x}) + b= \textbf{w}^T \mathbf{
 Where $\mathbf{\Phi(x)}= (\phi(\mathbf{x})_1,\dots,\phi(\mathbf{x}_N))$ a vector and $\phi(\cdot)$ denotes a features space transformation.
 Furthermore, the hyperplane parameter \textbf{w} and the bias b.
 The class of a new data point is now obtained with the sign of $y(\textbf{x})$. If $y(\textbf{x}) > 0$ it belongs to class $1$.
-Furthermore, when it comes to $y(\textbf{x}) < 0)$ it belongs to class $-1$.
+Also, when it comes to $y(\textbf{x}) < 0)$ it belongs to class $-1$.
 Note that if a point in the training state has the function value of $y(\textbf{x}) = 1 \vee y(\textbf{x}) = -1$, then it is considered as support vector.\cite[p. 237]{Bishop.2009}\\
 The \ac{SVM} has a complexity of $\mathcal{O}(B^3)$ in the worst case, with $B$ basis functions.\cite[p. 329]{Bishop.2009}
 To get a visual idea of how the \ac{SVM} works, the process is shown in figure \ref{FigSVMProd}.\\
-Note that this is a very brief explanation of the \acs{SVM}, which takes some assumptions. Beside some concepts, for example, errors and the Lagrange variables, are not defined.
+Note that this is a very brief explanation of the \acs{SVM}, which takes some assumptions. 
+Some concepts, for example, errors and the Lagrange variables, are not defined.
 This is just to get an idea of how it works.\\
 The \acs{SVM} is the classifier of every transfer learning method which can be treated as wrapper algorithms, except \acs{PCVM}, \acs{PCTKVM}, \acs{PCTKVM}\textsubscript{$\theta$Est} and \acs{GFK}.
 The latter is using an own approach of $k$-nearest-neighbor.
@@ -41,25 +42,25 @@ It is created and maintained from Chih-Jen Lin and Chih-Chung Chang and can be d
 \begin{figure}
 	\centering
 	\floatbox[{\capbeside\thisfloatsetup{capbesideposition={right,top},capbesidewidth=6cm}}]{figure}[\FBwidth]
-	{\caption[Example of SVM Classification]{Example of the SVM trained with the synthetic dataset with two classes in two dimensions. The green surrounded data points are the support vectors. \cite[p. 331]{Bishop.2009}}}
+	{\caption[Example of SVM Classification]{Example of the SVM trained with the synthetic dataset with two classes in two dimensions. On the left, the green surrounded data points are the support vectors.\cite[p. 331]{Bishop.2009}}}
 	{\includegraphics[width=\linewidth]{figures/SVMProd.png}\label{FigSVMProd}}
 \end{figure}
 
 \section{Disadvantages of Support Vector Machines}\label{PcSecIdea}
-First the \acs{SVM}, which is described as baseline classifier in section \ref{PcSecSVM}, provides a optimal solution through the convex optimization problem \cite[p. 325]{Bishop.2009}, but suffers from a few disadvantages.\\
+First the \acs{SVM}, which is described as baseline classifier in section \ref{PcSecSVM}, provides an optimal solution through the convex optimization problem \cite[p. 325]{Bishop.2009}, but suffers from a few disadvantages.\\
 The \acs{SVM} is non-probabilistic.
 The problem is that hard binary decisions which are made of the \acs{SVM} cannot catch the uncertainty for predictions.
 Furthermore, the probabilistic predictions are considered as crucial when posterior probabilities of a class assignment are adapted to varying class priors and asymmetric misclassification costs.\cite[p. 239-240]{Tipping.2001}\\
 To solve this problem, there are some post processing methods developed to match the binary import to a probabilistic output.
 However, this is considered as unreliable by \cite[p. 239-240]{Tipping.2001}. 
 This uncertainty can be interpreted as Bayesian probability.\cite[p. 21]{Bishop.2009}\newline 
-Second, the number of support vectors needed to create the margin of the decision boundary grows linearly with the size of the training set.
+Secondly, the number of support vectors needed to create the margin of the decision boundary grows linearly with the size of the training set.
 With that, the computational complexity and model complexity grows and does not lead to sparse models or fast computing.
 As a consequence, some post-processing is suggested to reduce the complexity of the model.\cite{Chen.2009}\\
 An example would be to find a set of 'reduced' vectors with $N$ entries, which approximating the original set of support vectors $N_R$.
 Note that these reduced vectors are no training samples and are not necessarily lying on the margin.
 The goal is then to find the smallest $N$ with $N \ll N_R$ for that the loss in the generalization performance is acceptable.
-However, this approach is computational costly.\cite{Burges.1997}\\
+However, this approach is computationally costly.\cite{Burges.1997}\\
 Therefore the wanted reduction of computational complexity is maybe not yet achieved.\newline
 Furthermore, the \ac{SVM} has several parameters, that needs to be tuned by cross-validation.
 For example the $C$ parameter, as cost parameter of the hyperplane\cite[p. 420]{TrevorHastie.2009}, or the parameters of a kernel function, for example, the width of the Gaussian kernel, section \ref{EmSubSecKernel}.
@@ -169,7 +170,7 @@ The three algorithms \acs{SVM}, \acs{RVM} and \acs{PCVM} are determining the wei
 It is necessary for a stable solution that the sign of the weight $w_i$ of a data point $\mathbf{x}_i$ is equal to the corresponding classes $y_i \in\{-1,+1\}$.\cite{Chen.2009}\\
 The \ac{SVM} ensures this by defining the weight vectors as $\mathbf{w} = \{v_1y_1,\dots,v_ny_n\}$, where $v_i$ are non-negative Lagrange multipliers.
 Therefore the same sign is guaranteed.\cite{Chen.2009}
-But consider, that some of the data points which are not support vectors have $v_i=0$.\cite[p. 330]{Bishop.2009} \\
+But consider, that some of the data points, which are not support vectors, have $v_i=0$.\cite[p. 330]{Bishop.2009} \\
 The \ac{RVM} estimates the weights according to equation \eqref{EqBayesInfeRVM}.
 The likelihood is always positive because exponential function $e$ is always positive \cite[p. 355]{Hartmann.2015} and hence the logistic sigmoid link function is it.
 Therefore the sign depends on the prior, which uses the zero-mean Gaussian over all weights and hence providing some problems.\\
@@ -192,7 +193,7 @@ p(w_i \vert \alpha_i) =
 0				,\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\> if y_i w_i<0
 \end{dcases*}
 \end{equation}
-With that, the \acs{PCVM} assigns for an unreliable point a zero weight, and therefore there it is no longer considers as relevance vector for the model.
+With that, the \acs{PCVM} assigns for an unreliable point a zero weight, and therefore there it is no longer considered as relevance vector for the model.
 The truncated Gaussian priors are illustrated in figure \ref{FigTruncGaus}.\newline
 The bias $b$ which is referred as $w_0$ in \eqref{EqRVMPrior} is still determined with the zero-mean Gaussian:\cite{Chen.2009}
 \begin{equation}\label{EqPcvmBPrior}
@@ -212,7 +213,7 @@ The \acs{PCVM} uses the gamma distribution for modeling the hyperprior, but in p
 \subsection{Expectation Maximization Algorithm}\label{PcSecEM}
 The \acs{PCVM} uses a simple latent variable model within the \acs{EM} algorithm.\cite{Chen.2009}
 A latent variable can either be missing data or is unobservable (hidden).\cite[p. 276-277]{TrevorHastie.2009}\cite[p. 84]{Bishop.2009}
-Hidden in this context means this variable can not be directly observed and his existence is implicit.\cite{Borsboom.}\\
+Hidden in this context means that this variable can not directly be observed and his existence is therefore implicit.\cite{Borsboom.}\\
 The latent variable is a part of the data which is not available (hidden) but is involved in the model.
 Therefore the algorithm takes assumptions to deal with the uncertainty of this latent variables.\\
 The standard probabilistic assumption is that the formulation in \eqref{EqRVMPred} is affected by noise.
@@ -241,7 +242,7 @@ p(\mathbf{H}_\theta(\mathbf{x})\vert w,b) = N(\mathbf{H}_\theta(\mathbf{x})\vert
 \end{gathered}
 \end{equation}
 With $\mathbf{H}_\theta(\mathbf{x}) = (h_\theta(\mathbf{x}_1),\dots,h_\theta(\mathbf{x}_N))^T$ and where $\mathbf{\Phi_\theta} = (\mathbf{\Phi}_\theta(\mathbf{x}_1)^T,\dots,\Phi_\theta(\mathbf{x}_N)^T)^T$ and $\mathbf{\Phi}_\theta(\mathbf{x_i}) = (\phi(\mathbf{x}_1,\mathbf{x}_i),\dots,(\phi(\mathbf{x}_N,\mathbf{x}_i))$ forming the kernel.
-At this point it is important reintroduce a clear notation.
+At this point it is important to reintroduce a clear notation.
 $\mathbf{\Phi}_\theta$ as kernel. Within this kernel $\mathbf{\Phi}(\mathbf{x}_i)$ is a row and $\mathbf{\Phi}_\theta(\mathbf{x})$ refers to the row corresponding to $\mathbf{x}$.\\
 For the complete log-posterior of the parameters $\mathbf{w}$ and $b$ the corresponding parameters, $\alpha$ and $\beta$ are also considered as latent variables.
 With that, there are three latent variables in the posterior.
@@ -255,8 +256,8 @@ Instead of the standard posterior, the $\log$ posterior is used and therefore ha
 With that, we can proceed with the \acs{EM} algorithm.\cite{Chen.2009}\\
 Dempster et al originally introduced the EM algorithm. It is made for determining the maximum likelihood for incomplete data \cite{Dempster.1977}. 
 Based on their work, many other applications are made to determine parameters.
-For example Bishop used a \acs{EM} algorithm within the algorithm $k$-means cluster.\cite[p. 426-428]{Bishop.2009}
-Furthermore, Hasti et al. using it in \cite[p. 272-276]{TrevorHastie.2009} for a two-component mixture model.\
+For example, Bishop used a \acs{EM} algorithm within the algorithm $k$-means cluster.\cite[p. 426-428]{Bishop.2009}
+Moreover, Hasti et al. using it in \cite[p. 272-276]{TrevorHastie.2009} for a two-component mixture model.\
 Although Tipping never mentioned the use of the \acs{EM} algorithm in the \acs{RVM}, the procedure of it, explained in \ref{PcSecRVM} is similar.\cite[p. 233-234]{Tipping.2001}.
 Furthermore, he introduced an Expectation-Maximization Update approach for determining the parameters.\cite[. 235]{Tipping.2001} \newline
 As the name says, it consists of two steps.
@@ -292,8 +293,9 @@ The reason for this is that the because of the small values of $\mathbf{\expB{A}
 \subsection{Properties of Algorithm}\label{PcSubSecAlgo}
 The algorithm of the \acs{PCVM} can simply be described.
 First randomly initialize the parameters $\mathbf{w},b$ and an indicator vector, which indexes the non-zero weights.
-Following by the iterations, which terminates if a convergence criterion is reached. 
-In every iteration the kernel with the new $\theta$ is calculated, followed by the estimation of the weight $\mathbf{w}$, bias $b$ and solving the optimization for a new $\theta$. After these steps, update the indicator vector.\cite{Chen.2009}
+In every following iteration, the kernel with the new $\theta$ is calculated.
+This is followed by the estimation of the weight $\mathbf{w}$, bias $b$ and solving the optimization for a new $\theta$. After these steps, the indicator vector is updated.
+This is repeated until a convergence criterion is reached.\cite{Chen.2009}
 The complete pseudo code can be found in Appendix \ref{appac}.\\
 Chen et al. designed the \acs{PCVM} in a way that the convergence of the algorithm is only measured with the convergence behavior of $\mathbf{w}$ and is set to $||{\mathbf{w}-\mathbf{w}^{old}}|| = 1.0e^{-3}$ in practice. 
 The time complexity of the \acs{PCVM} is $\mathcal{O}(B^3)$, with $B$ as the number of involved data points.\\
