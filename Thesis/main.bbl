@@ -66,14 +66,23 @@
   --
 \newblock ISBN 0--387--31073--8
 
-\bibitem[9]{Borsboom.}
+\bibitem[9]{Bishop.2000}
+\textsc{Bishop}, Christopher~M. ; \textsc{Tipping}, Michael~E.:
+\newblock {Variational Relevance Vector Machines}.
+\newblock {In: }\emph{{Proceedings of the Sixteenth Conference on Uncertainty
+  in Artificial Intelligence}}.
+\newblock San Francisco, CA, USA : {Morgan Kaufmann Publishers Inc}, 2000
+  (UAI'00). --
+\newblock ISBN 1--55860--709--9, S. 46--53
+
+\bibitem[10]{Borsboom.}
 \textsc{Borsboom}, Denny ; \textsc{Mellenbergh}, Gideon~J.  ; \textsc{{van
   Heerden}}, Jaap:
 \newblock {The theoretical status of latent variables}.
 \newblock {In: }\emph{{Psychological Review}} Bd. 110.
 \newblock 2003, S. 203--219
 
-\bibitem[10]{Bortz.2010}
+\bibitem[11]{Bortz.2010}
 \textsc{Bortz}, J{\"u}rgen ; \textsc{Schuster}, Christof:
 \newblock \emph{{Statistik f{\"u}r Human- und Sozialwissenschaftler}}.
 \newblock 7., vollst{\"a}ndig {\"u}berarbeitete und erweiterte Auflage.
@@ -81,27 +90,27 @@
   ({Springer-Lehrbuch}). --
 \newblock ISBN 978--3--642--12769--4
 
-\bibitem[11]{Buchholtz.1982}
+\bibitem[12]{Buchholtz.1982}
 \textsc{Buchholtz}, Christiane:
 \newblock \emph{{Vieweg Studium Grundkurs Biologie}}. Bd.~53:
   {\emph{{Grundlagen der Verhaltensphysiologie}}}.
 \newblock Wiesbaden : {Vieweg+Teubner Verlag}, 1982. --
 \newblock ISBN 9783322887856
 
-\bibitem[12]{Burges.1997}
+\bibitem[13]{Burges.1997}
 \textsc{Burges}, Chris J.~C. ; \textsc{Sch{\"o}lkopf}, Bernhard:
 \newblock {Improving the Accuracy and Speed of Support Vector Machines}.
 \newblock {In: }\emph{{Advances in Neural Information Processing Systems 9}},
   {MIT Press}, 1997, S. 375--381
 
-\bibitem[13]{Burlina.2017}
+\bibitem[14]{Burlina.2017}
 \textsc{Burlina}, Philippe ; \textsc{Pacheco}, Katia~D. ; \textsc{Joshi}, Neil
   ; \textsc{Freund}, David~E.  ; \textsc{Bressler}, Neil~M.:
 \newblock {Comparing Humans and Deep Learning Performance for Grading AMD}.
 \newblock {In: }\emph{{Comput. Biol. Med.}} 82 (2017), Nr. C, S. 80--86. --
 \newblock ISSN 0010--4825
 
-\bibitem[14]{CaroLopera.2012}
+\bibitem[15]{CaroLopera.2012}
 \textsc{Caro-Lopera}, Francisco~J. ; \textsc{Leiva}, V{\'i}ctor  ;
   \textsc{Balakrishnan}, N.:
 \newblock {Connection between the Hadamard and matrix products with an
@@ -112,7 +121,7 @@
   \url{http://www.sciencedirect.com/science/article/pii/S0047259X11001461}. --
 \newblock ISSN 0047--259X
 
-\bibitem[15]{Chai.2014}
+\bibitem[16]{Chai.2014}
 \textsc{Chai}, T. ; \textsc{Draxler}, R.~R.:
 \newblock {Root mean square error (RMSE) or mean absolute error (MAE)? -
   Arguments against avoiding RMSE in the literature}.
@@ -120,7 +129,7 @@
   1247--1250.
 \newblock \url{https://www.geosci-model-dev.net/7/1247/2014/}
 
-\bibitem[16]{Chattopadhyay.2012}
+\bibitem[17]{Chattopadhyay.2012}
 \textsc{Chattopadhyay}, Rita ; \textsc{Sun}, Qian ; \textsc{Fan}, Wei ;
   \textsc{Davidson}, Ian ; \textsc{Panchanathan}, Sethuraman  ; \textsc{Ye},
   Jieping:
@@ -130,7 +139,7 @@
   18:1--18:26. --
 \newblock ISSN 1556--4681
 
-\bibitem[17]{Chen.2014}
+\bibitem[18]{Chen.2014}
 \textsc{Chen}, H. ; \textsc{Tino}, P.  ; \textsc{Yao}, X.:
 \newblock {Efficient Probabilistic Classification Vector Machine With
   Incremental Basis Function Selection}.
@@ -138,32 +147,32 @@
   Systems}} 25 (2014), Nr. 2, S. 356--369. --
 \newblock ISSN 2162--237X
 
-\bibitem[18]{Chen.2009}
+\bibitem[19]{Chen.2009}
 \textsc{Chen}, Huanhuan ; \textsc{Tino}, Peter  ; \textsc{Yao}, Xin:
 \newblock {Probabilistic classification vector machines}.
 \newblock {In: }\emph{{IEEE transactions on neural networks}} 20 (2009), Nr. 6,
   S. 901--914. --
 \newblock ISSN 1045--9227
 
-\bibitem[19]{Commenges.}
+\bibitem[20]{Commenges.}
 \textsc{Commenges}, Daniel:
 \newblock \emph{{Information Theory and Statistics: an overview}}.
 \newblock \url{http://arxiv.org/pdf/1511.00860v1}
 
-\bibitem[20]{Czado.2011}
+\bibitem[21]{Czado.2011}
 \textsc{Czado}, Claudia ; \textsc{Schmidt}, Thorsten:
 \newblock \emph{{Mathematische Statistik}}.
 \newblock Berlin, Heidelberg : {Springer Berlin Heidelberg}, 2011. --
 \newblock ISBN 9783642172618
 
-\bibitem[21]{Dai.}
+\bibitem[22]{Dai.}
 \textsc{Dai}, Wenyuan ; \textsc{Yang}, Qiang ; \textsc{Xue}, Gui-Rong  ;
   \textsc{Yu}, Yong:
 \newblock {Boosting for transfer learning}.
 \newblock {In: }\textsc{Ghahramani}, Zoubin (Hrsg.): \emph{the 24th
   international conference}, S. 193--200
 
-\bibitem[22]{DavidD.Lewis.2004}
+\bibitem[23]{DavidD.Lewis.2004}
 \textsc{{David D. Lewis}}:
 \newblock \emph{{Reuters-21578 text categorization test collection Distribution
   1.0: README file (v 1.3)}}.
@@ -171,21 +180,21 @@
   \url{http://www.daviddlewis.com/resources/testcollections/reuters21578/readme.txt}.
 \newblock \,Version:\,2004
 
-\bibitem[23]{Dempster.1977}
+\bibitem[24]{Dempster.1977}
 \textsc{Dempster}, A.~P. ; \textsc{Laird}, N.~M.  ; \textsc{Rubin}, D.~B.:
 \newblock {Maximum Likelihood from Incomplete Data via the EM Algorithm}.
 \newblock {In: }\emph{{Journal of the Royal Statistical Society. Series B
   (Methodological)}} 39 (1977), Nr. 1, S. 1--38. --
 \newblock ISSN 00359246
 
-\bibitem[24]{Dietterich.1998}
+\bibitem[25]{Dietterich.1998}
 \textsc{Dietterich}, Thomas~G.:
 \newblock {Approximate Statistical Tests for Comparing Supervised
   Classification Learning Algorithms}.
 \newblock {In: }\emph{{Neural Comput}} 10 (1998), Nr. 7, S. 1895--1923. --
 \newblock ISSN 0899--7667
 
-\bibitem[25]{Duan.2012}
+\bibitem[26]{Duan.2012}
 \textsc{Duan}, L. ; \textsc{Xu}, D. ; \textsc{Tsang}, I. W.~H.  ; \textsc{Luo},
   J.:
 \newblock {Visual Event Recognition in Videos by Learning from Web Data}.
@@ -193,13 +202,13 @@
   intelligence}} 34 (2012), Nr. 9, S. 1667--1680. --
 \newblock ISSN 1939--3539
 
-\bibitem[26]{Edelman.1991}
+\bibitem[27]{Edelman.1991}
 \textsc{Edelman}, Shimon ; \textsc{B{\"u}lthoff}, Heinrich~H.  ;
   \textsc{Sklar}, Erik:
 \newblock \emph{{Task and object learning in visual recognition}}.
 \newblock \url{http://www.dtic.mil/get-tr-doc/pdf?AD=ADA259961}
 
-\bibitem[27]{Evgeniou.2004}
+\bibitem[28]{Evgeniou.2004}
 \textsc{Evgeniou}, Theodoros ; \textsc{Pontil}, Massimiliano  ;
   \textsc{Elisseeff}, Andr{\'e}:
 \newblock {Leave One Out Error, Stability, and Generalization of Voting
@@ -207,27 +216,27 @@
 \newblock {In: }\emph{{Machine Learning}} 55 (2004), Nr. 1, S. 71--97. --
 \newblock ISSN 0885--6125
 
-\bibitem[28]{Fawcett.}
+\bibitem[29]{Fawcett.}
 \textsc{Fawcett}:
 \newblock {ROC Graphs: Notes and Practical Considerations for Data Mining
   Researchers}.
 \newblock   (2004).
 \newblock \url{http://www.hpl.hp.com/techreports/2003/HPL-2003-4.pdf}
 
-\bibitem[29]{Fernando.}
+\bibitem[30]{Fernando.}
 \textsc{Fernando}, Basura ; \textsc{Habrard}, Amaury ; \textsc{Sebban}, Marc  ;
   \textsc{Tuytelaars}, Tinne:
 \newblock \emph{{Subspace Alignment For Domain Adaptation}}.
 \newblock \url{http://arxiv.org/pdf/1409.5241v2}
 
-\bibitem[30]{Gartner.2012}
+\bibitem[31]{Gartner.2012}
 \textsc{G{\"a}rtner}, Bernd ; \textsc{Matousek}, Ji{\v{r}}{\'i}:
 \newblock \emph{{Approximation Algorithms and Semidefinite Programming}}.
 \newblock 2012.
 \newblock Berlin, Heidelberg : {Springer Berlin Heidelberg}, 2012. --
 \newblock ISBN 978--3--642--22015--9
 
-\bibitem[31]{Gentle.2007}
+\bibitem[32]{Gentle.2007}
 \textsc{Gentle}, James~E.:
 \newblock \emph{{Matrix Algebra: Theory, Computations, and Applications in
   Statistics}}.
@@ -235,20 +244,26 @@
   Texts in Statistics}). --
 \newblock ISBN 978--0--387--70872--0
 
-\bibitem[32]{Gong.2015}
+\bibitem[33]{Golub.1965}
+\textsc{Golub}, G. ; \textsc{Kahan}, W.:
+\newblock {Calculating the Singular Values and Pseudo-Inverse of a Matrix}.
+\newblock {In: }\emph{{Journal of the Society for Industrial and Applied
+  Mathematics, Series B: Numerical Analysis}} 2 (1965), Nr. 2, S. 205--224
+
+\bibitem[34]{Gong.2015}
 \textsc{Gong}, Boqing:
 \newblock \emph{{Kernel Methods for Unsupervised Domain Adaptation}}.
 \newblock \url{http://www-scf.usc.edu/~boqinggo/}.
 \newblock \,Version:\,2015
 
-\bibitem[33]{Gong.}
+\bibitem[35]{Gong.}
 \textsc{Gong}, Boqing ; \textsc{Shi}, Yuan ; \textsc{Sha}, Fei  ;
   \textsc{Grauman}, K.:
 \newblock {Geodesic flow kernel for unsupervised domain adaptation}.
 \newblock {In: }\emph{{2012 IEEE Conference on Computer Vision and Pattern
   Recognition (CVPR)}}, S. 2066--2073
 
-\bibitem[34]{Graepel.2002}
+\bibitem[36]{Graepel.2002}
 \textsc{Graepel}, Thore:
 \newblock {Kernel Matrix Completion by Semidefinite Programming}.
 \newblock {In: }\textsc{Dorronsoro}, Jos{\'e}~R. (Hrsg.): \emph{{Artificial
@@ -257,12 +272,12 @@
 \newblock Berlin, Heidelberg : {Springer Berlin Heidelberg}, 2002. --
 \newblock ISBN 978--3--540--46084--8, S. 694--699
 
-\bibitem[35]{GregGriffin.}
+\bibitem[37]{GregGriffin.}
 \textsc{{Greg Griffin, Alex Holub, Pietro Perona}}:
 \newblock \emph{{Caltech-256 Object Category Dataset}}.
 \newblock \url{http://authors.library.caltech.edu/7694/}
 
-\bibitem[36]{Gretton.2012}
+\bibitem[38]{Gretton.2012}
 \textsc{Gretton}, Arthur ; \textsc{Borgwardt}, Karsten~M. ; \textsc{Rasch},
   Malte~J. ; \textsc{Sch{\"o}lkopf}, Bernhard  ; \textsc{Smola}, Alexander:
 \newblock {A Kernel Two-sample Test}.
@@ -270,7 +285,7 @@
 \newblock \url{http://dl.acm.org/citation.cfm?id=2188385.2188410}. --
 \newblock ISSN 1532--4435
 
-\bibitem[37]{Hartmann.2015}
+\bibitem[39]{Hartmann.2015}
 \textsc{Hartmann}, Peter:
 \newblock \emph{{Mathematik f{\"u}r Informatiker: Ein praxisbezogenes
   Lehrbuch}}.
@@ -278,7 +293,7 @@
 \newblock Wiesbaden : {Springer Vieweg}, 2015. --
 \newblock ISBN 978--3--658--03415--3
 
-\bibitem[38]{He.2017}
+\bibitem[40]{He.2017}
 \textsc{He}, Li ; \textsc{Ray}, Nilanjan  ; \textsc{Zhang}, Hong:
 \newblock {Error bound of Nystr{\"o}m-approximated NCut eigenvectors and its
   application to training size selection}.
@@ -287,20 +302,20 @@
   \url{http://www.sciencedirect.com/science/article/pii/S0925231217302813}. --
 \newblock ISSN 0925--2312
 
-\bibitem[39]{Hinton.2004}
+\bibitem[41]{Hinton.2004}
 \textsc{Hinton}, Perry~R.:
 \newblock \emph{{SPSS explained}}.
 \newblock London : Routledge, 2004. --
 \newblock ISBN 0415274095
 
-\bibitem[40]{Huang.2012}
+\bibitem[42]{Huang.2012}
 \textsc{Huang}, Pipei ; \textsc{Wang}, Gang  ; \textsc{Qin}, Shiyin:
 \newblock {Boosting for Transfer Learning from Multiple Data Sources}.
 \newblock {In: }\emph{{Pattern Recognition Letters}} 33 (2012), Nr. 5, S.
   568--579. --
 \newblock ISSN 01678655
 
-\bibitem[41]{Igual.2017}
+\bibitem[43]{Igual.2017}
 \textsc{Igual}, Laura ; \textsc{Santi}, Segu{\'i}:
 \newblock {Descriptive Statistics}.
 \newblock {In: }\emph{{Introduction to Data Science: A Python Approach to
@@ -308,14 +323,14 @@
 \newblock Cham : {Springer International Publishing}, 2017. --
 \newblock ISBN 978--3--319--50017--1, S. 29--50
 
-\bibitem[42]{RonaldL.Iman.}
+\bibitem[44]{RonaldL.Iman.}
 \textsc{Iman}, Ronald~L. ; \textsc{Davenport}, James~M.:
 \newblock {Approximations of the critical region of the friedman statistic}.
 \newblock {In: }\emph{{Communications in Statistics - Theory and Methods}} 9
   (2007), Nr. 6, S. 571--595. --
 \newblock ISSN 0361--0926
 
-\bibitem[43]{JanezDemsar.2006}
+\bibitem[45]{JanezDemsar.2006}
 \textsc{{Janez Demsar}}:
 \newblock {Statistical Comparisons ofClassifiers over Multiple Data Sets}.
 \newblock {In: }\textsc{Finlayson}, Bruce~A. (Hrsg.): \emph{{Introduction to
@@ -323,14 +338,14 @@
 \newblock Hoboken, NJ, USA : {John Wiley {\&} Sons, Inc}, 2006. --
 \newblock ISBN 9780471776680, S. 1--4
 
-\bibitem[44]{JingGao.2008}
+\bibitem[46]{JingGao.2008}
 \textsc{{Jing Gao, Wei Fan,Jing Jiang,Jiawei Han}}:
 \newblock \emph{{Knowledge Transfer via Multiple Model Local Structure
   Mapping}}.
 \newblock New York, NY : ACM, 2008. --
 \newblock ISBN 9781605581934
 
-\bibitem[45]{KaiZhang.2013}
+\bibitem[47]{KaiZhang.2013}
 \textsc{{Kai Zhang}} ; \textsc{{Vincent Zheng}} ; \textsc{{Qiaojun Wang}} ;
   \textsc{{James Kwok}} ; \textsc{{Qiang Yang}}  ; \textsc{{Ivan Marsic}}:
 \newblock {Covariate Shift in Hilbert Space: A Solution via Sorrogate Kernels}.
@@ -339,7 +354,7 @@
   on Machine Learning (ICML-13)}} Bd.~28, {JMLR Workshop and Conference
   Proceedings}, 2013, 388--395
 
-\bibitem[46]{Kitayama.2011}
+\bibitem[48]{Kitayama.2011}
 \textsc{Kitayama}, Satoshi ; \textsc{Yamazaki}, Koetsu:
 \newblock {Simple estimate of the width in Gaussian kernel with adaptive
   scaling technique}.
@@ -347,7 +362,7 @@
   4726--4737. --
 \newblock ISSN 15684946
 
-\bibitem[47]{Kobti.2007}
+\bibitem[49]{Kobti.2007}
 \textsc{Kobti}, Ziad ; \textsc{Wu}, Dan:
 \newblock \emph{{Lecture Notes in Computer Science}}. Bd. 4509:
   {\emph{{Advances in Artificial Intelligence: 20th Conference of the Canadian
@@ -356,7 +371,7 @@
 \newblock Berlin, Heidelberg : {Springer-Verlag Berlin Heidelberg}, 2007. --
 \newblock ISBN 978--3--540--72665--4
 
-\bibitem[48]{Kourou.2015}
+\bibitem[50]{Kourou.2015}
 \textsc{Kourou}, Konstantina ; \textsc{Exarchos}, Themis~P. ;
   \textsc{Exarchos}, Konstantinos~P. ; \textsc{Karamouzis}, Michalis~V.  ;
   \textsc{Fotiadis}, Dimitrios~I.:
@@ -367,27 +382,27 @@
   \url{http://www.sciencedirect.com/science/article/pii/S2001037014000464}. --
 \newblock ISSN 2001--0370
 
-\bibitem[49]{Kumar.2010}
+\bibitem[51]{Kumar.2010}
 \textsc{Kumar}, M.~P. ; \textsc{Packer}, Benjamin  ; \textsc{Koller}, Daphne:
 \newblock {Self-paced Learning for Latent Variable Models}.
 \newblock {In: }\emph{{Proceedings of the 23rd International Conference on
   Neural Information Processing Systems}}.
 \newblock USA : {Curran Associates Inc}, 2010 (NIPS'10), 1189--1197
 
-\bibitem[50]{Kumar.2012}
+\bibitem[52]{Kumar.2012}
 \textsc{Kumar}, Sanjiv ; \textsc{Mohri}, Mehryar  ; \textsc{Talwalkar}, Ameet:
 \newblock {Sampling Methods for the Nystr{\"o}m Method}.
 \newblock {In: }\emph{{J. Mach. Learn. Res.}} 13 (2012), S. 981--1006. --
 \newblock ISSN 1532--4435
 
-\bibitem[51]{Leskovec.2014}
+\bibitem[53]{Leskovec.2014}
 \textsc{Leskovec}, Jure ; \textsc{Rajaraman}, Anand  ; \textsc{Ullman},
   Jeffrey~D.:
 \newblock \emph{{Mining of Massive Datasets}}.
 \newblock Cambridge : {Cambridge University Press}, 2014. --
 \newblock ISBN 9781139924801
 
-\bibitem[52]{Li.2015}
+\bibitem[54]{Li.2015}
 \textsc{Li}, M. ; \textsc{Bi}, W. ; \textsc{Kwok}, J.~T.  ; \textsc{Lu}, B.~L.:
 \newblock {Large-Scale Nystr{\"o}m Kernel Matrix Approximation Using Randomized
   SVD}.
@@ -395,7 +410,7 @@
   Systems}} 26 (2015), Nr. 1, S. 152--164. --
 \newblock ISSN 2162--237X
 
-\bibitem[53]{Long.2014}
+\bibitem[55]{Long.2014}
 \textsc{Long}, Mingsheng ; \textsc{Wang}, Jianmin ; \textsc{Ding}, Guiguang ;
   \textsc{Pan}, Sinno~J.  ; \textsc{Yu}, Philip~S.:
 \newblock {Adaptation Regularization: A General Framework for Transfer
@@ -404,14 +419,14 @@
   (2014), Nr. 5, S. 1076--1089. --
 \newblock ISSN 1041--4347
 
-\bibitem[54]{Long.}
+\bibitem[56]{Long.}
 \textsc{Long}, Mingsheng ; \textsc{Wang}, Jianmin ; \textsc{Ding}, Guiguang ;
   \textsc{Sun}, Jiaguang  ; \textsc{Yu}, Philip~S.:
 \newblock {Transfer Feature Learning with Joint Distribution Adaptation}.
 \newblock {In: }\emph{{2013 IEEE International Conference on Computer Vision
   (ICCV)}}, S. 2200--2207
 
-\bibitem[55]{Long.2015}
+\bibitem[57]{Long.2015}
 \textsc{Long}, Mingsheng ; \textsc{Wang}, Jianmin ; \textsc{Sun}, Jiaguang  ;
   \textsc{Yu}, Philip~S.:
 \newblock {Domain Invariant Transfer Kernel Learning}.
@@ -419,14 +434,14 @@
   (2015), Nr. 6, S. 1519--1532. --
 \newblock ISSN 1041--4347
 
-\bibitem[56]{Lowe.2004}
+\bibitem[58]{Lowe.2004}
 \textsc{Lowe}, David~G.:
 \newblock {Distinctive Image Features from Scale-Invariant Keypoints}.
 \newblock {In: }\emph{{Int. J. Comput. Vision}} 60 (2004), Nr. 2, S. 91--110.
   --
 \newblock ISSN 0920--5691
 
-\bibitem[57]{Ma.1994}
+\bibitem[59]{Ma.1994}
 \textsc{Ma}, Changxue ; \textsc{Kamp}, Y.  ; \textsc{Willems}, L.~F.:
 \newblock {A Frobenius norm approach to glottal closure detection from the
   speech signal}.
@@ -434,7 +449,7 @@
   (1994), Nr. 2, S. 258--265. --
 \newblock ISSN 1063--6676
 
-\bibitem[58]{Mihail.2002}
+\bibitem[60]{Mihail.2002}
 \textsc{Mihail}, Milena ; \textsc{Papadimitriou}, Christos~H.:
 \newblock {On the Eigenvalue Power Law}.
 \newblock {In: }\emph{{Proceedings of the 6th International Workshop on
@@ -442,33 +457,33 @@
 \newblock London, UK, UK : Springer-Verlag, 2002 (RANDOM '02). --
 \newblock ISBN 3--540--44147--6, 254--262
 
-\bibitem[59]{Mohamad.2013}
+\bibitem[61]{Mohamad.2013}
 \textsc{Mohamad}, Ismail~B. ; \textsc{Usman}, Dauda:
 \newblock {Standardization and its effects on K-means clustering algorithm}.
 \newblock {In: }\emph{{Research Journal of Applied Sciences, Engineering and
   Technology}} 6 (2013), Nr. 17, S. 3299--3303
 
-\bibitem[60]{Nemtsov.2016}
+\bibitem[62]{Nemtsov.2016}
 \textsc{Nemtsov}, Arik ; \textsc{Averbuch}, Amir  ; \textsc{Schclar}, Alon:
 \newblock {Matrix compression using the Nystr{\"o}m method}.
 \newblock {In: }\emph{{Intelligent Data Analysis}} 20 (2016), Nr. 5, S.
   997--1019. --
 \newblock ISSN 1088467X
 
-\bibitem[61]{Paluszek.2017}
+\bibitem[63]{Paluszek.2017}
 \textsc{Paluszek}, Michael ; \textsc{Thomas}, Stephanie:
 \newblock \emph{{MATLAB Machine Learning}}.
 \newblock Berkeley, CA : Apress, 2017. --
 \newblock ISBN 978--1--4842--2249--2
 
-\bibitem[62]{Pan.2008}
+\bibitem[64]{Pan.2008}
 \textsc{Pan}, Sinno~J. ; \textsc{Kwok}, James~T.  ; \textsc{Yang}, Qiang:
 \newblock {Transfer Learning via Dimensionality Reduction}.
 \newblock {In: }\emph{{Proceedings of the 23rd National Conference on
   Artificial Intelligence - Volume 2}}, {AAAI Press}, 2008 (AAAI'08). --
 \newblock ISBN 978--1--57735--368--3, 677--682
 
-\bibitem[63]{Pan.2011}
+\bibitem[65]{Pan.2011}
 \textsc{Pan}, Sinno~J. ; \textsc{Tsang}, Ivor~W. ; \textsc{Kwok}, James~T.  ;
   \textsc{Yang}, Qiang:
 \newblock {Domain adaptation via transfer component analysis}.
@@ -476,14 +491,14 @@
   S. 199--210. --
 \newblock ISSN 1045--9227
 
-\bibitem[64]{Pan.2010}
+\bibitem[66]{Pan.2010}
 \textsc{Pan}, Sinno~J. ; \textsc{Yang}, Qiang:
 \newblock {A Survey on Transfer Learning}.
 \newblock {In: }\emph{{IEEE Transactions on Knowledge and Data Engineering}} 22
   (2010), Nr. 10, S. 1345--1359. --
 \newblock ISSN 1041--4347
 
-\bibitem[65]{Porter.1997}
+\bibitem[67]{Porter.1997}
 \textsc{Porter}, M.~F.:
 \newblock {An Algorithm for Suffix Stripping: Readings in Information
   Retrieval}.
@@ -494,7 +509,7 @@
 \newblock San Francisco, CA, USA : {Morgan Kaufmann Publishers Inc}, 1997. --
 \newblock ISBN 1--55860--454--5, 313--316
 
-\bibitem[66]{Qi.2011}
+\bibitem[68]{Qi.2011}
 \textsc{Qi}, Guo-Jun ; \textsc{Aggarwal}, Charu  ; \textsc{Huang}, Thomas:
 \newblock {Towards Semantic Knowledge Propagation from Text Corpus to Web
   Images}.
@@ -503,7 +518,7 @@
 \newblock New York, NY, USA : ACM, 2011 (WWW '11). --
 \newblock ISBN 978--1--4503--0632--4, S. 297--306
 
-\bibitem[67]{Quattoni.}
+\bibitem[69]{Quattoni.}
 \textsc{Quattoni}, Ariadna ; \textsc{Collins}, Michael  ; \textsc{Darrell},
   Trevor:
 \newblock {Transfer learning for image classification with sparse prototype
@@ -511,14 +526,14 @@
 \newblock {In: }\emph{{2008 IEEE Conference on Computer Vision and Pattern
   Recognition (CVPR)}}, S. 1--8
 
-\bibitem[68]{QuinoneroCandela.2009}
+\bibitem[70]{QuinoneroCandela.2009}
 \textsc{Qui{\~n}onero-Candela}, Joaquin (Hrsg.):
 \newblock \emph{{Dataset shift in machine learning}}.
 \newblock Cambridge, Mass : {MIT Press}, 2009 ({Neural information processing
   series}). --
 \newblock ISBN 9780262170055
 
-\bibitem[69]{Rennie.2005}
+\bibitem[71]{Rennie.2005}
 \textsc{Rennie}, Jasson D.~M. ; \textsc{Srebro}, Nathan:
 \newblock {Fast Maximum Margin Matrix Factorization for Collaborative
   Prediction}.
@@ -527,7 +542,7 @@
 \newblock New York, NY, USA : ACM, 2005 (ICML '05). --
 \newblock ISBN 1--59593--180--5, S. 713--719
 
-\bibitem[70]{Saenko.2010}
+\bibitem[72]{Saenko.2010}
 \textsc{Saenko}, Kate ; \textsc{Kulis}, Brian ; \textsc{Fritz}, Mario  ;
   \textsc{Darrell}, Trevor:
 \newblock {Adapting Visual Category Models to New Domains}.
@@ -536,33 +551,39 @@
 \newblock Berlin, Heidelberg : Springer-Verlag, 2010 (ECCV'10). --
 \newblock ISBN 3--642--15560--X, 213--226
 
-\bibitem[71]{Schleif.2015}
+\bibitem[73]{Schleif.2015}
 \textsc{Schleif}, F.~M. ; \textsc{Chen}, H.  ; \textsc{Tino}, P.:
 \newblock {Incremental probabilistic classification vector machine with linear
   costs}.
 \newblock {In: }\emph{{2015 International Joint Conference on Neural Networks
   (IJCNN)}}, 2015, S. 1--8
 
-\bibitem[72]{Scholkopf.2001}
+\bibitem[74]{Scholkopf.2001}
 \textsc{Scholkopf}, Bernhard ; \textsc{Smola}, Alexander~J.:
 \newblock \emph{{Learning with Kernels: Support Vector Machines,
   Regularization, Optimization, and Beyond}}.
 \newblock Cambridge, MA, USA : {MIT Press}, 2001. --
 \newblock ISBN 0262194759
 
-\bibitem[73]{Singh.2010}
+\bibitem[75]{Shewchuk.1994}
+\textsc{Shewchuk}, Jonathan~R.:
+\newblock \emph{{An Introduction to the Conjugate Gradient Method Without the
+  Agonizing Pain}}.
+\newblock Pittsburgh, PA, USA, 1994
+
+\bibitem[76]{Singh.2010}
 \textsc{Singh}, B. ; \textsc{Singh}, H.~K.:
 \newblock {Web Data Mining research: A survey}.
 \newblock {In: }\emph{{2010 IEEE International Conference on Computational
   Intelligence and Computing Research}}, 2010, S. 1--10
 
-\bibitem[74]{Taylor.2009}
+\bibitem[77]{Taylor.2009}
 \textsc{Taylor}, Matthew~E. ; \textsc{Stone}, Peter:
 \newblock {Transfer Learning for Reinforcement Learning Domains: A Survey}.
 \newblock {In: }\emph{{J. Mach. Learn. Res.}} 10 (2009), S. 1633--1685. --
 \newblock ISSN 1532--4435
 
-\bibitem[75]{Teschl.2014}
+\bibitem[78]{Teschl.2014}
 \textsc{Teschl}, Gerald ; \textsc{Teschl}, Susanne:
 \newblock \emph{{Mathematik f{\"u}r Informatiker: Bd. 2: Analysis und
   Statistik}}.
@@ -570,27 +591,27 @@
 \newblock Berlin and Heidelberg : {Springer Vieweg}, 2014. --
 \newblock ISBN 978--3--642--54273--2
 
-\bibitem[76]{Theodoridis.2015}
+\bibitem[79]{Theodoridis.2015}
 \textsc{Theodoridis}, Sergios:
 \newblock \emph{{Machine learning: A Bayesian and optimization perspective}}.
 \newblock First edition.
 \newblock London : Elsevier, 2015. --
 \newblock ISBN 978--0--12--801522--3
 
-\bibitem[77]{Theodoridis.2008}
+\bibitem[80]{Theodoridis.2008}
 \textsc{Theodoridis}, Sergios ; \textsc{Koutroumbas}, Konstantinos:
 \newblock \emph{{Pattern Recognition, Fourth Edition}}.
 \newblock 4th.
 \newblock {Academic Press}, 2008. --
 \newblock ISBN 1597492728
 
-\bibitem[78]{Tipping.2001}
+\bibitem[81]{Tipping.2001}
 \textsc{Tipping}, Michael~E.:
 \newblock {Sparse Bayesian Learning and the Relevance Vector Machine}.
 \newblock {In: }\emph{{J. Mach. Learn. Res.}} 1 (2001), S. 211--244. --
 \newblock ISSN 1532--4435
 
-\bibitem[79]{Tommasi.2009}
+\bibitem[82]{Tommasi.2009}
 \textsc{Tommasi}, Tatiana ; \textsc{Caputo}, Barbara:
 \newblock {The more you know, the less you learn: From knowledge transfer to
   one-shot learning of object categories}.
@@ -598,7 +619,7 @@
   {BMVA Press}, 2009. --
 \newblock ISBN 1--901725--39--1, S. 80.1--80.11
 
-\bibitem[80]{Tommasi.}
+\bibitem[83]{Tommasi.}
 \textsc{Tommasi}, Tatiana ; \textsc{Orabona}, Francesco  ; \textsc{Caputo},
   Barbara:
 \newblock {Safety in numbers: Learning categories from few examples with multi
@@ -606,14 +627,14 @@
 \newblock {In: }\emph{{2010 IEEE Conference on Computer Vision and Pattern
   Recognition (CVPR)}}, S. 3081--3088
 
-\bibitem[81]{TrevorHastie.2009}
+\bibitem[84]{TrevorHastie.2009}
 \textsc{{Trevor Hastie}} ; \textsc{{Robert Tibshirani}}  ; \textsc{{Jerome
   Friedman}}:
 \newblock \emph{{The Elements of Statistical Learning}}.
 \newblock New York, NY : {Springer New York}, 2009. --
 \newblock ISBN 978--0--387--84857--0
 
-\bibitem[82]{vanBay.2006}
+\bibitem[85]{vanBay.2006}
 \textsc{{van Bay}}, Herbert ; \textsc{Tinne}, Tuytelaars  ; \textsc{Luc}, Gool:
 \newblock {SURF: Speeded Up Robust Features}.
 \newblock {In: }\textsc{Leonardis}, Ale{\v{s}} (Hrsg.) ; \textsc{Horst},
@@ -623,13 +644,13 @@
 \newblock Berlin, Heidelberg : {Springer Berlin Heidelberg}, 2006. --
 \newblock ISBN 978--3--540--33833--8, S. 404--417
 
-\bibitem[83]{Vert.2004}
+\bibitem[86]{Vert.2004}
 \textsc{Vert}, JP. ; \textsc{Tsuda}, K.  ; \textsc{Sch{\"o}lkopf}, B.:
 \newblock {A Primer on Kernel Methods}.
 \newblock {In: }\emph{{Kernel Methods in Computational Biology}}.
 \newblock Cambridge, MA, USA : {MIT Press}, 2004, S. 35--70
 
-\bibitem[84]{Wang.2008}
+\bibitem[87]{Wang.2008}
 \textsc{Wang}, Zheng ; \textsc{Song}, Yangqiu  ; \textsc{Zhang}, Changshui:
 \newblock {Transferred Dimensionality Reduction}.
 \newblock {In: }\emph{{Proceedings of the European Conference on Machine
@@ -637,14 +658,14 @@
 \newblock Berlin, Heidelberg : Springer-Verlag, 2008 (ECML PKDD '08). --
 \newblock ISBN 978--3--540--87480--5, S. 550--565
 
-\bibitem[85]{Weiss.2016}
+\bibitem[88]{Weiss.2016}
 \textsc{Weiss}, Karl ; \textsc{Khoshgoftaar}, Taghi~M.  ; \textsc{Wang},
   DingDing:
 \newblock {A survey of transfer learning}.
 \newblock {In: }\emph{{Journal of Big Data}} 3 (2016), Nr. 1, S. 1817. --
 \newblock ISSN 2196--1115
 
-\bibitem[86]{WenyuanDai.2007}
+\bibitem[89]{WenyuanDai.2007}
 \textsc{{Wenyuan Dai}} ; \textsc{{Gui-Rong Xue}} ; \textsc{{Qiang Yang}}  ;
   \textsc{{Yong Yu}}:
 \newblock \emph{{Co-clustering based Classification for Out-of-domain
@@ -654,14 +675,14 @@
 \newblock New York, NY : ACM, 2007. --
 \newblock ISBN 978--1--59593--609--7
 
-\bibitem[87]{Williams.2000}
+\bibitem[90]{Williams.2000}
 \textsc{Williams}, Christopher K.~I. ; \textsc{Seeger}, Matthias:
 \newblock {Using the Nystr{\"o}m Method to Speed Up Kernel Machines}.
 \newblock {In: }\emph{{Proceedings of the 13th International Conference on
   Neural Information Processing Systems}}.
 \newblock Cambridge, MA, USA : {MIT Press}, 2000 (NIPS'00), 661--667
 
-\bibitem[88]{Wu.2008}
+\bibitem[91]{Wu.2008}
 \textsc{Wu}, Xindong ; \textsc{Vipin}, Kumar ; \textsc{J.}, Ross~Q. ;
   \textsc{Joydeep}, Ghosh ; \textsc{Qiang}, Yang ; \textsc{Hiroshi}, Motoda ;
   \textsc{J.}, McLachlan~G. ; \textsc{Angus}, Ng ; \textsc{Bing}, Liu ;
@@ -672,7 +693,7 @@
   1--37. --
 \newblock ISSN 0219--1377
 
-\bibitem[89]{Yang.1997}
+\bibitem[92]{Yang.1997}
 \textsc{Yang}, Yiming ; \textsc{Pedersen}, Jan~O.:
 \newblock {A Comparative Study on Feature Selection in Text Categorization}.
 \newblock {In: }\emph{{Proceedings of the Fourteenth International Conference
@@ -681,7 +702,7 @@
   '97). --
 \newblock ISBN 1--55860--486--3, 412--420
 
-\bibitem[90]{YiWang.2006}
+\bibitem[93]{YiWang.2006}
 \textsc{{Yi Wang}} ; \textsc{{Nevin Lianwen Zhang}}:
 \newblock {Severity of Local Maxima for the EM Algorithm: Experiences with
   Hierarchical Latent Class Models 2006, Prague, Czech Republic. Electronic
@@ -691,7 +712,7 @@
   Workshop on Probabilistic Graphical Models, 12-15 September 2006, Prague,
   Czech Republic. Electronic Proceedings}}, 2006, 301--308
 
-\bibitem[91]{Zhang.2008}
+\bibitem[94]{Zhang.2008}
 \textsc{Zhang}, Kai ; \textsc{Tsang}, Ivor~W.  ; \textsc{Kwok}, James~T.:
 \newblock {Improved Nystr{\"o}m Low-rank Approximation and Error Analysis}.
 \newblock {In: }\emph{{Proceedings of the 25th International Conference on

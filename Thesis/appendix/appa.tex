@@ -1,18 +1,17 @@
 \chapter{Mathematical Notation}\label{appaA}
-In the following appendix, the mathematical notations are explained.
+In the following appendix, the mathematical notation is explained.
 This notation is used throughout the whole thesis.
 In particular, the matrix notations are not consistently defined, which is observable for example in the following literature: \cite{Chen.2009}, \cite{Bishop.2009} and \cite{Long.2015}.
 First there are some basic definitions of linear algebra:\\
 A scalar or real number is represented with a normal upper letter, e.\,g. $N$.
 A vector is denoted as lower bold letter such as \textbf{v} and is assumed as a column vector.
 The superscript T denotes the transpose of a matrix or vector. So a row vector is indicated as $\mathbf{v}^{T}$.
-Furthermore $(v_1 \dots v_N)$ is a row vector with N elements.
-The corresponding column vector is simple $\mathbf{w}$ and $(w_1 \dots w_N)^T$ is a column vector two.
+Furthermore, $(v_1 \dots v_N)$ is a row vector with N elements.
+The corresponding column vector is simply $\mathbf{w}$ and $(w_1 \dots w_N)^T$ is also a column vector.
 A bold upper letter such as $\mathbf{M}$ represents a Matrix.
-The rows (N) and columns (M) of a matrix are denoted as upper letters $N \times M$. 
-In the context of pattern recognition, the rows and columns are the numbers of observations or data points and dimensions. 
-The M $\times$ M identity matrix is denoted as \textbf{I}\textsubscript{M}.
-If the number of dimensionality is obvious the matrix is simply referred as \textbf{I}.
+The rows (N) and columns (M) of a matrix are denoted as upper letters i.\,e., $N \times M$. 
+In the context of pattern recognition, the rows and columns are the numbers of observations or data points and dimensions (features). 
+The M $\times$ M identity matrix is denoted as \textbf{I}\textsubscript{$M\times M$}.
 The elements of the identity matrix \textbf{I}\textsubscript{i,j} are:
 \[
 I_{i,j}= \begin{dcases*}
@@ -21,27 +20,25 @@ I_{i,j}= \begin{dcases*}
 \end{dcases*}
 \]
 The expectation of a function $f(x,y)$ with respect to a random variable X is denoted as $E_x[f(x,y)]$.
-If it is obvious which variable has been used, the subscript is omitted for simplicity, e.g. $E[x]$.
-If the distribution of X is conditional on another variable Y, then conditional expectation will be written as $E_x(f(x)\mid Y)$. In other words, the conditional expectations of X given Y.\\
+If the distribution of X is conditional on another variable Y, then conditional expectation will be written as $E_x[f(x)\mid Y]$. In other words, the conditional expectations of X given Y.\\
 The variance is denoted as $var[f(x)]$.
 The covariance of two observations \textbf{x} and \textbf{y} is written as $cov[\textbf{x},\textbf{y}]$.
 The covariance of a vector with itself is denoted as $cov(\textbf{x},\textbf{x})$. The shorthand is $cov(\textbf{x})$.\\
 This part of notation is inspired by Bishop, which is found in \cite[p. xi - xii]{Bishop.2009}\\
-The marginal probability distribution of a random variable X is denoted as $P(x)$.
-The conditional probability variable Y given X is denoted as $P(y \mid x)$.
+The marginal probability distribution of a random variable X is denoted as $P(X)$.
+The conditional probability variable Y given X is denoted as $P(Y \mid X)$.
 If g is a distribution of a random variable X, then $p_i=g(x_i)$ is the probability that $X=x_i$.
 If a probability distribution f follows the normal distribution $N$, then this is denoted as $f\sim N$.\\
 A dataset is represented as matrix shown above.
 The number of dimensions indicates the number of features and the number of elements indicate the number of observations.
 The composition of the features represents the feature space of the dataset.
-Matrix indices are denoted as \textbf{M}(i,j) with i,j $\ge$ 0.
+Matrix indices are denoted as $(\mathbf{M})_{i,j}$ with i,j $\ge$ 0.
 With this, the value of the i-th row and j-th column is addressed.\\
-The above-explained is the basis notation used in this thesis. 
+The explained above is the basis used in this thesis. 
 However, for Transfer Learning and Pattern Recognition arises another need to capture their notations.
-Because the notation is already explained in section \ref{TlSecDef}, in this appendix only the aggregated notation, in table \ref{ATableNotation}, is shown.
+This appendix shows only the aggregated notation in table \ref{ATableNotation}.
+The details can be found in chapter \ref{Tl}.
 In this table, transfer-solution specific definitions are marked.
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
 \begin{table}[]
 	\centering
 	\resizebox{\textwidth}{!}{%
@@ -66,20 +63,24 @@ In this table, transfer-solution specific definitions are marked.
 		Source Label/Data Composition          & \multicolumn{1}{l|}{$\mathcal{D_Z}$}      & Target Label/Data Composition                         & $\mathcal{D_X}$        \\ \midrule
 		\multicolumn{4}{c}{Transfer Learning Solution Notation}                                                                                 \\ \midrule
 		Knowledge classes (MMKT)               & \multicolumn{1}{l|}{$E$}       & Dimensions of image feature space (TiT)               & $B$       \\
-		Dimensions of text feature space (TiT) & \multicolumn{1}{l|}{$A$}       & Co-Occurence (TiT)                                    & $C$       \\ \bottomrule
+		Dimensions of text feature space (TiT) & \multicolumn{1}{l|}{$A$}       & Co-Occurence (TiT)                                    & $C$ \\
+		Transformation Matrix (TCA) & \multicolumn{1}{l|}{$\mathbf{W}$ }   & Transformation Matrix (JDA)   & $\mathbf{A}$   \\
+		Embedding Matrix (JDA) & \multicolumn{1}{l|}{$\mathbf{Z}$ }  & Data-matrix of source and target & $\mathbf{T}$ \\
+		 Subspace (GFK) &  \multicolumn{1}{l|}{$\mathbf{P}$}  \\\bottomrule
 	\end{tabular}}
-	\caption{Notation for Transfer Learning and Pattern Recognition\label{ATableNotation}}
+	\caption[Notation of Transfer Learning]{Notation for Transfer Learning and Pattern Recognition. It is separated in three parts: First, the general notation. Secondly, transfer learning notation. The last shows the notation for a specific transfer learning method. \label{ATableNotation}}
 
 \end{table}
+\FloatBarrier
 \subsection{Terminology}
 In this thesis various definitions of the Gaussian distribution are appearing.
 This happens because we tried to be consistent with the cited sources.
 The Normal distribution is equal to the Gaussian.
-The Standard Normal or Gaussian distribution is defined as $N(0,1)$, which is centered at the origin.
+The standard Normal or Gaussian distribution is defined as $N(0,1)$, which is centered at the origin.
 Furthermore, the zero-mean Gaussian distribution has his mean also in origin with $N(0,\sigma^2)$, with $\sigma^2$ as variance.
-If $\sigma^2=1$, then it is the Standard Gaussian Distribution.\\
-The terms source and training or target and testing, referring to feature spaces, distribution or labels are synonyms.
-A similar case is when it comes to labels. A class refers to a portion of labels, which represents them. 
+If $\sigma^2=1$, then it is the standard Gaussian distribution.\\
+The terms source and training or target and testing are synonyms.\\
+A class refers to a portion of labels, which represents them. 
 When it comes to multi-class problems, if it is evident, then we may also refer to it as a multi-label problem.
 Source and target classes are sometimes represented or called by source labels and target labels, respectively.
 \clearpage

@@ -6,7 +6,8 @@
 
 % Header
 \pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \fancyhf{}
-\lhead{\nouppercase{\leftmark}}
+\lhead{{\fancyplain{}{\footnotesize\nouppercase\sc{\chaptername\ \thechapter\ - \leftmark}}}}
 \rhead{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}

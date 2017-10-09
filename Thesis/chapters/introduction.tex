@@ -1,46 +1,45 @@
 \chapter{Introduction}
 Machine learning insights and the resulting technologies have a broad range of applications and become more important in many disciplines.
-They are used to identify handwritten numbers from an image or predict whether a hospitalized patient will get and heart attack or not. 
-They are playing a major part in the engineering of autonomous cars or can predict the future changes in the stock market.
-Besides these extreme examples, machine learning can play a role in everyday life.\\
-It is used to characterize a new costumer on a website to identify his needs and his wishes regarding a certain product on this site.
-Another use case is to create an individual advertisement for a customer based on his behavior to optimize the shopping experience.
+They are used to identify handwritten numbers from an image or predict whether a hospitalized patient will get a heart attack or not. 
+They are playing a major part in the engineering of autonomous cars or can predict future changes in the stock market.\cite[p. 1]{Paluszek.2017}\cite[p. 1]{TrevorHastie.2009}\\
+Besides these extreme examples, machine learning can play a role in everyday life.
+It is used to characterize a new costumer on a website, to identify his needs and his wishes regarding a certain product on this site.
+Another use case is to create an individual advertisement for a customer, based on his behavior to optimize the shopping experience.
 The World Wide Web is a giant information collective and beyond that changes and proliferates.
 In research, machine learning is used to classify or cluster this massive amount of information.
-For example the categorization of new upcoming websites into trustworthy or shady, based on the already analyzed pool of websites, which finally results in spam protection software.\\
+For example the categorization of new upcoming websites into trustworthy or shady, based on the already analyzed pool of websites, which finally results in spam protection software.\cite{Pan.2010}\cite{Singh.2010}\\
 As the previous implies, the classification of information is one task in machine learning.
-In machine learning, information is sometimes called pattern concerning the task pattern recognition.
+Information is sometimes called pattern concerning the task pattern recognition.
 This pattern can be created by feature extraction based on pre-processed images, speech signals or text-documents.
 Furthermore, it is possible to create 'theories' based on the previously collected patterns.
-Concerning pattern recognition, this theory about the data is called a model. 
+Concerning pattern recognition, this theory about the data is called model. 
 This model represents the outcome of an algorithm to describe the underlying data.
-Based on this model, predictions can be made for the new incoming patterns.\\
-The question, which algorithms provide the best model can be a challenging question.
-In 2007, the ten most influential algorithms in the research communities were identified.
-For example $k$-Means, Support Vector Machines, A priori, Expectation-Maximization, AdaBoost and Naive Bayes.
+Based on this model, predictions can be made for new incoming patterns.\cite{Theodoridis.2008}\cite[p. 2-5]{Paluszek.2017}\\
+The question, which algorithm provides the best model can be a challenging question.
+In 2007, the ten most influential algorithms in various research communities were identified.
+For example, $k$-Means, Support Vector Machines, A priori, Expectation-Maximization, AdaBoost and Naive Bayes.
 However, these algorithms can not ad-hoc be used for any type of problem concerning the data.
-These algorithms have prerequisites.
+These algorithms have prerequisites and a scope of application.\cite{Wu.2008}\\
 An algorithm, from the category supervised learning, must first learn from previously classified data called source or training data. Based on this training data, it can create a model and finally can predict future events, based on new information, which is called target or test data.
-Although one would say that this constraint is limiting, supervised learning algorithms are doing a pretty decent job.\\
-From the examples above, the Support Vector Machine is one of these supervised learning algorithms. 
+Although one would say that this constraint is limiting, supervised learning algorithms are doing a pretty decent job.\cite[p. 1]{Weiss.2016}\cite[p. 7]{Theodoridis.2008}\\
+From the examples above, the Support Vector Machine is one of these supervised learning algorithms.
 However, besides the already good performance, there is some research interest concerning some disadvantages of the Support Vector Machine.
 To tackle these drawbacks, the Probabilistic Classification Vector Machine was proposed.
-This algorithm also uses supervised learning for creating the regarding the model.
+This algorithm also uses supervised learning for creating the regarding model.\cite{Chen.2009}
 In the course of this work, we will dive deeper into the techniques and algorithms of these vector machines and discuss improvements concerning the support vector machine.\\
-However, most of the supervised classification algorithms suffer all from a certain problem. 
-The problem is that the training data and the test data are different from each other, which is often the case in the previously discussed real-world scenarios.
+However, most of the supervised classification algorithms suffer from a certain problem. 
+The problem that training data and test data are different from each other, which is often the case in the previously discussed real-world scenarios.
 These differences can be expressed in two domains, training and testing.
-Because of this, the task of transferring knowledge from one domain into the another, has attracted some research interest.\\
+Because of this, the task of transferring knowledge from one domain into the another, has attracted some research interest.\cite{Pan.2010}\\
 The idea of transfer knowledge results in the task transfer learning. 
 This is one of the fundamental achievements of life on earth.
-The ability to transfer can be found in many species in life, which can even while observing insects.
-In fact, humankind (primates) masters this task before all other species.\cite{Buchholtz.1982}\\
-The transfer learning task, which is one reason for many fundamental insights in our world, is currently applied to the pattern recognition algorithms. 
+The ability to transfer can be found in many species in life, even while observing insects.
+In fact, humankind (primates) masters this task before all other species.\cite[p. 198-200]{Buchholtz.1982}\\
+The transfer learning task, which is one reason for many fundamental insights in our world, is currently applied to pattern recognition algorithms.\\
 Of course, the task of transfer learning which is done by a human differs greatly from the transfer learning solution of an algorithm, but the goal is similar:
-Collect knowledge in one domain and transfer it to another different but related domain. Regarding supervised classifier, it should end with an improved performance of the algorithms.\\
-The technique transfer learning in the pattern recognition process can be interpreted as an extension of feature generation techniques.
-For example, some transfer learning solutions are just extending feature generation methods. 
-Transfer learning has been already established in the research community with over 700 published academic articles until 2016.\\
+Collect knowledge in one domain and transfer it to another different but related domain. Regarding supervised classifier, it should end up with an improved performance of the algorithm.\cite{Pan.2010}
+The technique transfer learning in the pattern recognition process can be interpreted as an extension of feature generation techniques and therefore be considered as pre-processing step.
+For example, some transfer learning solutions are just extending feature generation methods, like dimensionality reduction.\\
+Transfer learning has been already established in the research community with over 700 published academic articles until 2016.\cite[p. 2]{Weiss.2016}
 Therefore, we will discuss the current state of transfer learning research and explain some ideas about it.
-Furthermore, we will see how transfer learning can be integrated into the Probabilistic Classification Vector Machine and how it influences the performance.\\
-\cite{Paluszek.2017}\cite{Wu.2008}\cite{Singh.2010}\cite{TrevorHastie.2009}\cite{Theodoridis.2015} \cite{Theodoridis.2008} \cite{Weiss.2016}\cite{Bishop.2009}\cite{Tipping.2001}\cite{Chen.2009}\cite{Pan.2010}\cite{Weiss.2016}\cite{Theodoridis.2008}
+Furthermore, we will see how transfer learning can be integrated into the Probabilistic Classification Vector Machine and how it influences the performance.

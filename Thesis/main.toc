@@ -1,8 +1,8 @@
 \select@language {english}
-\contentsline {chapter}{List of Figures}{vii}{chapter*.1}
-\contentsline {chapter}{List of Tables}{viii}{chapter*.2}
-\contentsline {chapter}{List of Tables}{ix}{chapter*.3}
-\contentsline {chapter}{List of Abbreviations}{x}{chapter*.5}
+\contentsline {chapter}{List of Figures}{vii}{section*.2}
+\contentsline {chapter}{List of Tables}{viii}{section*.4}
+\contentsline {chapter}{List of Algorithms}{ix}{section*.6}
+\contentsline {chapter}{List of Abbreviations}{x}{chapter*.8}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {chapter}{\numberline {2}Vector Machines}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Support Vector Machine}{3}{section.2.1}
@@ -12,74 +12,77 @@
 \contentsline {subsection}{\numberline {2.4.1}Model Specification}{8}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}Prior over Weights}{9}{subsection.2.4.2}
 \contentsline {subsection}{\numberline {2.4.3}Expectation Maximization Algorithm}{10}{subsection.2.4.3}
-\contentsline {subsection}{\numberline {2.4.4}Properties of Algorithm}{12}{subsection.2.4.4}
+\contentsline {subsection}{\numberline {2.4.4}Properties of Algorithm}{13}{subsection.2.4.4}
 \contentsline {section}{\numberline {2.5}Conclusion}{13}{section.2.5}
-\contentsline {chapter}{\numberline {3}Transfer Learning}{14}{chapter.3}
-\contentsline {section}{\numberline {3.1}Challenges of Machine Learning Algorithms}{14}{section.3.1}
-\contentsline {section}{\numberline {3.2}Definition of Transfer Learning}{16}{section.3.2}
-\contentsline {section}{\numberline {3.3}Measurement of Difference}{18}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Maximum Mean Discrepancy}{19}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Kullback-Leibler Divergence}{19}{subsection.3.3.2}
-\contentsline {section}{\numberline {3.4}Settings of Transfer Learning}{20}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Inductive Transfer Learning}{20}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Transductive Transfer Learning}{22}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Unsupervised Transfer Learning}{22}{subsection.3.4.3}
-\contentsline {section}{\numberline {3.5}Homogeneous Transfer Learning}{23}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Instance-transfer}{24}{subsection.3.5.1}
-\contentsline {subsubsection}{TrAdaBoost}{24}{section*.11}
-\contentsline {subsection}{\numberline {3.5.2}Symmetric-Feature-Transfer}{25}{subsection.3.5.2}
-\contentsline {subsubsection}{Transfer Component Analysis}{26}{section*.12}
-\contentsline {subsubsection}{Geodesic Flow Kernel}{27}{section*.13}
-\contentsline {subsection}{\numberline {3.5.3}Asymmetric-Feature-Transfer}{28}{subsection.3.5.3}
-\contentsline {subsubsection}{Joint Distribution Adaptation}{28}{section*.15}
-\contentsline {subsection}{\numberline {3.5.4}Parameter-Transfer}{30}{subsection.3.5.4}
-\contentsline {subsubsection}{Multi Model Knowledge Transfer}{30}{section*.16}
-\contentsline {subsection}{\numberline {3.5.5}Relational-Knowledge-Transfer}{32}{subsection.3.5.5}
-\contentsline {section}{\numberline {3.6}Heterogeneous Transfer Learning}{32}{section.3.6}
-\contentsline {subsubsection}{Text to Image Transfer}{33}{section*.17}
-\contentsline {section}{\numberline {3.7}Negative Transfer}{35}{section.3.7}
-\contentsline {section}{\numberline {3.8}Conclusion}{35}{section.3.8}
-\contentsline {chapter}{\numberline {4}Integration of Transfer Learning}{37}{chapter.4}
-\contentsline {section}{\numberline {4.1}Nystr\IeC {\"o}m Approximation}{38}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Nystr\IeC {\"o}m Kernel Learning}{39}{subsection.4.1.1}
-\contentsline {section}{\numberline {4.2}Domain Invariant Kernel Learning}{40}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Learning Approach}{41}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Learning Algorithm}{42}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}PCTKVM Algorithm}{44}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Theta Estimation}{46}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Training Algorithm}{48}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Prediction}{49}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Extensions}{49}{subsection.4.3.4}
-\contentsline {section}{\numberline {4.4}Conclusion}{50}{section.4.4}
-\contentsline {chapter}{\numberline {5}Benchmark Study}{51}{chapter.5}
-\contentsline {section}{\numberline {5.1}Dataset Description}{52}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Text Dataset}{52}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Image Dataset}{53}{subsection.5.1.2}
-\contentsline {section}{\numberline {5.2}Study Procedure and Settings}{55}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Data Sampling}{56}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Kernel}{56}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Parameters}{57}{subsection.5.2.3}
-\contentsline {section}{\numberline {5.3}Performance Metrics}{58}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Area under a ROC Curve}{58}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Accuracy and Error}{59}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Root Mean Squared Error}{60}{subsection.5.3.3}
-\contentsline {section}{\numberline {5.4}Descriptive Statistics}{60}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Metric Results}{60}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Time Results}{63}{subsection.5.4.2}
-\contentsline {subsection}{\numberline {5.4.3}Number of Support Vectors}{64}{subsection.5.4.3}
-\contentsline {section}{\numberline {5.5}Comparison over one Dataset}{64}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Result and discussion}{65}{subsection.5.5.1}
-\contentsline {section}{\numberline {5.6}Comparison over multiple Datasets}{66}{section.5.6}
-\contentsline {subsection}{\numberline {5.6.1}Analysis of Variance}{67}{subsection.5.6.1}
-\contentsline {subsection}{\numberline {5.6.2}Friedman Test}{67}{subsection.5.6.2}
-\contentsline {subsection}{\numberline {5.6.3}Result and Discussion}{68}{subsection.5.6.3}
-\contentsline {section}{\numberline {5.7}Conclusion}{70}{section.5.7}
-\contentsline {chapter}{\numberline {6}Evaluation and Future Work}{71}{chapter.6}
-\contentsline {section}{\numberline {6.1}Extensions}{72}{section.6.1}
-\contentsline {chapter}{\numberline {7}Conclusion}{74}{chapter.7}
-\contentsline {chapter}{\numberline {A}Mathematical Notation}{76}{appendix.A}
-\contentsline {subsection}{\numberline {A.0.1}Terminology}{77}{subsection.A.0.1}
-\contentsline {chapter}{\numberline {B}Complete Test Results}{79}{appendix.B}
-\contentsline {section}{\numberline {B.1}Five Two Comparison}{79}{section.B.1}
-\contentsline {section}{\numberline {B.2}Complete Dataset Comparison}{84}{section.B.2}
-\contentsline {chapter}{\numberline {C}Details of Algorithms}{89}{appendix.C}
+\contentsline {chapter}{\numberline {3}Transfer Learning}{15}{chapter.3}
+\contentsline {section}{\numberline {3.1}Challenges of Supervised Learning Algorithms}{15}{section.3.1}
+\contentsline {section}{\numberline {3.2}Definition of Transfer Learning}{17}{section.3.2}
+\contentsline {section}{\numberline {3.3}Measurement of Difference}{19}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Maximum Mean Discrepancy}{20}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Kullback-Leibler Divergence}{21}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.4}Settings of Transfer Learning}{21}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Inductive-Transfer Learning}{22}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Transductive-Transfer Learning}{23}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Unsupervised-Transfer Learning}{24}{subsection.3.4.3}
+\contentsline {section}{\numberline {3.5}Homogeneous Transfer Learning}{24}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Instance-Transfer}{25}{subsection.3.5.1}
+\contentsline {subsubsection}{TrAdaBoost}{25}{section*.14}
+\contentsline {subsection}{\numberline {3.5.2}Symmetric-Feature-Transfer}{26}{subsection.3.5.2}
+\contentsline {subsubsection}{Transfer Component Analysis}{27}{section*.15}
+\contentsline {subsubsection}{Geodesic Flow Kernel}{28}{section*.16}
+\contentsline {subsection}{\numberline {3.5.3}Asymmetric-Feature-Transfer}{29}{subsection.3.5.3}
+\contentsline {subsubsection}{Joint Distribution Adaptation}{30}{section*.18}
+\contentsline {subsection}{\numberline {3.5.4}Parameter-Transfer}{31}{subsection.3.5.4}
+\contentsline {subsubsection}{Multi Model Knowledge Transfer}{32}{section*.19}
+\contentsline {subsection}{\numberline {3.5.5}Relational-Knowledge-Transfer}{33}{subsection.3.5.5}
+\contentsline {section}{\numberline {3.6}Heterogeneous Transfer Learning}{34}{section.3.6}
+\contentsline {subsubsection}{Text to Image Transfer}{34}{section*.20}
+\contentsline {section}{\numberline {3.7}Negative Transfer}{36}{section.3.7}
+\contentsline {section}{\numberline {3.8}Conclusion}{37}{section.3.8}
+\contentsline {chapter}{\numberline {4}Integration of Transfer Learning}{38}{chapter.4}
+\contentsline {section}{\numberline {4.1}Nystr\IeC {\"o}m Approximation}{39}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Nystr\IeC {\"o}m Kernel Learning}{40}{subsection.4.1.1}
+\contentsline {section}{\numberline {4.2}Domain Invariant Kernel Learning}{41}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Learning Approach}{42}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Learning Algorithm}{44}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}PCTKVM Algorithm}{46}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Theta Estimation}{47}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Training Algorithm}{49}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Prediction}{50}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Extensions}{51}{subsection.4.3.4}
+\contentsline {section}{\numberline {4.4}Conclusion}{52}{section.4.4}
+\contentsline {chapter}{\numberline {5}Benchmark Study}{53}{chapter.5}
+\contentsline {section}{\numberline {5.1}Dataset Description}{54}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Text Dataset}{54}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Image Dataset}{55}{subsection.5.1.2}
+\contentsline {section}{\numberline {5.2}Study Procedure and Settings}{57}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Data Sampling}{58}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Kernel}{58}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Parameters}{59}{subsection.5.2.3}
+\contentsline {section}{\numberline {5.3}Performance Metrics}{60}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Area under a ROC Curve}{61}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Accuracy and Error}{61}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Root Mean Squared Error}{62}{subsection.5.3.3}
+\contentsline {section}{\numberline {5.4}Descriptive Statistics}{62}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Metric Results}{62}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Computational Complexities}{65}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}Number of Support Vectors}{66}{subsection.5.4.3}
+\contentsline {section}{\numberline {5.5}Comparison over one Dataset}{67}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Result and Discussion}{68}{subsection.5.5.1}
+\contentsline {section}{\numberline {5.6}Comparison over multiple Datasets}{69}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Analysis of Variance}{70}{subsection.5.6.1}
+\contentsline {subsection}{\numberline {5.6.2}Friedman Test}{70}{subsection.5.6.2}
+\contentsline {subsection}{\numberline {5.6.3}Result and Discussion}{71}{subsection.5.6.3}
+\contentsline {section}{\numberline {5.7}Conclusion}{73}{section.5.7}
+\contentsline {chapter}{\numberline {6}Evaluation and Future Work}{74}{chapter.6}
+\contentsline {subsubsection}{EM-Based Transfer Learning}{75}{section*.39}
+\contentsline {subsubsection}{Rotational Transfer Learning}{75}{section*.40}
+\contentsline {section}{\numberline {6.1}Extensions}{76}{section.6.1}
+\contentsline {chapter}{\numberline {7}Conclusion}{78}{chapter.7}
+\contentsline {chapter}{\numberline {A}Mathematical Notation}{80}{appendix.A}
+\contentsline {subsection}{\numberline {A.0.1}Terminology}{81}{subsection.A.0.1}
+\contentsline {chapter}{\numberline {B}Complete Test Results}{83}{appendix.B}
+\contentsline {section}{\numberline {B.1}Five-Two Comparison}{83}{section.B.1}
+\contentsline {subsection}{\numberline {B.1.1}Time Comparison}{88}{subsection.B.1.1}
+\contentsline {section}{\numberline {B.2}Complete-Dataset Comparison}{90}{section.B.2}
+\contentsline {chapter}{\numberline {C}Details of Algorithms}{95}{appendix.C}

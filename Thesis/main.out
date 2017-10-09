@@ -1,7 +1,7 @@
-\BOOKMARK [0][-]{chapter*.1}{List of Figures}{}% 1
-\BOOKMARK [0][-]{chapter*.2}{List of Tables}{}% 2
-\BOOKMARK [0][-]{chapter*.3}{List of Tables}{}% 3
-\BOOKMARK [0][-]{chapter*.5}{List of Abbreviations}{}% 4
+\BOOKMARK [0][-]{section*.2}{List of Figures}{}% 1
+\BOOKMARK [0][-]{section*.4}{List of Tables}{}% 2
+\BOOKMARK [0][-]{section*.6}{List of Algorithms}{}% 3
+\BOOKMARK [0][-]{chapter*.8}{List of Abbreviations}{}% 4
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 5
 \BOOKMARK [0][-]{chapter.2}{Vector Machines}{}% 6
 \BOOKMARK [1][-]{section.2.1}{Support Vector Machine}{chapter.2}% 7
@@ -14,17 +14,17 @@
 \BOOKMARK [2][-]{subsection.2.4.4}{Properties of Algorithm}{section.2.4}% 14
 \BOOKMARK [1][-]{section.2.5}{Conclusion}{chapter.2}% 15
 \BOOKMARK [0][-]{chapter.3}{Transfer Learning}{}% 16
-\BOOKMARK [1][-]{section.3.1}{Challenges of Machine Learning Algorithms}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.1}{Challenges of Supervised Learning Algorithms}{chapter.3}% 17
 \BOOKMARK [1][-]{section.3.2}{Definition of Transfer Learning}{chapter.3}% 18
 \BOOKMARK [1][-]{section.3.3}{Measurement of Difference}{chapter.3}% 19
 \BOOKMARK [2][-]{subsection.3.3.1}{Maximum Mean Discrepancy}{section.3.3}% 20
 \BOOKMARK [2][-]{subsection.3.3.2}{Kullback-Leibler Divergence}{section.3.3}% 21
 \BOOKMARK [1][-]{section.3.4}{Settings of Transfer Learning}{chapter.3}% 22
-\BOOKMARK [2][-]{subsection.3.4.1}{Inductive Transfer Learning}{section.3.4}% 23
-\BOOKMARK [2][-]{subsection.3.4.2}{Transductive Transfer Learning}{section.3.4}% 24
-\BOOKMARK [2][-]{subsection.3.4.3}{Unsupervised Transfer Learning}{section.3.4}% 25
+\BOOKMARK [2][-]{subsection.3.4.1}{Inductive-Transfer Learning}{section.3.4}% 23
+\BOOKMARK [2][-]{subsection.3.4.2}{Transductive-Transfer Learning}{section.3.4}% 24
+\BOOKMARK [2][-]{subsection.3.4.3}{Unsupervised-Transfer Learning}{section.3.4}% 25
 \BOOKMARK [1][-]{section.3.5}{Homogeneous Transfer Learning}{chapter.3}% 26
-\BOOKMARK [2][-]{subsection.3.5.1}{Instance-transfer}{section.3.5}% 27
+\BOOKMARK [2][-]{subsection.3.5.1}{Instance-Transfer}{section.3.5}% 27
 \BOOKMARK [2][-]{subsection.3.5.2}{Symmetric-Feature-Transfer}{section.3.5}% 28
 \BOOKMARK [2][-]{subsection.3.5.3}{Asymmetric-Feature-Transfer}{section.3.5}% 29
 \BOOKMARK [2][-]{subsection.3.5.4}{Parameter-Transfer}{section.3.5}% 30
@@ -58,10 +58,10 @@
 \BOOKMARK [2][-]{subsection.5.3.3}{Root Mean Squared Error}{section.5.3}% 58
 \BOOKMARK [1][-]{section.5.4}{Descriptive Statistics}{chapter.5}% 59
 \BOOKMARK [2][-]{subsection.5.4.1}{Metric Results}{section.5.4}% 60
-\BOOKMARK [2][-]{subsection.5.4.2}{Time Results}{section.5.4}% 61
+\BOOKMARK [2][-]{subsection.5.4.2}{Computational Complexities}{section.5.4}% 61
 \BOOKMARK [2][-]{subsection.5.4.3}{Number of Support Vectors}{section.5.4}% 62
 \BOOKMARK [1][-]{section.5.5}{Comparison over one Dataset}{chapter.5}% 63
-\BOOKMARK [2][-]{subsection.5.5.1}{Result and discussion}{section.5.5}% 64
+\BOOKMARK [2][-]{subsection.5.5.1}{Result and Discussion}{section.5.5}% 64
 \BOOKMARK [1][-]{section.5.6}{Comparison over multiple Datasets}{chapter.5}% 65
 \BOOKMARK [2][-]{subsection.5.6.1}{Analysis of Variance}{section.5.6}% 66
 \BOOKMARK [2][-]{subsection.5.6.2}{Friedman Test}{section.5.6}% 67
@@ -73,6 +73,7 @@
 \BOOKMARK [0][-]{appendix.A}{Mathematical Notation}{}% 73
 \BOOKMARK [1][-]{subsection.A.0.1}{Terminology}{appendix.A}% 74
 \BOOKMARK [0][-]{appendix.B}{Complete Test Results}{}% 75
-\BOOKMARK [1][-]{section.B.1}{Five Two Comparison}{appendix.B}% 76
-\BOOKMARK [1][-]{section.B.2}{Complete Dataset Comparison}{appendix.B}% 77
-\BOOKMARK [0][-]{appendix.C}{Details of Algorithms}{}% 78
+\BOOKMARK [1][-]{section.B.1}{Five-Two Comparison}{appendix.B}% 76
+\BOOKMARK [2][-]{subsection.B.1.1}{Time Comparison}{section.B.1}% 77
+\BOOKMARK [1][-]{section.B.2}{Complete-Dataset Comparison}{appendix.B}% 78
+\BOOKMARK [0][-]{appendix.C}{Details of Algorithms}{}% 79

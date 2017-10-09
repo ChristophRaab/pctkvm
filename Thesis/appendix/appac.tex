@@ -1,15 +1,46 @@
 \chapter{Details of Algorithms}\label{appac}
 In this appendix, the detailed steps for the \acs{PCTKVM} algorithm are presented.
-We omit it the steps, which are already described in \acs{PCVM} and \acs{TKL} for clarity.
-The complete algorithm procedure is shown in algorithm \ref{PCTKVMComplete}.\\
+In the main part of this thesis, we have omitted some steps for clarity.
+The complete algorithm of the \acs{PCTKVM} is shown in algorithm \ref{PCTKVMComplete}.\\
 We also have extended the algorithm with the faster approach, where the dissimilar matrix is reused over tasks.
-Furthermore, we have extended the pseudo code with the option, which allows the user to decide, whether he wants to specify the $\theta$ or proceed with the estimation.
+Furthermore, we have extended the pseudo code with the option, which allows the user to decide, whether he wants to specify a $\theta$ or proceed with the estimation.
 If one decides to choose a $\theta$ on his own, then the model has two parameters: The width of the Gaussian kernel and the $\zeta$ eigenspectrum dumping factor.
-Moreover, \acs{PCTKVM} algorithm has following algorithm parameter:
-The \acs{PCTKVM} supports the standard Gaussian kernel, the new Gaussian kernel from \eqref{EqRBFAKernel} and the Laplacian kernel.
+The \acs{PCTKVM} supports the standard Gaussian kernel, new Gaussian kernel from \eqref{EqRBFAKernel} and the Laplacian kernel.
 However, we strongly recommend the use of the new Gaussian kernel.\\
-Furthermore the number of iterations \textit{niter} for the \acs{PCVM} can be specified and the convergence criteria as a \textit{threshold}.
+Furthermore, the number of iterations \textit{niter} for the \acs{PCVM} and the convergence criteria as a \textit{threshold}  can be specified .
 In algorithm \ref{PseudoCodePcvm} the pseudo code for the \acs{PCVM} and a line explanation can be found.
+
+\begin{algorithm}[H]
+	\caption{Probabilistic Classification Vector Machine}\label{PseudoCodePcvm}	
+	\begin{algorithmic}[1]
+		\Require $\mathbf{I}$ =\{\textbf{X,Y}\} = $\{(x_n,y_n)\}_{n=1}^{N}$ as $N_\mathcal{Z}$ sized training set;
+		\textit{ker} as kernel type; The kernel parameter $\theta$; \textit{niter} as maximal number of iterations; \textit{threshold} $\tau$ as convergence criteria; \textbf{InitVector} as $N_\mathcal{Z}$-sized initialization vector.
+		\Ensure Weight Vector $\mathbf{w}$, bias $b$ and the kernel parameter $\theta$.
+		\State	[$\mathbf{w},b$] = initialize(\textbf{initVector});
+		\State \textbf{nonZero} = determine\_nonZero\_Vector($\mathbf{w}$); 
+		\For{$i=1$ to \textit{niter}}
+		\State $\Phi$ = Calculate\_Kernel($\mathbf{X,Y}$,\textit{ker},$\theta$); 
+		\State $\mathbf{w}^{new}$ = weight\_update($\mathbf{\Phi,w,Y,nonZero}$);  
+		\State $b^{new}$ = bias\_update($\mathbf{\Phi},b,\mathbf{Y,nonZero}$);
+		\State $\theta^{new}$ = parameter\_update($\mathbf{\Phi,X,Y},\mathit{ker},\theta,\mathbf{w}^{new},b^{new},\mathbf{nonZero}$);
+		\State $\mathbf{nonZero}^{new}$ = determine\_nonZero\_Vector($\mathbf{w}^{new}$);
+		\If{max(abs($\mathbf{w}^{new}-\mathbf{w}$)) $<$ $\tau$ }
+		\State break;
+		\Else
+		\State continue;
+		\EndIf
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+\algcomment{Explanation of the Steps within the Algorithm.
+	\begin{enumerate}[noitemsep]
+		\item Line 1 and 2: (Random) initialization of the weight vector $\mathbf{w}$ with $N$-sized \textbf{initVector} and bias $b$. Determining non-zero elements in $\mathbf{w}$ and save it as an index to \textbf{nonZero}.
+		\item Line 4: Calculate the kernel $\boldsymbol{\Phi}$.
+		\item Line 5 and 6: Update $\mathbf{w}$ and $b$ with \eqref{EqPcvmUpdateW} and \eqref{EqPcvmUpdateb} respectively.
+		\item Line 7: Solve optimization problem based on \eqref{EqPcvmDevTheta}.
+		\item Line 9-15: Determine the convergence by comparing the difference of $\mathbf{w}^{new}$ and $\mathbf{w}$ against the threshold. Break if convergence happens, otherwise continue.
+\end{enumerate}}\\
+
 
 \begin{algorithm}[!]
 	\caption{Probabilistic Classification Transfer Kernel Vector Machine }\label{PCTKVMComplete}
@@ -41,33 +72,3 @@ In algorithm \ref{PseudoCodePcvm} the pseudo code for the \acs{PCVM} and a line 
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}[H]
-	\caption{Probabilistic Classification Vector Machine}\label{PseudoCodePcvm}	
-	\begin{algorithmic}[1]
-		\Require $\mathbf{I}$ =\{\textbf{X,Y}\} = $\{(x_n,y_n)\}_{n=1}^{N}$ as $N_\mathcal{Z}$ sized training set;
-		\textit{ker} as kernel type; The kernel parameter $\theta$; \textit{niter} as maximal number of iterations; \textit{threshold} $\tau$ as convergence criteria; \textbf{InitVector} as $N_\mathcal{Z}$-sized initialization vector.
-		\Ensure Weight Vector $\mathbf{w}$, bias $b$ and the kernel parameter $\theta$.
-		\State	[$\mathbf{w},b$] = initialize(\textbf{initVector});
-		\State \textbf{nonZero} = determine\_nonZero\_Vector($\mathbf{w}$); 
-		\For{$i=1$ to \textit{niter}}
-		\State $\Phi$ = Calculate\_Kernel($\mathbf{X,Y}$,\textit{ker},$\theta$); 
-		\State $\mathbf{w}^{new}$ = weight\_update($\mathbf{\Phi,w,Y,nonZero}$);  
-		\State $b^{new}$ = bias\_update($\mathbf{\Phi},b,\mathbf{Y,nonZero}$);
-		\State $\theta^{new}$ = parameter\_update($\mathbf{\Phi,X,Y},\mathit{ker},\theta,\mathbf{w}^{new},b^{new},\mathbf{nonZero}$);
-		\State $\mathbf{nonZero}^{new}$ = determine\_nonZero\_Vector($\mathbf{w}^{new}$);
-		\If{max(abs($\mathbf{w}^{new}-\mathbf{w}$)) $<$ $\tau$ }
-		\State break;
-		\Else
-		\State continue;
-		\EndIf
-		\EndFor
-	\end{algorithmic}
-\end{algorithm}
-\algcomment{Explanation of the Steps within the Algorithm.
-	\begin{enumerate}[noitemsep]
-		\item Line 1 and 2: (Random) initialization of the weight vector $\mathbf{w}$ with $N$-sized \textbf{initVector} and bias $b$. Determining non-zero elements in $\mathbf{w}$ and save it as an index to \textbf{nonZero}.
-		\item Line 4: Calculate the kernel $\Phi$.
-		\item Line 5 and 6: Update $\mathbf{w}$ and $b$ with \eqref{EqPcvmUpdateW} and \eqref{EqPcvmUpdateb} respectively.
-		\item Line 7: Solve optimization problem based on \eqref{EqPcvmDevTheta}.
-		\item Line 9-15: Determine the convergence by comparing the difference of $\mathbf{w}^{new}$ and $\mathbf{w}$ against the threshold. Break if convergence happens, otherwise continue.
-\end{enumerate}}\\
