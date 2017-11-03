@@ -1,4 +1,4 @@
-<h2> Repository for the Master thesis 'Integration of transfer learning into the Probabilistic Classification Vector Machine'</h2>
+***Repository for the Master thesis 'Integration of transfer learning into the Probabilistic Classification Vector Machine'***
 
 This repository contains source code and latex sources. The folder Thesis contains the latex sources for compiling the thesis. The folder Source Code contains the MatLab files.
 

@@ -10,19 +10,19 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Settings of Transfer Learning}}{22}{figure.caption.13}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces The Process of Geodesic Flow Kernel Approach}}{29}{figure.caption.17}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Tranfer Kernel Learning Process}}{42}{figure.caption.21}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Scatter Plot of Gaussian- and TKL-Kernel}}{45}{figure.caption.23}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Perfomance in Dependence of Theta}}{47}{figure.caption.24}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Effect of Width in Gaussian Kernel for Regression}}{48}{figure.caption.25}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Tranfer Kernel Learning Process}}{43}{figure.caption.21}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Scatter Plot of Gaussian- and TKL-Kernel}}{46}{figure.caption.23}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Perfomance in Dependence of Theta}}{48}{figure.caption.24}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Effect of Width in Gaussian Kernel for Regression}}{49}{figure.caption.25}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Plot of Orgs vs. People Dataset}}{55}{figure.caption.28}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Examples from Image Dataset}}{57}{figure.caption.30}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Plot of mean Error and standard Deviation}}{64}{figure.caption.33}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Plot of Orgs vs. People Dataset}}{56}{figure.caption.28}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Examples from Image Dataset}}{58}{figure.caption.30}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Plot of mean Error and standard Deviation}}{65}{figure.caption.33}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {B.1}{\ignorespaces Plot of Mean Error and Standard Deviation on Image Dataset (CV)}}{85}{figure.caption.44}
-\contentsline {figure}{\numberline {B.2}{\ignorespaces Plot of Mean Error and Standard Deviation on Reuters Dataset (CV)}}{85}{figure.caption.45}
-\contentsline {figure}{\numberline {B.3}{\ignorespaces Plot of Mean Error and Standard Deviation on the whole Datasets}}{91}{figure.caption.51}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Plot of Mean Error and Standard Deviation on Image Dataset (CV)}}{86}{figure.caption.44}
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Plot of Mean Error and Standard Deviation on Reuters Dataset (CV)}}{86}{figure.caption.45}
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Plot of Mean Error and Standard Deviation on the whole Datasets}}{92}{figure.caption.51}
 \addvspace {10\p@ }

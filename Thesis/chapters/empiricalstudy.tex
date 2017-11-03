@@ -358,8 +358,7 @@ This assumption may be more valid when one takes a look at the comparison, which
 It seems that the \acs{SVM} can handle very small datasets better than the \acs{PCVM} in general.
 However, again referring to the detailed test results, it states that the \acs{PCTKVM} is often the second best classifier.
 The \acs{PCTKVM} does a better job as the other transfer learning classifiers, expect \acs{TKL}.\\
-Additionally, we can see that the \acs{SVM} baseliner has an overall better performance than the \acs{PCVM} baseliner.
-Apart from the size of datasets, it might be a better idea for transfer learning to find a hyperplane, which separates the classes best, rather than modeling it via probabilistic, to handle the difference in marginal probability distributions.\\
+Additionally, we can see that the \acs{SVM} baseliner has an overall better performance than the \acs{PCVM} baseliner.\\
 We can observe that the \acs{PCTKVM}\textsubscript{$\theta$Est} is in general a little bit worse than the \acs{PCTKVM}. 
 Because these two approaches only differ in the $\theta$ value, we can say that the $\theta$ estimation approach described in section \ref{InSubSecTheta}, does not work better rather than a fixed theta, obtained with a parameter grid search. However, we can avoid this grid search and the difference in performance is not really large. As we will see in the statistical tests, the difference isn't significant.
 In fact, the estimation was originally designed for regression and classification \cite{Kitayama.2011}. However, it seems that the value of the estimation is too 'smooth' and the probabilistic estimation for one class are 'overlapping' in the other classes space.

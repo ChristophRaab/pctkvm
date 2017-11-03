@@ -7,7 +7,7 @@
 % Optional: For parallel computing uncomment parfor in line 38, 85
 
 
-addpath(genpath('../libsvm/matlab'));
+addpath(genpath('../libsvm/ma tlab'));
 addpath(genpath('../data'));
 addpath(genpath('../result'));
 addpath(genpath('../code'));

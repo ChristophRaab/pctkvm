@@ -66,7 +66,7 @@ Therefore, the wanted reduction of model complexity is maybe not yet achieved.\n
 Furthermore, the \ac{SVM} has several parameters that needs to be tuned by parameter optimization.
 For example the $C$ parameter, as cost parameter of the hyperplane\cite[p. 420]{TrevorHastie.2009}, or the parameters of a kernel function, for example, the width of the Gaussian kernel, section \ref{EmSubSecKernel}.
 Parameter optimization is done by a grid search in a certain range.
-For example, evaluate the performance of the \ac{SVM} for $C={1,2,5,10,...,100,200}$ and select the parameter according to the best performance.\cite{Chen.2009}\newline
+For example, evaluate the performance of the \ac{SVM} for $C=\{1,2,5,10,...,100,200\}$ and select the parameter according to the best performance.\cite{Chen.2009}\newline
 Finally, when it comes to the interpretation of the results, the \ac{SVM} provides a good interpretation of how the margin and the decision boundary is created.
 However, the points which are considered as support vectors and therefore selected in the model, are not representing the actual class data very well, because they are the closest points from one class to the other class.\cite[p. 326]{Bishop.2009}\newline
 Here a key feature from the \ac{RVM} takes place. It creates a sparser model, in comparison with the \ac{SVM}, and provides a probabilistic estimate of the classes, where the relevance vectors are representing the data.\cite[p. 335-356]{Bishop.2009}\newline
@@ -188,7 +188,7 @@ As a consequence, the \acs{RVM} is more likely to overfit noise in comparison wi
 At this point the improvements of the \acs{PCVM} take place. 
 Instead of a zero-mean Gaussian prior, it uses the zero-mean truncated Gaussian as prior:\cite{Chen.2009}
 \begin{equation}\label{EqPcvmNtPrior}
-p(\mathbf{w} \vert \boldsymbol{\alpha}) = \sum_{i=1}^{N}p(w_i \vert \alpha_i) = \sum_{i=1}^{N}N_t(w_i \vert 0,\alpha_i^{-1})
+p(\mathbf{w} \vert \boldsymbol{\alpha}) = \prod_{i=1}^{N}p(w_i \vert \alpha_i) = \prod_{i=1}^{N}N_t(w_i \vert 0,\alpha_i^{-1})
 \end{equation}
 Here $N_t$ is the truncated Gaussian function with $\boldsymbol{\alpha}$ as inverse variance.\\
 With that the relevance vector is always getting a proper signed weight attached.
@@ -215,7 +215,7 @@ The \acs{PCVM} uses the gamma distribution for modeling the hyperprior, but in p
 \begin{figure}
 	\centering
 	\floatbox[{\capbeside\thisfloatsetup{capbesideposition={right,top},capbesidewidth=6cm}}]{figure}[\FBwidth]
-	{\caption[Truncated Gaussian Priors over Weights]{The truncated Gaussian prior over weights. On the left side the non-positive left-truncated one in case of a negative class label. On the right side the non-negative right-truncated one for the positive class.\cite{Chen.2009}}}
+	{\caption[Truncated Gaussian Priors over Weights]{The truncated Gaussian prior over weights. On the left side the non-positive right-truncated one in case of a negative class label. On the right side the non-negative left-truncated one for the positive class.\cite{Chen.2009}}}
 	{\includegraphics[width=\linewidth]{figures/TuncatedGaussian.png}\label{FigTruncGaus}}
 \end{figure}
 \subsection{Expectation Maximization Algorithm}\label{PcSecEM}
