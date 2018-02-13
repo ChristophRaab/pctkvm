@@ -1,8 +1,8 @@
 ***Repository for the Master thesis 'Integration of transfer learning into the Probabilistic Classification Vector Machine'***
 
-This repository contains source code and latex sources. The folder Thesis contains the latex sources for compiling the thesis. The folder Source Code contains the MatLab files.
+This repository contains source code.
 
-* The folder Source Code is divided into three subfolders:
+* It is divided into three subfolders:
 
    * The folder code contains MatLab files for the PCKTVM and every other Transfer Learning solutions which are used in the study. Furthermore, it contains the supplementary source code for visualizing results and datasets, calculating divergencies, etc.
 
