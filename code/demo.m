@@ -1,15 +1,14 @@
-%% Average Test Script
-% This script calculates the error, accuracy and AUC values over the 15
-% subsets of selected transfer learning methods. This will be repeated 10
-% times to get an additional standard deviation. The datasets are generated
-% from preprocessed versions of Reuters-21578, Office and
-% Caltech-256.
-% Optional: For parallel computing uncomment parfor in line 38, 85
-
+%% Matlab Demo file for the Probabilistic Transfer Kernel Vector Machine
+% Orginal Publication
+% Matlab Source code Raab, Christoph ; Schleif, Frank-Michael: 
+% Transfer learning for the probabilistic classification vector machine. 
+% In: Gammerman, A. ; Vovk, V. ; Luo, Z. ; Smirnov, E. ; Peeters, R. (Hrsg.):
+% Proceedings of the Seventh Workshop on Conformal and Probabilistic Prediction and Applications,
+%  Proceedings of Machine Learning Research. Bd. 91 : PMLR, 2018, S. 187–200
+% http://proceedings.mlr.press/v91/raab18a.html
 
 addpath(genpath('/libsvm'));
 addpath(genpath('../data'));
-addpath(genpath('../result'));
 addpath(genpath('../code'));
 
 clear all;
